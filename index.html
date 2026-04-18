@@ -3,820 +3,141 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>看见运动的三个维度</title>
+<title>Data Body Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0a0b;--bg-card:#111112;--bg-hover:#161617;--surface:#141415;--text:#fafafa;--text-sec:#a1a1a6;--text-muted:#6b6b6e;--text-dim:#3a3a3c;--accent:#E8C547;--accent-dim:rgba(232,197,71,0.1);--accent-mid:rgba(232,197,71,0.3);--border:rgba(255,255,255,0.06);--border-mid:rgba(255,255,255,0.1);--ease:0.6s cubic-bezier(0.25,0.46,0.45,0.94);--xl:20px;--lg:16px;--md:12px}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font:-apple-system,BlinkMacSystemFont,'SF Pro Display','Noto Sans SC',sans-serif;font-size:16px;-webkit-font-smoothing:antialiased}
-h1,h2,h3{font-weight:600;line-height:1.15;letter-spacing:-0.03em}
+:root{--bg:#FAF8F5;--card:#FFF;--text:#2D2A25;--text2:#5A5650;--text3:#8A8480;--accent:#C4A65A;--accent_l:rgba(196,166,90,0.08);--green:#4A8A4A;--green_l:rgba(74,138,70,0.06);--red:#c8503c;--red_l:rgba(200,80,60,0.06);--blue:#5A7A9A;--br:rgba(45,42,37,0.08);--fs:"Noto Sans SC","PingFang SC",sans-serif;--ffs:"Noto Serif SC","Songti SC",serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--fs);-webkit-font-smoothing:antialiased}
 #app{position:relative;width:100vw;height:100dvh;overflow:hidden}
-.slide{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;transition:opacity var(--ease);display:flex;align-items:center;padding:clamp(2rem,5vh,3.5rem) clamp(3rem,8vw,8rem);overflow-y:auto}
-.slide.active{opacity:1;visibility:visible;pointer-events:auto}
-.sin{width:100%;max-width:72rem;margin:0 auto}
-#bg-grad{position:fixed;inset:-20%;z-index:0;pointer-events:none}
-.bg1{position:absolute;inset:-50%;background:radial-gradient(ellipse at 30% 20%,rgba(232,197,71,0.05),transparent 50%);animation:d1 25s ease-in-out infinite}
-.bg2{position:absolute;inset:-50%;background:radial-gradient(ellipse at 70% 80%,rgba(80,100,180,0.035),transparent 50%);animation:d2 30s ease-in-out infinite}
-@keyframes d1{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-20px)}}
-@keyframes d2{0%,100%{transform:translate(0,0)}50%{transform:translate(-25px,15px)}}
-.grid{position:fixed;inset:0;pointer-events:none;opacity:0.012;background-image:repeating-linear-gradient(0deg,var(--border) 0,var(--border) 1px,transparent 1px,transparent 80px),repeating-linear-gradient(90deg,var(--border) 0,var(--border) 1px,transparent 1px,transparent 80px)}
-#pbar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),rgba(232,197,71,0.4));z-index:200;width:0%;transition:width 0.3s}
-#slb{position:fixed;top:1.5rem;right:3rem;z-index:100;font-size:0.7rem;color:var(--text-dim);letter-spacing:0.15em;font-weight:500;display:none}
-#cnt{position:fixed;bottom:2rem;right:2.5rem;z-index:100;font-size:0.75rem;color:var(--text-dim);letter-spacing:0.1em;font-variant-numeric:tabular-nums}
-#cnt b{color:var(--text);font-weight:600;font-size:1rem}
-#dn{position:fixed;right:2rem;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:12px}
-.dot{width:6px;height:6px;border-radius:99px;background:var(--text-dim);border:none;padding:0;cursor:pointer;opacity:0.3;transition:all 0.3s}
-.dot.a{background:var(--accent);opacity:1;transform:scale(1.5);box-shadow:0 0 8px rgba(232,197,71,0.4)}
-.dot:hover{opacity:0.6}
-.hint{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);font-size:0.7rem;color:var(--text-dim);letter-spacing:0.12em;z-index:50;display:flex;align-items:center;gap:8px}
-kbd{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:3px 8px;font-size:0.65rem;color:var(--text-muted);font:inherit}
-.tlab{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.22em;font-weight:600;margin-bottom:0.75rem;display:block;color:var(--accent);opacity:0.8}
-.slab{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;margin-bottom:1rem;display:block;color:var(--text-muted)}
-.htitle{font-size:clamp(3rem,6.5vw,6.5rem);color:var(--text);margin-bottom:1rem;line-height:1.05;letter-spacing:-0.04em}
-.hsub{font-size:clamp(1.1rem,2vw,1.5rem);color:var(--text-sec);font-weight:400;line-height:1.4;max-width:54rem}
-.stext{font-size:clamp(2rem,4vw,3.5rem);color:var(--text);margin-bottom:0.5rem;letter-spacing:-0.035em}
-.sdesc{font-size:clamp(1rem,1.5vw,1.2rem);color:var(--text-sec);font-weight:400;line-height:1.6;max-width:50rem}
-.body{font-size:clamp(0.9rem,1.15vw,1.05rem);color:var(--text-sec);line-height:1.7;max-width:52rem}
-.ac{color:var(--accent);font-weight:500}
-.cd{text-align:center;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.cnum{font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1.5rem}
-.cline{width:56px;height:1.5px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:0 auto 2rem;opacity:0.4}
-.ctitle{font-size:clamp(2.5rem,5.5vw,5rem);line-height:1.1;color:var(--text);margin-bottom:1rem}
-.cdesc{font-size:clamp(1.1rem,1.6vw,1.4rem);color:var(--text-sec)}
-.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--xl);padding:clamp(1.5rem,2vw,2rem);transition:all 0.4s}
-.card:hover{background:var(--bg-hover);border-color:var(--border-mid);box-shadow:0 8px 32px rgba(0,0,0,0.4)}
-.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;grid-auto-flow:dense}
-.s8{grid-column:span 8}.s7{grid-column:span 7}.s6{grid-column:span 6}.s5{grid-column:span 5}.s4{grid-column:span 4}
-@media(max-width:960px){.s8,.s7,.s6,.s5,.s4{grid-column:span 12}}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:20px}
-.stat{text-align:center;padding:1.5rem 1rem;background:var(--surface);border-radius:var(--xl);border:1px solid var(--border);transition:all 0.4s}
-.stat:hover{transform:translateY(-2px);border-color:var(--border-mid)}
-.sval{font-size:clamp(1.75rem,2.5vw,2.5rem);font-weight:700;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
-.slabel{font-size:0.78rem;color:var(--text-muted);margin-top:0.5rem;font-weight:500}
-.dnum{font-size:clamp(2.5rem,4.5vw,4.5rem);font-weight:700;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
-.dnum em{font-size:0.45em;font-weight:400;font-style:normal;color:var(--text-sec)}
-.dunit{font-size:0.82rem;color:var(--text-sec);margin-top:0.35rem}
-.dtbl{width:100%;border-collapse:collapse;font-size:0.88rem}
-.dtbl th{font-weight:600;font-size:0.72rem;padding:10px 14px;text-align:left;color:var(--text);border-bottom:1px solid var(--border-mid);text-transform:uppercase;letter-spacing:0.08em}
-.dtbl td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text-sec);line-height:1.5;vertical-align:top}
-.dtbl td strong{color:var(--text)}
-.quote{font-size:clamp(1.1rem,1.5vw,1.3rem);color:var(--text);line-height:1.7;font-weight:300;max-width:50rem}
-.qattr{font-size:0.78rem;color:var(--text-muted);margin-top:0.75rem;font-style:italic}
-.checks{list-style:none;display:flex;flex-direction:column;gap:12px}
-.chk{display:flex;gap:12px;align-items:flex-start}
-.chk-i{flex-shrink:0;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--accent-mid);display:flex;align-items:center;justify-content:center;margin-top:1px}
-.chk-t{font-weight:600;color:var(--text);font-size:0.95rem;margin-bottom:2px}
-.chk-d{color:var(--text-sec);font-size:0.84rem;line-height:1.6}
-.sc{background:var(--surface);border:1px solid var(--border);border-radius:var(--lg);padding:1.25rem;transition:all 0.4s}
-.sc:hover{border-color:var(--accent-mid);transform:translateY(-2px)}
-.sc-h{display:flex;align-items:center;gap:10px;margin-bottom:0.75rem}
-.sc-av{width:28px;height:28px;border-radius:50%;background:var(--accent-dim);display:flex;align-items:center;justify-content:center}
-.sc-nm{font-size:0.85rem;color:var(--text);font-weight:500}
-.sc-bg{margin-left:auto;font-size:0.6rem;color:var(--text-muted);background:var(--accent-dim);padding:2px 8px;border-radius:999px;font-weight:500}
-.sc-bd{font-size:0.88rem;color:var(--text-sec);line-height:1.65}
-.tags{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;margin-top:1.5rem}
-.tag{font-size:0.7rem;color:var(--text-dim);padding:4px 12px;border:1px solid var(--border);border-radius:999px;background:var(--surface);font-weight:500}
-.an{opacity:0;transform:translateY(24px)}
-@media(max-width:768px){#dn,.hint{display:none}.slide{padding:clamp(1.2rem,3vh,1.5rem) clamp(1rem,4vw,1.5rem)}}
-
+.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg);opacity:0;transition:opacity 0.5s ease;pointer-events:none;z-index:1}
+.slide.active{opacity:1;pointer-events:auto;z-index:10}
+.si{width:min(92vw,1200px);max-width:1200px;display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(32px,5vh,80px) clamp(28px,5vw,96px);height:100dvh}
+.si.center{justify-content:center;align-items:center;text-align:center}
+.lb{font-size:0.6rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:16px}
+.tl{font-size:clamp(1.2rem,2vw,1.8rem);color:var(--text);line-height:1.4;margin-bottom:0.5rem}
+.tx{font-size:clamp(0.9rem,1.2vw,1.05rem);color:var(--text);line-height:1.6;margin-bottom:0.5rem}
+.tx2{font-size:clamp(0.85rem,1.1vw,1rem);color:var(--text2);line-height:1.6;margin-bottom:0.5rem}
+.sc{background:var(--card);border:1px solid var(--br);border-radius:10px;padding:16px}
+.hb{background:var(--accent_l);border:1px solid rgba(196,166,90,0.2);border-radius:10px;padding:12px 16px;margin:8px 0}
+.hb p{font-size:0.92rem;color:var(--text);line-height:1.7}
+.ct{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:10px 0}
+.cl3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:10px 0}
+.tch{background:var(--card);border:1px solid var(--br);border-radius:10px;padding:14px}
+.tch h4{font-size:0.95rem;color:var(--text);margin:6px 0 4px}
+.tch p{font-size:0.78rem;color:var(--text2);line-height:1.55;margin:2px 0}
+.tch .tc{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+.cmc{border-radius:8px;padding:14px}
+.cmc h5{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px}
+.cmc li{font-size:0.88rem;color:var(--text2);line-height:1.6;margin-bottom:6px}
+.cmc ul{list-style:none;padding:0}
+.fb{text-align:center;font-size:0.68rem;color:var(--text3);font-weight:500;margin-top:1rem}
+.dots{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;gap:10px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--text3);cursor:pointer;opacity:0.2;transition:all 0.3s}
+.dot.a{opacity:1;transform:scale(1.3);background:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:0.5em 0}
+th{font-size:0.72rem;color:var(--text3);text-transform:uppercase;padding:8px 12px;text-align:left;background:var(--bg);font-weight:600}
+td{padding:8px 12px;font-size:0.9rem;color:var(--text);border-bottom:1px solid var(--br);line-height:1.5}
+blockquote{padding:8px 0 8px 16px;border-top:2px solid var(--accent);font-family:var(--ffs);font-size:1rem;color:var(--text);line-height:1.7;font-style:italic;margin:0.5em 0}
+strong{color:var(--text);font-weight:600}
+svg{display:block;width:100%;height:auto;margin:0.5em 0}
+.card{background:var(--card);border:1px solid var(--br);border-radius:10px;padding:14px}
 </style>
 </head>
 <body>
 <div id="app">
-<div id="pbar"></div>
-<div id="slb"></div>
-
-<div id="bg-grad"><div class="bg1"></div><div class="bg2"></div></div>
-<div class="grid" id="grid"></div>
-
-<nav id="dn"></nav>
-<div id="cnt"><b id="c-cur">01</b> / <span id="c-tot"></span></div>
-
-<div class="hint"><div class="keys"><kbd>↑</kbd><kbd>↓</kbd></div><span>切换页面</span></div>
-
-<section class="slide active">
-<div class="sin" style="max-width:48rem;text-align:center">
-<p class="slab an" style="text-align:center;color:var(--accent);opacity:0.7;letter-spacing:0.25em">校企合作课程 &middot; 运动叙事可视化</p>
-<h1 class="htitle an">看见运动</h1>
-<p class="hsub an" style="margin:0 auto 3rem;text-align:center;color:var(--text-sec)">三个课题，三种叙事尺度<br>从宏观的国家记忆到微观的瞬间体验</p>
-<div class="bento an" style="max-width:44rem;margin:0 auto;grid-template-columns:1fr 1fr 1fr">
-<div class="card" style="text-align:left">
-<p style="font-size:0.62rem;color:var(--text-muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.18em">课题 A &middot; 宏观</p>
-<p style="font-size:1.05rem;color:var(--text);font-weight:600;line-height:1.35;margin-bottom:6px">中国网球<br>发展历程</p>
-<p style="font-size:0.78rem;color:var(--text-muted)">数据驱动的体育文化记忆</p>
-</div>
-<div class="card" style="text-align:left">
-<p style="font-size:0.62rem;color:var(--text-muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.18em">课题 B &middot; 中观</p>
-<p style="font-size:1.05rem;color:var(--text);font-weight:600;line-height:1.35;margin-bottom:6px">个人网球<br>成长报告</p>
-<p style="font-size:0.78rem;color:var(--text-muted)">自我效能可视化</p>
-</div>
-<div class="card" style="text-align:left">
-<p style="font-size:0.62rem;color:var(--text-muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.18em">课题 C &middot; 微观</p>
-<p style="font-size:1.05rem;color:var(--text);font-weight:600;line-height:1.35;margin-bottom:6px">每个人都是<br>赛场明星</p>
-<p style="font-size:0.78rem;color:var(--text-muted)">普通人英雄之旅</p>
-</div>
-</div>
-<p class="an" style="margin-top:2.5rem;font-size:0.9rem;color:var(--text-muted);max-width:40rem;margin-left:auto;margin-right:auto;line-height:1.85;font-weight:300">本次引导将先介绍课题要求，再为每个课题提供观点启发——帮你找到独特的叙事角度，但不限制你的思考方向。</p>
-<div class="an" style="margin-top:3rem;display:flex;align-items:center;justify-content:center;gap:12px">
-<span style="font-size:0.68rem;color:var(--text-dim);letter-spacing:0.15em;text-transform:uppercase">scroll to explore</span>
-<span style="width:1px;height:28px;background:linear-gradient(to bottom,var(--text-dim),transparent);opacity:0.3"></span>
-</div>
-</div>
-</section>
-<section class="slide">
-<div class="sin">
-<div class="bento" style="align-items:start">
-<div class="s8">
-<p class="tlab an">课题 A</p>
-<h2 class="stext an">中国网球发展历程</h2>
-<p class="sdesc an" style="margin-bottom:2.5rem">数据驱动的体育文化记忆 &middot; 文化认同与自豪感</p>
-<div class="card an" style="margin-bottom:2rem">
-<p style="font-size:0.8rem;color:var(--text);font-weight:600;margin-bottom:0.75rem">课题背景</p>
-<p class="body" style="font-size:0.92rem">2024 年巴黎奥运郑钦文女单金牌让"网球"成为顶流。但很少有人知道，从 2004 年雅典奥运夺金时的报纸黑白印刷，到 2011 年李娜法网夺冠时微博实时刷屏，再到 2024 年抖音上每秒诞生的网球短视频——这二十恰好是中国体育从<strong style="color:var(--text)">举国体制向职业化 + 大众化</strong>转型的完整周期，也是体育传播从<strong style="color:var(--text)">大众媒体向算法媒体</strong>迁徙的二十年。</p>
-</div>
-<div class="card an">
-<p style="font-size:0.8rem;color:var(--text);font-weight:600;margin-bottom:1rem">你需要做什么</p>
-<p class="body" style="font-size:0.92rem">采集 2004-2024 年间的<strong style="color:var(--text)">竞技数据、媒介数据、产业数据</strong>三类数据集，重构中国网球运动的集体记忆图谱。探索体育的民主化进程、偶像的代际传递，以及信息设计如何让体育史成为可触摸的文化记忆。</p>
-</div>
-</div>
-<div class="s4" style="display:flex;flex-direction:column;gap:16px">
-<div class="card an">
-<p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.5rem">交付形式</p>
-<p style="font-size:1.35rem;color:var(--accent);font-weight:700">4:3 竖版海报</p>
-</div>
-<div class="card an">
-<p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.5rem">叙事尺度</p>
-<p style="font-size:1.35rem;color:var(--accent);font-weight:700">宏观</p>
-<p style="font-size:0.78rem;color:var(--text-sec)">国家 / 时代</p>
-</div>
-<div class="card an">
-<p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.5rem">数据来源</p>
-<p style="font-size:1.05rem;color:var(--accent);font-weight:600">自行采集</p>
-<p style="font-size:0.78rem;color:var(--text-sec)">互联网公开数据</p>
-</div>
-<div class="card an">
-<p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.5rem">涉及领域</p>
-<p style="font-size:0.82rem;color:var(--text-sec);line-height:1.65">叙事可视化、信息设计、体育社会学、数据新闻</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="slide">
-<div class="sin">
-<div class="bento" style="align-items:start">
-<div class="s8">
-<p class="tlab an">课题 B</p>
-<h2 class="stext an">个人网球成长报告</h2>
-<p class="sdesc an" style="margin-bottom:2.5rem">基于行为改变理论的自我效能可视化 &middot; 自我效能感与动机</p>
-<div class="card an" style="margin-bottom:2rem">
-<p style="font-size:0.8rem;color:var(--text);font-weight:600;margin-bottom:0.75rem">课题背景</p>
-<p class="body" style="font-size:0.92rem">在可穿戴设备与 AI 摄像头普及下，运动者面临<strong style="color:var(--text)">"数据丰富但洞察贫乏"</strong>的困境。现有 APP 简单罗列速度、距离、卡路里，导致"数字焦虑"或"进步无感"。<strong style="color:var(--accent)">70% 的业余网球爱好者在 6 个月内放弃</strong>，主因是"看不到自己的变化"。行为心理学表明：坚持的关键不在于绝对水平，而在于对"自己正在进步"的主观信念。</p>
-</div>
-<div class="card an">
-<p style="font-size:0.8rem;color:var(--text);font-weight:600;margin-bottom:1rem">你需要做什么</p>
-<p class="body" style="font-size:0.92rem">基于<strong style="color:var(--text)">一名真实训练者 12 次课的模拟数据</strong>（涵盖技术、生理、心理多维度），设计一套"成长叙事"可视化方案：识别平台期、标注突破时刻、运用增益性框架，将数据转化为<strong style="color:var(--text)">心理赋能工具</strong>。</p>
-</div>
-</div>
-<div class="s4" style="display:flex;flex-direction:column;gap:16px">
-<div class="card an">
-<p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.5rem">交付形式</p>
-<p style="font-size:1.35rem;color:var(--accent);font-weight:700">可互动 UI</p>
-<p style="font-size:0.78rem;color:var(--text-sec)">4-5 屏交互界面</p>
-</div>
-<div class="card an">
-<p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.5rem">叙事尺度</p>
-<p style="font-size:1.35rem;color:var(--accent);font-weight:700">中观</p>
-<p style="font-size:0.78rem;color:var(--text-sec)">个人 / 时间</p>
-</div>
-<div class="card an">
-<p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.5rem">数据来源</p>
-<p style="font-size:1.05rem;color:var(--accent);font-weight:600">企业提供</p>
-<p style="font-size:0.78rem;color:var(--text-sec)">连续 12 次训练数据</p>
-</div>
-<div class="card an">
-<p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.5rem">涉及领域</p>
-<p style="font-size:0.82rem;color:var(--text-sec);line-height:1.65">个人数据可视化、说服性可视化、行为心理学、UX 设计</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="slide">
-<div class="sin">
-<div class="bento" style="align-items:start">
-<div class="s8">
-<p class="tlab an">课题 C</p>
-<h2 class="stext an">每个人都是赛场明星</h2>
-<p class="sdesc an" style="margin-bottom:2.5rem">体育媒介化视角下的普通人英雄之旅 &middot; 社交货币与成就感</p>
-<div class="card an" style="margin-bottom:2rem">
-<p style="font-size:0.8rem;color:var(--text);font-weight:600;margin-bottom:0.75rem">课题背景</p>
-<p class="body" style="font-size:0.92rem">短视频时代，被看见已成为运动体验的核心。但普通人面临双重困境：专业转播的视听语言门槛过高，随手拍摄又缺乏"高光感"。当网球从<strong style="color:var(--text)">观看职业明星转向每个人都是参与者</strong>，如何通过设计让普通人获得与职业选手同等的媒介待遇与仪式感？</p>
-</div>
-<div class="card an">
-<p style="font-size:0.8rem;color:var(--text);font-weight:600;margin-bottom:1rem">你需要做什么</p>
-<p class="body" style="font-size:0.92rem">亲身<strong style="color:var(--text)">体验 AI 网球设备</strong>获得你自己的训练视频与统计数据。设计一套"轻量级运动叙事"的动态可视化模板：将球速、旋转、移动距离转化为视觉特效，将你的训练铸造成<strong style="color:var(--text)">社交货币</strong>。</p>
-</div>
-</div>
-<div class="s4" style="display:flex;flex-direction:column;gap:16px">
-<div class="card an">
-<p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.5rem">交付形式</p>
-<p style="font-size:1.35rem;color:var(--accent);font-weight:700">30s 竖屏 MP4</p>
-<p style="font-size:0.78rem;color:var(--text-sec)">动态数据可视化</p>
-</div>
-<div class="card an">
-<p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.5rem">叙事尺度</p>
-<p style="font-size:1.35rem;color:var(--accent);font-weight:700">微观</p>
-<p style="font-size:0.78rem;color:var(--text-sec)">瞬间 / 体验</p>
-</div>
-<div class="card an">
-<p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.5rem">数据来源</p>
-<p style="font-size:1.05rem;color:var(--accent);font-weight:600">实地采集</p>
-<p style="font-size:0.78rem;color:var(--text-sec)">场馆体验自己的数据</p>
-</div>
-<div class="card an">
-<p style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.5rem">涉及领域</p>
-<p style="font-size:0.82rem;color:var(--text-sec);line-height:1.65">动态数据可视化、影视包装、动效设计、叙事可视化</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="slide">
-<div class="sin" style="max-width:40rem;text-align:center">
-<p class="tlab an" style="text-align:center">引导展示</p>
-<h2 class="stext an" style="margin-bottom:1.5rem;max-width:none">观点启发</h2>
-<p class="hsub an" style="margin:0 auto 3rem;text-align:center">以下内容针对每个课题提供理论锚点和案例分析——目的是为你的思考提供更多维度，而不是给出"应该怎么做的答案"。你的课题可以有完全不同的切入点。</p>
-<div style="display:flex;justify-content:center;gap:32px;margin-top:2rem" class="an">
-<div style="text-align:center">
-<p style="font-size:4rem;color:var(--accent);font-weight:700;line-height:1;opacity:0.7">壹</p>
-<p style="font-size:0.85rem;color:var(--text);font-weight:500;margin-top:0.5rem">中国网球二十年</p>
-<p style="font-size:0.7rem;color:var(--text-muted);margin-top:2px">媒介 &middot; 制度 &middot; 消费</p>
-</div>
-<div style="width:1px;height:80px;background:linear-gradient(to bottom,transparent,var(--border-mid),transparent);margin-top:calc(4rem - 8px)"></div>
-<div style="text-align:center">
-<p style="font-size:4rem;color:var(--accent);font-weight:700;line-height:1;opacity:0.7">贰</p>
-<p style="font-size:0.85rem;color:var(--text);font-weight:500;margin-top:0.5rem">数据会说谎</p>
-<p style="font-size:0.7rem;color:var(--text-muted);margin-top:2px">信息 &middot; 框架 &middot; 效能</p>
-</div>
-<div style="width:1px;height:80px;background:linear-gradient(to bottom,transparent,var(--border-mid),transparent);margin-top:calc(4rem - 8px)"></div>
-<div style="text-align:center">
-<p style="font-size:4rem;color:var(--accent);font-weight:700;line-height:1;opacity:0.7">叁</p>
-<p style="font-size:0.85rem;color:var(--text);font-weight:500;margin-top:0.5rem">身体成为数据</p>
-<p style="font-size:0.7rem;color:var(--text-muted);margin-top:2px">凝视 &middot; 时间 &middot; 光环</p>
-</div>
-</div>
-</div>
-</section>
-<section class="slide">
-<div class="cd" style="width:100%">
-<svg viewBox="0 0 300 180" fill="none" style="display:block;width:200px;margin:0 auto 2rem;opacity:0.12">
-<circle cx="90" cy="90" r="50" stroke="#E8C547" stroke-width="2" fill="rgba(232,197,71,0.03)"/>
-<line x1="90" y1="140" x2="105" y2="170" stroke="#E8C547" stroke-width="2"/>
-<circle cx="200" cy="40" r="12" stroke="#4a6aa0" stroke-width="1.5" fill="rgba(74,106,160,0.03)"/>
-<circle cx="215" cy="30" r="12" stroke="#4a6aa0" stroke-width="1" opacity="0.7"/>
-<circle cx="230" cy="20" r="12" stroke="#4a6aa0" stroke-width="0.8" opacity="0.5"/>
-<rect x="210" y="60" width="35" height="50" rx="5" stroke="var(--border)" stroke-width="1"/>
-<path d="M145,90 Q170,80 195,40" stroke="var(--text-muted)" stroke-width="0.8" stroke-dasharray="4,3" fill="none" opacity="0.4"/>
-</svg>
-<p class="cnum an">PART 01 / 03</p>
-<div class="cline an"></div>
-<h2 class="ctitle an">一颗黄绿色小球的<br>二十年漂流</h2>
-<p class="cdesc an">当媒介重新发明一项运动</p>
-</div>
-</section>
-<section class="slide">
-<div class="sin">
-<p class="tlab an">课题 A 观点一</p>
-<h2 class="stext an" style="max-width:32rem">同一个球场，三种"被看见"的方式</h2>
-<p class="sdesc an" style="margin-bottom:2rem">从李娜到郑钦文——同一个菲利普·夏蒂埃中心球场，唯一剧烈变化的是<strong class="ac">媒介环境</strong>。</p>
-<div class="bento" style="margin-bottom:2rem">
-<div class="s6"><div class="card" style="height:100%">
-<p style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.75rem">2011 &middot; 电视时代</p>
-<p class="dnum">1.16<em> 亿</em></p>
-<p class="dunit" style="margin-bottom:0.75rem">央视三频道并机直播收视总人数</p>
-<p class="body" style="font-size:0.9rem">1.16 亿人在同一时刻看同一个画面——一种<strong style="color:var(--text)">同步的、集体的、仪式性的</strong>观看体验。</p>
-</div></div>
-<div class="s6"><div class="card" style="height:100%">
-<p style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.75rem">2024 &middot; 算法时代</p>
-<p class="dnum">545<em>%</em></p>
-<p class="dunit" style="margin-bottom:0.75rem">抖音"网球"关键词同比搜索增长</p>
-<p class="body" style="font-size:0.9rem">每个人在不同平台、不同时间接触同一事件——一种<strong style="color:var(--text)">异步的、碎片的、个人化的</strong>消费。</p>
-</div></div>
-</div>
-<p class="tlab an" style="margin-bottom:0.75rem">关键数据</p>
-<div class="stats an" style="margin-bottom:2rem;grid-template-columns:1fr 1fr 1fr 1fr">
-<div class="stat"><p class="sval">2793</p><p class="slabel">运动员个人衍生热搜</p></div>
-<div class="stat"><p class="sval">9%</p><p class="slabel">赛程赛果热搜占比</p></div>
-<div class="stat"><p class="sval">111%</p><p class="slabel">同款 T 搜索增长</p></div>
-<div class="stat"><p class="sval">160%</p><p class="slabel">网球裙成交额增长</p></div>
-</div>
-<div class="quote an">"2011 年看李娜夺冠，像全国人民一起去了同一个电影院。2024 年看郑钦文夺冠，像每个人刷到了同一部电影的不同片段。每个人都觉得'看过了'，但没有两个人看到的是同一个东西。"</div>
-</div>
-</section>
-<section class="slide">
-<div class="sin">
-<p class="tlab an">课题 A 观点二</p>
-<h2 class="stext an" style="max-width:28rem">谁在为冠军买单？</h2>
-<p class="sdesc an" style="margin-bottom:2rem">从国家拨款到"体育鸡娃"——中国网球培养的三阶段演化，不是"举国体制好不好"的二元对立，而是一个复杂的三阶段演化。</p>
-<div class="bento" style="margin-bottom:2rem">
-<div class="s4"><div class="card" style="height:100%">
-<p style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.75rem">第一阶段 ~2008</p>
-<h3 style="font-size:1.4rem;color:var(--text);font-weight:600;margin-bottom:0.75rem">国家全包</h3>
-<p class="body" style="font-size:0.88rem;margin-bottom:0.75rem">再分配逻辑。体校→省队→国家队，一切国家承担。</p>
-<p style="font-size:0.78rem;color:var(--text-dim);padding:0.5rem;background:var(--surface);border-radius:6px">不浪费天赋，但也不尊重自由</p>
-</div></div>
-<div class="s4"><div class="card" style="height:100%">
-<p style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.75rem">第二阶段 2008-2014</p>
-<h3 style="font-size:1.4rem;color:var(--text);font-weight:600;margin-bottom:0.75rem">单飞分账</h3>
-<p class="body" style="font-size:0.88rem;margin-bottom:0.75rem">市场化逻辑。运动员从体制"脱嵌"，自负盈亏。</p>
-<p style="font-size:0.78rem;color:var(--text-dim);padding:0.5rem;background:var(--surface);border-radius:6px">李娜 13 家赞助商，年 800 万起</p>
-</div></div>
-<div class="s4"><div class="card" style="height:100%">
-<p style="font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.75rem">第三阶段 2020s~</p>
-<h3 style="font-size:1.4rem;color:var(--text);font-weight:600;margin-bottom:0.75rem">家庭投资</h3>
-<p class="body" style="font-size:0.88rem;margin-bottom:0.75rem">资本化逻辑。家庭将资源投入孩子职业路径。</p>
-<p style="font-size:0.78rem;color:var(--text-dim);padding:0.5rem;background:var(--surface);border-radius:6px">郑父横跨欧洲参赛："弯道超车的机会"</p>
-</div></div>
-</div>
-<div class="quote an">"培养一个能站上大满贯赛场的运动员，门槛不是低了，而是从'你得进体制'变成了'你得有一个愿意押上全部的家庭'。"&nbsp;<span style="color:var(--accent);font-weight:500">自由的代价，是风险的私有化。</span></p>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:1.5rem" class="an">
-<div class="stat"><p class="sval">369亿</p><p class="slabel">2024网球产业规模</p></div>
-<div class="stat"><p class="sval">2381万</p><p class="slabel">中国网球人口</p></div>
-</div>
-<p style="font-size:0.82rem;color:var(--text-muted);margin-top:0.5rem;text-align:center" class="an">消费层面民主化 &middot; 竞技层面精英化 &middot; 同一枚硬币的两面</p>
-</div>
-</section>
-<section class="slide">
-<div class="sin">
-<p class="tlab an">课题 A 观点三</p>
-<h2 class="stext an" style="max-width:30rem">你的网球裙，和网球有什么关系？</h2>
-<p class="sdesc an" style="margin-bottom:2rem">布尔迪厄的"区隔"理论 + 鲍德里亚的"符号消费"——当你在说 2381 万网球人口时，你数的是打球的人还是买裙子的人？</p>
-<div class="bento" style="margin-bottom:2rem">
-<div class="s6"><div class="card">
-<p style="font-size:0.82rem;color:var(--text);font-weight:600;margin-bottom:1rem">三层同心圆模型</p>
-<svg viewBox="0 0 280 180" fill="none" style="display:block;width:100%;max-height:200px;margin:0 auto 1rem">
-<circle cx="140" cy="95" r="75" stroke="var(--border)" stroke-width="1" fill="rgba(160,155,148,0.02)"/>
-<circle cx="140" cy="95" r="48" stroke="var(--border-mid)" stroke-width="1.5" fill="rgba(232,197,71,0.04)"/>
-<circle cx="140" cy="95" r="24" stroke="var(--accent)" stroke-width="1.5" fill="rgba(232,197,71,0.06)"/>
-<text x="140" y="32" text-anchor="middle" fill="var(--text-muted)" font-size="8" style="font-family:sans-serif">外层 &middot; 符号消费</text>
-<text x="140" y="102" text-anchor="middle" fill="var(--text)" font-size="8" font-weight="600" style="font-family:sans-serif">核心 &middot; 持续运动</text>
-<text x="140" y="165" text-anchor="middle" fill="var(--text-muted)" font-size="7" style="font-family:sans-serif">买裙子穿搭 &middot; 报班打球 &middot; 每周技术提升</text>
-</svg>
-</div></div>
-<div class="s6"><div class="card">
-<p style="font-size:0.82rem;color:var(--text);font-weight:600;margin-bottom:1rem">表达语法的代际变化</p>
-<table class="dtbl" style="margin-top:0.5rem">
-<thead><tr><th style="color:#4a6aa0">李娜</th><th style="color:var(--accent)">郑钦文</th></tr></thead>
-<tbody>
-<tr><td><strong>"对抗性"语法</strong><br>沉默即反叛</td><td><strong>"兼容性"语法</strong><br>个人 + 国家无缝切换</td></tr>
-<tr><td>微博只发"哈哈"</td><td>"为我的国家超级骄傲"</td></tr>
-<tr><td>泰康、昆仑山</td><td>劳力士、兰蔻、迪</td></tr>
-</tbody>
-</table>
-<p style="font-size:0.8rem;color:var(--text-sec);margin-top:0.75rem;line-height:1.65">赞助商品类的变迁映射了中国消费社会的阶层想象——从"大众偶像 "到"中产符号"。</p>
-</div></div>
-</div>
-<div class="quote an">"当我们说'中国有2381万网球人口'的时候，我们在数的是打球的人，还是买裙子的人？"&nbsp;——网球裙和网球的关系，就像咖啡杯和咖啡的关系。</p>
-</div>
-</section>
-<section class="slide">
-<div class="sin" style="max-width:48rem">
-<p class="tlab an">课题 A &middot; 收束</p>
-<h2 class="stext an" style="max-width:28rem;margin-bottom:2rem">四个故事的内在关联</h2>
-<div class="card an" style="margin-bottom:2rem;padding:0;overflow:hidden">
-<table class="dtbl" style="margin:0">
-<thead><tr><th>话题</th><th>照见的变迁</th><th>理论锚点</th></tr></thead>
-<tbody>
-<tr><td><strong>同一球场</strong></td><td>我们如何"看"体育</td><td>Dayan & Katz 媒介事件</td></tr>
-<tr><td><strong>谁在买单</strong></td><td>谁承担体育的成本</td><td>布尔迪厄 资本理论</td></tr>
-<tr><td><strong>网球裙</strong></td><td>"参与"的含义变了</td><td>布尔迪厄 区隔 / 鲍德里亚 符号消费</td></tr>
-<tr><td><strong>感谢国家</strong></td><td>运动员是谁代言人</td><td>算法时代的分布式身份</td></tr>
-</tbody>
-</table>
-</div>
-<p class="quote an" style="margin-bottom:2.5rem">四个话题自然拼出同一幅图景：一项运动的二十年，就是一个国家的媒介、制度、消费和身份认同同时发生剧变的二十年。</p>
-<p class="tlab an" style="margin-bottom:1rem">理论金句</p>
-<div class="card an" style="text-align:center;padding:2.5rem;background:var(--surface);border-color:var(--border-mid)">
-<p class="quote" style="font-size:clamp(1.2rem,1.8vw,1.5rem);margin:0 auto 1rem">"当受众被分割成无数个兴趣圈层时，媒介事件的集体仪式功能就被瓦解了——取而代之的是无数个微型仪式的并行发生。"</p>
-<p class="qattr" style="margin:0 auto">&mdash; Daniel Dayan &amp; Elihu Katz, <em style="color:var(--text-sec)">Media Events: The Live Broadcasting of History</em> (1992)</p>
-</div>
-<div class="card an" style="text-align:center;padding:2rem 2.5rem;margin-top:1.5rem">
-<p class="quote" style="font-size:clamp(1rem,1.4vw,1.15rem);margin:0 auto 0.75rem">"不同社会阶层对不同体育项目的偏好，不是个人口味的自然表达，而是阶级惯习的外化。"</p>
-<p class="qattr" style="margin:0 auto">&mdash; Pierre Bourdieu, <em style="color:var(--text-sec)">Distinction</em> (1984)</p>
-</div>
-</div>
-</section>
-<section class="slide">
-<div class="cd" style="width:100%">
-<svg viewBox="0 0 300 180" fill="none" style="display:block;width:200px;margin:0 auto 2rem;opacity:0.12">
-<polyline points="30,150 80,120 120,130 160,80 200,90 250,30 280,20" stroke="#E8C547" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="280" cy="20" r="4" fill="#E8C547"/>
-<g opacity="0.3" fill="#E8C547">
-<circle cx="50" cy="40" r="1.5"/><circle cx="80" cy="55" r="1.5"/><circle cx="120" cy="35" r="1.5"/>
-<circle cx="160" cy="50" r="1.5"/><circle cx="200" cy="30" r="1.5"/><circle cx="240" cy="45" r="1.5"/>
-</g>
-<path d="M50,140 Q70,125 90,140 Q70,155 50,140Z" stroke="#4a6aa0" stroke-width="1.5" fill="rgba(74,106,160,0.02)"/>
-<circle cx="70" cy="140" r="4" stroke="#4a6aa0" stroke-width="1" fill="rgba(74,106,160,0.03)"/>
-</svg>
-<p class="cnum an">PART 02 / 03</p>
-<div class="cline an"></div>
-<h2 class="ctitle an">数据会说谎<br>也会讲故事</h2>
-<p class="cdesc an">当可视化遇见人的成长</p>
-</div>
-</section>
-<section class="slide">
-<div class="sin">
-<p class="tlab an">课题 B 观点一</p>
-<h2 class="stext an" style="max-width:28rem">数据 ≠ 信息 ≠ 意义</h2>
-<p class="sdesc an" style="margin-bottom:2rem">从数据到意义的翻译恰好是设计师的核心价值。技术让数据采集变得极其容易，但这个翻译工作几乎没有人在做。</p>
-<div class="card an" style="margin-bottom:2rem;padding:2rem">
-<svg viewBox="0 0 500 150" fill="none" style="display:block;width:100%;margin:0 auto 1.5rem">
-<polygon points="250,15 360,55 140,55" fill="rgba(150,120,200,0.08)" stroke="rgba(150,120,200,0.3)" stroke-width="1"/>
-<text x="250" y="44" text-anchor="middle" fill="rgba(150,120,200,0.7)" font-size="10" font-family="sans-serif" font-weight="600">意 义</text>
-<polygon points="140,55 360,55 430,105 70,105" fill="rgba(100,170,100,0.06)" stroke="rgba(100,170,100,0.22)" stroke-width="1"/>
-<text x="250" y="90" text-anchor="middle" fill="rgba(100,170,100,0.55)" font-size="10" font-family="sans-serif" font-weight="600">信 息</text>
-<polygon points="70,105 430,105 470,140 30,140" fill="rgba(232,197,71,0.06)" stroke="rgba(232,197,71,0.2)" stroke-width="1"/>
-<text x="250" y="128" text-anchor="middle" fill="rgba(232,197,71,0.5)" font-size="10" font-family="sans-serif" font-weight="600">数 据</text>
-<g font-size="8" font-family="sans-serif" opacity="0.55">
-<text x="400" y="38" fill="#9678c8">"你正在突破瓶颈期"</text>
-<text x="445" y="85" fill="#4A8A4A">"比上月提升了 7%"</text>
-<text x="420" y="128" fill="#E8C547">"62%" —— 本身什么都说明不了</text>
-</g>
-</svg>
-<ul class="checks">
-<li class="chk"><span class="chk-i"><svg viewBox="0 0 10 10" width="8" height="8"><circle cx="5" cy="5" r="3" fill="#E8C547"/></svg></span><div><p class="chk-t">数据 = 脱离语境的原始事实</p><p class="chk-d">"62%" 本身什么都说明不了——它可能很好，也可能很差。数据是沉默的。</p></div></li>
-<li class="chk"><span class="chk-i" style="border-color:rgba(100,170,100,0.3);background:rgba(100,170,100,0.1)"><svg viewBox="0 0 10 10" width="8" height="8"><circle cx="5" cy="5" r="3" fill="#4A8A4A"/></svg></span><div><p class="chk-t" style="color:#4A8A4A">信息 = 被赋予语境的数据</p><p class="chk-d">"比上月提升 7 点"——有了比较基准、时间和方向。</p></div></li>
-<li class="chk"><span class="chk-i" style="border-color:rgba(150,120,200,0.25);background:rgba(150,120,200,0.1)"><svg viewBox="0 0 10 10" width="8" height="8"><circle cx="5" cy="5" r="3" fill="#9678c8"/></svg></span><div><p class="chk-t" style="color:#9678c8">意义 = 被赋予解释和情感</p><p class="chk-d">"你正在突破瓶颈期"——这告诉你意味着什么，以及如何感受它。</p></div></li>
-</ul>
-</div>
-<p class="tlab an" style="margin-bottom:0.75rem">真实用户的声音</p>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px" class="an">
-<div class="sc">
-<div class="sc-h"><div class="sc-av"><svg viewBox="0 0 14 14" width="14" height="14"><circle cx="7" cy="5" r="3" fill="#E8C547"/></svg></div><span class="sc-nm">困境中的学员</span><span class="sc-bg">困境</span></div>
-<p class="sc-bd">"听劝，准备放弃网球了"——在缺乏成长叙事时，大脑自动采用缺陷扫描。</p>
-</div>
-<div class="sc" style="border-left:2px solid #4A8A4A">
-<div class="sc-h"><div class="sc-av" style="background:rgba(74,138,74,0.1)"><svg viewBox="0 0 14 14" width="14" height="14"><circle cx="7" cy="5" r="3" fill="#4A8A4A"/></svg></div><span class="sc-nm" style="color:#4A8A4A">突破时刻</span><span class="sc-bg" style="background:rgba(74,138,74,0.08);color:#4A8A4A">突破</span></div>
-<p class="sc-bd">"能拉起来了！好开心！"——"第一次"就是突破时刻。</p>
-</div>
-<div class="sc">
-<div class="sc-h"><div class="sc-av" style="background:rgba(150,120,200,0.1)"><svg viewBox="0 0 14 14" width="14" height="14"><circle cx="7" cy="5" r="3" fill="#9678c8"/></svg></div><span class="sc-nm" style="color:#9678c8">36 岁学员</span><span class="sc-bg" style="background:rgba(150,120,200,0.08);color:#9678c8">体验</span></div>
-<p class="sc-bd">"打中甜区的啵啵声太治愈了！"——感官层面的进步锚点比数据更真实。</p>
-</div>
-</div>
-</div>
-</section>
-<section class="slide">
-<div class="sin">
-<p class="tlab an">课题 B 观点二</p>
-<h2 class="stext an">可视化是一种修辞行为</h2>
-<p class="sdesc an" style="margin-bottom:2rem">Hullman &amp; Diakopoulos (2011)：每一张可视化都不是对现实的"镜像反映"，而是经过选择和建构的<strong class="ac">修辞行为</strong>。设计者在每一个环节都做出了影响认知的决策。</p>
-<div class="bento" style="margin-bottom:2rem">
-<div class="s6"><div class="card" style="padding:1.25rem">
-<p style="font-size:0.82rem;color:var(--text);font-weight:600;margin-bottom:0.75rem">同一个数据的两种表达</p>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-<div style="background:#12111a;border-radius:var(--md);padding:12px">
-<p style="font-size:0.6rem;color:#c8503c;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:6px;font-weight:600">Loss Frame 损失</p>
-<svg viewBox="0 0 120 80" style="display:block;margin:0 auto">
-<circle cx="60" cy="25" r="12" stroke="#c8503c" stroke-width="1.5" fill="rgba(200,80,60,0.08)"/><text x="60" y="29" text-anchor="middle" fill="#c8503c" font-size="11" font-weight="bold">35%</text>
-<text x="60" y="48" text-anchor="middle" fill="var(--text-muted)" font-size="6" font-family="sans-serif">失误率</text>
-<rect x="15" y="58" width="90" height="6" rx="3" fill="var(--border)"/><rect x="15" y="58" width="63" height="6" rx="3" fill="#c8503c" opacity="0.5"/>
-<text x="60" y="77" text-anchor="middle" fill="#c8503c" font-size="5.5" font-family="sans-serif">你的反手是最弱的</text>
-</svg>
-</div>
-<div style="background:#111610;border-radius:var(--md);padding:12px">
-<p style="font-size:0.6rem;color:#4A8A4A;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:6px;font-weight:600">Gain Frame 增益</p>
-<svg viewBox="0 0 120 80" style="display:block;margin:0 auto">
-<circle cx="60" cy="25" r="12" stroke="#4A8A4A" stroke-width="1.5" fill="rgba(74,138,74,0.06)"/><text x="60" y="29" text-anchor="middle" fill="#4A8A4A" font-size="11" font-weight="bold">65%</text>
-<text x="60" y="48" text-anchor="middle" fill="#4A8A4A" font-size="6" font-family="sans-serif">上线率</text>
-<rect x="15" y="58" width="90" height="6" rx="3" fill="var(--border)"/><rect x="15" y="58" width="58" height="6" rx="3" fill="#4A8A4A" opacity="0.35"/>
-<text x="60" y="77" text-anchor="middle" fill="#4A8A4A" font-size="5.5" font-family="sans-serif">你的正手是可靠的</text>
-</svg>
-</div>
-</div>
-<p style="font-size:0.8rem;color:var(--text-sec);line-height:1.65;margin-top:0.75rem">Tversky &amp; Kahneman (1981)：数学上<strong style="color:var(--text)">完全等价</strong>的数据，仅改变措辞就导致偏好完全逆转。</p>
-</div></div>
-<div class="s6"><div class="card" style="padding:1.25rem">
-<p style="font-size:0.82rem;color:var(--text);font-weight:600;margin-bottom:1rem">Spotify Wrapped 的四策略</p>
-<ul class="checks">
-<li class="chk"><span class="chk-i"><svg viewBox="0 0 10 10" width="8" height="8"><circle cx="5" cy="5" r="3" fill="#E8C547"/></svg></span><div><p class="chk-t">时间胶囊叙事</p><p class="chk-d">用音乐重建你的一年</p></div></li>
-<li class="chk"><span class="chk-i" style="border-color:rgba(74,106,160,0.3);background:rgba(74,106,160,0.1)"><svg viewBox="0 0 10 10" width="8" height="8"><circle cx="5" cy="5" r="3" fill="#4a6aa0"/></svg></span><div><p class="chk-t" style="color:#4a6aa0">身份建构</p><p class="chk-d">你是前0.5%的XX听众</p></div></li>
-<li class="chk"><span class="chk-i" style="border-color:rgba(100,170,100,0.25);background:rgba(100,170,100,0.08)"><svg viewBox="0 0 10 10" width="8" height="8"><circle cx="5" cy="5" r="3" fill="#4A8A4A"/></svg></span><div><p class="chk-t" style="color:#4A8A4A">社交货币</p><p class="chk-d">每一帧都可独立分享</p></div></li>
-<li class="chk"><span class="chk-i" style="border-color:rgba(150,120,200,0.25);background:rgba(150,120,200,0.08)"><svg viewBox="0 0 10 10" width="8" height="8"><circle cx="5" cy="5" r="3" fill="#9678c8"/></svg></span><div><p class="chk-t" style="color:#9678c8">增益性框架</p><p class="chk-d">从不说负面，包装为个性</p></div></li>
-</ul>
-</div></div>
-</div>
-</div>
-</section>
-<section class="slide">
-<div class="sin">
-<p class="tlab an">课题 B 观点三</p>
-<h2 class="stext an" style="max-width:28rem">人需要"看见自己在变好"</h2>
-<p class="sdesc an" style="margin-bottom:2rem">Bandura (1977)：自我效能——不是"你实际上能不能做到"，而是"相不相信自己能做到"。高自我效能的人将失败归因于努力不足，低自我效能归因于能力不足。</p>
-<div class="bento" style="margin-bottom:2rem">
-<div class="s7"><div class="card">
-<svg viewBox="0 0 480 140" fill="none" style="display:block;width:100%">
-<line x1="60" y1="115" x2="450" y2="115" stroke="var(--border)" stroke-width="0.5"/>
-<line x1="60" y1="20" x2="60" y2="115" stroke="var(--border)" stroke-width="0.5"/>
-<polyline points="80,110 120,95 160,72 200,58 240,50 280,47 310,46 340,46 370,47 400,28 420,12 440,8" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="240" y="20" width="130" height="42" rx="8" fill="rgba(232,197,71,0.08)" stroke="var(--accent)" stroke-width="0.8" stroke-dasharray="4,3"/>
-<text x="305" y="40" text-anchor="middle" fill="var(--accent)" font-size="8.5" font-family="sans-serif" font-weight="600">平台期 = 记忆巩固</text>
-<circle cx="80" cy="110" r="3.5" fill="var(--accent)"/>
-<circle cx="420" cy="12" r="4" fill="#4A8A4A"/>
-<text x="80" y="130" text-anchor="middle" fill="var(--text-muted)" font-size="6.5" font-family="sans-serif">W1</text>
-<text x="305" y="130" text-anchor="middle" fill="#E8C547" font-size="6.5" font-family="sans-serif">W3-W5</text>
-<text x="420" y="130" text-anchor="middle" fill="#4A8A4A" font-size="6.5" font-family="sans-serif">W6+</text>
-</svg>
-<p style="font-size:0.85rem;color:var(--text-sec);line-height:1.65;margin-top:0.5rem">平台期不是"没有进步"，而是大脑正在进行<strong class="ac">运动记忆的巩固</strong>。突触强化、自动化转移、干扰消除——之后往往伴随突然的跃升。</p>
-</div></div>
-<div class="s5"><div class="card">
-<p style="font-size:0.82rem;color:var(--text);font-weight:600;margin-bottom:0.75rem">Duolingo 的启示</p>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:0.75rem">
-<div style="background:rgba(74,170,120,0.08);border:1px solid rgba(74,170,120,0.15);border-radius:8px;padding:10px">
-<p style="font-size:0.65rem;color:#4A8A4A;font-weight:600;margin-bottom:0.35rem;text-transform:uppercase;letter-spacing:0.08em">正面</p>
-<p style="font-size:0.8rem;color:var(--text-sec)">留存率 12% → 55%</p>
-</div>
-<div style="background:rgba(200,80,60,0.08);border:1px solid rgba(200,80,60,0.12);border-radius:8px;padding:10px">
-<p style="font-size:0.65rem;color:#c8503c;font-weight:600;margin-bottom:0.35rem;text-transform:uppercase;letter-spacing:0.08em">反面</p>
-<p style="font-size:0.8rem;color:var(--text-sec)">断裂后彻底放弃</p>
-</div>
-</div>
-<p style="font-size:0.82rem;color:var(--text-sec);line-height:1.65">Duolingo 让你<strong style="color:var(--text)">害怕</strong>断 Streak，Spotify Wrapped 却让你<strong style="color:var(--text)">期待</strong>年底总结。你的课题需要设计一种既提供成长动力又不制造焦虑的反馈方式。</p>
-</div></div>
-</div>
-</div>
-</section>
-<section class="slide">
-<div class="sin">
-<p class="tlab an">课题 B 观点四</p>
-<h2 class="stext an" style="max-width:28rem">成长"可见化"</h2>
-<p class="sdesc an" style="margin-bottom:2rem">学乐器、学语言、健身、学编程——都存在"进步真实发生但人感知不到"的矛盾。以下是五条可迁移的设计原则。</p>
-<div class="bento" style="margin-bottom:2rem">
-<div class="s6"><div class="card" style="padding:1.5rem">
-<p style="font-size:1.4rem;color:var(--accent);font-weight:700;margin-bottom:0.5rem">01</p>
-<p style="font-size:1rem;color:var(--text);font-weight:600;margin-bottom:0.5rem">锚定过去的自己</p>
-<p style="font-size:0.84rem;color:var(--text-sec);line-height:1.65">"时间旅行"功能——一键对比"30 天前 vs 今天"，让微小进步在对比中变得可见。</p>
-</div></div>
-<div class="s6"><div class="card" style="padding:1.5rem">
-<p style="font-size:1.4rem;color:var(--accent);font-weight:700;margin-bottom:0.5rem">02</p>
-<p style="font-size:1rem;color:var(--text);font-weight:600;margin-bottom:0.5rem">纪念"第一次"</p>
-<p style="font-size:0.84rem;color:var(--text-sec);line-height:1.65">第一次成功发球、第一次赢球——"第一次"标志能力的质变，是不可复制的里程碑。</p>
-</div></div>
-<div class="s4"><div class="card" style="padding:1.5rem">
-<p style="font-size:1.4rem;color:var(--accent);font-weight:700;margin-bottom:0.5rem">03</p>
-<p style="font-size:1rem;color:var(--text);font-weight:600;margin-bottom:0.5rem">重新定义停滞</p>
-<p style="font-size:0.84rem;color:var(--text-sec);line-height:1.65">"你正在经历运动记忆巩固期，不是没有变化，是大脑在写入肌肉记忆"——这是<strong>认知重构</strong>。</p>
-</div></div>
-<div class="s4"><div class="card" style="padding:1.5rem">
-<p style="font-size:1.4rem;color:var(--accent);font-weight:700;margin-bottom:0.5rem">04</p>
-<p style="font-size:1rem;color:var(--text);font-weight:600;margin-bottom:0.5rem">让数据说人话</p>
-<p style="font-size:0.84rem;color:var(--text-sec);line-height:1.65">从技术语言到日常语言，从客观描述到主观体验，从回顾到指引。</p>
-</div></div>
-<div class="s4"><div class="card" style="padding:1.5rem">
-<p style="font-size:1.4rem;color:var(--accent);font-weight:700;margin-bottom:0.5rem">05</p>
-<p style="font-size:1rem;color:var(--text);font-weight:600;margin-bottom:0.5rem">设计"优雅的中断"</p>
-<p style="font-size:0.84rem;color:var(--text-sec);line-height:1.65">不说"你X天没练了"，说"让我们继续"。不责备，只欢迎。</p>
-</div></div>
-</div>
-<div class="quote an">"能力罐头"（Can-Do Jar）：每发现自己"能做到一件以前做不到的事"就写在纸条上放进罐子里。当感到沮丧时打开罐子看看积累。你的系统本质上就是<strong class="ac">数字化的"能力罐头"</strong>。</p>
-</div>
-</section>
-<section class="slide">
-<div class="sin" style="max-width:48rem">
-<p class="tlab an">课题 B &middot; 收束</p>
-<h2 class="stext an" style="max-width:24rem;margin-bottom:2rem">让数据讲故事</h2>
-<p class="body an" style="margin-bottom:2.5rem;max-width:none;max-width:52rem">也许最好的运动数据可视化，不是最精确的那个，而是最"像人"的那个。一个带有手写批注、情绪标记、甚至不完美涂鸦的训练日志，可能比精确到小数点后两位的仪表盘更能让人感到被理解。</p>
-<div class="card an" style="text-align:center;padding:2.5rem;background:var(--surface);border-color:var(--border-mid);margin-bottom:1.5rem">
-<p class="quote" style="font-size:clamp(1.2rem,1.8vw,1.5rem);margin:0 auto 1rem">"我们不应该只关注数字、技术和算法，而应该关注生成数据的人、他们的行为和习惯。"</p>
-<p class="qattr" style="margin:0 auto;font-style:normal">&mdash; Giorgia Lupi, <em style="color:var(--text-sec)">Data Humanism</em> (2017)</p>
-</div>
-<div class="card an" style="text-align:center;padding:2rem 2.5rem">
-<p class="quote" style="font-size:clamp(1rem,1.4vw,1.15rem);margin:0 auto 0.75rem">"每一张数据可视化都不是对现实的镜像反映，而是一种经过选择和建构的修辞行为。"</p>
-<p class="qattr" style="margin:0 auto;font-style:normal">&mdash; Hullman &amp; Diakopoulos, <em style="color:var(--text-sec)">Visualization Rhetoric</em> (2011)</p>
-</div>
-</div>
-</section>
-<section class="slide">
-<div class="cd" style="width:100%">
-<svg viewBox="0 0 300 160" fill="none" style="display:block;width:200px;margin:0 auto 2rem;opacity:0.12">
-<path d="M150,15 C128,25 112,50 108,85 C105,115 90,145 75,155" stroke="#E8C547" stroke-width="2" fill="none"/>
-<path d="M150,15 C172,25 188,50 192,85 C195,115 210,145 225,155" stroke="#E8C547" stroke-width="2" fill="none"/>
-<circle cx="150" cy="12" r="11" stroke="#E8C547" stroke-width="2" fill="none"/>
-<circle cx="120" cy="40" r="3" fill="#4a6aa0" opacity="0.35"/><circle cx="170" cy="50" r="2.5" fill="#E8C547" opacity="0.35"/>
-<circle cx="108" cy="70" r="2" fill="#9678c8" opacity="0.3"/><circle cx="185" cy="80" r="3" fill="#E8C547" opacity="0.3"/>
-<circle cx="100" cy="110" r="2.5" fill="#4a6aa0" opacity="0.35"/><circle cx="200" cy="120" r="2" fill="#E8C547" opacity="0.3"/>
-<line x1="120" y1="40" x2="140" y2="35" stroke="#4a6aa0" stroke-width="0.5" opacity="0.15"/>
-<line x1="170" y1="50" x2="155" y2="48" stroke="#E8C547" stroke-width="0.5" opacity="0.15"/>
-</svg>
-<p class="cnum an">PART 03 / 03</p>
-<div class="cline an"></div>
-<h2 class="ctitle an">当身体成为数据<br>当数据成为故事</h2>
-<p class="cdesc an">运动叙事可视化的四个追问</p>
-</div>
-</section>
-<section class="slide">
-<div class="sin">
-<div class="bento" style="align-items:start">
-<div class="s6">
-<p class="tlab an">课题 C 观点一</p>
-<h2 class="stext an" style="max-width:26rem">数据不是身体的真相，数据是身体的一幅肖像</h2>
-<p class="sdesc an" style="margin-bottom:1.25rem">梅洛-庞蒂 (1945)：翻译必然有损。问题不在于翻译是否忠实，而在于这个翻译想要传达什么。</p>
-</div>
-<div class="s6">
-<div class="card an">
-<p style="font-size:0.9rem;color:var(--text);font-weight:600;margin-bottom:0.75rem">成绩单 vs 自画像</p>
-<svg viewBox="0 0 300 100" fill="none" style="display:block;width:100%;margin:0.5rem auto 1rem">
-<g opacity="0.45">
-<line x1="30" y1="85" x2="270" y2="15" stroke="#E8C547" stroke-width="1.5" stroke-dasharray="4,2"/>
-<circle cx="100" cy="50" r="20" stroke="#E8C547" stroke-width="0.8" fill="rgba(232,197,71,0.1)"/>
-<circle cx="200" cy="35" r="16" stroke="#4a6aa0" stroke-width="0.8" fill="rgba(74,106,160,0.05)"/>
-<circle cx="100" cy="50" r="10" fill="#E8C547" opacity="0.15"/>
-<circle cx="200" cy="35" r="8" fill="#4a6aa0" opacity="0.12"/>
-<circle cx="80" cy="15" r="2" fill="#E8C547" opacity="0.25"/>
-<circle cx="160" cy="25" r="1.5" fill="#4a6aa0" opacity="0.25"/>
-<circle cx="240" cy="20" r="2" fill="#9678c8" opacity="0.2"/>
-<circle cx="60" cy="65" r="1.5" fill="#E8C547" opacity="0.3"/>
-</g>
-<text x="150" y="98" text-anchor="middle" fill="var(--text-muted)" font-size="6" family="sans-serif" opacity="0.35">unique data signature</text>
-</svg>
-<p style="font-size:0.85rem;color:var(--text-sec);line-height:1.65">一个赛季结束时不是生成"成绩单"，而是独一无二的抽象画——她是击球角度决定线条方向，球速度决定笔触力度，旋转决定色彩饱和度。</p>
-</div>
-</div>
-</div>
-<p class="tlab an" style="margin-top:1.5rem;margin-bottom:1rem">理论锚点</p>
-<div class="bento">
-<div class="s4"><div class="card"><p style="font-size:0.95rem;color:var(--text);font-weight:600;margin-bottom:0.5rem">Lupi · 数据人文主义</p><p style="font-size:0.82rem;color:var(--text-sec);line-height:1.65">数据是人造的，不是客观的。"数据驱动"从不等于"毋庸置疑的真实"。</p></div></div>
-<div class="s4"><div class="card"><p style="font-size:0.95rem;color:var(--text);font-weight:600;margin-bottom:0.5rem">Benjamin · 光环</p><p style="font-size:0.82rem;color:var(--text-sec);line-height:1.65">当所有人的视频都"酷炫"，"酷"就贬值了。光环需要独一无二性。</p></div></div>
-<div class="s4"><div class="card"><p style="font-size:0.95rem;color:var(--text);font-weight:600;margin-bottom:0.5rem">Spotify Wrapped</p><p style="font-size:0.82rem;color:var(--text-sec);line-height:1.65">几乎从不正面框架，将每个数据包装成"独特的你"。</p></div></div>
-</div>
-</div>
-</section>
-<section class="slide">
-<div class="sin">
-<p class="tlab an">课题 C 观点二</p>
-<h2 class="stext an" style="max-width:34rem">你不是在记录运动，是在设计一种"看"的方式</h2>
-<p class="sdesc an" style="margin-bottom:2rem">当 AI 捕获训练视频并叠加数据，它做的本质上是：把主体身体翻译成客体身体。翻译必然有损——这个翻译想要传达什么？</p>
-<div class="bento" style="margin-bottom:2rem">
-<div class="s4"><div class="card" style="height:100%;text-align:center;padding:1.5rem">
-<svg viewBox="0 0 48 32" width="48" height="32" fill="none" style="display:block;margin:0 auto 10px"><circle cx="24" cy="12" r="8" stroke="var(--text)" stroke-width="2"/><line x1="28" y1="18" x2="36" y2="26" stroke="var(--text)" stroke-width="2" stroke-linecap="round"/></svg>
-<p style="font-size:1.05rem;color:var(--text);font-weight:600;margin-bottom:0.5rem">教练的凝视</p>
-<p style="font-size:0.82rem;color:var(--text-sec);line-height:1.65;text-align:center">福柯 · 规训。纠错和规范化，把身体变成永远不够好待修正的对象。</p>
-</div></div>
-<div class="s4"><div class="card" style="height:100%;text-align:center;padding:1.5rem">
-<svg viewBox="0 0 48 32" width="48" height="32" fill="none" style="display:block;margin:0 auto 10px"><rect x="6" y="6" width="36" height="20" rx="4" stroke="#E8C547" stroke-width="1.5"/><circle cx="24" cy="16" r="6" stroke="#E8C547" stroke-width="1" fill="rgba(232,197,71,0.1)"/></svg>
-<p style="font-size:1.05rem;color:var(--text);font-weight:600;margin-bottom:0.5rem">社交的凝视</p>
-<p style="font-size:0.82rem;color:var(--text-sec);line-height:1.65;text-align:center">戈夫曼 · 拟剧论。前台（最好的角度）vs 后台（真实的笨拙）。训练是否变成了表演？</p>
-</div></div>
-<div class="s4"><div class="card" style="height:100%;text-align:center;padding:1.5rem">
-<svg viewBox="0 0 48 32" width="48" height="32" fill="none" style="display:block;margin:0 auto 10px"><circle cx="24" cy="14" r="8" stroke="var(--text-muted)" stroke-width="1.5"/><circle cx="24" cy="14" r="3" stroke="var(--text-muted)" stroke-width="1" opacity="0.5"/></svg>
-<p style="font-size:1.05rem;color:var(--text);font-weight:600;margin-bottom:0.5rem">自我的凝视</p>
-<p style="font-size:0.82rem;color:var(--text-sec);line-height:1.65;text-align:center">利科 · 叙事身份。"我存在过，我的身体曾经以这种方式运动过。"</p>
-</div></div>
-</div>
-<p class="tlab an" style="margin-bottom:1rem">三种时间维度</p>
-<div class="bento" style="margin-bottom:1.5rem">
-<div class="s6"><div class="card">
-<p style="font-size:1.2rem;color:var(--text);font-weight:600;margin-bottom:0.5rem">Chronos · 钟表时间</p>
-<p style="font-size:0.9rem;color:var(--text-sec);line-height:1.65">一场训练 90 分钟——可测量的线性时间</p>
-</div></div>
-<div class="s6"><div class="card">
-<p style="font-size:1.2rem;color:var(--text);font-weight:600;margin-bottom:0.5rem">Kairos · 体验时间</p>
-<p style="font-size:0.9rem;color:var(--text-sec);line-height:1.65">心流中时间变慢——"那一球好像悬停在空中"</p>
-</div></div>
-</div>
-<div class="quote an">专业转播的视觉语言是为"完美身体"设计的。慢动作放大的是美——但当被放大的身体还不够完美时，慢动作就从赞美变成了审判。</div>
-</div>
-</section>
-<section class="slide">
-<div class="sin">
-<p class="tlab an">课题 C 观点三</p>
-<h2 class="stext an" style="max-width:32rem">光环的民主化</h2>
-<p class="sdesc an" style="margin-bottom:2rem">Benjamin (1935)：光环因复制而消解。如果所有人的视频都同样"酷炫"，"酷炫"就贬值了。出路不是回到稀缺，而是转向<strong class="ac">独特性</strong>。</p>
-<div class="bento" style="margin-bottom:2rem">
-<div class="s7"><div class="card" style="height:100%">
-<p style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.75rem">Strava Art 的启示：数据作为创作媒介</p>
-<p style="font-size:0.92rem;color:var(--text-sec);line-height:1.7;margin-bottom:1.25rem">马拉松用户用 GPS 轨迹在地图上"画画"。GPS 数据本来是用来记录配速和里程的"客观数据"，但用户自发把它变成了<strong>自我表达的媒介</strong>。数据不再是"关于运动的测量"，而是"用运动创作的艺术"。</p>
-<p style="font-size:0.92rem;color:var(--text-sec);line-height:1.7">如果网球手的移动轨迹叠加在球场俯视图上，形成的不是"技术分析图"，而是<strong style="color:var(--text)">独属于她的抽象画</strong>——她的移动方式、站位偏好、跑动节奏，"画"出只有她能画的图案。</p>
-</div></div>
-<div class="s5"><div class="card" style="height:100%">
-<p style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.75rem">两种球员，两种视觉</p>
-<svg viewBox="0 0 220 120" fill="none" style="display:block;width:100%;margin:0.5rem auto 1rem">
-<rect x="10" y="10" width="95" height="100" rx="8" stroke="#4a6aa0" stroke-width="1" fill="rgba(74,106,160,0.03)"/>
-<polyline points="25,90 40,70 55,80 70,55 85,65 95,30" stroke="#4a6aa0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-<text x="57" y="105" text-anchor="middle" fill="#4a6aa0" font-size="6" font-family="sans-serif">底线型：绵延·温暖</text>
-<rect x="115" y="10" width="95" height="100" rx="8" stroke="#E8C547" stroke-width="1" fill="rgba(232,197,71,0.03)"/>
-<circle cx="130" cy="50" r="4" fill="#E8C547" opacity="0.4"/><circle cx="145" cy="35" r="3" fill="#E8C547" opacity="0.3"/>
-<circle cx="160" y="60" r="5" fill="#E8C547" opacity="0.5"/><circle cx="180" cy="40" r="3" fill="#E8C547" opacity="0.25"/>
-<circle cx="195" cy="30" r="4" fill="#E8C547" opacity="0.35"/>
-<text x="162" y="105" text-anchor="middle" fill="#E8C547" font-size="6" font-family="sans-serif">发上型：爆发·冷峻</text>
-</svg>
-<p style="font-size:0.82rem;color:var(--text-sec);line-height:1.65">同一套系统，两段视觉气质完全不同的视频。光环从"少数人拥有"换成了"每个人独一无二"。</p>
-</div></div>
-</div>
-<div class="card an" style="border-left:3px solid var(--accent)">
-<p style="font-size:0.95rem;color:var(--text);font-weight:600;margin-bottom:0.5rem">伦理设计原则</p>
-<p style="font-size:0.9rem;color:var(--text-sec);line-height:1.7">心流是"自我意识的消失"，但设计是关于"被看见"的。让<strong>摄像机的存在轻到可以被遗忘</strong>，让<strong>生成的作品深到值得被凝视</strong>——完全自动、事后生成、分享可选。不强迫运动者在"忘我"和"看自己"之间做选择。</p>
-</div>
-</div>
-</section>
-<section class="slide">
-<div class="sin" style="max-width:48rem">
-<p class="tlab an">课题 C &middot; 收束</p>
-<h2 class="stext an" style="max-width:24rem;margin-bottom:2rem">四个追问的内在关联</h2>
-<div class="card an" style="margin-bottom:2rem;padding:0;overflow:hidden">
-<table class="dtbl" style="margin:0">
-<thead><tr><th>追问</th><th>层面</th><th>照见的核心</th></tr></thead>
-<tbody>
-<tr><td><strong>数据是身体</strong></td><td>本体论</td><td>数据与身体的关系</td></tr>
-<tr><td><strong>你在设计"看"</strong></td><td>认识论</td><td>观看的方式</td></tr>
-<tr><td><strong>慢动作是时间</strong></td><td>美学</td><td>时间的叙事设计</td></tr>
-<tr><td><strong>光环民主化</strong></td><td>文化政治</td><td>独一无二 vs 千篇一律</td></tr>
-</tbody>
-</table>
-</div>
-<p class="tlab an" style="margin-bottom:1rem">理论金句</p>
-<div class="card an" style="text-align:center;padding:2.5rem;background:var(--surface);border-color:var(--border-mid);margin-bottom:1.5rem">
-<p class="quote" style="font-size:clamp(1.2rem,1.8vw,1.5rem);margin:0 auto 1rem">"身体不是我们所拥有的一个对象，而是我们通过它而拥有一个世界的媒介方式。"</p>
-<p class="qattr" style="margin:0 auto;font-style:normal">&mdash; 梅洛-庞蒂, <em style="color:var(--text-sec)">知觉现象学</em> (1945)</p>
-</div>
-<div class="card an" style="text-align:center;padding:2rem 2.5rem;margin-bottom:1.5rem">
-<p class="quote" style="font-size:clamp(1rem,1.4vw,1.15rem);margin:0 auto 0.75rem">"机械复制技术使复制品脱离了传统的领域，取代了独一无二性，是对无数复制品的大众性占有。"</p>
-<p class="qattr" style="margin:0 auto;font-style:normal">&mdash; Walter Benjamin, <em style="color:var(--text-sec)">机械复制时代的艺术作品</em> (1935)</p>
-</div>
-<div class="card an" style="text-align:center;padding:2rem 2.5rem">
-<p class="quote" style="font-size:clamp(1rem,1.4vw,1.15rem);margin:0 auto 0.75rem">"心流状态下，自我意识消失，时间感知扭曲，行动与意识无缝融合。"</p>
-<p class="qattr" style="margin:0 auto;font-style:normal">&mdash; Mihaly Csikszentmihalyi, <em style="color:var(--text-sec)">Flow</em> (1990)</p>
-</div>
-</div>
-</section>
-<section class="slide">
-<div class="sin" style="max-width:40rem;margin:0 auto;text-align:center">
-<h2 style="font-size:clamp(2.5rem,5.5vw,4.5rem);color:var(--accent);margin-bottom:0.35rem;letter-spacing:-0.03em" class="an">看见运动</h2>
-<p style="font-size:0.82rem;color:var(--text-muted);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:2.5rem" class="an">THREE DIMENSIONS OF ATHLETIC VISION</p>
-<div style="width:56px;height:1.5px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:0 auto 2rem;opacity:0.4" class="an"></div>
-<p class="quote an" style="margin:0 auto 2.5rem;max-width:42rem">一项运动的二十年，就是一个国家的媒介、制度、消费和身份认同同时发生巨变。而最好的运动可视化，不是最精确的那个，而是最"像人"的那个。</p>
-<p class="body an" style="text-align:center;max-width:38rem;margin:0 auto 2.5rem;color:var(--text-muted)">本次引导展示提供了理论锚点和案例分析——但请记住，你的课题可以有完全不同的切入点。这些观点是起点，不是终点。</p>
-<div class="tags an">
-<span class="tag">Dayan & Katz (1992)</span>
-<span class="tag">Hullman & Diakopoulos (2011)</span>
-<span class="tag">Bandura (1977)</span>
-<span class="tag">Giorgia Lupi (2017)</span>
-<span class="tag">布尔迪厄 (1984)</span>
-<span class="tag">梅洛-庞蒂 (1945)</span>
-<span class="tag">Benjamin (1935)</span>
-<span class="tag">Csikszentmihalyi (1990)</span>
-</div>
-<p style="margin-top:3rem;font-size:1.5rem;font-weight:600;color:var(--accent)" class="an">感谢聆听</p>
-</div>
-</section>
-
+<section class="slide active"><div class="si center"><p class="lb" style="font-size:1.2rem;color:var(--accent)">Information Visualization Course</p><h1 class="tl" style="font-size:2.5rem">Data &#183; Body &#183; Story</h1><p class="tx" style="text-align:center">Eight Thoughts on Movement, Visualization, and Being Seen</p><div class="cl3"><div class="tch"><p class="tc" style="color:var(--accent)">Topic A</p><h4>China Tennis</h4><p>Data-driven sports cultural memory</p></div><div class="tch"><p class="tc" style="color:var(--green)">Topic B</p><h4>Personal Growth</h4><p>Self-efficacy through behavior change</p></div><div class="tch"><p class="tc" style="color:var(--blue)">Topic C</p><h4>Everyone is a Star</h4><p>Ordinary people hero journey</p></div></div><p class="fb">01 / 22</p></div></section>
+<section class="slide"><div class="si center"><p style="font-size:1.5rem;color:var(--accent)">&#x2753;</p><h2 class="tl">Before You Choose Your Topic</h2><p class="tx">I want to share interesting ideas with you.<br>They are not standard answers - they are entry points for thinking.</p><p class="fb">02 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point One</p><h2 class="tl">From Data to Meaning</p><p class="tx">There is a whole discipline in between.</p><div><svg viewBox="0 0 500 220" fill="none"><text x="250" y="20" text-anchor="middle" fill="#C4A65A" font-size="10" font-family="sans-serif" font-weight="600" letter-spacing="0.1em">DIKW Pyramid</text><polygon points="250,32 320,70 180,70" fill="rgba(150,120,200,0.12)" stroke="#9678c8" stroke-width="1.5"/><text x="250" y="58" text-anchor="middle" fill="#9678c8" font-size="12" font-weight="700">Meaning</text><text x="395" y="54" fill="#9678c8" font-size="9">You are breaking through</text><polygon points="180,70 320,70 380,118 120,118" fill="rgba(107,143,94,0.1)" stroke="#6B8F5E" stroke-width="1.5"/><text x="250" y="100" text-anchor="middle" fill="#6B8F5E" font-size="12" font-weight="700">Information</text><text x="390" y="95" fill="#6B8F5E" font-size="9">Up 7% from last month</text><polygon points="120,118 380,118 440,180 60,180" fill="rgba(196,166,90,0.1)" stroke="#C4A65A" stroke-width="1.5"/><text x="250" y="155" text-anchor="middle" fill="#C4A65A" font-size="12" font-weight="700">Data</text><text x="365" y="152" fill="#C4A65A" font-size="9">62% - silent</text></svg></div><div class="hb"><p>Technology solved the first two steps (collection, integration). <strong>The translation from data to meaning - almost nobody is doing that.</strong></p></div><p class="fb">03 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point One (cont)</p><h2 class="tl">Technology invested everything in the first two steps, left the last two empty</h2><table><thead><tr><th>Stages 1-3: Prepare, Collect, Integrate</th><th style="color:var(--accent)">Stages 4-5: Reflect, Act</th></tr></thead><tbody><tr><td>Technology rich, apps do well</td><td style="color:var(--accent);font-weight:600">Design blank, nobody doing it</td></tr></tbody></table><blockquote>Li, Dey &amp; Forlizzi (CHI 2010): Existing tech invests heavily in first three stages, leaving the last two almost blank. Rooksby (2014): Real tracking full of discontinuity, forgetting, and restarting.</blockquote><div class="hb"><p><strong>These two blanks are exactly the designer core value space.</strong></p></div><p class="fb">04 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point Two</p><h2 class="tl">No Neutral Charts, Only Designers Choosing What to Show</h2><div><svg viewBox="0 0 700 180" fill="none"><text x="350" y="16" text-anchor="middle" fill="#C4A65A" font-size="10" font-weight="600" font-family="sans-serif" letter-spacing="0.1em">Framing Effect: Tversky and Kahneman, 1981</text><rect x="30" y="30" width="280" height="135" rx="10" fill="rgba(196,112,112,0.06)" stroke="#c8503c" stroke-width="1.5"/><text x="170" y="52" text-anchor="middle" fill="#c8503c" font-size="9" font-weight="600" font-family="sans-serif" letter-spacing="0.15em">Plan A - Gain Frame</text><text x="170" y="74" text-anchor="middle" fill="#c8503c" font-size="18" font-weight="700">Save 200 Lives</text><text x="170" y="96" text-anchor="middle" fill="#c8503c" font-size="12" font-weight="700">72% choose this</text><rect x="390" y="30" width="280" height="135" rx="10" fill="rgba(107,143,94,0.06)" stroke="#6B8F5E" stroke-width="1.5"/><text x="530" y="52" text-anchor="middle" fill="#6B8F5E" font-size="9" font-weight="600" font-family="sans-serif" letter-spacing="0.15em">Plan C - Loss Frame</text><text x="530" y="74" text-anchor="middle" fill="#6B8F5E" font-size="18" font-weight="700">400 Will Die</text><text x="530" y="96" text-anchor="middle" fill="#6B8F5E" font-size="12" font-weight="700">78% choose this</text><text x="350" y="148" text-anchor="middle" fill="#8A8480" font-size="8">Mathematically identical outcomes - only wording changes preference</text></svg></div><div class="hb"><p>Hullman &amp; Diakopoulos (2011):<br>Every data visualization is not a mirror reflection but a rhetorical act filtered through choices.</p></div><p class="fb">05 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point Two (cont)</p><h2 class="tl">Applied to Sports Scenes</h2><div class="ct"><div style="background:var(--red_l);border:1px solid rgba(200,80,60,0.15);border-radius:10px;padding:14px"><h5 style="color:var(--red);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">Loss Frame</h5><ul><li>Your error rate is 35%</li><li>You are 15 percent slower than average</li><li>Training days insufficient this month</li></ul><p style="font-size:0.95rem;font-weight:600;margin-top:6px;color:var(--red)">User feels: I suck.</p></div><div style="background:var(--green_l);border:1px solid rgba(74,138,70,0.15);border-radius:10px;padding:14px"><h5 style="color:var(--green);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">Gain Frame</h5><ul><li>Your success rate is 65 percent</li><li>You are at the 85th percentile</li><li>You have spent 12 days on court</li></ul><p style="font-size:0.95rem;font-weight:600;margin-top:6px;color:var(--green)">User feels: I am improving.</p></div></div><div class="hb"><p><strong>Data has not changed. What changed is the way it is told. The way it is told - is design.</strong></p></div><p class="fb">06 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point Three</p><h2 class="tl">The key to persistence is not skill but belief</h2><div><svg viewBox="0 0 500 180" fill="none"><text x="250" y="14" text-anchor="middle" fill="#C4A65A" font-size="9" font-weight="600" font-family="sans-serif" letter-spacing="0.1em">Four Sources of Self-Efficacy</text><rect x="20" y="28" width="220" height="36" rx="6" fill="rgba(74,170,120,0.08)" stroke="#4A8A4A" stroke-width="1.2"/><text x="35" y="43" fill="#4A8A4A" font-size="10" font-weight="600">1: Mastery Experience</text><text x="35" y="56" fill="#8A8480" font-size="8">Direct successful experience</text><text x="155" y="43" text-anchor="end" fill="#4A8A4A" font-size="8" font-weight="600">STRONGEST</text><rect x="20" y="68" width="220" height="36" rx="6" fill="rgba(196,166,90,0.06)" stroke="#C4A65A" stroke-width="1.2"/><text x="35" y="83" fill="#C4A65A" font-size="10" font-weight="600">2: Vicarious Experience</text><text x="35" y="96" fill="#8A8480" font-size="8">If he can do it, so can I</text><rect x="20" y="108" width="220" height="36" rx="6" fill="rgba(90,122,154,0.06)" stroke="#5A7A9A" stroke-width="1.2"/><text x="35" y="123" fill="#5A7A9A" font-size="10" font-weight="600">3: Verbal Persuasion</text><text x="35" y="136" fill="#8A8480" font-size="8">Evidence-based encouragement</text><rect x="280" y="28" width="200" height="80" rx="6" fill="rgba(196,112,112,0.06)" stroke="#c8503c" stroke-width="1.2"/><text x="300" y="50" fill="#c8503c" font-size="10" font-weight="600">4: Physiological States</text><text x="300" y="68" fill="#8A8480" font-size="8">Infer efficacy from body feelings</text><text x="300" y="85" fill="#8A8480" font-size="8">Guide toward positive body signals</text><rect x="20" y="148" width="460" height="25" rx="4" fill="rgba(74,170,120,0.1)"/><text x="250" y="165" text-anchor="middle" fill="#4A8A4A" font-size="9" font-weight="600">Design Insight: Make small progress visible</text></svg></div><div class="hb"><p>Bandura (1977): Self-efficacy is the belief that one can successfully execute a behavior to produce a desired result.<br><br><strong>NOT can you actually do it, but do you believe you can?</strong></p></div><p class="fb">07 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point Three (cont)</p><h2 class="tl">The duality of Duolingo Streak</h2><div class="ct"><div style="background:rgba(74,170,120,0.08);border:1px solid rgba(74,170,120,0.15);border-radius:10px;padding:14px"><h5 style="color:var(--green)">Positive</h5><ul><li>Retention from 12 to 55 percent</li><li>Emotional anchor, identity marker, social currency</li><li>Leverages loss aversion</li></ul></div><div style="background:var(--red_l);border:1px solid rgba(200,80,60,0.12);border-radius:10px;padding:14px"><h5 style="color:var(--red)">Negative</h5><ul><li>Users choose simple questions to maintain streak</li><li>When streak breaks: total abandonment</li><li>Target shifts from learn well to do not break</li></ul></div></div><div><svg viewBox="0 0 200 120" fill="none"><path d="M100,15 C110,30 115,40 113,52 C111,62 116,66 110,70 C105,73 100,70 100,65 C100,70 95,73 90,70 C84,66 89,62 87,52 C85,40 90,30 100,15Z" fill="rgba(196,112,112,0.2)" stroke="#c8503c" stroke-width="1.5"/><text x="100" y="52" text-anchor="middle" fill="#c8503c" font-size="10" font-weight="700">566</text><text x="100" y="90" text-anchor="middle" fill="#8A8480" font-size="8">Consecutive Days</text><text x="100" y="105" text-anchor="middle" fill="#c8503c" font-size="8" font-weight="600">Break equals destruction</text></svg></div><div class="hb"><p><strong>External motivation can start behavior but long-term reliance erodes intrinsic motivation.</strong></p></div><p class="fb">08 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point Three (cont)</p><h2 class="tl">Stagnation might be when the brain is busiest</h2><div><svg viewBox="0 0 500 150" fill="none"><rect x="255" y="40" width="180" height="30" rx="6" fill="rgba(196,166,90,0.1)" stroke="#C4A65A" stroke-width="1" stroke-dasharray="4,3"/><text x="345" y="52" text-anchor="middle" fill="#C4A65A" font-size="8" font-weight="600">Plateau Phase</text><text x="345" y="62" text-anchor="middle" fill="#C4A65A" font-size="8" font-weight="600">Synaptic strengthening and automatization</text><polyline points="40,125 75,117 110,107 145,97 180,87 215,77 250,70 285,64 320,60 355,56 390,40 410,18 430,8" fill="none" stroke="#C4A65A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="410" cy="18" r="4" fill="#4A8A4A" stroke="#FFF" stroke-width="1"/><text x="410" y="12" text-anchor="middle" fill="#4A8A4A" font-size="7" font-weight="600">Leaping</text></svg></div><div class="hb"><p><strong>Research shows after a plateau period usually comes a sudden jump in performance. Plateau followed by breakthrough.</strong></p></div><div class="card"><p style="font-size:0.95rem;color:var(--text);line-height:1.6"><strong>Cognitive reframing strategy:</strong> When detecting a plateau, intervene: You are in a consolidation phase. Your brain is upgrading new skills.</p></div><p class="fb">09 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point Four</p><h2 class="tl">Same Court, Three Ways Being Seen</h2><table><thead><tr><th style="color:var(--text)">2004 Li Ting / Sun Tiantian</th><th style="color:var(--accent)">2011 Li Na</th><th style="color:var(--green)">2024 Zheng Qinwen</th></tr></thead><tbody><tr><td>Headlines, black and white</td><td>TV 1.16 billion viewers</td><td>Search up 545 percent</td></tr><tr><td><strong>Being told</strong></td><td><strong>Being ritualized</strong></td><td><strong>Being algorithm-fed</strong></td></tr></tbody></table><blockquote>Dayan and Katz (1992): Media events define 2011 perfectly. But 2024 does not fit anymore: the event itself only accounts for 9 percent. Personalized narratives account for 51 percent.</blockquote><div class="hb"><p><strong>Algorithms have shattered collective ritual into countless micro-rituals.</strong></p></div><p class="fb">10 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point Four (cont)</p><h2 class="tl">When Participation meaning changes</h2><div class="ct"><div><svg viewBox="0 0 200 220" fill="none"><text x="100" y="16" text-anchor="middle" fill="#C4A65A" font-size="9" font-weight="600" font-family="sans-serif" letter-spacing="0.1em">Three Concentric Circles</text><circle cx="100" cy="115" r="85" fill="rgba(138,132,128,0.04)" stroke="#8A8480" stroke-width="1.5"/><text x="100" y="180" text-anchor="middle" fill="#8A8480" font-size="8">Symbolic Consumption Layer</text><text x="100" y="195" text-anchor="middle" fill="#8A8480" font-size="7">Buy skirts, check-in, outfits</text><circle cx="100" cy="115" r="55" fill="rgba(196,166,90,0.08)" stroke="#C4A65A" stroke-width="1.5"/><text x="100" y="138" text-anchor="middle" fill="#C4A65A" font-size="8" font-weight="600">Experience Participation Layer</text><text x="100" y="152" text-anchor="middle" fill="#C4A65A" font-size="7">Take classes, play occasionally</text><circle cx="100" cy="115" r="25" fill="rgba(107,143,94,0.1)" stroke="#6B8F5E" stroke-width="1.5"/><text x="100" y="110" text-anchor="middle" fill="#6B8F5E" font-size="8.5" font-weight="700">Continuous</text><text x="100" y="124" text-anchor="middle" fill="#6B8F5E" font-size="6.5">Weekly play with partners</text></svg></div><div><p class="tx"><strong>Bourdieu (1984):</strong> Preferences for sports are not taste but class habitus externalized.</p><p class="tx2">Old money loves Tenniscore. You do not need to know how to play tennis - you just need to dress like someone who does to complete a class identity performance.</p></div></div><div class="hb"><p style="font-size:1.05rem"><strong>When we say 23.81 million tennis population - are we counting players, or skirt buyers?</strong></p></div><p class="fb">11 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point Five</p><h2 class="tl">Data is not the truth of the body</h2><p class="tx">It is a portrait of the body.</p><p class="tx2"><strong>Merleau-Ponty (1945):</strong> AI cameras translate the subjective body into the objective body. Translation is necessarily lossy.</p><blockquote>The body is the general media through which we possess a world.</blockquote><p class="fb">12 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point Five (cont)</p><h2 class="tl">Let us stop pretending data is perfect</h2><p class="tx"><strong>Giorgia Lupi (2017), Data Humanism:</strong> Two designers, one year, weekly hand-drawn postcards. Lines crooked. Colors uneven. This imperfection makes data intimate and warm.</p><p class="tx2">Her first solo exhibition Data Humanism opens in New York April 30, 2026.</p><div class="hb"><p style="font-size:1.05rem"><strong>Perhaps the best sports data visualization is not the most accurate one but the most human one.</strong></p></div><p class="fb">13 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point Six</p><h2 class="tl">Most successful personal data narrative product in the last 10 years</h2><p class="tx"><strong>2024 Wrapped:</strong> 3.5 billion users, 1.4 billion reports, 2.3 billion social impressions.</p><ul style="list-style:none;padding:0"><li><strong>Temporal Capsule:</strong> Activates autobiographical memory</li><li><strong>Identity Construction:</strong> Share I am this kind of person</li><li><strong>Social Currency:</strong> Every frame independently shareable</li><li><strong>Gain Framing Extreme:</strong> Listened 300 times to same song - unique personality not OCD</li></ul><div><svg viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="80" fill="rgba(196,166,90,0.05)" stroke="#D4B060" stroke-width="0.8" stroke-dasharray="2,4"/><circle cx="100" cy="100" r="60" fill="rgba(196,166,90,0.08)" stroke="#D4B060" stroke-width="0.8" stroke-dasharray="2,4"/><circle cx="100" cy="100" r="40" fill="rgba(196,166,90,0.12)" stroke="#D4B060" stroke-width="1"/><text x="100" y="95" text-anchor="middle" fill="#C4A65A" font-size="11" font-weight="700" font-family="sans-serif" letter-spacing="0.08em">WRAPPED</text><text x="100" y="110" text-anchor="middle" fill="#8A8480" font-size="7">Temporal Capsule</text></svg></div><p class="fb">14 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point Six (cont)</p><h2 class="tl">But is only saying nice things enough?</h2><div class="ct"><div class="sc"><h5 style="color:var(--text);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">Negative Example</h5><p class="tx"><strong>Strava puts the full report behind an 80 dollar paywall</strong></p><p class="tx2">Pure narrative without information depth also dissatisfies users.</p></div><div class="sc"><h5 style="color:var(--accent);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">Ethical Boundary</h5><p class="tx2">Do not tamper with data. Do not hide risks. Provide the deep look option.</p></div></div><div class="hb"><p><strong>Good design is like a good coach: honest when encouraging, direct when confronting, always with you can get better.</strong></p></div><p class="fb">15 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point Seven</p><h2 class="tl">What you choose to slow down is saying this moment matters more</h2><div><svg viewBox="0 0 600 140" fill="none"><text x="300" y="14" text-anchor="middle" fill="#C4A65A" font-size="10" font-weight="600" font-family="sans-serif" letter-spacing="0.1em">Three Types of Time</text><line x1="30" y1="30" x2="570" y2="30" stroke="#8A8480" stroke-width="1.5"/><circle cx="55" cy="30" r="7" fill="rgba(138,132,128,0.1)" stroke="#8A8480" stroke-width="1.5"/><circle cx="140" cy="30" r="7" fill="rgba(138,132,128,0.1)" stroke="#8A8480" stroke-width="1.5"/><circle cx="220" cy="30" r="7" fill="rgba(138,132,128,0.1)" stroke="#8A8480" stroke-width="1.5"/><text x="120" y="33" text-anchor="middle" fill="#8A8480" font-size="9">Chronos: Objective Time</text><text x="400" y="33" text-anchor="middle" fill="#8A8480" font-size="9">Every second is equal value</text><line x1="30" y1="55" x2="570" y2="55" stroke="#C4A65A" stroke-width="1.5"/><circle cx="160" cy="55" r="10" fill="rgba(196,166,90,0.15)" stroke="#C4A65A" stroke-width="1.5"/><text x="240" y="58" text-anchor="middle" fill="#C4A65A" font-size="9">Kairos: Subjective Experience in Flow</text><line x1="30" y1="80" x2="570" y2="80" stroke="#4A8A4A" stroke-width="1.5"/><rect x="30" y="75" width="140" height="10" rx="3" fill="rgba(74,138,70,0.15)" stroke="#4A8A4A" stroke-width="1"/><rect x="200" y="75" width="200" height="10" rx="3" fill="rgba(74,138,70,0.08)" stroke="#4A8A4A" stroke-width="0.8"/><text x="420" y="95" text-anchor="middle" fill="#4A8A4A" font-size="9">Mythos: Narrative Meaning</text></svg></div><div class="card"><p class="tx"><strong>Flow State:</strong> Self-awareness disappears. Time perception distorts. The ball seems to hover in the air.</p></div><p class="fb">16 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point Eight</p><h2 class="tl">When everyone has professional level treatment, does cool still exist?</h2><p class="tx2"><strong>Walter Benjamin (1935):</strong> Aura - the unreachable feeling an artwork has because it is unique. Machine reproduction eliminates it. But we noticed an exception: worship value retreats to the last fortress.</p><div class="hb"><p style="font-size:1rem"><strong>When everyone looks equally cool, cool itself depreciates. Unless the aura comes from data uniqueness, not template scarcity.</strong></p></div><p class="fb">17 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Point Eight (cont)</p><h2 class="tl">When data goes from measurement tool to creative medium</h2><p class="tx2">GPS data records distance and pace. But Strava Art users turned it into a medium for self-expression. <strong>Non-reproducible</strong>: a specific person, in a specific city, using their body for hours.</p><div><svg viewBox="0 0 600 160" fill="none"><text x="300" y="14" text-anchor="middle" fill="#C4A65A" font-size="10" font-weight="600" font-family="sans-serif" letter-spacing="0.1em">Three Gazes</text><circle cx="120" cy="80" r="50" fill="rgba(90,122,154,0.06)" stroke="#5A7A9A" stroke-width="1.5"/><text x="120" y="65" text-anchor="middle" fill="#5A7A9A" font-size="10" font-weight="600">Coach Gaze</text><text x="120" y="85" text-anchor="middle" fill="#5A7A9A" font-size="8">Correction and normatization</text><text x="120" y="110" text-anchor="middle" fill="#5A7A9A" font-size="7">Never good enough</text><circle cx="300" cy="80" r="50" fill="rgba(196,166,90,0.06)" stroke="#C4A65A" stroke-width="1.5"/><text x="300" y="65" text-anchor="middle" fill="#C4A65A" font-size="10" font-weight="600">Social Gaze</text><text x="300" y="85" text-anchor="middle" fill="#C4A65A" font-size="8">Front stage and performance</text><text x="300" y="110" text-anchor="middle" fill="#C4A65A" font-size="7">Looks like matters more than is</text><circle cx="480" cy="80" r="50" fill="rgba(122,107,154,0.06)" stroke="#7A6B9A" stroke-width="1.5"/><text x="480" y="65" text-anchor="middle" fill="#7A6B9A" font-size="10" font-weight="600">Self Gaze</text><text x="480" y="85" text-anchor="middle" fill="#7A6B9A" font-size="8">Self-confirmation</text><text x="480" y="110" text-anchor="middle" fill="#7A6B9A" font-size="7">I existed and I moved</text></svg></div><div class="hb"><p style="font-size:1rem"><strong>That is a data portrait, not a data scorecard.</strong></p></div><p class="fb">18 / 22</p></div></section>
+<section class="slide"><div class="si center"><div style="max-width:500px"><p style="font-size:1.5rem;color:var(--accent)">&#x2753;</p><h2 class="tl">Forgetting yourself and Being seen<br>Can they coexist?</h2><p class="tx2">The most precious moment of flow is forgetting yourself - completely immersed in the rhythm of hitting the ball. But every design discussed today is about being seen.</p><div class="card" style="margin-top:1rem;padding:14px"><p style="font-size:1.05rem;color:var(--text);font-weight:600;line-height:1.5">Perhaps the best design is:<br><strong>Make the cameras presence light enough to be forgotten,<br>make the generated work deep enough to be worthy of being gazed at.</strong></p></div><p class="fb">19 / 22</p></div></section>
+<section class="slide"><div class="si"><p class="lb">Now, back to your topics</p><h2 class="tl">Three topic cards, revisited</h2><div class="cl3"><div class="tch"><p class="tc" style="color:var(--accent)">A</p><h4>China Tennis</h4><p>Media Events. Consumption Symbols. Visualization Rhetoric.</p></div><div class="tch"><p class="tc" style="color:var(--green)">B</p><h4>Personal Growth</h4><p>Data != Meaning. Self-Efficacy. Plateau.</p></div><div class="tch"><p class="tc" style="color:var(--blue)">C</p><h4>Stadium Star</h4><p>Three Times. Aura Democratization. Data Portrait.</p></div></div><p class="tx2" style="margin-top:0.5rem">Possibly related is just a hint, not a limitation. <strong style="color:var(--text)">You can completely walk your own path.</strong></p><p style="font-size:0.7rem;color:var(--text3)">Topic deadline, team size, contact info</p><p class="fb">20 / 22</p></div></section>
+<section class="slide"><div class="si center" style="justify-content:center"><p style="font-size:1.6rem;color:var(--text);font-weight:400;line-height:1.6">Data records what happened.</p><p style="font-size:2rem;color:var(--accent);font-family:var(--ffs);font-weight:700">Design decides what it means.</p><p class="fb" style="margin-top:2rem">21 / 22</p></div></section>
+<section class="slide"><div class="si center" style="justify-content:center"><p style="font-size:2rem;color:var(--text);font-weight:300">Thank you for listening.</p><p style="font-size:0.85rem;color:var(--text2);margin-top:1rem">22 / 22</p></div></section>
+<div class="dots" id="dots"></div>
 <script>
-const slides=document.querySelectorAll('.slide');
-const tl=slides.length;
-let cur=0,locked=false;
+var slides=document.querySelectorAll(".slide");
+var total=slides.length;
+var cur=0;
+var lk=false;
+
 function go(i){
-  if(locked||i===cur||i<0||i>=tl)return;
-  locked=true;
-  var old=slides[cur];
-  gsap.to(old.querySelectorAll('.an'),{opacity:0,y:-18,duration:0.25,stagger:0.02,ease:'power2.in',clearProps:'all',onComplete:function(){old.classList.remove('active');old.style.visibility='hidden'}});
-  cur=i;var nw=slides[cur];nw.classList.add('active');nw.style.visibility='visible';
-  gsap.set(nw.querySelectorAll('.an'),{opacity:0,y:22});
-  gsap.to(nw.querySelectorAll('.an'),{opacity:1,y:0,duration:0.65,stagger:0.06,ease:'power3.out'});
-  var dots=document.querySelectorAll('.dot');
-  dots.forEach(function(d,j){d.classList.toggle('a',j===i)});
-  document.getElementById('c-cur').textContent=(i+1<10?'0':'')+(i+1);
-  document.getElementById('pbar').style.width=((i+1)/tl*100)+'%';
-  var lb=document.getElementById('slb');
-  var labels={};
-  labels[1]='课题A·介绍';labels[2]='课题B·介绍';labels[3]='课题C·介绍';
-  labels[4]='引导展示';labels[6]='课题A·媒介变迁';labels[7]='课题A·资本流动';labels[8]='课题A·消费文化';labels[9]='课题A·收束';
-  labels[11]='课题B·DIKW';labels[12]='课题B·修辞行为';labels[13]='课题B·自我效能';labels[14]='课题B·可见化';labels[15]='课题B·金句';
-  labels[17]='课题C·数据肖像';labels[18]='课题C·三种凝视';labels[19]='课题C·光环民主';labels[20]='课题C·金句';
-  if(labels[i]){lb.style.display='block';lb.textContent=labels[i]}
-  else{lb.style.display='none'}
-  setTimeout(function(){locked=false},450);
+  if(lk || i<0 || i>=total) return;
+  lk=true;
+  slides[cur].classList.remove("active");
+  cur=i;
+  slides[cur].classList.add("active");
+  updateUI();
+  setTimeout(function(){lk=false},500);
 }
-document.addEventListener('keydown',function(e){
-  if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key===' '){e.preventDefault();go(cur+1)}
-  else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}
+
+function updateUI(){
+  var dots=document.getElementById("dots").children;
+  for(var i=0;i<dots.length;i++){
+    dots[i].classList.toggle("a", i===cur);
+  }
+}
+
+// Build dot navigation
+for(var i=0;i<total;i++){
+  var d=document.createElement("button");
+  d.className="dot"+(i===0?" a":"");
+  d.onclick=(function(idx){return function(){go(idx)}})(i);
+  document.getElementById("dots").appendChild(d);
+}
+
+// Keyboard navigation
+document.addEventListener("keydown",function(e){
+  if(e.key==="ArrowDown"||e.key==="ArrowRight"){
+    e.preventDefault();
+    go(cur+1);
+  } else if(e.key==="ArrowUp"||e.key==="ArrowLeft"){
+    e.preventDefault();
+    go(cur-1);
+  }
 });
-var dn=document.getElementById('dn');var dots=[];
-slides.forEach(function(_,i){
-  var d=document.createElement('button');
-  d.className='nav-dot dot'+(i===0?' a':'');
-  d.addEventListener('click',function(){go(i)});
-  dn.appendChild(d);dots.push(d);
-});
-document.getElementById('c-tot').textContent=(tl<10?'0':'')+tl;
-var wheel=false;
-document.addEventListener('wheel',function(e){if(wheel)return;wheel=true;if(e.deltaY>0)go(cur+1);else go(cur-1);setTimeout(function(){wheel=false},550)},{passive:true});
-var ty=0;
-document.addEventListener('touchstart',function(e){ty=e.touches[0].clientY},{passive:true});
-document.addEventListener('touchend',function(e){var d=ty-e.changedTouches[0].clientY;if(Math.abs(d)>50)go(d>0?cur+1:cur-1)},{passive:true});
-gsap.set(slides[0].querySelectorAll('.an'),{opacity:0,y:22});
-gsap.to(slides[0].querySelectorAll('.an'),{opacity:1,y:0,duration:0.65,stagger:0.07,ease:'power3.out'});
-</script></div></body></html>
+
+// Mouse wheel navigation
+var wt=false;
+document.addEventListener("wheel",function(e){
+  if(wt) return;
+  wt=true;
+  if(e.deltaY>0) go(cur+1);
+  else go(cur-1);
+  setTimeout(function(){wt=false},600);
+},{passive:true});
+
+// Touch navigation
+var ts=0;
+document.addEventListener("touchstart",function(e){
+  ts=e.touches[0].clientY;
+},{passive:true});
+
+document.addEventListener("touchend",function(e){
+  var d=ts-e.changedTouches[0].clientY;
+  if(Math.abs(d)>40) go(d>0?cur+1:cur-1);
+},{passive:true});
+
+// Initialize
+slides[0].classList.add("active");
+updateUI();
+</script>
+</div>
+</body>
+</html>

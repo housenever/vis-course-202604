@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 520" width="300" height="520">
+  <defs>
+    <linearGradient id="grad-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1DB954"/>
+      <stop offset="100%" style="stop-color:#191414"/>
+    </linearGradient>
+  </defs>
+  <rect fill="#F5F0E8" width="300" height="520" rx="8"/>
+  <rect x="30" y="30" width="240" height="440" rx="8" fill="#1DB954"/>
+  <circle cx="150" cy="120" r="80" fill="none" stroke="white" stroke-width="2"/>
+  <circle cx="150" cy="120" r="60" fill="none" stroke="white" stroke-width="1.5" fill-opacity="0.1"/>
+  <text x="150" y="115" text-anchor="middle" font-size="16" fill="white">Your Top</text>
+  <text x="150" y="135" text-anchor="middle" font-size="14" fill="white">Artist</text>
+  <rect x="60" y="220" width="180" height="40" rx="4" fill="white" fill-opacity="0.15"/>
+  <rect x="60" y="280" width="180" height="20" rx="4" fill="white" fill-opacity="0.1"/>
+  <rect x="60" y="320" width="120" height="20" rx="4" fill="white" fill-opacity="0.1"/>
+  <text x="150" y="440" text-anchor="middle" font-size="10" fill="white">Wrapped 2024</text>
+  <text x="150" y="500" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#A0947C">IMG-04 · 推荐尺寸: 300×520</text>
+</svg>
