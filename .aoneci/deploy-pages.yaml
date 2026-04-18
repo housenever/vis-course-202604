@@ -1,0 +1,29 @@
+# Aone CI 配置文件 - 部署到 Aone Pages
+# 文档: https://pages.alibaba-inc.com/docs/intro
+
+name: deploy-pages
+triggers:
+  push:
+jobs:
+  deploy:
+    image: alios-8u
+    steps:
+      - uses: checkout                            # 下载代码
+
+      # - uses: setup-env                           # 配置构建环境
+      #   inputs:
+      #     node-version: 20
+      #     tnpm-version: 10
+
+      # 构建阶段 - 由于 index.html 已经是构建完成的静态文件
+      # 我们只需要将其复制到 build/ 目录即可
+      - id: build-website
+        run: |
+          mkdir -p build
+          cp index.html build/index.html
+          echo "build complete"
+
+      - uses: deploy-pages                        # 部署到 Aone Pages
+        inputs:
+          deploy-dir: build/                      # 构建后的静态资源目录
+          production-branch: master               # master 分支部署为正式版本
