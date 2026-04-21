@@ -105,7 +105,31 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 .rli h4{font-size:.72rem;color:var(--accent);text-transform:uppercase;letter-spacing:.15em;margin:28px 0 14px;font-weight:700}
 .rli p{font-size:.82rem;color:var(--tx3);margin:8px 0;line-height:1.65}
 .rli em{color:var(--tx2)}
-@media(max-width:768px){nav .nc{display:none}.hero{padding:60px 20px}.ov{padding:40px 16px}.ts{padding:60px 0 24px}.art{padding:0 2px}.visualization{padding:20px 12px}}</style></head><body>
+.ref{cursor:pointer;color:var(--accent);font-size:.75em;vertical-align:super;font-weight:600;transition:all .2s;border-radius:3px;padding:0 2px;text-decoration:none;background:rgba(196,166,90,0.1);line-height:1}
+.ref:hover{background:var(--accent-m);color:var(--tx)}
+.ref-pop{position:fixed;top:0;left:0;right:0;bottom:0;z-index:1000;background:rgba(45,42,37,.45);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:24px}
+.ref-pop.on{display:flex}
+.ref-pop-inner{background:var(--surface);border:1px solid var(--br-m);border-radius:14px;padding:28px 32px;max-width:520px;width:100%;box-shadow:0 12px 40px rgba(45,42,37,.12);position:relative;animation:refPopIn .25s ease}
+@keyframes refPopIn{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:none}}
+.ref-pop-num{font-family:var(--ff-s);font-size:.85rem;font-weight:700;color:var(--accent);margin-bottom:8px;letter-spacing:.08em}
+.ref-pop-text{font-size:.92rem;color:var(--tx2);line-height:1.7}
+.ref-pop-close{position:absolute;top:12px;right:14px;background:none;border:none;color:var(--tx3);cursor:pointer;font-size:1.1rem;padding:4px 8px;border-radius:6px;transition:all .2s}
+.ref-pop-close:hover{background:var(--bg-alt);color:var(--tx)}
+@media(max-width:768px){nav .nc{display:none}.hero{padding:60px 20px}.ov{padding:40px 16px}.ts{padding:60px 0 24px}.art{padding:0 2px}.visualization{padding:20px 12px}}
+.ref{display:inline;color:var(--accent);font-size:.72em;vertical-align:super;cursor:pointer;margin:0 1px;padding:0 2px;border-radius:3px;transition:all .15s;font-weight:600;line-height:1;user-select:none}
+.ref:hover{background:var(--accent-m);text-decoration:underline}
+.ref-pop{position:fixed;inset:0;z-index:9999;opacity:0;pointer-events:none;transition:opacity .2s}
+.ref-pop.on{opacity:1;pointer-events:auto}
+.ref-pop-bd{position:absolute;inset:0;background:rgba(45,42,37,.45)}
+.ref-pop-card{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) translateY(12px);background:var(--surface);border:1px solid var(--br-m);border-radius:16px;padding:28px 32px 24px;box-shadow:0 24px 64px rgba(45,42,37,.15);opacity:0;transition:all .25s cubic-bezier(.22,1,.36,1);max-width:560px;width:calc(100% - 40px);max-height:72vh;overflow-y:auto}
+.ref-pop.on .ref-pop-card{opacity:1;transform:translate(-50%,-50%) translateY(0)}
+.ref-pop-x{position:absolute;top:12px;right:14px;font-size:16px;color:var(--tx4);cursor:pointer;background:none;border:none;padding:4px 6px;border-radius:6px;line-height:1}
+.ref-pop-x:hover{color:var(--tx);background:var(--bg-alt)}
+.ref-pop-n{font-size:.72rem;color:var(--accent);text-transform:uppercase;letter-spacing:.15em;font-weight:700;margin-bottom:10px}
+.ref-pop-t{font-size:.9rem;color:var(--tx2);line-height:1.85}
+
+@media(max-width:768px){.ref-pop-card{padding:20px 22px;width:calc(100% - 24px);max-width:none}}
+</style></head><body>
 <nav><div class="ni"><span class="nt">数据·身体·故事</span><div class="nc"><a href="#overview">课程概览</a><a href="#t1">课题A</a><a href="#t2">课题B</a><a href="#t3">课题C</a><a href="#refs">参考文献</a></div></div></nav>
 <div class="rp"><div class="rpf" id="rpF"></div></div>
 <section class="hero"><div class="hc"><div class="hs"></div><h1>看见运动</h1><p>当运动可视化遇见叙事设计<br>三堂课、三个尺度、三种观看方式</p>
@@ -116,7 +140,7 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <div class="tcd"><div class="tcd-ic b"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><h3>课题B：个人网球成长报告</h3><p class="ts2">中观</p><p><strong>背景：</strong>"数据丰富但洞察贫乏"。70%爱好者在6个月内放弃，因"看不到自己的变化"。</p><p><strong>立意：</strong>说服性可视化+个人信息化设计。从数据到故事、客观到主观、回顾到前瞻。</p><div class="tcd-m"><span>个人数据可视化</span><span>行为心理学</span><span>UX设计</span></div><p style="margin-top:12px;font-size:.78rem;color:var(--tx4)">UI界面 · 企业模拟数据</p></div>
 <div class="tcd"><div class="tcd-ic c"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="11" r="4"/><path d="M12 1v2M12 21v2"/></svg></div><h3>课题C：每个人都是赛场明星</h3><p class="ts2">微观</p><p><strong>背景：</strong>"被看见"成核心体验。专业转播门槛高，随手拍摄缺"高光感"。</p><p><strong>立意：</strong>轻量级运动叙事动态可视化。信息与影像融合、情绪化转译、社交货币铸造。</p><div class="tcd-m"><span>动态数据可视化</span><span>影视包装</span><span>动效设计</span></div><p style="margin-top:12px;font-size:.78rem;color:var(--tx4)">30秒竖屏MP4 · 场馆数据</p></div>
 </div></div></section>
-<main>
+<div class="page-wrap">
 <div id="t1" class="ts"><div class="th center"><p class="tn2">课题A · 宏观</p><h2>一颗黄绿色小球的</h2><p class="lead">当媒介重新发明一项运动</p></div>
 <div class="aw"><div class="art">
 <div class="visualization"><svg viewBox="0 0 800 160" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="50" y="18" fill="#C4A65A" font-size="9" font-weight="700" font-family="sans-serif" letter-spacing="0.15em">培养模式三阶段</text><rect x="20" y="36" width="230" height="100" rx="8" fill="rgba(138,132,128,0.06)" stroke="#8A8480" stroke-width="1.5"/><text x="135" y="60" text-anchor="middle" fill="#2D2A25" font-size="12" font-weight="600" font-family="sans-serif">Phase 01 · ~2008</text><text x="135" y="78" text-anchor="middle" fill="#2D2A25" font-size="16" font-weight="700" font-family="sans-serif">国家全包</text><text x="135" y="96" text-anchor="middle" fill="#8A8480" font-size="9" font-family="sans-serif">再分配 ·体校→省队→国家队</text><text x="135" y="120" text-anchor="middle" fill="#8A8480" font-size="8" font-family="sans-serif">2004 李婷/孙甜甜 雅典</text><line x1="255" y1="86" x2="290" y2="86" stroke="#C4A65A" stroke-width="1.5"/><polygon points="290,86 282,80 282,92" fill="#C4A65A"/><rect x="290" y="36" width="230" height="100" rx="8" fill="rgba(196,166,90,0.05)" stroke="#C4A65A" stroke-width="1.5"/><text x="405" y="60" text-anchor="middle" fill="#C4A65A" font-size="9" font-weight="700" font-family="sans-serif" letter-spacing="0.1em">Phase 02 · 2008-2014</text><text x="405" y="78" text-anchor="middle" fill="#2D2A25" font-size="16" font-weight="700" font-family="sans-serif">单飞分账</text><text x="405" y="96" text-anchor="middle" fill="#8A8480" font-size="9" font-family="sans-serif">市场化 · 自负盈亏</text><text x="405" y="120" text-anchor="middle" fill="#8A8480" font-size="8" font-family="sans-serif">2011 李娜法网 13家赞助</text><line x1="525" y1="86" x2="560" y2="86" stroke="#C4A65A" stroke-width="1.5"/><polygon points="560,86 552,80 552,92" fill="#C4A65A"/><rect x="560" y="36" width="230" height="100" rx="8" fill="rgba(196,166,90,0.08)" stroke="#C4A65A" stroke-width="1.5"/><text x="675" y="60" text-anchor="middle" fill="#C4A65A" font-size="9" font-weight="700" font-family="sans-serif" letter-spacing="0.1em">Phase 03 · 2020s~</text><text x="675" y="78" text-anchor="middle" fill="#2D2A25" font-size="16" font-weight="700" font-family="sans-serif">家庭投资</text><text x="675" y="96" text-anchor="middle" fill="#8A8480" font-size="9" font-family="sans-serif">资本化 · 家庭主体</text><text x="675" y="120" text-anchor="middle" fill="#8A8480" font-size="8" font-family="sans-serif">2024 郑钦文金牌</text></svg><div class="viz-caption">图1: 中国网球培养模式三阶段演化</div></div>
@@ -124,23 +148,23 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <div class="pq"><p>本报告是演讲稿的"冰山水下部分"，为你提供每个观点背后的完整理论脉络、数据细节和延伸知识，帮助你在分享中应对听众的任何追问，并在讲述中做到"举重若轻"。 </p></div>
 <h3 class="center">观点一：同一个球场，三种"被看见"的方式</h3>
 <h4>1.1 这个对比从哪里来</h4>
-<p>2011年李娜和2024年郑钦文，都在巴黎罗兰·加洛斯的菲利普·夏蒂埃中心球场创造了历史[1]。这个物理空间的不变，恰好构成了一面完美的"控制变量"——当球场不变、运动不变、甚至国籍不变的时候，唯一剧烈变化的就是<strong>媒介环境</strong>。这让两次夺冠成为了一组天然的媒介考古学样本。</p>
+<p>2011年李娜和2024年郑钦文，都在巴黎罗兰·加洛斯的菲利普·夏蒂埃中心球场创造了历史<span class="ref" data-i="a-1">[1]</span>。这个物理空间的不变，恰好构成了一面完美的"控制变量"——当球场不变、运动不变、甚至国籍不变的时候，唯一剧烈变化的就是<strong>媒介环境</strong>。这让两次夺冠成为了一组天然的媒介考古学样本。</p>
 <p>你在分享中可以这样理解这组对比的三个层次：</p>
-<ul><li><strong>第一层是数字对比</strong>。2011年李娜法网决赛，央视三频道并机直播，收视总人数超过<strong>1.16亿</strong>[2]。2024年郑钦文奥运夺冠后，"网球"在抖音的关键词搜索指数同比增长<strong>545%</strong>[3]。这两个数字衡量的是完全不同的东西——前者衡量的是"同一时刻有多少人在看同一个画面"，后者衡量的是"一个关键词在算法生态中的热度涌动"。</li><li><strong>第二层是注意力形态对比</strong>。1.16亿人意味着一种<strong>同步的、集体的、仪式性的</strong>观看体验——你不需要认识身边的人，但你知道此刻全国有一亿人和你在做同一件事。而545%的搜索增长意味着一种<strong>异步的、碎片的、个人化的</strong>消费体验——每个人在不同时间、不同平台、以不同的情感框架接触同一个事件。</li><li><strong>第三层是消费转化对比</strong>。2011年李娜夺冠后几乎没有产生即时的商业转化。2024年郑钦文决赛当晚，淘宝上同款T恤搜索量一周内环比上升<strong>111%</strong>，千元级"郑钦文同款"网球拍成交量暴涨[4]。<strong>体育观看从"情感仪式"变成了"消费入口"。</strong></li></ul>
+<ul><li><strong>第一层是数字对比</strong>。2011年李娜法网决赛，央视三频道并机直播，收视总人数超过<strong>1.16亿</strong><span class="ref" data-i="a-2">[2]</span>。2024年郑钦文奥运夺冠后，"网球"在抖音的关键词搜索指数同比增长<strong>545%</strong><span class="ref" data-i="a-3">[3]</span>。这两个数字衡量的是完全不同的东西——前者衡量的是"同一时刻有多少人在看同一个画面"，后者衡量的是"一个关键词在算法生态中的热度涌动"。</li><li><strong>第二层是注意力形态对比</strong>。1.16亿人意味着一种<strong>同步的、集体的、仪式性的</strong>观看体验——你不需要认识身边的人，但你知道此刻全国有一亿人和你在做同一件事。而545%的搜索增长意味着一种<strong>异步的、碎片的、个人化的</strong>消费体验——每个人在不同时间、不同平台、以不同的情感框架接触同一个事件。</li><li><strong>第三层是消费转化对比</strong>。2011年李娜夺冠后几乎没有产生即时的商业转化。2024年郑钦文决赛当晚，淘宝上同款T恤搜索量一周内环比上升<strong>111%</strong>，千元级"郑钦文同款"网球拍成交量暴涨<span class="ref" data-i="a-4">[4]</span>。<strong>体育观看从"情感仪式"变成了"消费入口"。</strong></li></ul>
 <h4>1.2 理论锚点：Dayan & Katz的"媒介事件"理论</h4>
-<p>这组对比可以精确地对应传播学中的一个经典理论。Daniel Dayan和Elihu Katz在1992年出版的《Media Events: The Live Broadcasting of History》中提出了<strong>"媒介事件"</strong>概念[5]。他们认为，电视对历史性事件的直播构成了一种新的"世界仪式"（world rituals），这种仪式具有以下特征：</p>
+<p>这组对比可以精确地对应传播学中的一个经典理论。Daniel Dayan和Elihu Katz在1992年出版的《Media Events: The Live Broadcasting of History》中提出了<strong>"媒介事件"</strong>概念<span class="ref" data-i="a-5">[5]</span>。他们认为，电视对历史性事件的直播构成了一种新的"世界仪式"（world rituals），这种仪式具有以下特征：</p>
 <ul><li><strong>事先计划和宣告</strong>：不是突发新闻，而是被提前安排和期待的</li><li><strong>直播</strong>：实时传输，观众与事件同步</li><li><strong>打断日常</strong>：中断正常节目编排，制造"特殊时刻"感</li><li><strong>敬畏语调</strong>：解说和报道采用庄严的、仪式性的语气</li><li><strong>集体观看</strong>：人们聚在一起看，形成共同体验</li></ul>
-<p>Dayan和Katz将媒介事件分为三种类型：<strong>竞赛（Contests）</strong>、<strong>征服（Conquests）</strong><strong>和</strong><strong>加冕（Coronations）</strong>[5]。体育赛事属于"竞赛"类型——"它们被设计来识别最好的竞争者或最好的团队，是纯粹的竞争庆典"。</p>
-<p>2011年李娜法网决赛<strong>完美符合</strong>Dayan和Katz的媒介事件定义：央视临时调整转播计划、三频道并机直播（打断日常）[2]；全国1.16亿人同步观看（集体观看）；解说充满国家荣誉的庄严感（敬畏语调）。这是一个教科书级别的"媒介事件"。</p>
-<p>但2024年郑钦文的夺冠<strong>不再是</strong>Dayan和Katz意义上的"媒介事件"——或者更准确地说，它是一个<strong>被算法解构了的媒介事件</strong>。钛媒体引用的微博后台数据显示[3]，巴黎奥运会期间运动员个人衍生热搜占总量的<strong>51%</strong>，而赛程赛果类热搜仅占<strong>9%</strong>。这意味着"事件"本身（比赛结果）已经不再是注意力的核心——<strong>围绕事件衍生的个人化叙事</strong>才是。人们不是在"观看一个事件"，而是在"消费一个事件的无数个碎片"。</p>
+<p>Dayan和Katz将媒介事件分为三种类型：<strong>竞赛（Contests）</strong>、<strong>征服（Conquests）</strong><strong>和</strong><strong>加冕（Coronations）</strong><span class="ref" data-i="a-5">[5]</span>。体育赛事属于"竞赛"类型——"它们被设计来识别最好的竞争者或最好的团队，是纯粹的竞争庆典"。</p>
+<p>2011年李娜法网决赛<strong>完美符合</strong>Dayan和Katz的媒介事件定义：央视临时调整转播计划、三频道并机直播（打断日常）<span class="ref" data-i="a-2">[2]</span>；全国1.16亿人同步观看（集体观看）；解说充满国家荣誉的庄严感（敬畏语调）。这是一个教科书级别的"媒介事件"。</p>
+<p>但2024年郑钦文的夺冠<strong>不再是</strong>Dayan和Katz意义上的"媒介事件"——或者更准确地说，它是一个<strong>被算法解构了的媒介事件</strong>。钛媒体引用的微博后台数据显示<span class="ref" data-i="a-3">[3]</span>，巴黎奥运会期间运动员个人衍生热搜占总量的<strong>51%</strong>，而赛程赛果类热搜仅占<strong>9%</strong>。这意味着"事件"本身（比赛结果）已经不再是注意力的核心——<strong>围绕事件衍生的个人化叙事</strong>才是。人们不是在"观看一个事件"，而是在"消费一个事件的无数个碎片"。</p>
 <p>这个变化的学术意义在于：<strong>Dayan和Katz的理论是为电视时代写的，它预设了一个"中心化的传播权力"和一个"同质化的受众"。当算法媒体将传播权力分散到无数个平台和创作者手中，当受众被分割成无数个兴趣圈层时，"媒介事件"的集体仪式功能就被瓦解了——取而代之的是无数个"微型仪式"的并行发生。</strong></p>
-<p>ResearchGate上2022年发表的一篇论文"Media events in an age of the Web and television: Dayan and Katz revisited"[6]正是在讨论这个问题。作者指出，在互联网时代，媒介事件的"魅力和局限"都需要被重新审视。</p>
+<p>ResearchGate上2022年发表的一篇论文"Media events in an age of the Web and television: Dayan and Katz revisited"<span class="ref" data-i="a-6">[6]</span>正是在讨论这个问题。作者指出，在互联网时代，媒介事件的"魅力和局限"都需要被重新审视。</p>
 <h4>1.3 关键数据的完整呈现</h4>
 <p>为了让你在分享中有足够的弹药库，以下是两个夺冠时刻的完整数据对比：</p>
 <p><strong>2011年李娜法网决赛（电视时代）</strong>：</p>
-<ul><li>CCTV-5体育频道全国收视率达到<strong>2.75%</strong>，收视总人数<strong>9577.3万</strong>[2]</li><li>加上CCTV-13新闻频道，总收视人数突破<strong>1.16亿</strong>[2]</li><li>WTA主席专门发声明称这个数字"显示了女子网球在中国巨大的发展潜力"[2]</li><li>2013年澳网决赛收视率进一步升至<strong>3.34%</strong>[2]；2014年澳网决赛超过<strong>4856万</strong>观众通过CCTV-5观看[2]</li><li>李娜夺冠后的微博只有两个字："哈哈。"——这是中国体育明星第一次用社交媒体直接与公众对话</li></ul>
+<ul><li>CCTV-5体育频道全国收视率达到<strong>2.75%</strong>，收视总人数<strong>9577.3万</strong><span class="ref" data-i="a-2">[2]</span></li><li>加上CCTV-13新闻频道，总收视人数突破<strong>1.16亿</strong><span class="ref" data-i="a-2">[2]</span></li><li>WTA主席专门发声明称这个数字"显示了女子网球在中国巨大的发展潜力"<span class="ref" data-i="a-2">[2]</span></li><li>2013年澳网决赛收视率进一步升至<strong>3.34%</strong><span class="ref" data-i="a-2">[2]</span>；2014年澳网决赛超过<strong>4856万</strong>观众通过CCTV-5观看<span class="ref" data-i="a-2">[2]</span></li><li>李娜夺冠后的微博只有两个字："哈哈。"——这是中国体育明星第一次用社交媒体直接与公众对话</li></ul>
 <p><strong>2024年郑钦文巴黎奥运决赛（算法时代）</strong>：</p>
-<ul><li>抖音"网球"关键词搜索指数同比增长<strong>545%</strong>[3]</li><li>微博运动员个人衍生热搜累计<strong>2793个</strong>，占热搜总量<strong>51%</strong>[3]</li><li>赛程赛果类热搜仅<strong>478个</strong>，占<strong>9%</strong>[3]</li><li>快手奥运相关内容曝光量达<strong>3106亿次</strong>，<strong>6.4亿</strong>用户通过快手观看奥运[3]</li><li>霸王茶姬奥运期间的活动登上微博热搜，阅读量<strong>2.7亿</strong>[3]</li><li>郑钦文决赛当晚穿的Nike定制T恤天猫销量迅速突破1000件[3]</li><li>同款T恤搜索量一周内环比上升<strong>111%</strong>[4]</li><li>网球裙成交额同比增长<strong>160%</strong>[4]</li></ul>
+<ul><li>抖音"网球"关键词搜索指数同比增长<strong>545%</strong><span class="ref" data-i="a-3">[3]</span></li><li>微博运动员个人衍生热搜累计<strong>2793个</strong>，占热搜总量<strong>51%</strong><span class="ref" data-i="a-3">[3]</span></li><li>赛程赛果类热搜仅<strong>478个</strong>，占<strong>9%</strong><span class="ref" data-i="a-3">[3]</span></li><li>快手奥运相关内容曝光量达<strong>3106亿次</strong>，<strong>6.4亿</strong>用户通过快手观看奥运<span class="ref" data-i="a-3">[3]</span></li><li>霸王茶姬奥运期间的活动登上微博热搜，阅读量<strong>2.7亿</strong><span class="ref" data-i="a-3">[3]</span></li><li>郑钦文决赛当晚穿的Nike定制T恤天猫销量迅速突破1000件<span class="ref" data-i="a-3">[3]</span></li><li>同款T恤搜索量一周内环比上升<strong>111%</strong><span class="ref" data-i="a-4">[4]</span></li><li>网球裙成交额同比增长<strong>160%</strong><span class="ref" data-i="a-4">[4]</span></li></ul>
 <h4>1.4 你可以在分享中使用的类比</h4>
 <p>如果听众对"媒介事件的解构"这个概念感到抽象，你可以用一个生活化的类比：</p>
 <div class="pq"><p>"2011年看李娜夺冠，像是全国人民一起去了同一个电影院，看同一部电影，在同一个地方笑、同一个地方哭。2024年看郑钦文夺冠，像是每个人在手机上刷到了同一部电影的不同片段——有人刷到了夺冠瞬间，有人刷到了她的穿搭解析，有人刷到了'哪些品牌押中了郑钦文'的商业分析，有人刷到了她手臂肌肉线条的审美帖子。每个人都觉得自己'看过了'，但没有两个人看到的是同一个东西。" </p></div>
@@ -154,25 +178,25 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <p>你在分享中可以这样理解这三个阶段的本质差异：</p>
 <ul><li><strong>第一阶段（国家全包）</strong><strong>的逻辑是</strong><strong>再分配</strong>——国家从税收中拿出资源，通过体校-省队-国家队的管道，集中投放到少数有天赋的运动员身上。运动员不承担经济风险，但也没有个人选择权。</li><li><strong>第二阶段（单飞分账）</strong><strong>的逻辑是</strong><strong>市场化</strong>——运动员从国家体系中"脱嵌"，进入全球体育市场自负盈亏。国家让渡了控制权，运动员获得了自由，但也独自承担了市场风险。</li><li><strong>第三阶段（家庭投资）</strong><strong>的逻辑是</strong><strong>资本化</strong>——家庭将经济资源、社会资源和文化资源集中投入到孩子的体育职业化路径中。这不再是"国家vs个人"的故事，而是"家庭作为投资主体"的故事。</li></ul>
 <h4>2.2 理论锚点：布尔迪厄的资本理论与体育</h4>
-<p>Pierre Bourdieu在《区隔：趣味判断的社会批判》（1979/1984）中专门讨论了体育与社会阶层的关系[7]。他的核心论点是：<strong>不同社会阶层对不同体育项目的偏好，不是个人"口味"的自然表达，而是阶级惯习（habitus）的外化。</strong> 网球、高尔夫、马术等运动之所以被视为"贵族运动"，不是因为它们在技术上更"高级"，而是因为参与这些运动所需要的<strong>经济资本</strong>（场地费、装备费、教练费）、<strong>文化资本</strong>（运动礼仪、着装规范、社交能力）和<strong>社会资本</strong>（俱乐部会员资格、人脉网络）构成了天然的阶层门槛[8]。</p>
-<p>Springer出版的"Pierre Bourdieu and the Sociological Study of Sport: Habitus, Capital and Field"[8]一文系统梳理了布尔迪厄的体育社会学思想。作者指出，布尔迪厄认为体育场域（field of sport）是一个权力竞争的空间，不同阶层通过选择不同的运动来进行<strong>区隔性实践（distinctive practice）</strong>——你选择打网球而不是打乒乓球，这个选择本身就是一种阶层身份的宣告。</p>
+<p>Pierre Bourdieu在《区隔：趣味判断的社会批判》（1979/1984）中专门讨论了体育与社会阶层的关系<span class="ref" data-i="a-7">[7]</span>。他的核心论点是：<strong>不同社会阶层对不同体育项目的偏好，不是个人"口味"的自然表达，而是阶级惯习（habitus）的外化。</strong> 网球、高尔夫、马术等运动之所以被视为"贵族运动"，不是因为它们在技术上更"高级"，而是因为参与这些运动所需要的<strong>经济资本</strong>（场地费、装备费、教练费）、<strong>文化资本</strong>（运动礼仪、着装规范、社交能力）和<strong>社会资本</strong>（俱乐部会员资格、人脉网络）构成了天然的阶层门槛<span class="ref" data-i="a-8">[8]</span>。</p>
+<p>Springer出版的"Pierre Bourdieu and the Sociological Study of Sport: Habitus, Capital and Field"<span class="ref" data-i="a-8">[8]</span>一文系统梳理了布尔迪厄的体育社会学思想。作者指出，布尔迪厄认为体育场域（field of sport）是一个权力竞争的空间，不同阶层通过选择不同的运动来进行<strong>区隔性实践（distinctive practice）</strong>——你选择打网球而不是打乒乓球，这个选择本身就是一种阶层身份的宣告。</p>
 <p><strong>这个理论框架对理解中国网球培养模式的变迁极为重要</strong>：</p>
 <p>在第一阶段（国家全包），布尔迪厄意义上的阶层门槛被国家力量暂时"抹平"了——你不需要有钱的家庭，只需要有天赋和被体校选中的运气。但在第三阶段（家庭投资），阶层门槛以一种新的形式回来了——你需要一个有体育圈资源的父亲（郑建坪是田径运动员）、足够的经济实力支持海外训练（疫情期间母女俩开车横跨欧洲参赛）、以及对全球体育市场的认知能力（"弯道超车的机会"）。</p>
 <p><strong>网球的"民主化"因此呈现出布尔迪厄式的双层结构</strong>：消费层面的民主化（更多人可以打网球、买网球裙）和竞技层面的精英化（能走上国际赛场的运动员越来越依赖家庭资本）同时发生。</p>
 <h4>2.3 三个阶段的详细案例</h4>
 <p><strong>第一阶段：国家全包（~2008年）</strong></p>
-<p>2004年李婷/孙甜甜的雅典女双金牌是举国体制的典型产物。运动员从体校进入省队再进入国家队，所有费用由国家承担。这是中国网球的第一枚奥运金牌，但法新社在报道郑钦文2024年夺冠时提到，"这是中国的第二枚奥运会网球金牌，之前还是20年前的雅典奥运会上李婷和孙甜甜获得的女双金牌"[1]——二十年间只有两枚金牌，这本身说明了举国体制在网球这种高度个人化的职业运动中的局限性。</p>
+<p>2004年李婷/孙甜甜的雅典女双金牌是举国体制的典型产物。运动员从体校进入省队再进入国家队，所有费用由国家承担。这是中国网球的第一枚奥运金牌，但法新社在报道郑钦文2024年夺冠时提到，"这是中国的第二枚奥运会网球金牌，之前还是20年前的雅典奥运会上李婷和孙甜甜获得的女双金牌"<span class="ref" data-i="a-1">[1]</span>——二十年间只有两枚金牌，这本身说明了举国体制在网球这种高度个人化的职业运动中的局限性。</p>
 <p><strong>第二阶段：单飞分账（2008-2014年）</strong></p>
-<p>2008年底，网球运动管理中心同意李娜、郑洁、彭帅等人"单飞"[9]。李娜在自传《独自上场》中详细描述了单飞前后的经济差异[10]：</p>
+<p>2008年底，网球运动管理中心同意李娜、郑洁、彭帅等人"单飞"<span class="ref" data-i="a-9">[9]</span>。李娜在自传《独自上场》中详细描述了单飞前后的经济差异<span class="ref" data-i="a-10">[10]</span>：</p>
 <div class="pq"><p>单飞前在国家队，不管成绩好坏都可以拿到参赛奖金，不会亏。国家队帮你付教练的钱，出球员的住宿费、机票，你还可以拿奖金的35%。 </p></div>
-<p>单飞后，一切自负盈亏。李娜签约了IMG（全球最大的体育经纪公司），经纪人麦克斯·埃森巴德同时管理着莎拉波娃[10]。李娜的赞助合同最少签三年，每年起价不低于800万元[4]。2014年退役前，她的赞助商达到13家，包括泰康人寿、耐克、昆仑山矿泉水等[4]。</p>
-<p>BBC、美国之音等外媒集中讨论了李娜"单飞"对举国体制的挑战[9]。李娜夺冠后的发布会上感谢赞助商而非体制，成为中国体育史上最具传播力的"出格"时刻之一。她后来在自传中回应："我不知道孙主任用什么方法说服体育总局让网球可以改革，我们可以单飞。"[10]</p>
+<p>单飞后，一切自负盈亏。李娜签约了IMG（全球最大的体育经纪公司），经纪人麦克斯·埃森巴德同时管理着莎拉波娃<span class="ref" data-i="a-10">[10]</span>。李娜的赞助合同最少签三年，每年起价不低于800万元<span class="ref" data-i="a-4">[4]</span>。2014年退役前，她的赞助商达到13家，包括泰康人寿、耐克、昆仑山矿泉水等<span class="ref" data-i="a-4">[4]</span>。</p>
+<p>BBC、美国之音等外媒集中讨论了李娜"单飞"对举国体制的挑战<span class="ref" data-i="a-9">[9]</span>。李娜夺冠后的发布会上感谢赞助商而非体制，成为中国体育史上最具传播力的"出格"时刻之一。她后来在自传中回应："我不知道孙主任用什么方法说服体育总局让网球可以改革，我们可以单飞。"<span class="ref" data-i="a-10">[10]</span></p>
 <p><strong>第三阶段：家庭投资（2020年代~）</strong></p>
-<p>郑钦文的路径完全不同于李娜。关键细节如下[11]：</p>
+<p>郑钦文的路径完全不同于李娜。关键细节如下<span class="ref" data-i="a-11">[11]</span>：</p>
 <ul><li>父亲郑建坪是田径运动员，有体育圈资源和判断力</li><li>6岁带女儿看北京奥运会，女儿对网球一见如故</li><li>9岁时，"在饭桌上，她爸爸带着一家三口给我跪下了，要让郑钦文认我做干妈"（余丽桥回忆）</li><li>14岁师从李娜教练卡洛斯</li><li>疫情期间和妈妈开车横跨整个欧洲参赛，参加20多项比赛，排名跃升600名</li><li>父亲评价："这是弯道超车的机会。"</li></ul>
-<p>同样走"家庭投资"路径的还有[11]：田亮的女儿、林丹的孩子、足球名将张卫华的儿子张之臻（第一个进入男单世界前100的中国球员）、商毅的儿子商竣程（打进澳网32强）。一篇微信公众号文章直言："这么多运动员、名人的孩子转战网球，除了孩子的兴趣，大概也因为国内乒乓球、篮球和足球太卷了。网球反倒能另辟蹊径。"</p>
+<p>同样走"家庭投资"路径的还有<span class="ref" data-i="a-11">[11]</span>：田亮的女儿、林丹的孩子、足球名将张卫华的儿子张之臻（第一个进入男单世界前100的中国球员）、商毅的儿子商竣程（打进澳网32强）。一篇微信公众号文章直言："这么多运动员、名人的孩子转战网球，除了孩子的兴趣，大概也因为国内乒乓球、篮球和足球太卷了。网球反倒能另辟蹊径。"</p>
 <h4>2.4 一个值得深思的数字对比</h4>
-<p>中国网球协会的数据显示[12]，2024年中国网球产业规模达<strong>369亿元</strong>，网球人口达<strong>2381万人</strong>，占全球网球人口的<strong>25.3%</strong>。湖北京山一个县级市就有标准化网球场<strong>380片</strong>，城区任何地方步行15分钟内可达[12]。</p>
+<p>中国网球协会的数据显示<span class="ref" data-i="a-12">[12]</span>，2024年中国网球产业规模达<strong>369亿元</strong>，网球人口达<strong>2381万人</strong>，占全球网球人口的<strong>25.3%</strong>。湖北京山一个县级市就有标准化网球场<strong>380片</strong>，城区任何地方步行15分钟内可达<span class="ref" data-i="a-12">[12]</span>。</p>
 <p>这些数字看起来是"民主化"的胜利。但如果你追问"这2381万人中，有多少人的孩子有可能走上职业道路？"答案会非常不同。<strong>消费层面的民主化和竞技层面的精英化，是同一枚硬币的两面。</strong></p>
 <h4>2.5 你可以在分享中使用的收束</h4>
 <div class="pq"><p>"我们总说网球'民主化'了。确实，更多人在打球、在看球、在买球裙。但培养一个能站上大满贯赛场的运动员，门槛不是低了，而是从'你得进体制'变成了'你得有一个愿意押上全部的家庭'。自由的代价，是风险的私有化。" </p></div>
@@ -187,7 +211,7 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <p>这个模型的价值在于：<strong>它揭示了算法平台在"网球热"中扮演的角色。</strong> 算法天然偏爱最外圈的内容——穿搭帖视觉冲击力强、消费转化率高、互动数据好。算法不断放大"网球作为生活方式符号"的内容，同时让"网球作为一项运动"的内容变得不那么可见。这不是阴谋，这只是算法优化点击率的自然结果。</p>
 <h4>3.2 理论锚点：布尔迪厄的"区隔"与鲍德里亚的"符号消费"</h4>
 <p>这个话题可以对接两个经典理论：</p>
-<p><strong>布尔迪厄的"区隔"（Distinction）</strong>[7]：前面已经提到，布尔迪厄认为体育选择是阶层身份的表达。在中国语境下，网球的"Tenniscore"（网球风穿搭）现象是一个完美的当代案例——你不需要真的会打网球，你只需要穿得像一个会打网球的人，就完成了一次阶层身份的表演。小红书上一篇8614赞的帖子标题是"老钱顶奢超爱！Tenniscore网球流行"[13]，直接将网球穿搭定位为"老钱美学"的入口。另一篇2270赞的帖子发问："为什么网球穿搭，看起来就有钱？"[13] 这些帖子的存在本身就证明了：<strong>网球的阶层符号价值已经独立于运动本身而存在。</strong></p>
+<p><strong>布尔迪厄的"区隔"（Distinction）</strong><span class="ref" data-i="a-7">[7]</span>：前面已经提到，布尔迪厄认为体育选择是阶层身份的表达。在中国语境下，网球的"Tenniscore"（网球风穿搭）现象是一个完美的当代案例——你不需要真的会打网球，你只需要穿得像一个会打网球的人，就完成了一次阶层身份的表演。小红书上一篇8614赞的帖子标题是"老钱顶奢超爱！Tenniscore网球流行"<span class="ref" data-i="a-13">[13]</span>，直接将网球穿搭定位为"老钱美学"的入口。另一篇2270赞的帖子发问："为什么网球穿搭，看起来就有钱？"<span class="ref" data-i="a-13">[13]</span> 这些帖子的存在本身就证明了：<strong>网球的阶层符号价值已经独立于运动本身而存在。</strong></p>
 <p><strong>鲍德里亚的"符号消费"（Sign Consumption）</strong>：让·鲍德里亚在《消费社会》（1970）中提出，在消费社会中，人们消费的不是物品的使用价值，而是物品的<strong>符号价值</strong>——即物品所代表的社会意义和身份标签。一条网球裙的使用价值是"在球场上穿着打球"，但它的符号价值是"我是一个拥有健康、优雅、中产生活方式的人"。当符号价值超过使用价值时，<strong>物品就脱离了它原本的功能语境，成为纯粹的身份道具。</strong></p>
 <h4>3.3 小红书上的真实内容生态：详细案例</h4>
 <p>以下是从小红书搜集到的典型内容，它们共同构成了"网球作为生活方式符号"的完整图景：</p>
@@ -203,8 +227,8 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <p>作者是一位网龄10年以上的业余选手，开篇说"也是对网球贵族化祛魅"。423条评论说明这个话题触发了<strong>真实的讨论和争论</strong>——用户在评论区分享自己的经验、争论不同观点。这是小红书上少有的"运动实践型"内容。</p>
 <div class="case-card"><span class="case-num">案例一二三</span><p class="case-title">）和**"平民也能玩"**（案例四五）。它既是阶层向上的想象通道，又是被祛魅的对象。这两种叙事不是矛盾的——它们共同构成了网球作为"可望又可及"的消费符号的完整魅力。</p></div>
 <h4>3.4 关键数据：消费转化的完整图景</h4>
-<p>以下数据帮助你量化"符号消费层"的规模[4][12]：</p>
-<ul><li>2024年夏季，国内网球裙成交额同比增长<strong>160%</strong></li><li>郑钦文夺冠时穿的同款T恤，搜索量一周内环比上升<strong>111%</strong></li><li>千元级"郑钦文同款"网球拍成交量暴涨</li><li>2024中国网球公开赛观赛人流量达<strong>30万人次</strong>，较上年增长<strong>50%</strong></li><li>中网门票总收入突破<strong>8000万元</strong>，较上年上涨<strong>60%</strong></li><li>上海大师赛每天超过2万人次入场，官方纪念品商店每日销售额超过<strong>100万元</strong></li><li>但36氪的报道标题很诚实："网球越来越热了，但普通人上手还有点难"[4]</li></ul>
+<p>以下数据帮助你量化"符号消费层"的规模<span class="ref" data-i="a-4">[4]</span><span class="ref" data-i="a-12">[12]</span>：</p>
+<ul><li>2024年夏季，国内网球裙成交额同比增长<strong>160%</strong></li><li>郑钦文夺冠时穿的同款T恤，搜索量一周内环比上升<strong>111%</strong></li><li>千元级"郑钦文同款"网球拍成交量暴涨</li><li>2024中国网球公开赛观赛人流量达<strong>30万人次</strong>，较上年增长<strong>50%</strong></li><li>中网门票总收入突破<strong>8000万元</strong>，较上年上涨<strong>60%</strong></li><li>上海大师赛每天超过2万人次入场，官方纪念品商店每日销售额超过<strong>100万元</strong></li><li>但36氪的报道标题很诚实："网球越来越热了，但普通人上手还有点难"<span class="ref" data-i="a-4">[4]</span></li></ul>
 <h4>3.5 你可以在分享中使用的类比</h4>
 <div class="pq"><p>"网球裙和网球的关系，就像咖啡杯和咖啡的关系——你完全可以只拥有一个漂亮的杯子而从不喝咖啡，但杯子的存在本身，已经让你完成了一次关于'我是谁'的身份表演。这不是虚伪，这就是消费社会的基本运作方式。问题是：当我们说'中国有2381万网球人口'的时候，我们在数的是打球的人，还是买裙子的人？" </p></div>
 <h4>3.6 延伸：如果听众追问"符号消费有什么不好？"</h4>
@@ -218,27 +242,27 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <ul><li><strong>李娜的语法是"对抗性"的</strong>——她所有的公共表达都在与一个隐形的"集体主义话语体制"进行角力。她的"刺"之所以有力量，恰恰因为有一个强大的话语体制作为参照物。</li><li><strong>郑钦文的语法是"兼容性"的</strong>——个人感受、个人意志、国家荣誉、代际传承在同一段话里无缝切换。她不需要在"为自己打球"和"为国家打球"之间做选择，因为算法媒体允许多重身份并行流通。</li></ul>
 <h4>4.2 两代人的公共表达：完整文本对比</h4>
 <p><strong>李娜的关键表达</strong>：</p>
-<ol><li>法网夺冠发布会：感谢赞助商、感谢丈夫姜山，未按惯例"感谢国家培养"——引发BBC、美国之音、RFA等境外媒体集中讨论"举国体制"[9]</li><li>夺冠微博：只有两个字——"哈哈。"</li><li>自传书名：《独自上场》</li><li>自传金句："网球是一项孤独的运动。当你独自上场，你就开始了一个人的战斗，你需要独自面对所有的问题，独自化解所有的困难，你的团队只能坐在运动员包厢为你加油。"[10]</li><li>谈"单飞"："我不知道孙主任用什么方法说服体育总局让网球可以改革，我们可以单飞。"[10]</li></ol>
+<ol><li>法网夺冠发布会：感谢赞助商、感谢丈夫姜山，未按惯例"感谢国家培养"——引发BBC、美国之音、RFA等境外媒体集中讨论"举国体制"<span class="ref" data-i="a-9">[9]</span></li><li>夺冠微博：只有两个字——"哈哈。"</li><li>自传书名：《独自上场》</li><li>自传金句："网球是一项孤独的运动。当你独自上场，你就开始了一个人的战斗，你需要独自面对所有的问题，独自化解所有的困难，你的团队只能坐在运动员包厢为你加油。"<span class="ref" data-i="a-10">[10]</span></li><li>谈"单飞"："我不知道孙主任用什么方法说服体育总局让网球可以改革，我们可以单飞。"<span class="ref" data-i="a-10">[10]</span></li></ol>
 <p><strong>郑钦文的关键表达</strong>：</p>
-<ol><li>奥运夺冠采访（被网友封为"截至目前最会说话的运动员"）[14]：</li></ol>
+<ol><li>奥运夺冠采访（被网友封为"截至目前最会说话的运动员"）<span class="ref" data-i="a-14">[14]</span>：</li></ol>
 <ul><li>"最后一分时我真的很紧张，手都在抖。"——<strong>个人感受</strong></li><li>"我从未对赢下一场比赛有如此强烈的饥渴感，我可以为此付出一切。"——<strong>个人意志</strong></li><li>"我为自己这次能战胜压力而感到超级骄傲，我超越了极限。"——<strong>个人成就</strong></li><li>"这意味着很多，可以说意味着一切。因为我从小就想为我的国家赢得一面奖牌，不一定要是金牌。"——<strong>国家荣誉</strong></li><li>"我一直都相信薪火相传……如果我今天的胜利可以为更多的孩子带来网球梦，觉得这一切都是值得的。"——<strong>代际传承</strong></li></ul>
-<ol><li>关于昵称：外国人念不对"Qin"，总念成"Queen"。她说："Come on, it's Queen."[11]</li><li>2024年1月澳网，与李娜世纪同框。郑钦文"一改镜头前的沉着冷静，转而化身小迷妹，甜甜地喊着'李娜姐姐'，并伸出双手，紧紧地环抱住李娜"[11]</li></ol>
+<ol><li>关于昵称：外国人念不对"Qin"，总念成"Queen"。她说："Come on, it's Queen."<span class="ref" data-i="a-11">[11]</span></li><li>2024年1月澳网，与李娜世纪同框。郑钦文"一改镜头前的沉着冷静，转而化身小迷妹，甜甜地喊着'李娜姐姐'，并伸出双手，紧紧地环抱住李娜"<span class="ref" data-i="a-11">[11]</span></li></ol>
 <h4>4.3 "感谢国家"话语的螺旋：深层分析</h4>
 <p>如果把"感谢国家"这个话语在二十年里的命运画一条线，会看到一个螺旋结构：</p>
 <p><strong>2004年——被要求说。</strong> 标准模板，没有偏离空间。运动员是国家荣誉的传声筒。这个阶段的话语权完全在体制手中。</p>
-<p><strong>2011年——拒绝说。</strong> 李娜的沉默和"出格"成为事件本身。注意：她并没有说"我不感谢国家"——她只是没有按照惯例说。但在一个"沉默即反叛"的话语环境中，<strong>不说</strong>比<strong>说什么</strong>更有传播力。BBC、美国之音的报道标题都聚焦于"李娜夺冠引发体坛改革呼声"[9]——一个运动员的发布会发言被解读为制度批判，这本身就说明了当时的话语张力有多大。</p>
+<p><strong>2011年——拒绝说。</strong> 李娜的沉默和"出格"成为事件本身。注意：她并没有说"我不感谢国家"——她只是没有按照惯例说。但在一个"沉默即反叛"的话语环境中，<strong>不说</strong>比<strong>说什么</strong>更有传播力。BBC、美国之音的报道标题都聚焦于"李娜夺冠引发体坛改革呼声"<span class="ref" data-i="a-9">[9]</span>——一个运动员的发布会发言被解读为制度批判，这本身就说明了当时的话语张力有多大。</p>
 <p><strong>2024年——自愿说，但换了说法。</strong> 郑钦文说的是"为<strong>我的</strong>国家"，不是"感谢<strong>国家培养</strong>"。主语从"国家"变成了"我"。这是一种<strong>后体制时代的自愿民族主义</strong>：没有人要求她这么说，但她选择了一种同时兼容个人主义与集体荣誉的表达方式。</p>
 <p><strong>为什么郑钦文能做到"兼容"而李娜做不到？</strong> 不是因为郑钦文更"圆滑"。核心原因有两个：</p>
 <p><strong>原因一：媒介环境变了。</strong> 李娜的时代，发布会是运动员最重要的公共表达场景。你在一个场合说的话，会被所有媒体以同一种方式报道，被所有观众以同一种框架解读。所以"感谢赞助商"会被自动解读为"不感谢国家"——因为在那个语境里，你只有一次说话的机会，你说了什么和你没说什么同样重要。</p>
-<p>郑钦文的时代，表达是分布式的。她可以在不同平台上展示不同的自己：微博上是"为国争光的中国姑娘"，Instagram上是"Queen Wen"，小红书上是时尚icon，巴黎时装周上是被街拍的潮人[13]。<strong>算法媒体允许多重身份并行流通，而不要求你回答"你到底是谁"这个终极问题。</strong></p>
+<p>郑钦文的时代，表达是分布式的。她可以在不同平台上展示不同的自己：微博上是"为国争光的中国姑娘"，Instagram上是"Queen Wen"，小红书上是时尚icon，巴黎时装周上是被街拍的潮人<span class="ref" data-i="a-13">[13]</span>。<strong>算法媒体允许多重身份并行流通，而不要求你回答"你到底是谁"这个终极问题。</strong></p>
 <p><strong>原因二：体制关系变了。</strong> 李娜是从体制内"出走"的人——她的个人主义是以体制为参照物的反叛。郑钦文从一开始就在体制之外——她是家庭投资的产物，不是体制培养的产物。她与国家的关系不是"被培养者vs培养者"，而是"个人vs国家"的一种更松散的认同关系。她可以自然地说"为我的国家"，因为这里的"国家"不是一个具体的体制机构，而是一个抽象的情感归属。</p>
 <h4>4.4 赞助商品类的符号学：一个被忽视的维度</h4>
 <p>如果你在分享中想增加一个出人意料的角度，可以聊聊<strong>赞助商品类的变化</strong>——这是一个极少被人注意到的维度，但它精确地映射了中国消费社会的阶层想象变迁。</p>
-<p><strong>李娜的赞助商（2014年退役前，共13家）</strong>[4]：泰康人寿、耐克、昆仑山矿泉水等。这些品牌的共同特征是<strong>功能性+大众市场</strong>，它们需要的是李娜的国民知名度来覆盖最广泛的消费人群。</p>
-<p><strong>郑钦文的赞助商（2024年，至少10家，奥运后持续增加）</strong>[15]：NIKE、劳力士、兰蔻、威尔胜、蚂蚁集团（支付宝）、霸王茶姬、伊利、佳得乐、麦当劳、斯维诗，后又签约奥迪AUDI和vivo[15]。2023年福布斯女运动员收入榜第15位，赞助收入550万美元（近4000万人民币）[4]。</p>
+<p><strong>李娜的赞助商（2014年退役前，共13家）</strong><span class="ref" data-i="a-4">[4]</span>：泰康人寿、耐克、昆仑山矿泉水等。这些品牌的共同特征是<strong>功能性+大众市场</strong>，它们需要的是李娜的国民知名度来覆盖最广泛的消费人群。</p>
+<p><strong>郑钦文的赞助商（2024年，至少10家，奥运后持续增加）</strong><span class="ref" data-i="a-15">[15]</span>：NIKE、劳力士、兰蔻、威尔胜、蚂蚁集团（支付宝）、霸王茶姬、伊利、佳得乐、麦当劳、斯维诗，后又签约奥迪AUDI和vivo<span class="ref" data-i="a-15">[15]</span>。2023年福布斯女运动员收入榜第15位，赞助收入550万美元（近4000万人民币）<span class="ref" data-i="a-4">[4]</span>。</p>
 <p><strong>品类变化的符号学解读</strong>：</p>
 <table class="dtbl"><thead><tr><th>品类</th><th>李娜时代</th><th>郑钦文时代</th><th>变化的意义</th></tr></thead><tbody><tr><td>金融</td><td>泰康人寿（传统保险）</td><td>蚂蚁集团/支付宝（数字金融）</td><td>从"安全感"到"科技感"</td></tr><tr><td>饮品</td><td>昆仑山矿泉水（功能性）</td><td>霸王茶姬（新消费/生活方式）</td><td>从"解渴"到"身份标签"</td></tr><tr><td>奢侈品</td><td>较少</td><td>劳力士、兰蔻（顶奢+美妆）</td><td>从"大众偶像"到"中产符号"</td></tr><tr><td>汽车</td><td>无</td><td>奥迪AUDI</td><td>网球与高端出行的绑定</td></tr></tbody></table>
-<p><strong>霸王茶姬赞助郑钦文</strong>这件事本身就值得单独分析。一个中国新茶饮品牌赞助一个网球运动员，在李娜时代是不可想象的。它意味着网球已经从"国际精英运动"的符号系统被重新编码进了"中国新中产日常消费"的符号系统。霸王茶姬奥运期间的活动登上微博热搜，阅读量2.7亿[3]——你可以在喝一杯奶茶的同时完成对"网球生活方式"的消费想象。</p>
+<p><strong>霸王茶姬赞助郑钦文</strong>这件事本身就值得单独分析。一个中国新茶饮品牌赞助一个网球运动员，在李娜时代是不可想象的。它意味着网球已经从"国际精英运动"的符号系统被重新编码进了"中国新中产日常消费"的符号系统。霸王茶姬奥运期间的活动登上微博热搜，阅读量2.7亿<span class="ref" data-i="a-3">[3]</span>——你可以在喝一杯奶茶的同时完成对"网球生活方式"的消费想象。</p>
 <h4>4.5 你可以在分享中使用的收束</h4>
 <div class="pq"><p>"从'感谢国家培养'到'Come on, it's Queen'，变化的不只是一句话，而是谁有权定义'我为什么打球'这个问题。李娜用沉默和反叛争取到的表达自由，到了郑钦文这一代已经成为空气一样自然的东西。但这不意味着问题消失了——当每个平台都需要你扮演一个'角色'的时候，'真实的自己'到底在哪里？" </p></div>
 <h3 class="center">收束：四个故事拼在一起</h3>
@@ -249,13 +273,13 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <div class="pq"><p>"2024年1月，在墨尔本，李娜趁郑钦文接受赛后采访，出其不意地来到她面前。郑钦文一改镜头前的沉着冷静，转而化身小迷妹，甜甜地喊着'李娜姐姐'，伸出双手紧紧环抱住李娜。两代中国网球人的世纪同框，就这样出现了。那一刻，所有人都相信：新的李娜出现了。但她有自己的名字，自己的时代，自己的语法。" </p></div>
 <h3 class="center">附录：核心参考文献与数据源速查表</h3>
 <h4>媒介理论</h4>
-<ul><li>Dayan, D. & Katz, E. (1992). _Media Events: The Live Broadcasting of History_. Harvard University Press.[5]</li><li>魏伟 (2019). 解构当代媒介体育赛事的权力迷思：基于约翰·费斯克的视角. 上海体育学院学报.</li><li>符号学论坛 (2025). 奥运冠军郑钦文的跨媒介话语符号学分析. 体育学研究.</li></ul>
+<ul><li>Dayan, D. & Katz, E. (1992). _Media Events: The Live Broadcasting of History_. Harvard University Press.<span class="ref" data-i="a-5">[5]</span></li><li>魏伟 (2019). 解构当代媒介体育赛事的权力迷思：基于约翰·费斯克的视角. 上海体育学院学报.</li><li>符号学论坛 (2025). 奥运冠军郑钦文的跨媒介话语符号学分析. 体育学研究.</li></ul>
 <h4>体育社会学</h4>
-<ul><li>Bourdieu, P. (1984). _Distinction: A Social Critique of the Judgement of Taste_. Harvard University Press.[7]</li><li>Giulianotti, R. (ed.). Pierre Bourdieu and the Sociological Study of Sport: Habitus, Capital and Field. Palgrave.[8]</li><li>李娜 (2012). 《独自上场》. 企鹅出版社/中国出版.[10]</li></ul>
+<ul><li>Bourdieu, P. (1984). _Distinction: A Social Critique of the Judgement of Taste_. Harvard University Press.<span class="ref" data-i="a-7">[7]</span></li><li>Giulianotti, R. (ed.). Pierre Bourdieu and the Sociological Study of Sport: Habitus, Capital and Field. Palgrave.<span class="ref" data-i="a-8">[8]</span></li><li>李娜 (2012). 《独自上场》. 企鹅出版社/中国出版.<span class="ref" data-i="a-10">[10]</span></li></ul>
 <h4>产业数据</h4>
-<ul><li>新华社 (2024.12.20). 从奥运金牌到全民热潮——2024，中国网球"火"了.[3]</li><li>艾媒咨询 (2024). 中国网球运动市场规模与人口数据.</li><li>中国网球协会 (2025.1.2). 2024中国网球十大要事.[12]</li><li>36氪 (2024.10.14). 网球越来越热了，但普通人上手还有点难.[4]</li><li>36氪 (2024.8.5). 郑钦文，中国商业价值最高的运动员.</li></ul>
+<ul><li>新华社 (2024.12.20). 从奥运金牌到全民热潮——2024，中国网球"火"了.<span class="ref" data-i="a-3">[3]</span></li><li>艾媒咨询 (2024). 中国网球运动市场规模与人口数据.</li><li>中国网球协会 (2025.1.2). 2024中国网球十大要事.<span class="ref" data-i="a-12">[12]</span></li><li>36氪 (2024.10.14). 网球越来越热了，但普通人上手还有点难.<span class="ref" data-i="a-4">[4]</span></li><li>36氪 (2024.8.5). 郑钦文，中国商业价值最高的运动员.</li></ul>
 <h4>社交媒体数据</h4>
-<ul><li>钛媒体 (2024.9.30). 奥运营销的"冠军"叙事，正在被社媒改写.[3]</li><li>21世纪经济报道 (2024.10.23). 郑钦文巴黎奥运会夺冠"热效应".</li><li>封面新闻 (2024.8.5). 哪些品牌"押中"了郑钦文？[15]</li></ul>
+<ul><li>钛媒体 (2024.9.30). 奥运营销的"冠军"叙事，正在被社媒改写.<span class="ref" data-i="a-3">[3]</span></li><li>21世纪经济报道 (2024.10.23). 郑钦文巴黎奥运会夺冠"热效应".</li><li>封面新闻 (2024.8.5). 哪些品牌"押中"了郑钦文？<span class="ref" data-i="a-15">[15]</span></li></ul>
 <div class="pq"><p><strong>使用建议</strong>：这份报告的信息量远超一次分享所需。建议你通读一遍建立全局认知，然后在每个话题下选择1-2个你最有共鸣的案例和理论点深入理解。分享时不需要讲出所有内容——<strong>你知道但不说的部分，会自然地转化为你讲述时的从容和深度</strong>。当听众提出意料之外的问题时，这些储备知识会成为你即兴回应的弹药库。 </p></div>
 </div></div></div><div class="dvd"></div>
 <div id="t2" class="ts"><div class="th center"><p class="tn2">课题B · 中观</p><h2>数据会说谎也会讲故事</h2><p class="lead">当可视化遇见人的成长</p></div>
@@ -271,14 +295,14 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <ul><li><strong>数据（Data）</strong> 是脱离语境的原始事实。"62%"这个数字本身什么都不说明——它可能是一个很好的成绩（如果上个月是41%），也可能是一个糟糕的成绩（如果上个月是78%）。数据是沉默的。</li><li><strong>信息（Information）</strong> 是被赋予了语境的数据。"比上月提升了7个百分点"——这就有了比较基准、时间维度和变化方向。信息回答的是"发生了什么"。</li><li><strong>意义（Meaning）</strong> 是被赋予了解释和情感的信息。"你正在突破瓶颈期，身体正在将新动作写入肌肉记忆"——这不仅告诉你发生了什么，还告诉你<strong>这意味着什么</strong>，以及<strong>你应该如何感受它</strong>。意义回答的是"这对我来说重要吗"。</li></ul>
 <p>现有运动APP的根本问题在于：技术让数据采集变得极其容易（传感器、AI摄像头、可穿戴设备），但<strong>从数据到意义的"翻译"工作几乎没有人在做</strong>。这个翻译工作，恰恰是设计师的核心价值所在。</p>
 <h4>1.2 个人信息化的五阶段模型：理论锚点</h4>
-<p>Ian Li、Anind Dey和Jodi Forlizzi在CHI 2010发表了一篇极具影响力的论文"A Stage-Based Model of Personal Informatics Systems"[1]，通过分析大量自我追踪工具和用户行为，提出了个人信息化系统的五个阶段：</p>
+<p>Ian Li、Anind Dey和Jodi Forlizzi在CHI 2010发表了一篇极具影响力的论文"A Stage-Based Model of Personal Informatics Systems"<span class="ref" data-i="b-1">[1]</span>，通过分析大量自我追踪工具和用户行为，提出了个人信息化系统的五个阶段：</p>
 <p><strong>① 准备阶段（Preparation）</strong>：用户决定追踪什么、如何追踪。在网球场景中，这是"我要买一个SwingVision开始记录我的训练"。这个阶段的障碍是：用户不知道哪些指标对自己有意义。</p>
 <p><strong>② 收集阶段（Collection）</strong>：实际的数据采集过程。障碍是完整性和准确性——你不可能每次训练都带着摄像头，有些训练可能忘记记录。</p>
 <p><strong>③ 整合阶段（Integration）</strong>：将收集到的数据组织、清洗、准备用于分析。大多数APP在这一步做得不错——它们会自动把你的挥拍数据整理成图表。</p>
 <p><strong>④ 反思阶段（Reflection）</strong>：用户从整合后的数据中获取洞察和自我理解。<strong>这是最关键也最薄弱的环节。</strong> Li等人发现，大多数用户在这个阶段遇到严重障碍——他们不知道如何解读自己的数据，不知道哪些变化是有意义的，哪些只是正常波动。</p>
 <p><strong>⑤ 行动阶段（Action）</strong>：基于反思结果做出行为改变。"我决定这周多练反手切削"。这个阶段的障碍是：即使用户有了洞察，也不知道具体该做什么。</p>
 <p>Li的模型揭示了一个关键洞察：<strong>现有技术在前三个阶段（准备、收集、整合）投入了大量资源，但在后两个阶段（反思、行动）几乎是空白。</strong> 这正是你们这个课题的设计空间。</p>
-<p>值得注意的是，Rooksby等人在2014年提出了"Lived Informatics"模型[2]，对Li的线性模型进行了修正。他们发现，在真实生活中，自我追踪并不是一个整齐的线性过程，而是充满了<strong>中断（Lapsing）、遗忘和重启</strong>。一个业余网球手可能热情高涨地记录了两个月，然后因为出差或受伤中断了三周，回来后面对空白的数据记录感到沮丧，于是彻底放弃。这意味着设计方案不仅要考虑"持续使用"的场景，还必须考虑<strong>"断续使用"甚至"重新开始"的场景</strong>。</p>
+<p>值得注意的是，Rooksby等人在2014年提出了"Lived Informatics"模型<span class="ref" data-i="b-2">[2]</span>，对Li的线性模型进行了修正。他们发现，在真实生活中，自我追踪并不是一个整齐的线性过程，而是充满了<strong>中断（Lapsing）、遗忘和重启</strong>。一个业余网球手可能热情高涨地记录了两个月，然后因为出差或受伤中断了三周，回来后面对空白的数据记录感到沮丧，于是彻底放弃。这意味着设计方案不仅要考虑"持续使用"的场景，还必须考虑<strong>"断续使用"甚至"重新开始"的场景</strong>。</p>
 <h4>1.3 真实用户痛点：小红书上的声音</h4>
 <p>为了让你在课堂上有具体的用户故事可以讲述，以下是从小红书搜集到的典型用户声音：</p>
 <div class="case-card"><span class="case-num">案例一</span><p class="case-title">听劝，准备放弃网球了</p></div>
@@ -291,18 +315,18 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <ul><li>"如果你是这个学了半年想放弃的人，你希望你的APP在你打开它的时候，第一眼看到什么？"</li><li>"数据仪表盘和医生的体检报告有什么相似之处？你拿到体检报告时的感受，和你打开运动APP时的感受，有什么共同点？"</li></ul>
 <h3 class="center">观点二：可视化是一种修辞行为</h3>
 <h4>2.1 可视化修辞学的学术根基</h4>
-<p>这个观点的核心学术来源是Hullman和Diakopoulos在2011年发表的论文"Visualization Rhetoric: Framing Effects in Narrative Visualization"[6]。这篇论文的核心论点是：<strong>每一张数据可视化都不是对现实的"镜像反映"，而是一种经过选择和建构的修辞行为。</strong> 设计者在以下每一个环节都做出了影响受众认知的决策：</p>
+<p>这个观点的核心学术来源是Hullman和Diakopoulos在2011年发表的论文"Visualization Rhetoric: Framing Effects in Narrative Visualization"<span class="ref" data-i="b-6">[6]</span>。这篇论文的核心论点是：<strong>每一张数据可视化都不是对现实的"镜像反映"，而是一种经过选择和建构的修辞行为。</strong> 设计者在以下每一个环节都做出了影响受众认知的决策：</p>
 <ul><li><strong>数据选择</strong>：展示哪些数据、隐藏哪些数据</li><li><strong>视觉编码</strong>：用什么颜色、什么图表类型、什么比例尺</li><li><strong>注释和标签</strong>：在哪里加文字说明、用什么措辞</li><li><strong>叙事顺序</strong>：先展示什么、后展示什么</li><li><strong>基线设定</strong>：把比较基准设在哪里</li></ul>
 <p>这些决策共同构成了可视化的"修辞框架"。Hullman和Diakopoulos借用了Kahneman和Tversky的<strong>框架效应（Framing Effect）</strong>理论来解释这一现象。</p>
 <h4>2.2 框架效应：同一事实的两种面孔</h4>
-<p>框架效应是行为经济学中最经典的发现之一。Tversky和Kahneman在1981年的论文"The Framing of Decisions and the Psychology of Choice"[7]中提出了著名的"亚洲疾病问题"实验：</p>
+<p>框架效应是行为经济学中最经典的发现之一。Tversky和Kahneman在1981年的论文"The Framing of Decisions and the Psychology of Choice"<span class="ref" data-i="b-7">[7]</span>中提出了著名的"亚洲疾病问题"实验：</p>
 <div class="pq"><p>假设美国正在为一种预计会导致600人死亡的异常疾病做准备。现有两种方案：  <strong>正面框架（Gain Frame）</strong>：方案A将拯救200人。方案B有1/3的概率拯救600人，2/3的概率无人获救。  <strong>负面框架（Loss Frame）</strong>：方案C将导致400人死亡。方案D有1/3的概率无人死亡，2/3的概率600人死亡。 </p></div>
 <p>A和C、B和D在数学上完全等价，但实验结果显示：在正面框架下72%的人选择A（确定性收益），在负面框架下78%的人选择D（冒险避免损失）。<strong>仅仅是措辞的改变，就导致了偏好的逆转。</strong></p>
 <p>这个实验对你的课题有直接启示。在运动数据呈现中：</p>
 <table class="dtbl"><thead><tr><th>损失框架（Loss Frame）</th><th>增益框架（Gain Frame）</th></tr></thead><tbody><tr><td>"你的正手失误率是35%"</td><td>"你的正手上线率是65%"</td></tr><tr><td>"你比同水平选手慢15%"</td><td>"你的速度已达到同水平段的85%分位"</td></tr><tr><td>"本月训练天数不足目标"</td><td>"本月你已在球场度过12天"</td></tr><tr><td>"你的反手是你最弱的环节"</td><td>"你的正手已经是你的可靠武器"</td></tr></tbody></table>
-<p>两种框架传递的是完全相同的数据事实，但用户的情绪反应和后续行为会截然不同。研究表明，在<strong>促进健康行为</strong>（如坚持运动）的场景中，<strong>增益框架通常比损失框架更有效</strong>[8]，因为运动坚持属于"预防性行为"（prevention behavior），而增益框架更能促进人们对预防性行为的接受。</p>
+<p>两种框架传递的是完全相同的数据事实，但用户的情绪反应和后续行为会截然不同。研究表明，在<strong>促进健康行为</strong>（如坚持运动）的场景中，<strong>增益框架通常比损失框架更有效</strong><span class="ref" data-i="b-8">[8]</span>，因为运动坚持属于"预防性行为"（prevention behavior），而增益框架更能促进人们对预防性行为的接受。</p>
 <h4>2.3 叙事可视化的七种体裁</h4>
-<p>Segel和Heer在2010年发表了另一篇奠基性论文"Narrative Visualization: Telling Stories with Data"[9]。他们分析了58个真实的叙事可视化案例，提出了<strong>七种叙事可视化体裁</strong>：</p>
+<p>Segel和Heer在2010年发表了另一篇奠基性论文"Narrative Visualization: Telling Stories with Data"<span class="ref" data-i="b-9">[9]</span>。他们分析了58个真实的叙事可视化案例，提出了<strong>七种叙事可视化体裁</strong>：</p>
 <div class="numbered-grid"><div class="numbered-item"><span class="num-label">杂志风格（Magazine Style）</span><span class="num-text">静态图文结合，类似杂志的信息图表</span></div>
 <div class="numbered-item"><span class="num-label">注释图表（Annotated Chart）</span><span class="num-text">在标准图表上添加叙事性注释</span></div>
 <div class="numbered-item"><span class="num-label">分区海报（Partitioned Poster）</span><span class="num-text">将故事分解为多个视觉区域</span></div>
@@ -313,30 +337,30 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <p>在你们的课题中，<strong>幻灯片放映（Slide Show）</strong> 体裁最值得关注——这正是Spotify Wrapped所采用的形式。用户通过滑动屏幕逐步"揭示"自己的数据故事，每一帧都是一个叙事节拍（narrative beat），从悬念到揭示、从回顾到展望。</p>
 <p>Segel和Heer还提出了一个重要的设计维度：<strong>作者驱动（Author-driven）vs 读者驱动（Reader-driven）</strong> 的叙事光谱。完全作者驱动的叙事像一部电影，观众只能被动接受；完全读者驱动的叙事像一个数据仪表盘，用户自己探索。最好的叙事可视化往往处于两者之间——<strong>"引导式探索"（Martini Glass Structure）</strong>：先用一段作者驱动的叙事"引入"故事，然后开放给用户自行探索细节。</p>
 <h4>2.4 深度案例：Spotify Wrapped的设计解剖</h4>
-<p>Spotify Wrapped是过去十年最成功的个人数据叙事产品。2025年的Wrapped为3.5亿用户生成了14亿份个性化报告[10]，产生了23亿次展示[11]。以下是其设计策略的深度拆解：</p>
+<p>Spotify Wrapped是过去十年最成功的个人数据叙事产品。2025年的Wrapped为3.5亿用户生成了14亿份个性化报告<span class="ref" data-i="b-10">[10]</span>，产生了23亿次展示<span class="ref" data-i="b-11">[11]</span>。以下是其设计策略的深度拆解：</p>
 <p><strong>策略一：时间胶囊叙事（Temporal Capsule Narrative）</strong></p>
-<p>Wrapped不是简单的年度统计。UX Playbook的分析指出[11]，它被设计成一个"个人时间胶囊"——"它提醒你一月时你是谁，四月什么软化了你，七月什么击碎了你，十一月什么将你重新缝合。"这种时间叙事结构之所以有效，是因为它激活了<strong>自传体记忆（Autobiographical Memory）</strong>——人们通过音乐回忆起特定时期的生活状态和情感，产生强烈的情感共鸣。</p>
+<p>Wrapped不是简单的年度统计。UX Playbook的分析指出<span class="ref" data-i="b-11">[11]</span>，它被设计成一个"个人时间胶囊"——"它提醒你一月时你是谁，四月什么软化了你，七月什么击碎了你，十一月什么将你重新缝合。"这种时间叙事结构之所以有效，是因为它激活了<strong>自传体记忆（Autobiographical Memory）</strong>——人们通过音乐回忆起特定时期的生活状态和情感，产生强烈的情感共鸣。</p>
 <p><strong>策略二：身份建构（Identity Construction）</strong></p>
-<p>Wrapped本质上是在帮用户回答"我是谁"的问题。它给你贴标签——"你是前0.5%的Taylor Swift听众""你的音乐品味是'怀旧浪漫型'"。这些标签不是客观的音乐分类，而是<strong>社交身份的建构工具</strong>。Marketing Made Clear的分析指出[12]，Wrapped成功地将个人数据转化为"身份心理学"产品——人们分享Wrapped不是在分享数据，而是在展示"我是这样的人"。</p>
+<p>Wrapped本质上是在帮用户回答"我是谁"的问题。它给你贴标签——"你是前0.5%的Taylor Swift听众""你的音乐品味是'怀旧浪漫型'"。这些标签不是客观的音乐分类，而是<strong>社交身份的建构工具</strong>。Marketing Made Clear的分析指出<span class="ref" data-i="b-12">[12]</span>，Wrapped成功地将个人数据转化为"身份心理学"产品——人们分享Wrapped不是在分享数据，而是在展示"我是这样的人"。</p>
 <p><strong>策略三：社交货币（Social Currency）</strong></p>
 <p>Wrapped被设计成适合分享到社交媒体的卡片格式。每一帧都是一个独立的、视觉上完整的"故事"，可以直接截图发布。这种设计将个人数据转化为了社交货币——分享Wrapped成为了一种年度仪式。</p>
 <p><strong>策略四：增益性框架的极致运用</strong></p>
 <p>Wrapped几乎从不使用负面框架。它不会说"你今年听歌时间减少了"，而会说"你今年发现了47位新艺术家"。即使是可能让人尴尬的数据（比如你重复听了同一首歌300次），也被包装成一种"独特个性"而非"强迫症"。</p>
 <p><strong>Wrapped的局限与争议</strong></p>
-<p>但Wrapped也有值得批判的地方。Strava的Year in Sport在2025年将完整版放入了80美元的付费墙[13]，引发了用户强烈反弹。Reddit上有用户评价Strava的Year in Sport"提供的有价值信息太少了"[14]——这说明<strong>纯粹的叙事化如果缺乏信息深度，也会让用户不满</strong>。这是叙事化设计需要警惕的陷阱：不能为了"讲故事"而牺牲"说真话"。</p>
+<p>但Wrapped也有值得批判的地方。Strava的Year in Sport在2025年将完整版放入了80美元的付费墙<span class="ref" data-i="b-13">[13]</span>，引发了用户强烈反弹。Reddit上有用户评价Strava的Year in Sport"提供的有价值信息太少了"<span class="ref" data-i="b-14">[14]</span>——这说明<strong>纯粹的叙事化如果缺乏信息深度，也会让用户不满</strong>。这是叙事化设计需要警惕的陷阱：不能为了"讲故事"而牺牲"说真话"。</p>
 <h4>2.5 另一个重要参考：Giorgia Lupi的"数据人文主义"</h4>
-<p>信息设计师Giorgia Lupi在2017年提出了<strong>"数据人文主义"（Data Humanism）</strong>宣言[15]，主张"我们不应该只关注数字、技术和算法，而应该关注生成数据的人、他们的行为和习惯"。她与Stefanie Posavec合作的项目"Dear Data"[16]是一个极具启发性的案例：两人用一年时间，每周用手绘明信片记录自己生活中的一个数据维度（比如"本周我说了多少次谢谢""本周我看了多少次手机"），然后寄给对方。</p>
-<p>这个项目的核心洞察是：<strong>当数据被手工绘制、带有个人痕迹和不完美时，它变得更加亲密和有意义。</strong> 数据不必总是精确的、机器生成的、冰冷的——它可以是温暖的、个人的、不完美的。Lupi的新书"Speak Data"（2025年出版）[17]进一步阐述了这一理念，而她的首个个人展览"Data Humanism"于2026年4月30日在纽约开幕[18]。</p>
+<p>信息设计师Giorgia Lupi在2017年提出了<strong>"数据人文主义"（Data Humanism）</strong>宣言<span class="ref" data-i="b-15">[15]</span>，主张"我们不应该只关注数字、技术和算法，而应该关注生成数据的人、他们的行为和习惯"。她与Stefanie Posavec合作的项目"Dear Data"<span class="ref" data-i="b-16">[16]</span>是一个极具启发性的案例：两人用一年时间，每周用手绘明信片记录自己生活中的一个数据维度（比如"本周我说了多少次谢谢""本周我看了多少次手机"），然后寄给对方。</p>
+<p>这个项目的核心洞察是：<strong>当数据被手工绘制、带有个人痕迹和不完美时，它变得更加亲密和有意义。</strong> 数据不必总是精确的、机器生成的、冰冷的——它可以是温暖的、个人的、不完美的。Lupi的新书"Speak Data"（2025年出版）<span class="ref" data-i="b-17">[17]</span>进一步阐述了这一理念，而她的首个个人展览"Data Humanism"于2026年4月30日在纽约开幕<span class="ref" data-i="b-18">[18]</span>。</p>
 <p>这对你们的课题的启示是：<strong>也许最好的运动数据可视化，不是最精确的那个，而是最"像人"的那个。</strong> 一个带有手写批注、个人情绪标记、甚至不完美涂鸦的训练日志，可能比一个精确到小数点后两位的数据仪表盘更能让人感到被理解。</p>
 <h4>2.6 你可以在课堂上抛出的问题</h4>
 <ul><li>"如果Spotify Wrapped告诉你'你今年32%的听歌时间都在重复同一首歌'，你还会截图分享吗？它为什么不这样说？"</li><li>"你们觉得可视化设计师和新闻记者有什么相似之处？他们都在做什么？"（引导学生认识到两者都在"构建叙事"）</li></ul>
 <h3 class="center">观点三：人需要"看见自己在变好"</h3>
 <h4>3.1 Bandura自我效能理论的完整图景</h4>
-<p>Albert Bandura在1977年提出自我效能理论（Self-Efficacy Theory），后在1997年的专著"Self-Efficacy: The Exercise of Control"中系统化。APA（美国心理学会）将其描述为"人类能动性的核心理论"[19]。</p>
-<p><strong>自我效能的定义</strong>：个体对自己能够成功执行特定行为以产生预期结果的信念[20]。注意——它不是"你实际上能不能做到"，而是"你相不相信自己能做到"。这个区别至关重要。一个2.5水平的网球手，如果相信自己"正在进步、有能力达到3.0"，他的训练投入度、面对失败的韧性和最终的表现，都会显著优于一个同水平但"觉得自己可能永远打不好"的选手[21]。</p>
-<p><strong>自我效能的四个来源</strong>（按影响力从强到弱排列）[20]：</p>
+<p>Albert Bandura在1977年提出自我效能理论（Self-Efficacy Theory），后在1997年的专著"Self-Efficacy: The Exercise of Control"中系统化。APA（美国心理学会）将其描述为"人类能动性的核心理论"<span class="ref" data-i="b-19">[19]</span>。</p>
+<p><strong>自我效能的定义</strong>：个体对自己能够成功执行特定行为以产生预期结果的信念<span class="ref" data-i="b-20">[20]</span>。注意——它不是"你实际上能不能做到"，而是"你相不相信自己能做到"。这个区别至关重要。一个2.5水平的网球手，如果相信自己"正在进步、有能力达到3.0"，他的训练投入度、面对失败的韧性和最终的表现，都会显著优于一个同水平但"觉得自己可能永远打不好"的选手<span class="ref" data-i="b-21">[21]</span>。</p>
+<p><strong>自我效能的四个来源</strong>（按影响力从强到弱排列）<span class="ref" data-i="b-20">[20]</span>：</p>
 <p><strong>① 掌握经验（Mastery Experiences）</strong>——影响力最强</p>
-<p>直接的成功体验是自我效能最强大的来源。Bandura（2008）认为"没有比掌握经验更好的方式来建立自我效能"[22]。关键细节是：这里的"成功"不必是绝对意义上的成功，而是<strong>相对于自己过去表现的进步</strong>。一个2.5水平的选手赢了一个3.5的对手，这是掌握经验；但他的反手切削落点比上周深了20厘米，这<strong>同样是</strong>掌握经验——前提是他能"看见"这个进步。</p>
+<p>直接的成功体验是自我效能最强大的来源。Bandura（2008）认为"没有比掌握经验更好的方式来建立自我效能"<span class="ref" data-i="b-22">[22]</span>。关键细节是：这里的"成功"不必是绝对意义上的成功，而是<strong>相对于自己过去表现的进步</strong>。一个2.5水平的选手赢了一个3.5的对手，这是掌握经验；但他的反手切削落点比上周深了20厘米，这<strong>同样是</strong>掌握经验——前提是他能"看见"这个进步。</p>
 <p>这就是你们课题的核心设计任务：<strong>让微小的掌握经验变得可见。</strong> 现有APP的问题是，它们只记录了数据，但没有帮用户"看见"数据中的掌握经验。</p>
 <p><strong>② 替代经验（Vicarious Experiences）</strong>——"如果他能做到，我也能"</p>
 <p>观察与自己相似的人成功完成某项任务，可以增强自我效能。关键词是<strong>"相似"</strong>——如果你看到费德勒打出完美的反手，你不会觉得"我也能"；但如果你看到一个和你同期学球、同样水平的球友突破了3.0，你的信心会大增。这意味着在数据可视化设计中，<strong>匿名的同水平段对比</strong>（"和你同阶段的球友，平均在第4个月突破了反手瓶颈"）可能比与职业选手的对比更有效。</p>
@@ -345,22 +369,22 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <p><strong>④ 生理和情绪状态（Physiological and Emotional States）</strong></p>
 <p>人们会从自己的身体感受和情绪状态中推断自我效能。如果你在训练后感到精力充沛而非精疲力竭，你更可能相信自己"做得不错"。这意味着数据系统可以引导用户关注积极的身体信号——比如"你的训练后心率恢复速度比上月快了15%，说明你的体能正在提升"。</p>
 <h4>3.2 高自我效能 vs 低自我效能的行为差异</h4>
-<p>NIH发表的一篇关于体育活动中自我效能的综述文章[23]提供了一个非常清晰的对比表：</p>
+<p>NIH发表的一篇关于体育活动中自我效能的综述文章<span class="ref" data-i="b-23">[23]</span>提供了一个非常清晰的对比表：</p>
 <table class="dtbl"><thead><tr><th>高自我效能的人倾向于</th><th>低自我效能的人倾向于</th></tr></thead><tbody><tr><td>将困难任务视为<strong>需要掌握的挑战</strong></td><td>将困难任务视为<strong>需要回避的威胁</strong></td></tr><tr><td>设定有挑战性的目标并坚持</td><td>设定保守目标或回避目标设定</td></tr><tr><td>遇到困难时坚持不懈</td><td>遇到困难时迅速放弃</td></tr><tr><td>失败后快速恢复</td><td>失败后长期沮丧</td></tr><tr><td>将失败归因于<strong>努力不足</strong>或<strong>策略不当</strong></td><td>将失败归因于<strong>能力不足</strong></td></tr></tbody></table>
 <p>这个对比表直接说明了为什么数据呈现方式如此重要：<strong>缺陷暴露式的数据呈现（"你的失误率很高"）会强化低自我效能的归因模式（"我能力不行"），而增益发现式的数据呈现（"你的上线率在持续提升"）会强化高自我效能的归因模式（"我的努力正在起作用"）。</strong></p>
 <h4>3.3 学习平台期的神经科学解释</h4>
 <p>当学生问"平台期到底是怎么回事"时，你可以用以下知识来回答：</p>
-<p>运动神经科学研究表明，技能学习中的平台期并不意味着"没有进步"，而是大脑正在进行<strong>运动记忆的巩固（Motor Memory Consolidation）</strong>[24]。在初始学习阶段，表现改善很快（因为你在学习基本的动作模式），但随后进入一个表面上"停滞"的阶段。在这个阶段，大脑实际上在做以下工作：</p>
-<ul><li><strong>突触强化</strong>：重复练习的动作模式所涉及的神经通路被反复激活，突触连接变得更强、更高效</li><li><strong>自动化转移</strong>：动作控制从需要有意识参与的前额叶皮层，逐渐转移到更自动化的基底神经节和小脑</li><li><strong>干扰消除</strong>：大脑在区分新学的正确动作和旧的错误习惯，这个过程需要时间[25]</li></ul>
-<p>PMC上2024年发表的一项研究进一步指出，<strong>平台期之后往往伴随着突然的表现跃升</strong>[26]——这就是很多网球手说的"突然有一天就通了"的体验。但如果在"通"之前用户已经因为"看不到进步"而放弃了，这个突破就永远不会到来。</p>
+<p>运动神经科学研究表明，技能学习中的平台期并不意味着"没有进步"，而是大脑正在进行<strong>运动记忆的巩固（Motor Memory Consolidation）</strong><span class="ref" data-i="b-24">[24]</span>。在初始学习阶段，表现改善很快（因为你在学习基本的动作模式），但随后进入一个表面上"停滞"的阶段。在这个阶段，大脑实际上在做以下工作：</p>
+<ul><li><strong>突触强化</strong>：重复练习的动作模式所涉及的神经通路被反复激活，突触连接变得更强、更高效</li><li><strong>自动化转移</strong>：动作控制从需要有意识参与的前额叶皮层，逐渐转移到更自动化的基底神经节和小脑</li><li><strong>干扰消除</strong>：大脑在区分新学的正确动作和旧的错误习惯，这个过程需要时间<span class="ref" data-i="b-25">[25]</span></li></ul>
+<p>PMC上2024年发表的一项研究进一步指出，<strong>平台期之后往往伴随着突然的表现跃升</strong><span class="ref" data-i="b-26">[26]</span>——这就是很多网球手说的"突然有一天就通了"的体验。但如果在"通"之前用户已经因为"看不到进步"而放弃了，这个突破就永远不会到来。</p>
 <p><strong>这对设计的启示是</strong>：当系统检测到用户数据进入平台期时，不应该沉默或显示"停滞"，而应该主动介入，用科学解释来<strong>重新定义</strong>这个阶段——"你正处于巩固期，你的大脑正在将新技能从'需要思考才能做'升级为'不用想就能做'"。这是一种<strong>认知重构（Cognitive Reframing）</strong>策略，将负面体验转化为积极期待。</p>
 <h4>3.4 Duolingo Streak的双面性：深度案例</h4>
 <p>Duolingo的连续打卡（Streak）机制是游戏化设计中最被广泛研究的案例之一。以下是你需要了解的关键细节：</p>
 <p><strong>正面：Streak如何改变了用户留存</strong></p>
-<p>Duolingo的游戏化策略将用户留存率从12%提升到了55%[27]。Streak不仅仅是一个计数器——它被设计成了一个<strong>情感锚点（Emotional Anchor）</strong>、<strong>身份标记（Identity Marker）</strong><strong>和</strong><strong>社交货币（Social Currency）</strong>[28]。当一个用户说"我的Duolingo连续打卡已经500天了"，这不只是一个数字，它代表了一种身份认同："我是一个坚持学习的人。"</p>
-<p>Duolingo官方博客的解释是[29]："你的Streak是一个有形的、可衡量的数字，它让你对每天的练习负责——哪怕只是5分钟。"这种设计利用了<strong>损失厌恶（Loss Aversion）</strong>心理——人们不想"失去"已经积累的连续天数，因此会更努力地维持习惯。</p>
+<p>Duolingo的游戏化策略将用户留存率从12%提升到了55%<span class="ref" data-i="b-27">[27]</span>。Streak不仅仅是一个计数器——它被设计成了一个<strong>情感锚点（Emotional Anchor）</strong>、<strong>身份标记（Identity Marker）</strong><strong>和</strong><strong>社交货币（Social Currency）</strong><span class="ref" data-i="b-28">[28]</span>。当一个用户说"我的Duolingo连续打卡已经500天了"，这不只是一个数字，它代表了一种身份认同："我是一个坚持学习的人。"</p>
+<p>Duolingo官方博客的解释是<span class="ref" data-i="b-29">[29]</span>："你的Streak是一个有形的、可衡量的数字，它让你对每天的练习负责——哪怕只是5分钟。"这种设计利用了<strong>损失厌恶（Loss Aversion）</strong>心理——人们不想"失去"已经积累的连续天数，因此会更努力地维持习惯。</p>
 <p><strong>反面：Streak Creep现象</strong></p>
-<p>The Decision Lab在2026年3月发表了一篇深度分析文章"Streak Creep: The Perils of Too Much Gamification"[30]，揭示了Streak机制的阴暗面。文章作者本人是一个566天Streak的Duolingo用户，但他坦承：</p>
+<p>The Decision Lab在2026年3月发表了一篇深度分析文章"Streak Creep: The Perils of Too Much Gamification"<span class="ref" data-i="b-30">[30]</span>，揭示了Streak机制的阴暗面。文章作者本人是一个566天Streak的Duolingo用户，但他坦承：</p>
 <ul><li>他发现自己<strong>倾向于选择简单的练习来维持Streak</strong>，而回避更有挑战性但更有效的学习方式（比如与真人对话练习）——这被称为<strong>"Streak维护行为"</strong>，即用户的行为目标从"学好法语"偷偷转变为"不要断Streak"</li><li>Reddit上大量用户报告了<strong>"Duolingo倦怠"（Duolingo Burnout）</strong>——一旦Streak断了，他们不是重新开始，而是彻底放弃。因为Streak的断裂带来的不是"少了一天"的感觉，而是"一切归零"的毁灭感</li><li>Streak机制本质上是一种<strong>外在动机（Extrinsic Motivation）</strong>，长期依赖外在动机会<strong>侵蚀内在动机（Intrinsic Motivation）</strong>——用户开始为了数字而学习，而不是为了学习本身</li></ul>
 <p><strong>这对你们课题的启示极为重要</strong>：你们的设计需要在"让用户看见进步"和"不让'看见'本身成为新的压力源"之间找到平衡。具体来说：</p>
 <ul><li><strong>避免"全有或全无"的指标</strong>（如连续天数）——改用<strong>"累积式"指标</strong>（如"总训练时长""总击球次数"），这些指标只会增加、永远不会归零</li><li><strong>允许"优雅的中断"</strong>——当用户一段时间没训练后回来，系统不应该强调"你已经X天没练了"，而应该说"欢迎回来！上次你的反手切削刚有突破，我们从那里继续"</li><li><strong>将焦点从"频率"转向"质量"</strong>——不追踪"你练了多少天"，而追踪"你在哪些方面有了新的理解"</li></ul>
@@ -385,7 +409,7 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <p><strong>原则四：让数据"说人话"</strong></p>
 <p>原始数据（"正手击球角度17.3度"）对大多数用户来说毫无意义。设计需要将数据翻译成<strong>用户能理解、能感受、能行动的语言</strong>。这种翻译不是简单的文字替换，而是一种深度的语义转换——从技术语言到日常语言，从客观描述到主观体验，从过去回顾到未来指引。</p>
 <p><strong>原则五：设计"优雅的中断"</strong></p>
-<p>任何长期坚持的活动都会经历中断。当用户回来时，系统的第一反应不应该是"你已经X天没练了"（这是惩罚性框架），而应该是"欢迎回来，让我们看看你上次的进展"（这是延续性框架）。Rooksby的"Lived Informatics"模型[2]特别强调了这一点：设计必须为"非线性的、断续的"使用模式做好准备。</p>
+<p>任何长期坚持的活动都会经历中断。当用户回来时，系统的第一反应不应该是"你已经X天没练了"（这是惩罚性框架），而应该是"欢迎回来，让我们看看你上次的进展"（这是延续性框架）。Rooksby的"Lived Informatics"模型<span class="ref" data-i="b-2">[2]</span>特别强调了这一点：设计必须为"非线性的、断续的"使用模式做好准备。</p>
 <h4>4.3 一个跨领域的启发性案例：语言学习中的"能力罐头"</h4>
 <p>有一个来自语言学习社区的非正式实践值得一提：一些语言教师建议学生准备一个"能力罐头"（Can-Do Jar）——每当你发现自己"能做到一件以前做不到的事"（比如"我今天在超市用日语问了价格""我听懂了一首歌的副歌歌词"），就在一张纸条上写下来，放进罐子里。当你感到沮丧时，打开罐子，看看里面已经积累了多少张纸条。</p>
 <p>这个简单的实践完美地体现了"成长可见化"的核心理念：<strong>它把散落在日常中的、容易被遗忘的微小进步，收集起来，让它们变得可见、可触摸、可回顾。</strong> 你们的数据可视化系统，本质上就是一个<strong>数字化的"能力罐头"</strong>——只不过它用算法自动检测"进步时刻"，用可视化让这些时刻变得更加生动和有说服力。</p>
@@ -399,15 +423,15 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <h3 class="center">附录：核心参考文献速查表</h3>
 <p>以下是你在课堂上可能需要引用的关键文献，按主题分类：</p>
 <h4>个人信息化与自我追踪</h4>
-<ul><li>Li, I., Dey, A., & Forlizzi, J. (2010). _A Stage-Based Model of Personal Informatics Systems_. CHI 2010.[1]</li><li>Rooksby, J. et al. (2014). _Personal Tracking as Lived Informatics_. CHI 2014.[2]</li><li>Epstein, D. et al. (2021). _Challenges in Everyday Use of Mobile Visualizations_.</li></ul>
+<ul><li>Li, I., Dey, A., & Forlizzi, J. (2010). _A Stage-Based Model of Personal Informatics Systems_. CHI 2010.<span class="ref" data-i="b-1">[1]</span></li><li>Rooksby, J. et al. (2014). _Personal Tracking as Lived Informatics_. CHI 2014.<span class="ref" data-i="b-2">[2]</span></li><li>Epstein, D. et al. (2021). _Challenges in Everyday Use of Mobile Visualizations_.</li></ul>
 <h4>说服性可视化与叙事</h4>
-<ul><li>Hullman, J. & Diakopoulos, N. (2011). _Visualization Rhetoric: Framing Effects in Narrative Visualization_. IEEE TVCG.[6]</li><li>Segel, E. & Heer, J. (2010). _Narrative Visualization: Telling Stories with Data_. IEEE TVCG.[9]</li><li>Pandey, A. et al. (2014). _The Persuasive Power of Data Visualization_. IEEE TVCG.</li><li>Markant, D. (2022). _Can Data Visualizations Change Minds? Identifying Mechanisms of Persuasive Visualization_.</li></ul>
+<ul><li>Hullman, J. & Diakopoulos, N. (2011). _Visualization Rhetoric: Framing Effects in Narrative Visualization_. IEEE TVCG.<span class="ref" data-i="b-6">[6]</span></li><li>Segel, E. & Heer, J. (2010). _Narrative Visualization: Telling Stories with Data_. IEEE TVCG.<span class="ref" data-i="b-9">[9]</span></li><li>Pandey, A. et al. (2014). _The Persuasive Power of Data Visualization_. IEEE TVCG.</li><li>Markant, D. (2022). _Can Data Visualizations Change Minds? Identifying Mechanisms of Persuasive Visualization_.</li></ul>
 <h4>自我效能与行为心理学</h4>
-<ul><li>Bandura, A. (1997). _Self-Efficacy: The Exercise of Control_. Freeman.</li><li>Bandura, A. (1977). _Self-efficacy: Toward a Unifying Theory of Behavioral Change_. Psychological Review.[20]</li><li>Tversky, A. & Kahneman, D. (1981). _The Framing of Decisions and the Psychology of Choice_. Science.[7]</li></ul>
+<ul><li>Bandura, A. (1997). _Self-Efficacy: The Exercise of Control_. Freeman.</li><li>Bandura, A. (1977). _Self-efficacy: Toward a Unifying Theory of Behavioral Change_. Psychological Review.<span class="ref" data-i="b-20">[20]</span></li><li>Tversky, A. & Kahneman, D. (1981). _The Framing of Decisions and the Psychology of Choice_. Science.<span class="ref" data-i="b-7">[7]</span></li></ul>
 <h4>数据人文主义与情感化设计</h4>
-<ul><li>Lupi, G. (2017). _Data Humanism: The Revolution Will Be Visualized_. PrintMag.[15]</li><li>Lupi, G. & Posavec, S. (2016). _Dear Data_. Princeton Architectural Press.[16]</li><li>Knaflic, C.N. (2015). _Storytelling with Data_. Wiley.</li></ul>
+<ul><li>Lupi, G. (2017). _Data Humanism: The Revolution Will Be Visualized_. PrintMag.<span class="ref" data-i="b-15">[15]</span></li><li>Lupi, G. & Posavec, S. (2016). _Dear Data_. Princeton Architectural Press.<span class="ref" data-i="b-16">[16]</span></li><li>Knaflic, C.N. (2015). _Storytelling with Data_. Wiley.</li></ul>
 <h4>游戏化与行为设计</h4>
-<ul><li>Fogg, B.J. (2009). _A Behavior Model for Persuasive Design_. Persuasive Technology.</li><li>The Decision Lab. (2026). _Streak Creep: The Perils of Too Much Gamification_.[30]</li></ul>
+<ul><li>Fogg, B.J. (2009). _A Behavior Model for Persuasive Design_. Persuasive Technology.</li><li>The Decision Lab. (2026). _Streak Creep: The Perils of Too Much Gamification_.<span class="ref" data-i="b-30">[30]</span></li></ul>
 <div class="pq"><p><strong>使用建议</strong>：这份报告的信息量远超8分钟演讲所需。建议你通读一遍建立全局认知，然后在每个观点下选择1-2个你最有共鸣的案例和理论点深入理解。课堂上不需要讲出所有内容——<strong>你知道但不说的部分，会自然地转化为你讲述时的从容和深度</strong>。当学生提出意料之外的问题时，这些储备知识会成为你即兴回应的弹药库。 </p></div>
 </div></div></div><div class="dvd"></div>
 <div id="t3" class="ts"><div class="th center"><p class="tn2">课题C · 微观</p><h2>当身体成为数据，当数据成为故事</h2><p class="lead">运动叙事可视化的四个追问</p></div>
@@ -417,33 +441,33 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <div class="pq"><p>本报告是演讲稿的"冰山水下部分"，为你提供每个观点背后的完整理论脉络、案例细节和延伸知识，帮助你在课堂上应对学生的任何追问，并在讲述中做到"举重若轻"。 </p></div>
 <h3 class="center">观点一：数据不是身体的真相，数据是身体的一幅肖像</h3>
 <h4>1.1 这个观点的哲学根基：梅洛-庞蒂与"身体图式"</h4>
-<p>这个观点的核心张力来自法国现象学家梅洛-庞蒂（Maurice Merleau-Ponty）在1945年出版的《知觉现象学》（_Phenomenology of Perception_）中提出的核心概念——<strong>"身体图式"（body schema / schéma corporel）</strong>[1]。</p>
+<p>这个观点的核心张力来自法国现象学家梅洛-庞蒂（Maurice Merleau-Ponty）在1945年出版的《知觉现象学》（_Phenomenology of Perception_）中提出的核心概念——<strong>"身体图式"（body schema / schéma corporel）</strong><span class="ref" data-i="c-1">[1]</span>。</p>
 <p>梅洛-庞蒂区分了两种理解身体的方式：</p>
-<ul><li><strong>作为主体的身体（lived body / corps vécu）</strong>：这是你"从内部"体验到的身体。当你挥拍击球时，你不会"看到"自己的手臂轨迹，你<strong>就是</strong>那个挥拍动作本身。你的身体不是你操控的一个工具，它就是你。梅洛-庞蒂写道："身体是我们拥有一个世界的一般媒介"[4]。身体图式是一种<strong>前反思的（pre-reflective）</strong>、感觉-运动层面的身体表征[5]，它让你不需要"思考"就能做出复杂的身体动作——就像你不需要思考每一步就能走路。</li><li><strong>作为客体的身体（objective body / corps objectif）</strong>：这是你"从外部"被观察到的身体——在镜子里、在视频里、在数据表格里。它是可测量、可分析、可比较的。球速120km/h、挥拍角度17度、移动距离3.2公里——这些都是客体化的身体。</li></ul>
-<p>一篇专门讨论梅洛-庞蒂与运动关系的巴西学术论文指出[10]：身体图式的概念揭示了身体在世界中存在的方式——不是作为一个被观察的对象，而是作为一种与世界互动的<strong>活的能力</strong>。在运动技能习得中，身体图式的作用尤为明显：一篇发表在Athens Journal of Sports上的论文专门论证了梅洛-庞蒂的身体图式如何作为"运动习惯"（motor habit）在技能习得中发挥核心作用[2]——当一个动作被充分练习后，它被"写入"身体图式，成为一种不需要意识参与的自动化能力。</p>
+<ul><li><strong>作为主体的身体（lived body / corps vécu）</strong>：这是你"从内部"体验到的身体。当你挥拍击球时，你不会"看到"自己的手臂轨迹，你<strong>就是</strong>那个挥拍动作本身。你的身体不是你操控的一个工具，它就是你。梅洛-庞蒂写道："身体是我们拥有一个世界的一般媒介"<span class="ref" data-i="c-4">[4]</span>。身体图式是一种<strong>前反思的（pre-reflective）</strong>、感觉-运动层面的身体表征<span class="ref" data-i="c-5">[5]</span>，它让你不需要"思考"就能做出复杂的身体动作——就像你不需要思考每一步就能走路。</li><li><strong>作为客体的身体（objective body / corps objectif）</strong>：这是你"从外部"被观察到的身体——在镜子里、在视频里、在数据表格里。它是可测量、可分析、可比较的。球速120km/h、挥拍角度17度、移动距离3.2公里——这些都是客体化的身体。</li></ul>
+<p>一篇专门讨论梅洛-庞蒂与运动关系的巴西学术论文指出<span class="ref" data-i="c-10">[10]</span>：身体图式的概念揭示了身体在世界中存在的方式——不是作为一个被观察的对象，而是作为一种与世界互动的<strong>活的能力</strong>。在运动技能习得中，身体图式的作用尤为明显：一篇发表在Athens Journal of Sports上的论文专门论证了梅洛-庞蒂的身体图式如何作为"运动习惯"（motor habit）在技能习得中发挥核心作用<span class="ref" data-i="c-2">[2]</span>——当一个动作被充分练习后，它被"写入"身体图式，成为一种不需要意识参与的自动化能力。</p>
 <p><strong>这对你的课题意味着什么？</strong> 当AI摄像系统捕获了一段训练视频并叠加了数据，它做的事情本质上是：<strong>把作为主体的身体（运动者的第一人称体验）翻译成了作为客体的身体（可被观看和量化的对象）。</strong> 这个翻译必然有损——就像把一首诗翻译成另一种语言，意义会溢出、会变形、会丢失。问题不在于"翻译是否忠实"，而在于<strong>"这个翻译想要传达什么"</strong>。</p>
 <p>你在课堂上可以用一个更日常的比喻来解释这个概念：想象你在弹一首很熟悉的钢琴曲。弹的时候你不会"想"每个手指该按哪个键——你的手"知道"该去哪里。但如果有人在旁边用摄像头记录你的手指运动，然后生成一张"每个手指按键频率分布图"——这张图是"真实"的吗？是的，但它完全无法传达你弹琴时的那种感觉。<strong>数据捕获的是运动的外壳，不是运动的灵魂。</strong></p>
 <h4>1.2 数据人文主义：Giorgia Lupi 的完整理论</h4>
 <p>演讲稿中提到了Giorgia Lupi的"数据人文主义"。以下是你需要了解的更完整的理论脉络。</p>
 <p>Lupi在2017年发表了"Data Humanism"宣言，其核心主张可以归纳为三点：</p>
-<p><strong>① 数据不是客观的，数据是人造的。</strong> Lupi写道："让我们停止假装数据是完美的。它不是。数据本质上是人造的。'数据驱动'从来不等于'毋庸置疑的真实'，而且从来都不是。"[11] 这直接挑战了信息可视化领域长期以来的"客观性神话"——认为只要数据是准确的、图表是规范的，可视化就是"中立"的。</p>
-<p><strong>② 数据应该服务于"在数据中找到自己"。</strong> 在TED演讲中，Lupi展示了她如何用数据讲述人的故事，为数字增添细微差别和语境。她的核心信念是：数据可视化的目的不是让复杂变简单，而是<strong>让我们在数据中认出自己</strong>[12]。</p>
-<p><strong>③ 不完美是一种价值。</strong> "Dear Data"项目是这一理念的极致实践。Lupi和Posavec用一年时间，每周手绘一张数据明信片寄给对方[13]。这些明信片充满了手绘的不完美——线条不直、颜色不均、比例不精确。但正是这种不完美，让数据变得<strong>亲密和有温度</strong>。Lupi在2025年出版的新书_Speak Data_中进一步阐述了这一理念，而她的首个个人展览"Data Humanism"于2026年4月30日在纽约开幕——如果你想给学生推荐一个当下最前沿的参考，这是一个绝佳的时间节点。</p>
+<p><strong>① 数据不是客观的，数据是人造的。</strong> Lupi写道："让我们停止假装数据是完美的。它不是。数据本质上是人造的。'数据驱动'从来不等于'毋庸置疑的真实'，而且从来都不是。"<span class="ref" data-i="c-11">[11]</span> 这直接挑战了信息可视化领域长期以来的"客观性神话"——认为只要数据是准确的、图表是规范的，可视化就是"中立"的。</p>
+<p><strong>② 数据应该服务于"在数据中找到自己"。</strong> 在TED演讲中，Lupi展示了她如何用数据讲述人的故事，为数字增添细微差别和语境。她的核心信念是：数据可视化的目的不是让复杂变简单，而是<strong>让我们在数据中认出自己</strong><span class="ref" data-i="c-12">[12]</span>。</p>
+<p><strong>③ 不完美是一种价值。</strong> "Dear Data"项目是这一理念的极致实践。Lupi和Posavec用一年时间，每周手绘一张数据明信片寄给对方<span class="ref" data-i="c-13">[13]</span>。这些明信片充满了手绘的不完美——线条不直、颜色不均、比例不精确。但正是这种不完美，让数据变得<strong>亲密和有温度</strong>。Lupi在2025年出版的新书_Speak Data_中进一步阐述了这一理念，而她的首个个人展览"Data Humanism"于2026年4月30日在纽约开幕——如果你想给学生推荐一个当下最前沿的参考，这是一个绝佳的时间节点。</p>
 <p><strong>这对运动数据可视化的启示：</strong> 也许最好的训练数据可视化不是最精确的那个，而是最"像人"的那个。一个带有个人情绪标记、感官记忆、甚至手写批注的训练日志，可能比一个精确到小数点后两位的仪表盘更能让运动者感到"这是我的故事"。</p>
 <h4>1.3 "数据肖像"：一个关键的学术概念</h4>
 <p>演讲稿中提到的"数据肖像"（Data Portrait）是一个有严肃学术根基的概念，值得深入了解。</p>
-<p>MIT Media Lab的Donath等人最早系统化地定义了数据肖像[14]："创建数据肖像有两个大问题：选择展示什么数据，以及设计什么样的视觉表征。"</p>
-<p>xCoAx 2019的一篇论文进一步澄清了定义[15]："数据肖像指的是一种肖像形式，它基于积累的个人数据，以唤起性的方式表征个体的身份。"注意这里的关键词——<strong>"唤起性的"（evocatively）</strong>。数据肖像不是在"描述"一个人（像身份证照片那样），而是在"唤起"一个人的存在感（像一幅印象派画作那样）。</p>
-<p>2022年xCoAx的后续论文提出了数据肖像的一个重要功能：<strong>"数据镜"（data mirror）</strong>[16]——数据肖像被设计为一面反映个人行为模式的镜子。"就像我们每天早上照镜子来确认自己的外貌一样，数据肖像让我们'照见'自己的行为、习惯和身份。"</p>
-<p>ResearchGate上的一篇综述论文则明确指出[17]："数据肖像不是描述一个人的外貌，而是唤起一个人的经验。"</p>
+<p>MIT Media Lab的Donath等人最早系统化地定义了数据肖像<span class="ref" data-i="c-14">[14]</span>："创建数据肖像有两个大问题：选择展示什么数据，以及设计什么样的视觉表征。"</p>
+<p>xCoAx 2019的一篇论文进一步澄清了定义<span class="ref" data-i="c-15">[15]</span>："数据肖像指的是一种肖像形式，它基于积累的个人数据，以唤起性的方式表征个体的身份。"注意这里的关键词——<strong>"唤起性的"（evocatively）</strong>。数据肖像不是在"描述"一个人（像身份证照片那样），而是在"唤起"一个人的存在感（像一幅印象派画作那样）。</p>
+<p>2022年xCoAx的后续论文提出了数据肖像的一个重要功能：<strong>"数据镜"（data mirror）</strong><span class="ref" data-i="c-16">[16]</span>——数据肖像被设计为一面反映个人行为模式的镜子。"就像我们每天早上照镜子来确认自己的外貌一样，数据肖像让我们'照见'自己的行为、习惯和身份。"</p>
+<p>ResearchGate上的一篇综述论文则明确指出<span class="ref" data-i="c-17">[17]</span>："数据肖像不是描述一个人的外貌，而是唤起一个人的经验。"</p>
 <p><strong>将"数据肖像"迁移到运动场景的可能性：</strong></p>
 <p>想象一下：一个网球手打了一个赛季的球。系统积累了她所有的击球数据——正手球速分布、反手落点热力图、发球旋转偏好、移动轨迹密度。赛季结束时，系统不是生成一张"成绩单"，而是生成一幅<strong>独一无二的抽象画</strong>——击球角度决定线条的方向，球速决定笔触的力度，旋转决定色彩的饱和度，移动轨迹决定构图的疏密。这幅画不"说明"任何东西，但它是<strong>只属于她的</strong>——是她的身体在这个赛季里留下的"签名"。</p>
 <p>这就是"成绩单"和"肖像"的根本区别：成绩单是可比较的（你的分数高还是低），肖像是不可比较的（你的脸和别人的脸没有高低之分）。</p>
 <h4>1.4 Spotify Wrapped：数据肖像的商业化范例</h4>
 <p>Spotify Wrapped是"数据肖像"理念在商业产品中最成功的实践。以下是你需要了解的深层设计逻辑：</p>
 <p><strong>为什么Wrapped让人忍不住分享？</strong></p>
-<p>行为科学研究机构The Decision Lab分析指出[18]："Wrapped本质上是在重新确认我们生活作为叙事的心理建构——它把你年初的自己和年末的自己串联起来，让你觉得'这一年是有形状的'。"这激活了心理学中的<strong>自传体记忆（Autobiographical Memory）</strong>——人们通过音乐回忆起特定时期的生活状态和情感。</p>
-<p>另一项分析指出[19]："Spotify用用户特定的数据创造了一种让用户感到'被看见和被重视'的体验。"注意这个措辞——<strong>"被看见"</strong>。这正是你的运动叙事课题的核心诉求。</p>
+<p>行为科学研究机构The Decision Lab分析指出<span class="ref" data-i="c-18">[18]</span>："Wrapped本质上是在重新确认我们生活作为叙事的心理建构——它把你年初的自己和年末的自己串联起来，让你觉得'这一年是有形状的'。"这激活了心理学中的<strong>自传体记忆（Autobiographical Memory）</strong>——人们通过音乐回忆起特定时期的生活状态和情感。</p>
+<p>另一项分析指出<span class="ref" data-i="c-19">[19]</span>："Spotify用用户特定的数据创造了一种让用户感到'被看见和被重视'的体验。"注意这个措辞——<strong>"被看见"</strong>。这正是你的运动叙事课题的核心诉求。</p>
 <p><strong>Wrapped的关键设计策略：</strong></p>
 <ul><li><strong>它几乎从不使用负面框架。</strong> 它不会说"你今年听歌时间减少了"，而会说"你今年发现了47位新艺术家"。即使是可能让人尴尬的数据（比如你重复听了同一首歌300次），也被包装成一种"独特个性"而非"强迫症"。</li><li><strong>它给你贴标签。</strong> "你是前0.5%的Taylor Swift听众""你的音乐品味是'怀旧浪漫型'"——这些标签不是客观的音乐分类，而是<strong>社交身份的建构工具</strong>。人们分享Wrapped不是在分享数据，而是在展示"我是这样的人"。</li><li><strong>它是一个"时间胶囊"。</strong> 它不只是年度统计，它提醒你一月时你在听什么、四月什么歌让你流泪、七月什么歌陪你度过深夜——它用音乐重建了你的一年。</li></ul>
 <p><strong>Wrapped对运动叙事的启示：</strong> 如果你能为网球手设计一个"年度运动Wrapped"——不是"你今年打了多少小时"的统计，而是"你的第一次Ace是在三月一个下雨的周末""你在七月的那场比赛里连救了四个赛点""你的正手球速在十月突然突破了100km/h"——这种叙事化的数据呈现，会比任何仪表盘都更有情感力量。</p>
@@ -454,12 +478,12 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <p>演讲稿中的"三种凝视"不是随意编造的分类，每一种都有深厚的学术根基。以下是完整的理论脉络：</p>
 <div class="case-card"><span class="case-num">凝视一</span><p class="case-body">教练的凝视——福柯的"规训凝视"**</p></div>
 <p>Michel Foucault在《规训与惩罚》（_Discipline and Punish_, 1975）中提出了"全景敞视主义"（Panopticism）的概念。核心思想是：当人知道自己<strong>可能</strong>被观察时，他们会自觉地调整行为以符合规范——即使实际上没有人在看。Foucault称之为"规训的凝视"（disciplinary gaze）。</p>
-<p>在运动语境中，这种凝视体现为"教练的眼睛"——它的功能是纠错和规范化。一篇关于体育中身体监控的研究指出[20]："监控的权力邀请人们在感到被观看时，调整自己的行为以趋向特定的规范。"当一个APP用红色标记你的"错误动作"、用图表展示你与"标准姿势"的偏差时，它就在行使这种规训凝视。</p>
+<p>在运动语境中，这种凝视体现为"教练的眼睛"——它的功能是纠错和规范化。一篇关于体育中身体监控的研究指出<span class="ref" data-i="c-20">[20]</span>："监控的权力邀请人们在感到被观看时，调整自己的行为以趋向特定的规范。"当一个APP用红色标记你的"错误动作"、用图表展示你与"标准姿势"的偏差时，它就在行使这种规训凝视。</p>
 <p>这种凝视不是"坏的"——教练的纠错对技术进步至关重要。但它有一个副作用：<strong>它把运动者的身体变成一个永远不够好的、待修正的对象。</strong> 如果这是唯一的凝视方式，运动者可能会逐渐失去打球的乐趣。</p>
 <div class="case-card"><span class="case-num">凝视二</span><p class="case-body">社交的凝视——戈夫曼的"拟剧论"**</p></div>
-<p>Erving Goffman在1956年出版的《日常生活中的自我呈现》（_The Presentation of Self in Everyday Life_）中提出了著名的"拟剧论"（Dramaturgical Approach）[21]。他把社会互动比作戏剧表演，每个人都在不同的"舞台"上扮演不同的角色：</p>
+<p>Erving Goffman在1956年出版的《日常生活中的自我呈现》（_The Presentation of Self in Everyday Life_）中提出了著名的"拟剧论"（Dramaturgical Approach）<span class="ref" data-i="c-21">[21]</span>。他把社会互动比作戏剧表演，每个人都在不同的"舞台"上扮演不同的角色：</p>
 <ul><li><strong>前台（Front Stage）</strong>：你在他人面前展示的、经过精心管理的自我形象。在社交媒体上发布的训练视频就是"前台"——你会选择最好看的角度、最精彩的瞬间、最有利的数据。</li><li><strong>后台（Back Stage）</strong>：你在没有观众时的真实状态。训练中的气喘吁吁、失误后的沮丧、动作的笨拙——这些是"后台"。</li></ul>
-<p>Goffman的理论在社交媒体时代获得了新的生命力。一篇ResearchGate上的研究专门分析了社交媒体如何重塑了前台/后台的边界[22]："社交媒体作为互动情境，探索了拟剧论中前台和后台概念的适应与变化。"一篇Medium上的分析进一步指出[23]："Goffman的拟剧论（1959）将社会互动框定为表演……在社交媒体时代，前台和后台的边界变得前所未有地模糊。"</p>
+<p>Goffman的理论在社交媒体时代获得了新的生命力。一篇ResearchGate上的研究专门分析了社交媒体如何重塑了前台/后台的边界<span class="ref" data-i="c-22">[22]</span>："社交媒体作为互动情境，探索了拟剧论中前台和后台概念的适应与变化。"一篇Medium上的分析进一步指出<span class="ref" data-i="c-23">[23]</span>："Goffman的拟剧论（1959）将社会互动框定为表演……在社交媒体时代，前台和后台的边界变得前所未有地模糊。"</p>
 <p><strong>这对你的课题的启示：</strong> 当一个业余球员知道自己的训练会被自动录制和可视化时，训练本身是否也在悄悄变成一种"表演"？他是否会下意识地选择更"好看"的击球方式，而非最有效的练习方式？你的设计系统是在帮助用户管理"前台形象"，还是在鼓励他们展示"后台真实"？</p>
 <div class="case-card"><span class="case-num">凝视三</span><p class="case-body">自我的凝视——存在主义的"自我确认"**</p></div>
 <p>这种凝视在学术文献中较少被直接讨论，但它的哲学根基可以追溯到保罗·利科（Paul Ricœur）的<strong>叙事身份理论</strong>（Narrative Identity）。利科认为，人通过讲述关于自己的故事来建构自我身份——"我是谁"这个问题的答案不是一个固定的属性，而是一个不断被讲述和修正的故事。</p>
@@ -486,7 +510,7 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <ul><li>"如果你要为同一段训练素材设计三个版本的视频——一个给教练看、一个发朋友圈、一个留给自己——它们会有什么不同？不同在哪里？"</li><li>"当你在社交媒体上看到一个'普通人'的运动视频时，你会下意识地评判他的动作吗？这种评判从何而来？如果视频的视觉处理方式不同，你的评判会改变吗？"</li><li>"F1转播用数据讲故事——轮胎策略变成了'谁在赌博'的叙事。网球训练中的什么数据可以变成什么样的故事？"</li></ul>
 <h3 class="center">观点三：慢动作不是一种技术，是一种时间哲学</h3>
 <h4>3.1 Csikszentmihalyi的心流理论：完整图景</h4>
-<p>Mihaly Csikszentmihalyi在1975年首次提出"心流"（Flow）概念，后在1990年的畅销书_Flow: The Psychology of Optimal Experience_中系统化。心流被定义为"一种完全沉浸在活动中的状态，注意力高度集中，自我意识消失，时间感知扭曲"[24]。</p>
+<p>Mihaly Csikszentmihalyi在1975年首次提出"心流"（Flow）概念，后在1990年的畅销书_Flow: The Psychology of Optimal Experience_中系统化。心流被定义为"一种完全沉浸在活动中的状态，注意力高度集中，自我意识消失，时间感知扭曲"<span class="ref" data-i="c-24">[24]</span>。</p>
 <p>心流的<strong>九个特征</strong>（你不需要在演讲中全部提到，但了解完整框架有助于应对追问）：</p>
 <div class="numbered-grid"><div class="numbered-item"><span class="num-label">挑战与技能的平衡</span><span class="num-text">任务难度略高于当前能力，但不至于焦虑</span></div>
 <div class="numbered-item"><span class="num-label">行动与意识的融合</span><span class="num-text">不再"想着"做什么，而是"自然地"在做</span></div>
@@ -501,15 +525,15 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <h4>3.2 运动中的时间扭曲：科学证据</h4>
 <p>这不是诗意的比喻，而是有实验证据支持的心理现象。</p>
 <div class="case-card"><span class="case-num">证据一</span><p class="case-title">心流状态下的时间感知变化**</p></div>
-<p>Frontiers in Psychology上2020年发表的一项研究[25]专门探讨了"心流状态与空间和时间感知变化的关联"。研究发现，处于心流状态的个体确实报告了时间感知的显著变化——具体而言，如果个体在心流中体验到时间变慢，这与他们的时间判断精确度的提升相关联。</p>
+<p>Frontiers in Psychology上2020年发表的一项研究<span class="ref" data-i="c-25">[25]</span>专门探讨了"心流状态与空间和时间感知变化的关联"。研究发现，处于心流状态的个体确实报告了时间感知的显著变化——具体而言，如果个体在心流中体验到时间变慢，这与他们的时间判断精确度的提升相关联。</p>
 <div class="case-card"><span class="case-num">证据二</span><p class="case-title">运动中的"慢区"现象**</p></div>
-<p>Psychology Today上2025年的一篇文章专门讨论了运动员的"慢区"（Slow Zone）现象[26]："时间膨胀与意识的改变状态有关，运动员通过强烈的专注来达到这种状态。减慢时间的能力可能来源于……"许多运动员报告说，在关键时刻——比如一个决定性的击球——球似乎变大了、飞得更慢了，他们有更多的时间来做出反应。</p>
+<p>Psychology Today上2025年的一篇文章专门讨论了运动员的"慢区"（Slow Zone）现象<span class="ref" data-i="c-26">[26]</span>："时间膨胀与意识的改变状态有关，运动员通过强烈的专注来达到这种状态。减慢时间的能力可能来源于……"许多运动员报告说，在关键时刻——比如一个决定性的击球——球似乎变大了、飞得更慢了，他们有更多的时间来做出反应。</p>
 <div class="case-card"><span class="case-num">证据三</span><p class="case-title">运动本身改变时间感知**</p></div>
-<p>ResearchGate上2024年的一项研究首次证明[27]："运动（无论是否有对手的影响）确实会影响时间感知。"这意味着即使不在心流状态中，运动本身就会改变人对时间的主观体验。</p>
+<p>ResearchGate上2024年的一项研究首次证明<span class="ref" data-i="c-27">[27]</span>："运动（无论是否有对手的影响）确实会影响时间感知。"这意味着即使不在心流状态中，运动本身就会改变人对时间的主观体验。</p>
 <div class="case-card"><span class="case-num">证据四</span><p class="case-title">心流的神经化学机制**</p></div>
-<p>Steven Kotler（心流研究领域的知名作者）在2026年3月的一篇文章中解释了心流的神经化学基础[28]："心流跟随专注而来。这就是机制。这些触发器之所以有效，是因为它们改变了你的神经化学——将去甲肾上腺素和多巴胺推入你的系统。"这些神经递质的变化直接影响了时间感知——多巴胺水平的升高与时间感知的变慢有关。</p>
+<p>Steven Kotler（心流研究领域的知名作者）在2026年3月的一篇文章中解释了心流的神经化学基础<span class="ref" data-i="c-28">[28]</span>："心流跟随专注而来。这就是机制。这些触发器之所以有效，是因为它们改变了你的神经化学——将去甲肾上腺素和多巴胺推入你的系统。"这些神经递质的变化直接影响了时间感知——多巴胺水平的升高与时间感知的变慢有关。</p>
 <div class="case-card"><span class="case-num">证据五</span><p class="case-title">ScienceDirect上的综合性研究**</p></div>
-<p>一篇发表在ScienceDirect上的综合性论文指出[29]："从现象学角度来看，心流伴随着自我意识的丧失、行动与意识的无缝融合，以及时间感知的剧烈变化。"</p>
+<p>一篇发表在ScienceDirect上的综合性论文指出<span class="ref" data-i="c-29">[29]</span>："从现象学角度来看，心流伴随着自我意识的丧失、行动与意识的无缝融合，以及时间感知的剧烈变化。"</p>
 <h4>3.3 三种时间：一个供课堂讨论的框架</h4>
 <p>演讲稿中提到的"三种时间"可以在课堂上展开为一个更丰富的讨论框架：</p>
 <p><strong>客观时间（Chronos）——钟表的时间</strong></p>
@@ -533,13 +557,13 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <ul><li>"你们有没有过打球或做某件事时'忘记了时间'的经历？那个时刻，时间是'快'的还是'慢'的？如果你要用视频来表达那种时间感，你会怎么做？"</li><li>"现在的运动视频剪辑软件（如剪映）都是基于'事件'来选高光——得分了就放慢。但如果我们基于'状态'来设计时间呢？你觉得可以用什么数据来推断一个人是否处于'忘我'的状态？"</li><li>"一段30秒的视频里，你有15秒可以分配给慢动作。你会把这15秒给'最精彩的一球'，还是给'最专注的一段时间'？为什么？"</li></ul>
 <h3 class="center">观点四："光环"的民主化：独一无二，而非千篇一律</h3>
 <h4>4.1 本雅明的"光环"理论：完整脉络</h4>
-<p>Walter Benjamin在1935年发表的《机械复制时代的艺术作品》（_Das Kunstwerk im Zeitalter seiner technischen Reproduzierbarkeit_）是20世纪最有影响力的文化批评文章之一[30]。以下是你需要了解的完整理论框架：</p>
+<p>Walter Benjamin在1935年发表的《机械复制时代的艺术作品》（_Das Kunstwerk im Zeitalter seiner technischen Reproduzierbarkeit_）是20世纪最有影响力的文化批评文章之一<span class="ref" data-i="c-30">[30]</span>。以下是你需要了解的完整理论框架：</p>
 <p><strong>"光环"（Aura）的定义</strong></p>
-<p>Benjamin将光环定义为艺术品因其独一无二性（uniqueness）和此时此地性（here and now）而拥有的那种不可接近的、神圣的存在感[30]。一幅原作有光环——你站在卢浮宫的《蒙娜丽莎》前感受到的那种敬畏，就是光环。但当《蒙娜丽莎》被印成一百万张海报、印在一百万个马克杯上时，这种敬畏就消失了。</p>
+<p>Benjamin将光环定义为艺术品因其独一无二性（uniqueness）和此时此地性（here and now）而拥有的那种不可接近的、神圣的存在感<span class="ref" data-i="c-30">[30]</span>。一幅原作有光环——你站在卢浮宫的《蒙娜丽莎》前感受到的那种敬畏，就是光环。但当《蒙娜丽莎》被印成一百万张海报、印在一百万个马克杯上时，这种敬畏就消失了。</p>
 <p><strong>"膜拜价值"与"展示价值"</strong></p>
-<p>Benjamin提出了一对关键概念[31]：</p>
+<p>Benjamin提出了一对关键概念<span class="ref" data-i="c-31">[31]</span>：</p>
 <ul><li><strong>膜拜价值（Cult Value）</strong>：艺术品作为宗教仪式的一部分而存在的价值。一尊中世纪教堂里的圣母像，它的价值不在于"被看到"，而在于"存在于那里"——它是神圣的，即使没有人看它。</li><li><strong>展示价值（Exhibition Value）</strong>：艺术品作为被观看的对象而存在的价值。当艺术从宗教中解放出来，它的价值就从"存在"转向了"被展示"。</li></ul>
-<p>Benjamin认为，机械复制技术（摄影、电影）加速了从膜拜价值到展示价值的转变。但他也注意到，<strong>膜拜价值并没有完全消失——它退守到了最后一个堡垒：人的面孔</strong>。Benjamin写道[30]："在摄影中，展示价值开始全面取代膜拜价值。但膜拜价值并非毫无抵抗地退场。它退守到最后一道防线——人的面孔。"</p>
+<p>Benjamin认为，机械复制技术（摄影、电影）加速了从膜拜价值到展示价值的转变。但他也注意到，<strong>膜拜价值并没有完全消失——它退守到了最后一个堡垒：人的面孔</strong>。Benjamin写道<span class="ref" data-i="c-30">[30]</span>："在摄影中，展示价值开始全面取代膜拜价值。但膜拜价值并非毫无抵抗地退场。它退守到最后一道防线——人的面孔。"</p>
 <p><strong>这个洞察对运动叙事极为重要：</strong> 运动视频中最有"光环"的元素，不是华丽的特效，不是精确的数据，而是<strong>人的面孔和身体</strong>——那个挥拍后露出微笑的瞬间、那个救球失败后沮丧地低头的瞬间、那个赢得关键分后握拳怒吼的瞬间。这些是不可复制的，因为它们属于一个独特的人在一个独特的时刻。</p>
 <h4>4.2 光环的悖论：普及 vs. 消解</h4>
 <p>你的课题面临一个Benjamin没有预见到的悖论。让我把它完整地展开：</p>
@@ -555,8 +579,8 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <p>具体来说：如果每个人的数据可视化不是来自同一个模板，而是由<strong>他们自己的数据生成的、独一无二的</strong>视觉表达，那么每段视频都是不可复制的——不是因为它"稀有"，而是因为它<strong>只可能属于这个人</strong>。</p>
 <p>两个球员用同一套系统，但一个是底线型选手（正手强势、移动范围大、回合长），另一个是发球上网型（发球凶猛、截击果断、回合短）。如果系统根据他们各自的数据特征生成了两段视觉气质完全不同的视频——前者绵延、温暖、有韧性；后者爆发、冷峻、锐利——那么每段视频都是独一无二的。<strong>光环没有消失，它只是换了一个来源。</strong></p>
 <h4>4.3 Strava Art：数据作为创作媒介的启发</h4>
-<p>Strava Art是一个极好的案例来说明"数据如何成为独一无二的自我表达"[32]。</p>
-<p>跑步和骑行爱好者用GPS轨迹在地图上"画画"——有人跑出一只猫的形状，有人骑出一个巨大的爱心，法国骑行者甚至创造了"最大GPS画作"的世界纪录[33]。Strava甚至推出了专门的应用"Prints"，让用户将自己的GPS数据转化为可打印的艺术品[34]。</p>
+<p>Strava Art是一个极好的案例来说明"数据如何成为独一无二的自我表达"<span class="ref" data-i="c-32">[32]</span>。</p>
+<p>跑步和骑行爱好者用GPS轨迹在地图上"画画"——有人跑出一只猫的形状，有人骑出一个巨大的爱心，法国骑行者甚至创造了"最大GPS画作"的世界纪录<span class="ref" data-i="c-33">[33]</span>。Strava甚至推出了专门的应用"Prints"，让用户将自己的GPS数据转化为可打印的艺术品<span class="ref" data-i="c-34">[34]</span>。</p>
 <p>这些GPS数据本来是用来记录运动距离和配速的"客观数据"。但用户自发地把它变成了一种<strong>自我表达的媒介</strong>。数据在这里不再是"关于运动的测量"，而是"用运动创作的艺术"。</p>
 <p><strong>关键洞察：</strong> Strava Art之所以有"光环"，不是因为它用了什么华丽的特效，而是因为每一幅GPS画作都是<strong>不可复制的</strong>——它是一个特定的人，在一个特定的城市，用自己的身体，花了几个小时跑出来的。这种"不可复制性"不来自技术门槛，而来自<strong>身体的独特性</strong>。</p>
 <p><strong>这对网球叙事的启示：</strong> 如果一个网球手的移动轨迹被叠加在球场俯视图上，形成的不是一张"技术分析图"，而是一幅<strong>独属于她的抽象画</strong>——她的移动方式、她的站位偏好、她的跑动节奏，共同"画"出了一幅只有她能画出的图案——这就是"数据作为创作媒介"的运动版本。</p>
@@ -569,7 +593,7 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <ul><li>不隐藏失误，而是让失误成为叙事的一部分——三次双误之后的一记Ace，比单独的Ace更有故事</li><li>不追求动作的"标准"，而是捕捉动作的"努力"——一个全力伸展但没够到球的瞬间，可能比一个轻松回球的瞬间更有情感力量</li><li>不用"完美"的视觉特效，而是保留一些"粗糙感"——像手机拍摄的质感、像手写的标注、像即兴的配乐</li></ul>
 <h4>4.5 伦理讨论："被看见"的渴望与"忘记自己"的心流</h4>
 <p>这是演讲稿结尾留下的那个矛盾，值得在课堂上展开讨论。</p>
-<p>心流研究的第七个特征是<strong>"自我意识的消失"</strong>[24]——在心流中，你不再关心"别人怎么看我"，你完全沉浸在活动本身中。这是运动最纯粹、最珍贵的部分。</p>
+<p>心流研究的第七个特征是<strong>"自我意识的消失"</strong><span class="ref" data-i="c-24">[24]</span>——在心流中，你不再关心"别人怎么看我"，你完全沉浸在活动本身中。这是运动最纯粹、最珍贵的部分。</p>
 <p>但你们要设计的系统，恰恰是关于"被看见"的——被摄像头看见、被数据看见、被社交媒体上的观众看见。</p>
 <p><strong>问题一：摄像头的存在是否会阻碍心流？</strong></p>
 <p>如果一个运动者知道自己正在被录制，他是否会下意识地关注"我看起来怎么样"，从而无法进入忘我的心流状态？这不是理论推测——很多运动员报告说，在有摄像机的情况下，他们的表现会受到影响。</p>
@@ -583,20 +607,20 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 <h3 class="center">附录：核心参考文献速查表</h3>
 <p>以下是你在课堂上可能需要引用的关键文献，按主题分类：</p>
 <h4>身体现象学与运动</h4>
-<ul><li>Merleau-Ponty, M. (1945/2012). _Phenomenology of Perception_. Routledge.[1]</li><li>Kosma, M. (2023). _Phenomenological Body Schema as Motor Habit in Skill Acquisition_. Athens Journal of Sports.[2]</li><li>Scielo (2024). _What is the relationship between the body and sports? From Merleau-Ponty..._[10]</li><li>Hockey, J. & Allen-Collinson, J. (2007). _Grasping the Phenomenology of Sporting Bodies_. International Review for the Sociology of Sport.</li></ul>
+<ul><li>Merleau-Ponty, M. (1945/2012). _Phenomenology of Perception_. Routledge.<span class="ref" data-i="c-1">[1]</span></li><li>Kosma, M. (2023). _Phenomenological Body Schema as Motor Habit in Skill Acquisition_. Athens Journal of Sports.<span class="ref" data-i="c-2">[2]</span></li><li>Scielo (2024). _What is the relationship between the body and sports? From Merleau-Ponty..._<span class="ref" data-i="c-10">[10]</span></li><li>Hockey, J. & Allen-Collinson, J. (2007). _Grasping the Phenomenology of Sporting Bodies_. International Review for the Sociology of Sport.</li></ul>
 <h4>数据人文主义与数据肖像</h4>
-<ul><li>Lupi, G. (2017). _Data Humanism: The Revolution Will Be Visualized_. PrintMag.[11]</li><li>Lupi, G. _How We Can Find Ourselves in Data_. TED Talk, 2017.[12]</li><li>Lupi, G. & Posavec, S. (2016). _Dear Data_. Princeton Architectural Press.[13]</li><li>Donath, J. et al. _Data Portraits_. MIT Press.[14]</li><li>Sampaio, J. (2019). _Data (self) Portraits: an Approach to the Visualization..._. xCoAx 2019.[15]</li><li>Sampaio, J. (2022). _Data Visualization as Portraiture_. xCoAx 2022.[16][17]</li></ul>
+<ul><li>Lupi, G. (2017). _Data Humanism: The Revolution Will Be Visualized_. PrintMag.<span class="ref" data-i="c-11">[11]</span></li><li>Lupi, G. _How We Can Find Ourselves in Data_. TED Talk, 2017.<span class="ref" data-i="c-12">[12]</span></li><li>Lupi, G. & Posavec, S. (2016). _Dear Data_. Princeton Architectural Press.<span class="ref" data-i="c-13">[13]</span></li><li>Donath, J. et al. _Data Portraits_. MIT Press.<span class="ref" data-i="c-14">[14]</span></li><li>Sampaio, J. (2019). _Data (self) Portraits: an Approach to the Visualization..._. xCoAx 2019.<span class="ref" data-i="c-15">[15]</span></li><li>Sampaio, J. (2022). _Data Visualization as Portraiture_. xCoAx 2022.<span class="ref" data-i="c-16">[16]</span><span class="ref" data-i="c-17">[17]</span></li></ul>
 <h4>心流与时间感知</h4>
-<ul><li>Csikszentmihalyi, M. (1990). _Flow: The Psychology of Optimal Experience_. Harper & Row.[24]</li><li>Frontiers in Psychology (2020). _Flow States and Associated Changes in Spatial and Temporal Processing_.[25]</li><li>Psychology Today (2025). _In the Slow Zone: When Time Expands for Athletes_.[26]</li><li>ScienceDirect. _First few seconds for flow: A comprehensive proposal..._[29]</li><li>ResearchGate (2024). _The perception of time is slowed in response to exercise..._[27]</li></ul>
+<ul><li>Csikszentmihalyi, M. (1990). _Flow: The Psychology of Optimal Experience_. Harper & Row.<span class="ref" data-i="c-24">[24]</span></li><li>Frontiers in Psychology (2020). _Flow States and Associated Changes in Spatial and Temporal Processing_.<span class="ref" data-i="c-25">[25]</span></li><li>Psychology Today (2025). _In the Slow Zone: When Time Expands for Athletes_.<span class="ref" data-i="c-26">[26]</span></li><li>ScienceDirect. _First few seconds for flow: A comprehensive proposal..._<span class="ref" data-i="c-29">[29]</span></li><li>ResearchGate (2024). _The perception of time is slowed in response to exercise..._<span class="ref" data-i="c-27">[27]</span></li></ul>
 <h4>凝视理论与自我呈现</h4>
-<ul><li>Goffman, E. (1956). _The Presentation of Self in Everyday Life_. Doubleday.[21]</li><li>ResearchGate (2023). _The Presentation of Self in Social Media: Re-analysis of Front and Backstage Concepts_.[22]</li><li>Sage Publications. _Self-Presentation and the Dramaturgical Perspective_.[18 in Goffman section]</li></ul>
+<ul><li>Goffman, E. (1956). _The Presentation of Self in Everyday Life_. Doubleday.<span class="ref" data-i="c-21">[21]</span></li><li>ResearchGate (2023). _The Presentation of Self in Social Media: Re-analysis of Front and Backstage Concepts_.<span class="ref" data-i="c-22">[22]</span></li><li>Sage Publications. _Self-Presentation and the Dramaturgical Perspective_.[18 in Goffman section]</li></ul>
 <h4>本雅明与光环理论</h4>
-<ul><li>Benjamin, W. (1935/2008). _The Work of Art in the Age of Mechanical Reproduction_. MIT.[30]</li><li>Wikipedia. _The Work of Art in the Age of Mechanical Reproduction_.[31]</li></ul>
+<ul><li>Benjamin, W. (1935/2008). _The Work of Art in the Age of Mechanical Reproduction_. MIT.<span class="ref" data-i="c-30">[30]</span></li><li>Wikipedia. _The Work of Art in the Age of Mechanical Reproduction_.<span class="ref" data-i="c-31">[31]</span></li></ul>
 <h4>Spotify Wrapped 与数据叙事</h4>
-<ul><li>The Decision Lab (2021). _The Behavioral Science Behind Spotify Wrapped's Viral Success_.[18]</li><li>Jobaaj Learnings (2025). _Spotify Wrapped Case Study: How User Data Became a Viral Marketing Phenomenon_.[19]</li></ul>
+<ul><li>The Decision Lab (2021). _The Behavioral Science Behind Spotify Wrapped's Viral Success_.<span class="ref" data-i="c-18">[18]</span></li><li>Jobaaj Learnings (2025). _Spotify Wrapped Case Study: How User Data Became a Viral Marketing Phenomenon_.<span class="ref" data-i="c-19">[19]</span></li></ul>
 <div class="pq"><p><strong>使用建议</strong>：这份报告的信息量远超25分钟演讲所需。建议你通读一遍建立全局认知，然后在每个观点下选择1-2个你最有共鸣的理论和案例深入理解。课堂上不需要讲出所有内容——<strong>你知道但不说的部分，会自然地转化为你讲述时的从容和深度</strong>。当学生提出意料之外的问题时，这些储备知识会成为你即兴回应的弹药库。  特别提醒：这篇讲稿的四个观点是<strong>递进关系</strong>——从"数据与身体的关系"（本体论层面）到"观看的方式"（认识论层面）到"时间的设计"（美学层面）到"光环的民主化"（文化政治层面）。你可以根据课堂时间灵活调整深度，但建议保持这个递进顺序，因为每个观点都为下一个观点做了铺垫。 </p></div>
 </div></div></div>
-</main>
+</div>
 <footer class="df" id="refs"><div class="dfi"><h2>参考文献</h2><p>核心文献按主题分类：</p><div class="rli">
 <h4>媒介理论</h4><p>Dayan, D. & Katz, E. (1992). <em>Media Events.</em></p>
 <h4>体育社会学</h4><p>Bourdieu, P. (1984). <em>Distinction.</em></p>
@@ -610,4 +634,96 @@ main{max-width:1600px;margin:0 auto;padding:0;position:relative;z-index:1}
 var h=document.documentElement;var p=document.getElementById("rpF");
 document.addEventListener("scroll",function(){var pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;p.style.width=Math.min(pct,100)+"%";});
 document.querySelectorAll("a[href^=#]").forEach(function(l){l.addEventListener("click",function(e){e.preventDefault();var t=document.querySelector(this.getAttribute("href"));if(t)t.scrollIntoView({behavior:"smooth",block:"start"});});});
-</script></body></html>
+var REFS_A=["AFP / 法新社 (2024). 郑钦文巴黎奥运夺金报道. [https://www.olympics.com/en/paris-2024/tennis]", "Tong, X. (2014). Li Na brings Chinese tennis to the next level. CNN.", "新华社 (2024.12.20). 从奥运金牌到全民热潮——2024，中国网球\"火\"了. 中国新闻网.", "36氪 (2024.10.14). 网球越来越热了，但普通人上手还有点难. 36Kr.", "Dayan, D. & Katz, E. (1992). Media Events: The Live Broadcasting of History. Harvard UP.", "ResearchGate (2022). Media events in an age of the Web and television: Dayan and Katz revisited.", "Bourdieu, P. (1979/1984). Distinction: A Social Critique of the Judgement of Taste. Harvard UP.", "Giulianotti, R. Pierre Bourdieu and the Sociological Study of Sport: Habitus, Capital and Field. Palgrave.", "BBC / 美国之音 (2011). 李娜夺冠引发体坛改革呼声. BBC中文.", "李娜 (2012). 《独自上场》. 企鹅出版社/中国出版.", "微信公众号文章 (2024). 郑钦文家庭投资之路. [Various sources].", "中国网球协会 (2025.1.2). 2024中国网球十大要事.", "小红书 (2024). Tenniscore网球穿搭帖合集. [Multiple posts].", "钛媒体 (2024.8.5). 郑钦文奥运夺冠采访全解读. TMTpost.", "封面新闻 (2024.8.5). 哪些品牌\"押中\"了郑钦文？"];
+var REFS_B=["Li, I., Dey, A., & Forlizzi, J. (2010). A Stage-Based Model of Personal Informatics Systems. CHI 2010.", "Rooksby, J. et al. (2014). Personal Tracking as Lived Informatics. CHI 2014.", "Epstein, D. et al. (2021). Challenges in Everyday Use of Mobile Visualizations.", "<i>小红书</i>. 学网球后才知道，原来握拍也分这么多种！", "Reddit r/10s (2023). Best way to break 3.0?", "Hullman, J. & Diakopoulos, N. (2011). Visualization Rhetoric: Framing Effects in Narrative Visualization. IEEE TVCG.", "Tversky, A. & Kahneman, D. (1981). The Framing of Decisions and the Psychology of Choice. Science.", "Rothman, A. & Salovey, P. (1997). Shaping perceptions to motivate healthy behavior. Psychological Bulletin.", "Segel, E. & Heer, J. (2010). Narrative Visualization: Telling Stories with Data. IEEE TVCG.", "The Decision Lab (2025). The Behavioral Science Behind Spotify Wrapped's Viral Success.", "UX Playbook / Marketing Made Clear. Spotify Wrapped 设计策略分析.", "Marketing Made Clear (2025). How Spotify Wrapped uses identity psychology.", "Strava / Reddit (2025). Year in Sport 付费墙争议.", "Reddit 用户反馈. Strava Year in Sport 信息不足.", "Lupi, G. (2017). Data Humanism: The Revolution Will Be Visualized. PrintMag.", "Lupi, G. & Posavec, S. (2016). Dear Data. Princeton Architectural Press.", "Lupi, G. (2025). Speak Data. [New book].", "<i>纽约时报</i> (2026). Giorgia Lupi首个个人展览\"Data Humanism\" 4月30日开幕.", "APA. Self-Efficacy: Core Theory of Human Agency.", "Bandura, A. (1977). Self-efficacy: Toward a Unifying Theory of Behavioral Change. Psychological Review.", "Bandura 自我效能量表. 中文版信效度检验.", "Bandura, A. (2008). \"没有比掌握经验更好的方式来建立自我效能.\"", "NIH综述. 体育活动中自我效能的作用.", "PMC / 运动神经科学 (2024). 运动记忆巩固研究.", "Neuroscience研究. 突触强化与自动化转移机制.", "PMC (2024). 平台期后表现跃升研究.", "Duolingo官方博客. Streak用户留存机制.", "Duolingo官方博客. 游戏化策略分析.", "Duolingo官方博客 (内部). Streak设计解释.", "The Decision Lab (2026.3). Streak Creep: The Perils of Too Much Gamification."];
+var REFS_C=["Merleau-Ponty, M. (1945/2012). Phenomenology of Perception. Routledge.", "Kosma, M. (2023). Phenomenological Body Schema as Motor Habit. Athens Journal of Sports.", "Hockey, J. & Allen-Collinson, J. (2007). Grasping the Phenomenology of Sporting Bodies.", "Merleau-Ponty, M. (1945). 《知觉现象学》核心概念.", "Gallagher, S. (2005). How the Body Shapes the Mind.", "Gallagher, S. 身体图式的前反思表征.", "Gibbs, R. W. (2006). Embodiment and Cognitive Science.", "Sheets-Johnstone, M. (1980). The Phenomenology of Dance.", "Husserl 意向性弧概念.", "Scielo (2024). What is the relationship between the body and sports? From Merleau-Ponty...", "Lupi, G. (2017). Data Humanism: The Revolution Will Be Visualized. PrintMag.", "Lupi, G. TED (2017). How We Can Find Ourselves in Data.", "Lupi, G. & Posavec, S. (2016). Dear Data. Princeton Architectural Press.", "Donath, J. et al. (MIT Media Lab). Data Portraits.", "Sampaio, J. (2019). Data (self) Portraits. xCoAx 2019.", "Sampaio, J. (2022). Data Visualization as Portraiture. xCoAx 2022.", "ResearchGate 综述. 数据肖像唤起经验.", "The Decision Lab (2025). Behavioral Science Behind Spotify Wrapped.", "Jobaaj Learnings (2025). Spotify Wrapped Case Study.", "Sport监控研究. 规训凝视在体育中的应用.", "Goffman, E. (1956). The Presentation of Self in Everyday Life. Doubleday.", "ResearchGate (2023). Front and Backstage in Social Media.", "Medium分析. Goffman's Dramaturgical Theory in the Digital Age.", "Csikszentmihalyi, M. (1990). Flow: The Psychology of Optimal Experience. Harper & Row.", "Frontiers in Psychology (2020). Flow States and Spatial/Temporal Processing.", "Psychology Today (2025). In the Slow Zone: When Time Expands for Athletes.", "ResearchGate (2024). Time perception slowed by exercise.", "Steven Kotler (2026.3). The Neuroscience of Flow.", "ScienceDirect. First few seconds for flow: A comprehensive proposal.", "Benjamin, W. (1935/2008). The Work of Art in the Age of Mechanical Reproduction. MIT.", "Wikipedia. The Work of Art in the Age of Mechanical Reproduction – 膜拜价值与展示价值.", "Strava Blog. Strava Art: How Running Became an Art Form.", "Guinness世界纪录. Maximum GPS Art.", "Strava Prints应用. GPS数据转化为可打印艺术品."];
+var RF={A:REFS_A,B:REFS_B,C:REFS_C};
+var popEl,cardEl,popOpen=false;
+function secTopic(el){var s=el;while(s){if(s.id==="t1")return"A";if(s.id==="t2")return"B";if(s.id==="t3")return"C";s=s.parentElement;}return"A";}
+function showRef(n,topic){
+  if(!popEl){popEl=document.createElement("div");popEl.className="ref-pop";popEl.innerHTML='<div class="ref-pop-bd" id="rpBg"></div><div class="ref-pop-card"><button class="ref-pop-x" id="rpX">✕</button><div class="ref-pop-n" id="rpNum"></div><div class="ref-pop-t" id="rpTxt"></div></div>';document.body.appendChild(popEl);cardEl=popEl.querySelector(".ref-pop-card");document.getElementById("rpBg").addEventListener("click",hideRef);document.getElementById("rpX").addEventListener("click",hideRef);document.addEventListener("keydown",function(e){if(e.key==="Escape")hideRef();});}
+  var secs={A:"课题A",B:"课题B",C:"课题C"};
+  var idx=(topic==="A"&&n<=15)?n-1:(topic==="B"&&n<=30)?n-1:(topic==="C"&&n<=34)?n-1:-1;
+  var data=RF[topic]||[];
+  var text=idx>=0&&idx<data.length?data[idx]:"参考文献未找到 ("+n+")";
+  document.getElementById("rpNum").textContent="参考文献 · "+secs[topic]+" · ["+n+"]";
+  document.getElementById("rpTxt").innerHTML=text;
+  requestAnimationFrame(function(){popEl.classList.add("on");});
+  popOpen=true;
+}
+function hideRef(){if(popEl){popEl.classList.remove("on");}popOpen=false;}
+document.addEventListener("click",function(e){if(popOpen&&!cardEl.contains(e.target)){hideRef();}});
+document.querySelectorAll(".ref").forEach(function(el){
+  el.addEventListener("click",function(e){e.stopPropagation();e.preventDefault();
+    var n=parseInt(this.getAttribute("data-n"));
+    var t=secTopic(this);
+    showRef(n,t);
+  });
+});
+</script><script>
+var h=document.documentElement;var p=document.getElementById("rpF");
+document.addEventListener("scroll",function(){var pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;p.style.width=Math.min(pct,100)+"%";});
+document.querySelectorAll("a[href^=#]").forEach(function(l){l.addEventListener("click",function(e){e.preventDefault();var t=document.querySelector(this.getAttribute("href"));if(t)t.scrollIntoView({behavior:"smooth",block:"start"});});});
+var REFS_A=["AFP / 法新社 (2024). 郑钦文巴黎奥运夺金报道. [https://www.olympics.com/en/paris-2024/tennis]", "Tong, X. (2014). Li Na brings Chinese tennis to the next level. CNN.", "新华社 (2024.12.20). 从奥运金牌到全民热潮——2024，中国网球\"火\"了. 中国新闻网.", "36氪 (2024.10.14). 网球越来越热了，但普通人上手还有点难. 36Kr.", "Dayan, D. & Katz, E. (1992). Media Events: The Live Broadcasting of History. Harvard UP.", "ResearchGate (2022). Media events in an age of the Web and television: Dayan and Katz revisited.", "Bourdieu, P. (1979/1984). Distinction: A Social Critique of the Judgement of Taste. Harvard UP.", "Giulianotti, R. Pierre Bourdieu and the Sociological Study of Sport: Habitus, Capital and Field. Palgrave.", "BBC / 美国之音 (2011). 李娜夺冠引发体坛改革呼声. BBC中文.", "李娜 (2012). 《独自上场》. 企鹅出版社/中国出版.", "微信公众号文章 (2024). 郑钦文家庭投资之路. [Various sources].", "中国网球协会 (2025.1.2). 2024中国网球十大要事.", "小红书 (2024). Tenniscore网球穿搭帖合集. [Multiple posts].", "钛媒体 (2024.8.5). 郑钦文奥运夺冠采访全解读. TMTpost.", "封面新闻 (2024.8.5). 哪些品牌\"押中\"了郑钦文？"];
+var REFS_B=["Li, I., Dey, A., & Forlizzi, J. (2010). A Stage-Based Model of Personal Informatics Systems. CHI 2010.", "Rooksby, J. et al. (2014). Personal Tracking as Lived Informatics. CHI 2014.", "Epstein, D. et al. (2021). Challenges in Everyday Use of Mobile Visualizations.", "<i>小红书</i>. 学网球后才知道，原来握拍也分这么多种！", "Reddit r/10s (2023). Best way to break 3.0?", "Hullman, J. & Diakopoulos, N. (2011). Visualization Rhetoric: Framing Effects in Narrative Visualization. IEEE TVCG.", "Tversky, A. & Kahneman, D. (1981). The Framing of Decisions and the Psychology of Choice. Science.", "Rothman, A. & Salovey, P. (1997). Shaping perceptions to motivate healthy behavior. Psychological Bulletin.", "Segel, E. & Heer, J. (2010). Narrative Visualization: Telling Stories with Data. IEEE TVCG.", "The Decision Lab (2025). The Behavioral Science Behind Spotify Wrapped's Viral Success.", "UX Playbook / Marketing Made Clear. Spotify Wrapped 设计策略分析.", "Marketing Made Clear (2025). How Spotify Wrapped uses identity psychology.", "Strava / Reddit (2025). Year in Sport 付费墙争议.", "Reddit 用户反馈. Strava Year in Sport 信息不足.", "Lupi, G. (2017). Data Humanism: The Revolution Will Be Visualized. PrintMag.", "Lupi, G. & Posavec, S. (2016). Dear Data. Princeton Architectural Press.", "Lupi, G. (2025). Speak Data. [New book].", "<i>纽约时报</i> (2026). Giorgia Lupi首个个人展览\"Data Humanism\" 4月30日开幕.", "APA. Self-Efficacy: Core Theory of Human Agency.", "Bandura, A. (1977). Self-efficacy: Toward a Unifying Theory of Behavioral Change. Psychological Review.", "Bandura 自我效能量表. 中文版信效度检验.", "Bandura, A. (2008). \"没有比掌握经验更好的方式来建立自我效能.\"", "NIH综述. 体育活动中自我效能的作用.", "PMC / 运动神经科学 (2024). 运动记忆巩固研究.", "Neuroscience研究. 突触强化与自动化转移机制.", "PMC (2024). 平台期后表现跃升研究.", "Duolingo官方博客. Streak用户留存机制.", "Duolingo官方博客. 游戏化策略分析.", "Duolingo官方博客 (内部). Streak设计解释.", "The Decision Lab (2026.3). Streak Creep: The Perils of Too Much Gamification."];
+var REFS_C=["Merleau-Ponty, M. (1945/2012). Phenomenology of Perception. Routledge.", "Kosma, M. (2023). Phenomenological Body Schema as Motor Habit. Athens Journal of Sports.", "Hockey, J. & Allen-Collinson, J. (2007). Grasping the Phenomenology of Sporting Bodies.", "Merleau-Ponty, M. (1945). 《知觉现象学》核心概念.", "Gallagher, S. (2005). How the Body Shapes the Mind.", "Gallagher, S. 身体图式的前反思表征.", "Gibbs, R. W. (2006). Embodiment and Cognitive Science.", "Sheets-Johnstone, M. (1980). The Phenomenology of Dance.", "Husserl 意向性弧概念.", "Scielo (2024). What is the relationship between the body and sports? From Merleau-Ponty...", "Lupi, G. (2017). Data Humanism: The Revolution Will Be Visualized. PrintMag.", "Lupi, G. TED (2017). How We Can Find Ourselves in Data.", "Lupi, G. & Posavec, S. (2016). Dear Data. Princeton Architectural Press.", "Donath, J. et al. (MIT Media Lab). Data Portraits.", "Sampaio, J. (2019). Data (self) Portraits. xCoAx 2019.", "Sampaio, J. (2022). Data Visualization as Portraiture. xCoAx 2022.", "ResearchGate 综述. 数据肖像唤起经验.", "The Decision Lab (2025). Behavioral Science Behind Spotify Wrapped.", "Jobaaj Learnings (2025). Spotify Wrapped Case Study.", "Sport监控研究. 规训凝视在体育中的应用.", "Goffman, E. (1956). The Presentation of Self in Everyday Life. Doubleday.", "ResearchGate (2023). Front and Backstage in Social Media.", "Medium分析. Goffman's Dramaturgical Theory in the Digital Age.", "Csikszentmihalyi, M. (1990). Flow: The Psychology of Optimal Experience. Harper & Row.", "Frontiers in Psychology (2020). Flow States and Spatial/Temporal Processing.", "Psychology Today (2025). In the Slow Zone: When Time Expands for Athletes.", "ResearchGate (2024). Time perception slowed by exercise.", "Steven Kotler (2026.3). The Neuroscience of Flow.", "ScienceDirect. First few seconds for flow: A comprehensive proposal.", "Benjamin, W. (1935/2008). The Work of Art in the Age of Mechanical Reproduction. MIT.", "Wikipedia. The Work of Art in the Age of Mechanical Reproduction – 膜拜价值与展示价值.", "Strava Blog. Strava Art: How Running Became an Art Form.", "Guinness世界纪录. Maximum GPS Art.", "Strava Prints应用. GPS数据转化为可打印艺术品."];
+var RF={A:REFS_A,B:REFS_B,C:REFS_C};
+var popEl,cardEl,popOpen=false;
+function secTopic(el){var s=el;while(s){if(s.id==="t1")return"A";if(s.id==="t2")return"B";if(s.id==="t3")return"C";s=s.parentElement;}return"A";}
+function showRef(n,topic){
+  if(!popEl){popEl=document.createElement("div");popEl.className="ref-pop";popEl.innerHTML='<div class="ref-pop-bd" id="rpBg"></div><div class="ref-pop-card"><button class="ref-pop-x" id="rpX">✕</button><div class="ref-pop-n" id="rpNum"></div><div class="ref-pop-t" id="rpTxt"></div></div>';document.body.appendChild(popEl);cardEl=popEl.querySelector(".ref-pop-card");document.getElementById("rpBg").addEventListener("click",hideRef);document.getElementById("rpX").addEventListener("click",hideRef);document.addEventListener("keydown",function(e){if(e.key==="Escape")hideRef();});}
+  var secs={A:"课题A",B:"课题B",C:"课题C"};
+  var idx=(topic==="A"&&n<=15)?n-1:(topic==="B"&&n<=30)?n-1:(topic==="C"&&n<=34)?n-1:-1;
+  var data=RF[topic]||[];
+  var text=idx>=0&&idx<data.length?data[idx]:"参考文献未找到 ("+n+")";
+  document.getElementById("rpNum").textContent="参考文献 · "+secs[topic]+" · ["+n+"]";
+  document.getElementById("rpTxt").innerHTML=text;
+  requestAnimationFrame(function(){popEl.classList.add("on");});
+  popOpen=true;
+}
+function hideRef(){if(popEl){popEl.classList.remove("on");}popOpen=false;}
+document.addEventListener("click",function(e){if(popOpen&&!cardEl.contains(e.target)){hideRef();}});
+document.querySelectorAll(".ref").forEach(function(el){
+  el.addEventListener("click",function(e){e.stopPropagation();e.preventDefault();
+    var n=parseInt(this.getAttribute("data-n"));
+    var t=secTopic(this);
+    showRef(n,t);
+  });
+});
+</script>
+
+<div class="ref-pop" id="refPop"><div class="ref-pop-inner"><button class="ref-pop-close" id="refPopClose">&times;</button><div class="ref-pop-num" id="refPopNum"></div><div class="ref-pop-text" id="refPopText"></div></div></div>
+
+<script>
+var h=document.documentElement;var p=document.getElementById("rpF");
+document.addEventListener("scroll",function(){var pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;p.style.width=Math.min(pct,100)+"%";});
+document.querySelectorAll("a[href^=#]").forEach(function(l){l.addEventListener("click",function(e){e.preventDefault();var t=document.querySelector(this.getAttribute("href"));if(t)t.scrollIntoView({behavior:"smooth",block:"start"});});});
+var REFS_A=["AFP / 法新社 (2024). 郑钦文巴黎奥运夺金报道. [https://www.olympics.com/en/paris-2024/tennis]", "Tong, X. (2014). Li Na brings Chinese tennis to the next level. CNN.", "新华社 (2024.12.20). 从奥运金牌到全民热潮——2024，中国网球\"火\"了. 中国新闻网.", "36氪 (2024.10.14). 网球越来越热了，但普通人上手还有点难. 36Kr.", "Dayan, D. & Katz, E. (1992). Media Events: The Live Broadcasting of History. Harvard UP.", "ResearchGate (2022). Media events in an age of the Web and television: Dayan and Katz revisited.", "Bourdieu, P. (1979/1984). Distinction: A Social Critique of the Judgement of Taste. Harvard UP.", "Giulianotti, R. Pierre Bourdieu and the Sociological Study of Sport: Habitus, Capital and Field. Palgrave.", "BBC / 美国之音 (2011). 李娜夺冠引发体坛改革呼声. BBC中文.", "李娜 (2012). 《独自上场》. 企鹅出版社/中国出版.", "微信公众号文章 (2024). 郑钦文家庭投资之路. [Various sources].", "中国网球协会 (2025.1.2). 2024中国网球十大要事.", "小红书 (2024). Tenniscore网球穿搭帖合集. [Multiple posts].", "钛媒体 (2024.8.5). 郑钦文奥运夺冠采访全解读. TMTpost.", "封面新闻 (2024.8.5). 哪些品牌\"押中\"了郑钦文？"];
+var REFS_B=["Li, I., Dey, A., & Forlizzi, J. (2010). A Stage-Based Model of Personal Informatics Systems. CHI 2010.", "Rooksby, J. et al. (2014). Personal Tracking as Lived Informatics. CHI 2014.", "Epstein, D. et al. (2021). Challenges in Everyday Use of Mobile Visualizations.", "<i>小红书</i>. 学网球后才知道，原来握拍也分这么多种！", "Reddit r/10s (2023). Best way to break 3.0?", "Hullman, J. & Diakopoulos, N. (2011). Visualization Rhetoric: Framing Effects in Narrative Visualization. IEEE TVCG.", "Tversky, A. & Kahneman, D. (1981). The Framing of Decisions and the Psychology of Choice. Science.", "Rothman, A. & Salovey, P. (1997). Shaping perceptions to motivate healthy behavior. Psychological Bulletin.", "Segel, E. & Heer, J. (2010). Narrative Visualization: Telling Stories with Data. IEEE TVCG.", "The Decision Lab (2025). The Behavioral Science Behind Spotify Wrapped's Viral Success.", "UX Playbook / Marketing Made Clear. Spotify Wrapped 设计策略分析.", "Marketing Made Clear (2025). How Spotify Wrapped uses identity psychology.", "Strava / Reddit (2025). Year in Sport 付费墙争议.", "Reddit 用户反馈. Strava Year in Sport 信息不足.", "Lupi, G. (2017). Data Humanism: The Revolution Will Be Visualized. PrintMag.", "Lupi, G. & Posavec, S. (2016). Dear Data. Princeton Architectural Press.", "Lupi, G. (2025). Speak Data. [New book].", "<i>纽约时报</i> (2026). Giorgia Lupi首个个人展览\"Data Humanism\" 4月30日开幕.", "APA. Self-Efficacy: Core Theory of Human Agency.", "Bandura, A. (1977). Self-efficacy: Toward a Unifying Theory of Behavioral Change. Psychological Review.", "Bandura 自我效能量表. 中文版信效度检验.", "Bandura, A. (2008). \"没有比掌握经验更好的方式来建立自我效能.\"", "NIH综述. 体育活动中自我效能的作用.", "PMC / 运动神经科学 (2024). 运动记忆巩固研究.", "Neuroscience研究. 突触强化与自动化转移机制.", "PMC (2024). 平台期后表现跃升研究.", "Duolingo官方博客. Streak用户留存机制.", "Duolingo官方博客. 游戏化策略分析.", "Duolingo官方博客 (内部). Streak设计解释.", "The Decision Lab (2026.3). Streak Creep: The Perils of Too Much Gamification."];
+var REFS_C=["Merleau-Ponty, M. (1945/2012). Phenomenology of Perception. Routledge.", "Kosma, M. (2023). Phenomenological Body Schema as Motor Habit. Athens Journal of Sports.", "Hockey, J. & Allen-Collinson, J. (2007). Grasping the Phenomenology of Sporting Bodies.", "Merleau-Ponty, M. (1945). 《知觉现象学》核心概念.", "Gallagher, S. (2005). How the Body Shapes the Mind.", "Gallagher, S. 身体图式的前反思表征.", "Gibbs, R. W. (2006). Embodiment and Cognitive Science.", "Sheets-Johnstone, M. (1980). The Phenomenology of Dance.", "Husserl 意向性弧概念.", "Scielo (2024). What is the relationship between the body and sports? From Merleau-Ponty...", "Lupi, G. (2017). Data Humanism: The Revolution Will Be Visualized. PrintMag.", "Lupi, G. TED (2017). How We Can Find Ourselves in Data.", "Lupi, G. & Posavec, S. (2016). Dear Data. Princeton Architectural Press.", "Donath, J. et al. (MIT Media Lab). Data Portraits.", "Sampaio, J. (2019). Data (self) Portraits. xCoAx 2019.", "Sampaio, J. (2022). Data Visualization as Portraiture. xCoAx 2022.", "ResearchGate 综述. 数据肖像唤起经验.", "The Decision Lab (2025). Behavioral Science Behind Spotify Wrapped.", "Jobaaj Learnings (2025). Spotify Wrapped Case Study.", "Sport监控研究. 规训凝视在体育中的应用.", "Goffman, E. (1956). The Presentation of Self in Everyday Life. Doubleday.", "ResearchGate (2023). Front and Backstage in Social Media.", "Medium分析. Goffman's Dramaturgical Theory in the Digital Age.", "Csikszentmihalyi, M. (1990). Flow: The Psychology of Optimal Experience. Harper & Row.", "Frontiers in Psychology (2020). Flow States and Spatial/Temporal Processing.", "Psychology Today (2025). In the Slow Zone: When Time Expands for Athletes.", "ResearchGate (2024). Time perception slowed by exercise.", "Steven Kotler (2026.3). The Neuroscience of Flow.", "ScienceDirect. First few seconds for flow: A comprehensive proposal.", "Benjamin, W. (1935/2008). The Work of Art in the Age of Mechanical Reproduction. MIT.", "Wikipedia. The Work of Art in the Age of Mechanical Reproduction – 膜拜价值与展示价值.", "Strava Blog. Strava Art: How Running Became an Art Form.", "Guinness世界纪录. Maximum GPS Art.", "Strava Prints应用. GPS数据转化为可打印艺术品."];
+var RF={A:REFS_A,B:REFS_B,C:REFS_C};
+var popEl,cardEl,popOpen=false;
+function secTopic(el){var s=el;while(s){if(s.id==="t1")return"A";if(s.id==="t2")return"B";if(s.id==="t3")return"C";s=s.parentElement;}return"A";}
+function showRef(n,topic){
+  if(!popEl){popEl=document.createElement("div");popEl.className="ref-pop";popEl.innerHTML='<div class="ref-pop-bd" id="rpBg"></div><div class="ref-pop-card"><button class="ref-pop-x" id="rpX">✕</button><div class="ref-pop-n" id="rpNum"></div><div class="ref-pop-t" id="rpTxt"></div></div>';document.body.appendChild(popEl);cardEl=popEl.querySelector(".ref-pop-card");document.getElementById("rpBg").addEventListener("click",hideRef);document.getElementById("rpX").addEventListener("click",hideRef);document.addEventListener("keydown",function(e){if(e.key==="Escape")hideRef();});}
+  var secs={A:"课题A",B:"课题B",C:"课题C"};
+  var idx=(topic==="A"&&n<=15)?n-1:(topic==="B"&&n<=30)?n-1:(topic==="C"&&n<=34)?n-1:-1;
+  var data=RF[topic]||[];
+  var text=idx>=0&&idx<data.length?data[idx]:"参考文献未找到 ("+n+")";
+  document.getElementById("rpNum").textContent="参考文献 · "+secs[topic]+" · ["+n+"]";
+  document.getElementById("rpTxt").innerHTML=text;
+  requestAnimationFrame(function(){popEl.classList.add("on");});
+  popOpen=true;
+}
+function hideRef(){if(popEl){popEl.classList.remove("on");}popOpen=false;}
+document.addEventListener("click",function(e){if(popOpen&&!cardEl.contains(e.target)){hideRef();}});
+document.querySelectorAll(".ref").forEach(function(el){
+  el.addEventListener("click",function(e){e.stopPropagation();e.preventDefault();
+    var n=parseInt(this.getAttribute("data-n"));
+    var t=secTopic(this);
+    showRef(n,t);
+  });
+});
+</script>
+
+</body></html>
