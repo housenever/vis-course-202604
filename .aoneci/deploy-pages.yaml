@@ -20,7 +20,8 @@ jobs:
       - id: build-website
         run: |
           mkdir -p build
-          cp index.html build/index.html
+          cp *.html build/
+          [ -d "res" ] && cp -r res build/res
           echo "build complete"
 
       - uses: deploy-pages                        # 部署到 Aone Pages

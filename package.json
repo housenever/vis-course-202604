@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "校企合作课程：运动叙事可视化 演示文稿",
   "scripts": {
-    "build": "mkdir -p build && cp index.html build/ && echo 'build complete'",
+    "build": "mkdir -p build && cp *.html build/ && echo 'build complete'",
     "serve": "npx serve build/"
   },
   "keywords": [],
