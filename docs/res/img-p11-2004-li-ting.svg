@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="400" height="260">
+  <rect fill="#F5F0E8" width="400" height="260" rx="6"/>
+  <rect x="40" y="30" width="320" height="160" rx="4" fill="#EDE6D8" stroke="#C4A65A" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="200" y="110" text-anchor="middle" font-family="serif" font-size="48" fill="#C4A65A">🏆</text>
+  <text x="200" y="145" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6B5D4F">2004 · 李婷/孙甜甜 雅典奥运会夺金</text>
+  <text x="200" y="165" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#9E8E7C">报纸头条 · 黑白印刷</text>
+  <text x="200" y="220" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#9E8E7C">IMG-01 · 推荐尺寸: 400×260 · P11 使用</text>
+</svg>

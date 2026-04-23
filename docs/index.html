@@ -1,0 +1,4434 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>信息可视化课程 课题思维导览</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fff;
+        --bg-alt: #fafafa;
+        --bg-card: #fff;
+        --surface: #fff;
+        --tx: #222;
+        --tx2: #555;
+        --tx3: #888;
+        --tx4: #aaa;
+        --accent: #ff6022;
+        --accent-d: rgba(255, 96, 34, 0.08);
+        --accent-m: rgba(255, 96, 34, 0.15);
+        --green: #4caf50;
+        --green-d: rgba(76, 175, 80, 0.08);
+        --red: #f44336;
+        --red-d: rgba(244, 67, 54, 0.05);
+        --blue: #2196f3;
+        --blue-d: rgba(33, 150, 243, 0.08);
+        --purple: #9c27b0;
+        --purple-d: rgba(156, 39, 176, 0.08);
+        --br: rgba(0, 0, 0, 0.06);
+        --br-m: rgba(0, 0, 0, 0.1);
+        --sh-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+        --sh-md: 0 4px 20px rgba(0, 0, 0, 0.06);
+        --sh-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+        --ff-s: "Instrument Serif", "Noto Serif SC", "Songti SC", serif;
+        --ff-n: "DM Sans", "Noto Sans SC", "PingFang SC", sans-serif;
+        --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        --ease-in: cubic-bezier(0.7, 0, 0.84, 1);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        line-height: 1.9;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+      body {
+        font-family: var(--ff-n);
+        background: var(--bg);
+        color: var(--tx);
+        -webkit-font-smoothing: antialiased;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        background: oklch(0.98 0.01 85 / 0.93);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--br);
+      }
+      nav .ni {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 16px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      nav .nt {
+        font-family: var(--ff-s);
+        font-size: 15px;
+        font-weight: 600;
+      }
+      nav .nc {
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        max-width: 60%;
+      }
+      nav .nc a {
+        font-size: 12px;
+        color: var(--tx3);
+        text-decoration: none;
+        white-space: nowrap;
+        transition:
+          color 0.15s var(--ease-out),
+          outline 0.15s var(--ease-out);
+        letter-spacing: 0.03;
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
+      nav .nc a:hover {
+        color: var(--accent);
+        background: var(--accent-d);
+      }
+      nav .nc a:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      .rp {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 199;
+        height: 2px;
+      }
+      .rpf {
+        height: 100%;
+        background: var(--accent);
+        width: 0%;
+        border-radius: 1px;
+        transition: width 0.15s var(--ease-out);
+      }
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 128px 32px;
+        position: relative;
+        overflow: hidden;
+        background: radial-gradient(ellipse at top, var(--bg-alt), var(--bg) 70%);
+      }
+      .hero .hc {
+        max-width: 65ch;
+        position: relative;
+        z-index: 1;
+      }
+      .hero-logo {
+        width: 200px;
+        margin: 0 auto 48px;
+        display: block;
+        opacity: 0.9;
+      }
+      .hero-logo img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .hero .hs {
+        width: 48px;
+        height: 3px;
+        background: var(--accent);
+        border-radius: 2px;
+        margin: 0 auto 24px;
+      }
+      .hero h1 {
+        font-family: var(--ff-s);
+        font-size: clamp(3rem, 7vw, 6rem);
+        font-weight: 700;
+        line-height: 1.05;
+        color: var(--tx);
+        margin-bottom: 24px;
+        letter-spacing: -0.04em;
+      }
+      .hero p {
+        font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+        color: var(--tx2);
+        line-height: 1.85;
+        margin-bottom: 32px;
+        max-width: 55ch;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hsc {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        color: var(--tx4);
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+      .hsc-l {
+        width: 1px;
+        height: 32px;
+        background: linear-gradient(to bottom, var(--tx4), transparent);
+      }
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0;
+        position: relative;
+        z-index: 1;
+      }
+      @media (max-width: 1100px) {
+        main {
+          padding: 0 16px;
+        }
+      }
+      /* 课题详细信息卡片 */
+      .subject-info {
+        background: var(--bg-alt);
+        max-width: 1200px;
+        margin: 0 auto 64px;
+        padding: 32px 40px;
+        border-radius: 12px;
+      }
+      .subject-info-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+      .subject-info-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--tx4);
+      }
+      .subject-info-scale {
+        font-size: 0.78rem;
+        color: var(--tx3);
+      }
+      .subject-info-title {
+        font-family: var(--ff-s);
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: var(--tx);
+        margin-bottom: 20px;
+        line-height: 1.5;
+      }
+      .subject-info-section {
+        margin-bottom: 20px;
+      }
+      .subject-info-section:last-child {
+        margin-bottom: 0;
+      }
+      .subject-info-section-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      .subject-info-section p {
+        font-size: 0.88rem;
+        color: var(--tx2);
+        line-height: 1.85;
+        margin: 0;
+      }
+      .subject-info-section ul {
+        margin: 8px 0 0;
+        padding-left: 20px;
+      }
+      .subject-info-section li {
+        font-size: 0.88rem;
+        color: var(--tx2);
+        line-height: 1.85;
+        margin-bottom: 4px;
+      }
+      .subject-info-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+        margin-top: 24px;
+      }
+      .subject-info-meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .subject-info-meta-label {
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--tx4);
+      }
+      .subject-info-meta-value {
+        font-size: 0.85rem;
+        color: var(--tx);
+        font-weight: 500;
+      }
+      .subject-info-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+      .subject-info-tag {
+        font-size: 0.72rem;
+        color: var(--tx3);
+        background: var(--bg);
+        padding: 4px 10px;
+        border-radius: 4px;
+      }
+      .download-btn {
+        display: inline-flex;
+        align-items: center;
+        background: #222;
+        color: #fff;
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: all 0.2s var(--ease-out);
+        cursor: pointer;
+      }
+      .download-btn:hover {
+        background: #444;
+        transform: translateY(-1px);
+      }
+      .download-btn:active {
+        transform: translateY(0);
+      }
+      @media (min-width: 768px) {
+        .subject-info {
+          padding: 32px 48px;
+        }
+      }
+      @media (max-width: 768px) {
+        .subject-info {
+          padding: 24px 20px;
+        }
+      }
+      .aw {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      };
+      .ts {
+        padding: 128px 24px 0;
+      }
+      @media (min-width: 768px) {
+        .ts {
+          padding: 128px 32px 0;
+        }
+      }
+      @media (min-width: 1024px) {
+        .ts {
+          padding: 128px 48px 0;
+        }
+      }
+      .th {
+        padding-top: 40px;
+        margin-bottom: 64px;
+      }
+      .th.center {
+        text-align: center;
+      }
+      .tn2 {
+        font-size: 11px;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+      .th h2 {
+        font-family: var(--ff-s);
+        font-size: clamp(2rem, 3.8vw, 3.2rem);
+        font-weight: 700;
+        color: var(--tx);
+        line-height: 1.15;
+        letter-spacing: -0.025em;
+        margin-bottom: 16px;
+        max-width: 60ch;
+      }
+      .th .lead {
+        font-size: 1.08rem;
+        color: var(--tx2);
+        max-width: 55ch;
+        line-height: 1.85;
+      }
+      .th.center .lead {
+        margin: 0 auto;
+      }
+      @media (max-width: 768px) {
+        .aw {
+          padding: 0 16px;
+        }
+        .ts {
+          padding: 96px 0 0;
+        }
+        .th h2 {
+          font-size: clamp(1.6rem, 5vw, 2.4rem);
+        }
+        .hero {
+          padding: 64px 16px;
+        }
+        .hero h1 {
+          font-size: clamp(2rem, 8vw, 3.5rem);
+        }
+        nav .ni {
+          padding: 12px 16px;
+        }
+        nav .nc {
+          gap: 12px;
+        }
+      }
+      @media (max-width: 480px) {
+        .aw {
+          padding: 0 12px;
+        }
+        .ts {
+          padding: 80px 0 0;
+        }
+        .hero {
+          padding: 48px 12px;
+        }
+        .case-grid {
+          grid-template-columns: 1fr;
+        }
+        .numbered-grid {
+          grid-template-columns: 1fr;
+        }
+        .tgrd {
+          grid-template-columns: 1fr;
+        }
+      }
+      .art h3 {
+        font-family: var(--ff-s);
+        font-size: clamp(1.6rem, 2.4vw, 2rem);
+        font-weight: 600;
+        color: var(--tx);
+        margin: 160px 0 56px;
+        letter-spacing: -0.03em;
+      }
+      .art h3.center {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        margin-top: 120px;
+      }
+      .art h3.center::before {
+        content: "";
+        display: block;
+        width: 48px;
+        height: 2px;
+        background: var(--accent);
+      }
+      .art h4 {
+        font-family: var(--ff-s);
+        font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+        font-weight: 600;
+        color: var(--tx);
+        margin: 100px 0 32px;
+        letter-spacing: -0.02em;
+      }
+      .art h5 {
+        font-family: var(--ff-s);
+        font-size: clamp(1rem, 1.4vw, 1.15rem);
+        font-weight: 600;
+        color: var(--tx);
+        margin: 64px 0 20px;
+      }
+      /* 参考文献次级样式 */
+      .refs-section {
+        margin-top: 80px;
+        padding-top: 48px;
+        border-top: 1px solid var(--br);
+      }
+      .refs-section h3 {
+        font-family: var(--ff-n);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--tx3);
+        margin-bottom: 24px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .refs-section h4 {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--tx3);
+        margin: 24px 0 12px;
+        letter-spacing: 0.02em;
+      }
+      .refs-section ul {
+        margin: 0 0 16px 20px;
+        list-style: none;
+      }
+      .refs-section li {
+        font-size: 0.8rem;
+        color: var(--tx4);
+        line-height: 1.7;
+        margin-bottom: 8px;
+        padding-left: 16px;
+        position: relative;
+      }
+      .refs-section li::before {
+        content: "·";
+        position: absolute;
+        left: 0;
+        color: var(--tx4);
+      }
+      .art > p {
+        font-size: clamp(0.92rem, 1.05vw, 1.02rem);
+        color: var(--tx2);
+        line-height: 1.95;
+        margin-bottom: 20px;
+      }
+      .art > p.first-p {
+        font-size: clamp(1.02rem, 1.15vw, 1.08rem);
+        color: var(--tx2);
+        line-height: 1.9;
+        margin-bottom: 24px;
+      }
+      .art strong {
+        color: var(--tx);
+        font-weight: 600;
+      }
+      .art ul {
+        margin: 16px 0 20px 28px;
+      }
+      .art ol {
+        margin: 16px 0 20px 28px;
+      }
+      .art li {
+        margin-bottom: 14px;
+        font-size: clamp(0.9rem, 1.05vw, 1rem);
+        color: var(--tx2);
+        line-height: 1.85;
+      }
+      .art li strong {
+        color: var(--tx);
+        font-weight: 600;
+      }
+      .pq {
+        margin: 64px 0;
+        padding: 32px 24px;
+        background: var(--accent-d);
+        border-radius: 16px;
+        border-left: 3px solid var(--accent);
+        box-shadow: var(--sh-sm);
+      }
+      @media (min-width: 768px) {
+        .pq {
+          padding: 32px;
+        }
+      }
+      @media (min-width: 1024px) {
+        .pq {
+          padding: 40px 48px;
+        }
+      }
+      .pq > p {
+        font-family: var(--ff-s);
+        font-size: clamp(1.3rem, 1.6vw, 1.45rem);
+        color: var(--tx);
+        line-height: 1.75;
+        font-style: italic;
+        margin: 0;
+      }
+      .hbox {
+        margin: 32px 0;
+        padding: 24px;
+        background: var(--accent-d);
+        border-radius: 16px;
+        border: 1px solid var(--accent-m);
+      }
+      .hbox > p {
+        font-size: clamp(0.92rem, 1.05vw, 1rem);
+        color: var(--tx2);
+        line-height: 1.85;
+        margin-bottom: 8px;
+      }
+      .hbox > p:last-child {
+        margin-bottom: 0;
+      }
+      .hbox > p strong {
+        color: var(--tx);
+      }
+      .dtbl {
+        width: 100%;
+        margin: 32px 0;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: var(--surface);
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--br);
+        box-shadow: var(--sh-sm);
+      }
+      .dtbl th {
+        font-size: 0.72rem;
+        color: var(--tx3);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 12px 16px;
+        text-align: left;
+        background: var(--bg-alt);
+        font-weight: 600;
+        border-bottom: 1px solid var(--br-m);
+      }
+      .dtbl td {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+        color: var(--tx2);
+        border-bottom: 1px solid var(--br);
+        line-height: 1.7;
+        vertical-align: top;
+      }
+      .dtbl td strong {
+        color: var(--tx);
+      }
+      .dtbl tr:last-child td {
+        border-bottom: none;
+      }
+      .dtbl tr:hover td {
+        background: var(--bg-alt);
+      }
+      .case-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+        margin: 32px 0;
+      }
+      .case-card {
+        background: var(--surface);
+        border: 1px solid var(--br);
+        border-radius: 16px;
+        padding: 24px;
+        transition: all 0.25s var(--ease-out);
+        box-shadow: var(--sh-sm);
+      }
+      .case-card:hover {
+        border-color: var(--accent);
+        box-shadow: var(--sh-md);
+        transform: translateY(-3px);
+      }
+      .case-num {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--accent);
+        line-height: 1;
+        display: block;
+        margin-bottom: 10px;
+      }
+      .case-title {
+        font-family: var(--ff-s);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--tx);
+        margin-bottom: 4px;
+        line-height: 1.4;
+      }
+      .case-meta {
+        font-size: 0.75rem;
+        color: var(--tx4);
+        margin-bottom: 12px;
+      }
+      .case-body {
+        font-size: 0.88rem;
+        color: var(--tx2);
+        line-height: 1.7;
+      }
+      .strategy-card,
+      .feature-card {
+        background: var(--bg-card);
+        border: 1px solid var(--br);
+        border-radius: 14px;
+        padding: 24px;
+        transition: all 0.2s var(--ease-out);
+      }
+      .strategy-card:hover,
+      .feature-card:hover {
+        border-color: var(--accent-m);
+        box-shadow: var(--sh-md);
+      }
+      .st-num {
+        font-family: var(--ff-s);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent);
+        line-height: 1;
+        display: block;
+        margin-bottom: 8px;
+      }
+      .st-title {
+        font-weight: 600;
+        color: var(--tx);
+        margin-bottom: 6px;
+        font-size: 0.95rem;
+        line-height: 1.4;
+      }
+      .st-body {
+        font-size: 0.85rem;
+        color: var(--tx2);
+        line-height: 1.65;
+      }
+      .def-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin: 32px 0;
+      }
+      .definition-card {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        padding: 16px 20px;
+        background: var(--bg-card);
+        border: 1px solid var(--br);
+        border-radius: 12px;
+        transition: all 0.2s var(--ease-out);
+      }
+      .definition-card:hover {
+        border-color: var(--accent-m);
+      }
+      .def-label {
+        font-family: var(--ff-s);
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--accent);
+        line-height: 1;
+        flex-shrink: 0;
+        min-width: 48px;
+      }
+      .def-text {
+        font-size: 0.9rem;
+        color: var(--tx2);
+        line-height: 1.7;
+      }
+      .numbered-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 14px;
+        margin: 28px 0;
+      }
+      .numbered-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 16px 20px;
+        background: var(--bg-card);
+        border: 1px solid var(--br);
+        border-radius: 12px;
+        transition: all 0.2s var(--ease-out);
+      }
+      .numbered-item:hover {
+        border-color: var(--accent-m);
+      }
+      .num-label {
+        font-weight: 600;
+        color: var(--tx);
+        font-size: 0.92rem;
+      }
+      .num-text {
+        font-size: 0.85rem;
+        color: var(--tx2);
+        line-height: 1.65;
+      }
+      .visualization {
+        margin: 48px -24px;
+        background: var(--surface);
+        border: 1px solid var(--br);
+        border-radius: 16px;
+        padding: 32px 24px;
+        text-align: center;
+        overflow-x: auto;
+        box-shadow: var(--sh-sm);
+      }
+      @media (min-width: 768px) {
+        .visualization {
+          margin: 48px -32px;
+          padding: 32px;
+        }
+      }
+      @media (min-width: 1024px) {
+        .visualization {
+          margin: 48px -48px;
+          padding: 40px 48px;
+        }
+      }
+      .visualization svg {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+        min-width: 600px;
+      }
+      @media (min-width: 768px) {
+        .visualization svg {
+          min-width: 700px;
+        }
+      }
+      @media (min-width: 1024px) {
+        .visualization svg {
+          min-width: 800px;
+        }
+      }
+      .viz-caption {
+        font-size: 0.75rem;
+        color: var(--tx4);
+        text-align: center;
+        margin-top: 12px;
+        letter-spacing: 0.05em;
+        padding: 0 24px;
+      }
+      .dvd {
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--accent), transparent);
+        margin: 64px 0;
+        opacity: 0.4;
+      }
+      @media (max-width: 768px) {
+        .visualization {
+          padding: 24px 16px;
+        }
+        .dtbl th,
+        .dtbl td {
+          padding: 10px 12px;
+        }
+      }
+      .ov {
+        padding: 100px 32px;
+        background: var(--bg-alt);
+      }
+      .ovi {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .ov h2 {
+        font-family: var(--ff-s);
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        font-weight: 700;
+        color: var(--tx);
+        margin-bottom: 12px;
+      }
+      .ola {
+        font-size: 1.1rem;
+        color: var(--tx2);
+        max-width: 600px;
+        margin-bottom: 48px;
+        line-height: 1.85;
+      }
+      .tgrd {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 32px;
+      }
+      .tcd {
+        background: var(--surface);
+        border: 1px solid var(--br);
+        border-radius: 20px;
+        padding: 40px 36px;
+        transition: all 0.25s var(--ease-out);
+        box-shadow: var(--sh-sm);
+      }
+      .tcd:hover {
+        border-color: var(--accent);
+        box-shadow: var(--sh-lg);
+        transform: translateY(-4px);
+      }
+      .tcd-ic {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        margin-bottom: 24px;
+        transition: all 0.25s var(--ease-out);
+      }
+      .tcd-ic.a {
+        background: var(--accent-d);
+        color: var(--accent);
+      }
+      .tcd-ic.b {
+        background: var(--green-d);
+        color: var(--green);
+      }
+      .tcd-ic.c {
+        background: var(--blue-d);
+        color: var(--accent);
+      }
+      .tcd:hover .tcd-ic {
+        transform: scale(1.05);
+      }
+      .tcd h3 {
+        font-family: var(--ff-s);
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--tx);
+        margin-bottom: 8px;
+        letter-spacing: -0.01em;
+      }
+      .tcd .ts2 {
+        font-size: 0.85rem;
+        color: var(--tx3);
+        margin-bottom: 20px;
+        letter-spacing: 0.02em;
+      }
+      .tcd > p {
+        font-size: 0.9rem;
+        color: var(--tx2);
+        line-height: 1.8;
+        margin-bottom: 16px;
+      }
+      .tcd > p:first-of-type {
+        margin-top: 8px;
+      }
+      .tcd > p strong:first-child {
+        color: var(--tx);
+        font-weight: 600;
+      }
+      /* 课题卡片内的分组 */
+      .tcd-section {
+        margin: 20px 0;
+        padding-top: 16px;
+        border-top: 1px solid var(--br);
+      }
+      .tcd-section:first-of-type {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+      }
+      .tcd-label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+      }
+      .tcd-m {
+        display: flex;
+        gap: 8px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+      .tcd-m span {
+        font-size: 0.72rem;
+        color: var(--tx4);
+        background: var(--bg-alt);
+        padding: 6px 14px;
+        border-radius: 999px;
+        transition: all 0.2s var(--ease-out);
+      }
+      .tcd:hover .tcd-m span {
+        background: var(--accent-d);
+        color: var(--accent);
+      }
+      .tcd-footer {
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 1px solid var(--br);
+      }
+      .tcd-footer p {
+        font-size: 0.78rem;
+        color: var(--tx4);
+        margin: 0;
+        line-height: 1.6;
+      }
+      .df {
+        padding: 80px 32px;
+        text-align: center;
+        background: var(--bg-alt);
+        margin-top: 64px;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: oklch(0.15 0.01 85);
+          --bg-alt: oklch(0.12 0.02 85);
+          --bg-card: oklch(0.18 0.01 85);
+          --surface: oklch(0.2 0.01 85);
+          --tx: oklch(0.95 0.01 85);
+          --tx2: oklch(0.85 0.01 85);
+          --tx3: oklch(0.7 0.01 85);
+          --tx4: oklch(0.55 0.01 85);
+          --accent: oklch(0.7 0.15 75);
+          --accent-d: oklch(0.25 0.05 75 / 0.12);
+          --accent-m: oklch(0.3 0.05 75 / 0.25);
+          --green: oklch(0.65 0.12 145);
+          --green-d: oklch(0.2 0.04 145 / 0.12);
+          --red: oklch(0.65 0.15 25);
+          --red-d: oklch(0.2 0.04 25 / 0.1);
+          --blue: oklch(0.65 0.12 250);
+          --blue-d: oklch(0.2 0.04 250 / 0.12);
+          --purple: oklch(0.65 0.12 300);
+          --purple-d: oklch(0.2 0.04 300 / 0.12);
+          --br: oklch(0.95 0.01 85 / 0.1);
+          --br-m: oklch(0.95 0.01 85 / 0.18);
+          --sh-md: 0 4px 16px oklch(0 0 0 / 0.3);
+        }
+        nav {
+          background: oklch(0.15 0.01 85 / 0.93);
+        }
+      }
+      .dfi {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .df h2 {
+        font-family: var(--ff-s);
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--tx);
+        margin-bottom: 12px;
+      }
+      .df > p {
+        font-size: 0.9rem;
+        color: var(--tx3);
+        max-width: 560px;
+        margin: 0 auto 40px;
+      }
+      .rli {
+        text-align: left;
+      }
+      .rli h4 {
+        font-size: 0.72rem;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin: 28px 0 14px;
+        font-weight: 700;
+      }
+      .rli p {
+        font-size: 0.82rem;
+        color: var(--tx3);
+        margin: 8px 0;
+        line-height: 1.65;
+      }
+      .rli em {
+        color: var(--tx2);
+      }
+      .ref {
+        cursor: pointer;
+        color: var(--accent);
+        font-size: 0.75em;
+        vertical-align: super;
+        font-weight: 600;
+        transition: all 0.2s;
+        border-radius: 3px;
+        padding: 0 2px;
+        text-decoration: none;
+        background: rgba(196, 166, 90, 0.1);
+        line-height: 1;
+      }
+      .ref:hover {
+        background: var(--accent-m);
+        color: var(--tx);
+      }
+      @media (max-width: 768px) {
+        nav .nc {
+          display: none;
+        }
+        .hero {
+          padding: 60px 20px;
+        }
+        .ov {
+          padding: 40px 16px;
+        }
+        .ts {
+          padding: 60px 0 24px;
+        }
+        .art {
+          padding: 0 2px;
+        }
+        .visualization {
+          padding: 20px 12px;
+        }
+      }
+      .ref {
+        display: inline;
+        color: var(--accent);
+        font-size: 0.72em;
+        vertical-align: super;
+        cursor: pointer;
+        margin: 0 1px;
+        padding: 0 2px;
+        border-radius: 3px;
+        transition: all 0.15s;
+        font-weight: 600;
+        line-height: 1;
+        user-select: none;
+        position: relative;
+      }
+      .ref:hover {
+        background: var(--accent-m);
+        text-decoration: underline;
+      }
+      .ref-tooltip {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-4px);
+        background: var(--surface);
+        border: 1px solid var(--br-m);
+        border-radius: 8px;
+        padding: 8px 12px;
+        box-shadow: 0 4px 16px rgba(45, 42, 37, 0.12);
+        font-size: 0.75rem;
+        color: var(--tx);
+        line-height: 1.5;
+        max-width: 280px;
+        width: max-content;
+        z-index: 1000;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.15s var(--ease-out);
+        margin-bottom: 6px;
+      }
+      .ref:hover .ref-tooltip {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      .ref-tooltip::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -4px;
+        border: 4px solid transparent;
+        border-top-color: var(--br-m);
+      }
+      @media (max-width: 768px) {
+        .ref-tooltip {
+          max-width: 240px;
+          padding: 6px 10px;
+        }
+      }
+      .toc {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 48px;
+        height: 100vh;
+        background: var(--bg);
+        border-left: 1px solid var(--br-m);
+        z-index: 100;
+        transition: width 0.4s var(--ease-out);
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .toc:hover {
+        width: 280px;
+        border-left-color: var(--br);
+      }
+      .toc-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        border-bottom: 1px solid var(--br-m);
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.2s var(--ease-out) 0.1s;
+      }
+      .toc:hover .toc-header {
+        opacity: 1;
+      }
+      .toc-title {
+        font-size: 0.7rem;
+        color: var(--tx3);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-weight: 600;
+      }
+      .toc-close-btn {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s var(--ease-out);
+      }
+      .toc-close-btn:hover {
+        background: var(--bg-alt);
+      }
+      .toc-close-btn svg {
+        width: 16px;
+        height: 16px;
+        color: var(--tx2);
+      }
+      .toc-items {
+        position: absolute;
+        top: 56px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 8px 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+      .toc-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 36px;
+        padding: 0 14px;
+        transition: all 0.3s var(--ease-out);
+      }
+      .toc-item:hover {
+        background: var(--bg-alt);
+      }
+      .toc-item.active {
+        background: var(--accent-d);
+      }
+      .toc-item-line {
+        width: 20px;
+        height: 3px;
+        background: var(--br);
+        border-radius: 2px;
+        flex-shrink: 0;
+        transition: all 0.3s var(--ease-out);
+      }
+      .toc-item.h3 .toc-item-line {
+        width: 14px;
+        height: 2px;
+        margin-left: 6px;
+      }
+      .toc-item.active .toc-item-line {
+        background: var(--accent);
+        height: 4px;
+      }
+      .toc-item.h3.active .toc-item-line {
+        height: 3px;
+      }
+      .toc-item-text {
+        margin-left: 12px;
+        color: var(--tx2);
+        font-size: 0.82rem;
+        text-decoration: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 0;
+        opacity: 0;
+        transition: all 0.3s var(--ease-out);
+      }
+      .toc:hover .toc-item-text {
+        max-width: 200px;
+        opacity: 1;
+      }
+      .toc-item.active .toc-item-text {
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .toc-item.h3 .toc-item-text {
+        font-size: 0.78rem;
+        color: var(--tx3);
+      }
+      .toc-item.h3:hover .toc-item-text {
+        color: var(--tx);
+      }
+      @media (max-width: 1200px) {
+        .toc {
+          width: 48px;
+        }
+        .toc:hover {
+          width: 300px;
+        }
+      }
+      .toc-toggle {
+        display: none;
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        z-index: 200;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--sh-lg);
+        transition: all 0.25s var(--ease-out);
+      }
+      .toc-toggle:hover {
+        transform: scale(1.08);
+        box-shadow: 0 8px 28px rgba(255, 96, 34, 0.4);
+      }
+      @media (max-width: 1200px) {
+        .toc-toggle {
+          display: flex;
+        }
+      }
+      .main-wrap {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+      @media (min-width: 1201px) {
+        .main-wrap {
+          padding-right: 320px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="toc-toggle" id="tocToggle" aria-label="切换目录">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
+    <aside class="toc" id="toc">
+      <div class="toc-header">
+        <span class="toc-title">目录</span>
+      </div>
+      <div class="toc-items" id="tocItems"></div>
+    </aside>
+    <nav></nav>
+    <div class="rp"><div class="rpf" id="rpF"></div></div>
+    <section class="hero">
+      <div class="hc">
+        <div class="hero-logo"><img src="res/ledesignlogo.svg" alt="LE Design Logo" /></div>
+        <div class="hs"></div>
+        <h1>关于运动中的<span style="color:#ff6022">「被看见」</span></h1>
+        <p>Information Visualization & Sports Design <br />橙狮体育X同济大学信息可视化课程 课题思维导览</p>
+        <p style="font-size: 0.88rem; color: var(--tx4); line-height: 1.7; max-width: 520px; margin: 0 auto 28px">
+          课题指导：洪昱旻（阿里巴巴橙狮体育 产品设计Lead）
+        </p>
+        <div class="hsc">
+          <span>向下阅读</span>
+          <div class="hsc-l"></div>
+        </div>
+      </div>
+    </section>
+    <section class="ov" id="overview">
+      <div class="ovi">
+        <h2>课程课题概览</h2>
+        <p class="ola">三个可选的小组作业课题——宏观、中观、微观。</p>
+        <div class="tgrd">
+          <div class="tcd">
+            <div class="tcd-ic a">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+            </div>
+            <h3>课题 A：中国网球的变迁呈现</h3>
+            <p class="ts2">宏观尺度 · 媒介社会学</p>
+            <p><strong>核心问题</strong><br />当媒介环境从电视转向算法，一项运动的"被看见"方式如何被重新定义？</p>
+            <p><strong>背景</strong><br />2024 年郑钦文女单金牌让"网球"再度成为顶流。这二十年恰好是中国体育从"举国体制"向"职业化 + 大众化"转型的完整周期。李娜与郑钦文，同一个球场，两种媒介时代。</p>
+            <p><strong>关键产出</strong><br />4:3 竖版信息海报，包含培养模式三阶段演化图、媒介事件对比数据可视化、网球人口增长曲线。</p>
+            <div class="tcd-m">
+              <span>叙事可视化</span><span>信息设计</span><span>体育社会学</span><span>数据新闻</span><span>媒介研究</span>
+            </div>
+            <div class="tcd-footer">
+              <p>4:3 竖版海报 · 互联网公开数据 · 理论框架：媒介事件</p>
+            </div>
+          </div>
+          <div class="tcd">
+            <div class="tcd-ic b">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+              </svg>
+            </div>
+            <h3>课题 B：网球训练可视化报告设计</h3>
+            <p class="ts2">中观尺度 · 个人信息化</p>
+            <p><strong>核心问题</strong><br />当运动数据无法转化为个人洞察，爱好者如何在"看不到变化"中失去坚持的动力？</p>
+            <p><strong>背景</strong><br />"数据丰富但洞察贫乏"。70% 爱好者在 6 个月内放弃，因"看不到自己的变化"。智能手表、运动 APP 记录了大量数据，但用户无法从中获得"我在进步"的感知。</p>
+            <p><strong>关键产出</strong><br />个人网球成长报告 UI 界面，包含数据仪表盘、进步曲线可视化、个性化建议卡片、成就徽章系统。</p>
+            <div class="tcd-m">
+              <span>个人数据可视化</span><span>行为心理学</span><span>UX 设计</span><span>说服性设计</span><span>数据叙事</span>
+            </div>
+            <div class="tcd-footer">
+              <p>UI 界面设计 · 企业模拟数据 · 理论框架：目标设定理论</p>
+            </div>
+          </div>
+          <div class="tcd">
+            <div class="tcd-ic c">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="11" r="4" />
+                <path d="M12 1v2M12 21v2" />
+              </svg>
+            </div>
+            <h3>课题 C：运动影像的创意可视化</h3>
+            <p class="ts2">微观尺度 · 动态影像叙事</p>
+            <p><strong>核心问题</strong><br />当"被看见"成为运动体验的核心诉求，普通人如何获得专业级的高光时刻呈现？</p>
+            <p><strong>背景</strong><br />"被看见"成核心体验。专业转播门槛高，随手拍摄缺"高光感"。社交媒体时代，运动分享从"记录"升级为"表演"，但普通人缺乏专业包装能力。</p>
+            <p><strong>关键产出</strong><br />30 秒竖屏动态视频模板，包含数据入场动画、高光时刻标注、情绪曲线可视化、社交分享卡片自动生成。</p>
+            <div class="tcd-m">
+              <span>动态数据可视化</span><span>影视包装</span><span>动效设计</span><span>情绪化设计</span><span>社交传播</span>
+            </div>
+            <div class="tcd-footer">
+              <p>30 秒竖屏 MP4 · 场馆传感器数据 · 理论框架：动态图形设计</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="page-wrap">
+      <div id="t1" class="ts">
+        <div class="th center">
+          <p class="tn2">课题A · 宏观</p>
+          <h2>中国网球的变迁呈现</h2>
+          <p class="lead">当媒介重新发明一项运动</p>
+        </div>
+        <div class="subject-info">
+          <div class="subject-info-header">
+            <span class="subject-info-label">课题要求</span>
+  
+          </div>
+          <div class="subject-info-title">中国网球的变迁呈现 —— 数据驱动的体育文化记忆<br/><span style="font-size:0.9rem;color:var(--tx3);font-weight:400">（文化认同与自豪感）</span></div>
+          <div class="subject-info-section">
+            <div class="subject-info-section-title">课题背景</div>
+            <p>2024年巴黎奥运会，郑钦文的女单金牌让"网球"再次成为社交媒体顶流。然而，当年轻人在小红书上搜索"网球穿搭"时，很少有人知道这项运动在中国经历了怎样的媒介变形——从2004年雅典奥运会李婷/孙甜甜夺金时报纸头条的黑白印刷，到2011年李娜法网夺冠时微博的实时刷屏，再到2024年抖音上每秒诞生的网球短视频。</p>
+            <p style="margin-top:12px">这二十年恰好是中国体育从"举国体制"向"职业化+大众化"转型的完整周期，也是体育传播从大众媒体向算法媒体迁徙的二十年。目前，关于中国网球的研究多集中于竞技成绩分析或产业经济报告，缺乏从数据人文视角出发的可视化叙事；而现有的体育数据新闻往往停留在赛事统计层面，未能揭示运动与社会文化、媒介技术、消费主义的深层互动。</p>
+          </div>
+          <div class="subject-info-section">
+            <div class="subject-info-section-title">立意与目标</div>
+            <p>通过数据考古与可视化叙事，重构中国网球运动的集体记忆图谱。采集2004-2024年间竞技数据、媒介数据、产业数据三类数据集，探索以下核心问题：</p>
+            <ul>
+              <li><strong>体育的民主化进程</strong>：网球如何从"电视里的精英运动"变成"手机里的生活方式"？</li>
+              <li><strong>偶像的代际传递</strong>：从李娜到郑钦文，数据如何描绘两代网球偶像的不同影响力图谱？</li>
+              <li><strong>可视化的历史书写</strong>：如何用信息设计的方法，让体育史摆脱"又红又专"的宏大叙事，成为可触摸、可共情的文化记忆？</li>
+            </ul>
+          </div>
+          <div class="subject-info-meta">
+            <div class="subject-info-meta-item">
+              <span class="subject-info-meta-label">交付形式</span>
+              <span class="subject-info-meta-value">4:3 竖版静态信息图海报</span>
+            </div>
+            <div class="subject-info-meta-item">
+              <span class="subject-info-meta-label">数据来源</span>
+              <span class="subject-info-meta-value">互联网公开数据，学生自行收集</span>
+            </div>
+          </div>
+          <div class="subject-info-tags">
+            <span class="subject-info-tag">叙事可视化</span>
+            <span class="subject-info-tag">信息设计</span>
+            <span class="subject-info-tag">体育社会学</span>
+            <span class="subject-info-tag">数据新闻</span>
+          </div>
+        </div>
+        <div class="aw">
+          <div class="art">
+            <h3 class="center" id="t1-v1">观点一：同一个球场，三种"被看见"的方式</h3>
+            <h4>1.1 这个对比从哪里来</h4>
+            <p>
+              2011年李娜和2024年郑钦文，都在巴黎罗兰·加洛斯的菲利普·夏蒂埃中心球场创造了历史<span
+                class="ref"
+                data-i="a-1"
+                >[1]</span
+              >。这个物理空间的不变，恰好构成了一面完美的"控制变量"——当球场不变、运动不变、甚至国籍不变的时候，唯一剧烈变化的就是<strong>媒介环境</strong>。这让两次夺冠成为了一组天然的媒介考古学样本。
+            </p>
+            <p>可以这样理解这组对比的三个层次：</p>
+            <ul>
+              <li>
+                <strong>第一层是数字对比</strong>。2011年李娜法网决赛，央视三频道并机直播，收视总人数超过<strong
+                  >1.16亿</strong
+                ><span class="ref" data-i="a-2">[2]</span
+                >。2024年郑钦文奥运夺冠后，"网球"在抖音的关键词搜索指数同比增长<strong>545%</strong
+                ><span class="ref" data-i="a-3">[3]</span
+                >。这两个数字衡量的是完全不同的东西——前者衡量的是"同一时刻有多少人在看同一个画面"，后者衡量的是"一个关键词在算法生态中的热度涌动"。
+              </li>
+              <li>
+                <strong>第二层是注意力形态对比</strong
+                >。1.16亿人意味着一种<strong>同步的、集体的、仪式性的</strong>观看体验——你不需要认识身边的人，但你知道此刻全国有一亿人和你在做同一件事。而545%的搜索增长意味着一种<strong>异步的、碎片的、个人化的</strong>消费体验——每个人在不同时间、不同平台、以不同的情感框架接触同一个事件。
+              </li>
+              <li>
+                <strong>第三层是消费转化对比</strong
+                >。2011年李娜夺冠后几乎没有产生即时的商业转化。2024年郑钦文决赛当晚，淘宝上同款T恤搜索量一周内环比上升<strong>111%</strong>，千元级"郑钦文同款"网球拍成交量暴涨<span
+                  class="ref"
+                  data-i="a-4"
+                  >[4]</span
+                >。<strong>体育观看从"情感仪式"变成了"消费入口"。</strong>
+              </li>
+            </ul>
+            <h4>1.2 理论锚点：Dayan & Katz的"媒介事件"理论</h4>
+            <p>
+              这组对比可以精确地对应传播学中的一个经典理论。Daniel Dayan和Elihu Katz在1992年出版的《Media Events: The
+              Live Broadcasting of History》中提出了<strong>"媒介事件"</strong>概念<span class="ref" data-i="a-5"
+                >[5]</span
+              >。他们认为，电视对历史性事件的直播构成了一种新的"世界仪式"（world rituals），这种仪式具有以下特征：
+            </p>
+            <ul>
+              <li><strong>事先计划和宣告</strong>：不是突发新闻，而是被提前安排和期待的</li>
+              <li><strong>直播</strong>：实时传输，观众与事件同步</li>
+              <li><strong>打断日常</strong>：中断正常节目编排，制造"特殊时刻"感</li>
+              <li><strong>敬畏语调</strong>：解说和报道采用庄严的、仪式性的语气</li>
+              <li><strong>集体观看</strong>：人们聚在一起看，形成共同体验</li>
+            </ul>
+            <p>
+              Dayan和Katz将媒介事件分为三种类型：<strong>竞赛（Contests）</strong>、<strong>征服（Conquests）</strong
+              ><strong>和</strong><strong>加冕（Coronations）</strong
+              ><span class="ref" data-i="a-5">[5]</span
+              >。体育赛事属于"竞赛"类型——"它们被设计来识别最好的竞争者或最好的团队，是纯粹的竞争庆典"。
+            </p>
+            <p>
+              2011年李娜法网决赛<strong>完美符合</strong>Dayan和Katz的媒介事件定义：央视临时调整转播计划、三频道并机直播（打断日常）<span
+                class="ref"
+                data-i="a-2"
+                >[2]</span
+              >；全国1.16亿人同步观看（集体观看）；解说充满国家荣誉的庄严感（敬畏语调）。这是一个教科书级别的"媒介事件"。
+            </p>
+            <p>
+              但2024年郑钦文的夺冠<strong>不再是</strong>Dayan和Katz意义上的"媒介事件"——或者更准确地说，它是一个<strong>被算法解构了的媒介事件</strong>。钛媒体引用的微博后台数据显示<span
+                class="ref"
+                data-i="a-3"
+                >[3]</span
+              >，巴黎奥运会期间运动员个人衍生热搜占总量的<strong>51%</strong>，而赛程赛果类热搜仅占<strong>9%</strong>。这意味着"事件"本身（比赛结果）已经不再是注意力的核心——<strong>围绕事件衍生的个人化叙事</strong>才是。人们不是在"观看一个事件"，而是在"消费一个事件的无数个碎片"。
+            </p>
+            <p>
+              这个变化的学术意义在于：<strong
+                >Dayan和Katz的理论是为电视时代写的，它预设了一个"中心化的传播权力"和一个"同质化的受众"。当算法媒体将传播权力分散到无数个平台和创作者手中，当受众被分割成无数个兴趣圈层时，"媒介事件"的集体仪式功能就被瓦解了——取而代之的是无数个"微型仪式"的并行发生。</strong
+              >
+            </p>
+            <p>
+              ResearchGate上2022年发表的一篇论文"Media events in an age of the Web and television: Dayan and Katz
+              revisited"<span class="ref" data-i="a-6">[6]</span
+              >正是在讨论这个问题。作者指出，在互联网时代，媒介事件的"魅力和局限"都需要被重新审视。
+            </p>
+            <h4>1.3 关键数据的完整呈现</h4>
+            <p>以下是两个夺冠时刻的完整数据对比：</p>
+            <p><strong>2011年李娜法网决赛（电视时代）</strong>：</p>
+            <ul>
+              <li>
+                CCTV-5体育频道全国收视率达到<strong>2.75%</strong>，收视总人数<strong>9577.3万</strong
+                ><span class="ref" data-i="a-2">[2]</span>
+              </li>
+              <li>
+                加上CCTV-13新闻频道，总收视人数突破<strong>1.16亿</strong><span class="ref" data-i="a-2">[2]</span>
+              </li>
+              <li>
+                WTA主席专门发声明称这个数字"显示了女子网球在中国巨大的发展潜力"<span class="ref" data-i="a-2">[2]</span>
+              </li>
+              <li>
+                2013年澳网决赛收视率进一步升至<strong>3.34%</strong
+                ><span class="ref" data-i="a-2">[2]</span
+                >；2014年澳网决赛超过<strong>4856万</strong>观众通过CCTV-5观看<span class="ref" data-i="a-2">[2]</span>
+              </li>
+              <li>李娜夺冠后的微博只有两个字："哈哈。"——这是中国体育明星第一次用社交媒体直接与公众对话</li>
+            </ul>
+            <p><strong>2024年郑钦文巴黎奥运决赛（算法时代）</strong>：</p>
+            <ul>
+              <li>抖音"网球"关键词搜索指数同比增长<strong>545%</strong><span class="ref" data-i="a-3">[3]</span></li>
+              <li>
+                微博运动员个人衍生热搜累计<strong>2793个</strong>，占热搜总量<strong>51%</strong
+                ><span class="ref" data-i="a-3">[3]</span>
+              </li>
+              <li>
+                赛程赛果类热搜仅<strong>478个</strong>，占<strong>9%</strong><span class="ref" data-i="a-3">[3]</span>
+              </li>
+              <li>
+                快手奥运相关内容曝光量达<strong>3106亿次</strong>，<strong>6.4亿</strong>用户通过快手观看奥运<span
+                  class="ref"
+                  data-i="a-3"
+                  >[3]</span
+                >
+              </li>
+              <li>
+                霸王茶姬奥运期间的活动登上微博热搜，阅读量<strong>2.7亿</strong
+                ><span class="ref" data-i="a-3">[3]</span>
+              </li>
+              <li>郑钦文决赛当晚穿的Nike定制T恤天猫销量迅速突破1000件<span class="ref" data-i="a-3">[3]</span></li>
+              <li>同款T恤搜索量一周内环比上升<strong>111%</strong><span class="ref" data-i="a-4">[4]</span></li>
+              <li>网球裙成交额同比增长<strong>160%</strong><span class="ref" data-i="a-4">[4]</span></li>
+            </ul>
+            <h4>1.4 一个类比</h4>
+            <p>如果你对"媒介事件的解构"这个概念感到抽象，用一个生活化的类比：</p>
+            <div class="pq">
+              <p>
+                "2011年看李娜夺冠，像是全国人民一起去了同一个电影院，看同一部电影，在同一个地方笑、同一个地方哭。2024年看郑钦文夺冠，像是每个人在手机上刷到了同一部电影的不同片段——有人刷到了夺冠瞬间，有人刷到了她的穿搭解析，有人刷到了'哪些品牌押中了郑钦文'的商业分析，有人刷到了她手臂肌肉线条的审美帖子。每个人都觉得自己'看过了'，但没有两个人看到的是同一个东西。"
+              </p>
+            </div>
+            <h4>1.5 这种变化是好是坏？</h4>
+            <p>这个问题没有简单答案，但可以提供两面的思考：</p>
+            <p>
+              <strong>"好"的一面</strong
+              >：算法时代的碎片化传播让更多人以更多方式"接触到"了网球。不是所有人都会看完一场两小时的比赛，但几乎所有人都可能在刷手机时偶遇一条15秒的郑钦文集锦。这种"低门槛接触"客观上扩大了网球的受众基础。
+            </p>
+            <p>
+              <strong>"坏"的一面</strong
+              >：集体仪式的消失意味着<strong>共同记忆的稀释</strong>。1.16亿人同时看李娜夺冠，这构成了一代人的共同记忆——你可以和任何一个同龄人说"那个晚上你在哪里看的"，对方一定知道你在说什么。但2024年郑钦文夺冠的"记忆"是碎片化的——每个人记住的是不同的片段，这些片段之间没有共振。<strong
+                >当一个社会失去了"一起经历同一件事"的能力，它的集体认同也会变得更加脆弱。</strong
+              >
+            </p>
+            <h3 class="center" id="t1-v2">观点二：谁在为冠军买单？——从国家拨款到"体育鸡娃"</h3>
+            <h4>2.1 这个问题为什么重要</h4>
+            <p>
+              "培养一个冠军的钱从哪里来"这个问题之所以值得单独拿出来讲，是因为它直接揭示了<strong>中国体育制度变迁的核心矛盾</strong>——这个矛盾不是"举国体制好不好"的简单二元对立，而是一个更复杂的三阶段演化，每个阶段都有自己的逻辑、代价和受益者。
+            </p>
+            <p>可以这样理解这三个阶段的本质差异：</p>
+            <ul>
+              <li>
+                <strong>第一阶段（国家全包）</strong><strong>的逻辑是</strong
+                ><strong>再分配</strong
+                >——国家从税收中拿出资源，通过体校-省队-国家队的管道，集中投放到少数有天赋的运动员身上。运动员不承担经济风险，但也没有个人选择权。
+              </li>
+              <li>
+                <strong>第二阶段（单飞分账）</strong><strong>的逻辑是</strong
+                ><strong>市场化</strong
+                >——运动员从国家体系中"脱嵌"，进入全球体育市场自负盈亏。国家让渡了控制权，运动员获得了自由，但也独自承担了市场风险。
+              </li>
+              <li>
+                <strong>第三阶段（家庭投资）</strong><strong>的逻辑是</strong
+                ><strong>资本化</strong
+                >——家庭将经济资源、社会资源和文化资源集中投入到孩子的体育职业化路径中。这不再是"国家vs个人"的故事，而是"家庭作为投资主体"的故事。
+              </li>
+            </ul>
+            <h4>2.2 理论锚点：布尔迪厄的资本理论与体育</h4>
+            <p>
+              Pierre Bourdieu在《区隔：趣味判断的社会批判》（1979/1984）中专门讨论了体育与社会阶层的关系<span
+                class="ref"
+                data-i="a-7"
+                >[7]</span
+              >。他的核心论点是：<strong
+                >不同社会阶层对不同体育项目的偏好，不是个人"口味"的自然表达，而是阶级惯习（habitus）的外化。</strong
+              >
+              网球、高尔夫、马术等运动之所以被视为"贵族运动"，不是因为它们在技术上更"高级"，而是因为参与这些运动所需要的<strong>经济资本</strong>（场地费、装备费、教练费）、<strong>文化资本</strong>（运动礼仪、着装规范、社交能力）和<strong>社会资本</strong>（俱乐部会员资格、人脉网络）构成了天然的阶层门槛<span
+                class="ref"
+                data-i="a-8"
+                >[8]</span
+              >。
+            </p>
+            <p>
+              Springer出版的"Pierre Bourdieu and the Sociological Study of Sport: Habitus, Capital and Field"<span
+                class="ref"
+                data-i="a-8"
+                >[8]</span
+              >一文系统梳理了布尔迪厄的体育社会学思想。作者指出，布尔迪厄认为体育场域（field of
+              sport）是一个权力竞争的空间，不同阶层通过选择不同的运动来进行<strong
+                >区隔性实践（distinctive practice）</strong
+              >——你选择打网球而不是打乒乓球，这个选择本身就是一种阶层身份的宣告。
+            </p>
+            <p><strong>这个理论框架对理解中国网球培养模式的变迁极为重要</strong>：</p>
+            <p>
+              在第一阶段（国家全包），布尔迪厄意义上的阶层门槛被国家力量暂时"抹平"了——你不需要有钱的家庭，只需要有天赋和被体校选中的运气。但在第三阶段（家庭投资），阶层门槛以一种新的形式回来了——你需要一个有体育圈资源的父亲（郑建坪是田径运动员）、足够的经济实力支持海外训练（疫情期间母女俩开车横跨欧洲参赛）、以及对全球体育市场的认知能力（"弯道超车的机会"）。
+            </p>
+            <p>
+              <strong>网球的"民主化"因此呈现出布尔迪厄式的双层结构</strong
+              >：消费层面的民主化（更多人可以打网球、买网球裙）和竞技层面的精英化（能走上国际赛场的运动员越来越依赖家庭资本）同时发生。
+            </p>
+            <div class="visualization">
+              <svg viewBox="0 0 800 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text
+                  x="50"
+                  y="18"
+                  fill="#C4A65A"
+                  font-size="9"
+                  font-weight="700"
+                  font-family="sans-serif"
+                  letter-spacing="0.15em"
+                >
+                  培养模式三阶段
+                </text>
+                <rect
+                  x="20"
+                  y="36"
+                  width="230"
+                  height="100"
+                  rx="8"
+                  fill="rgba(138,132,128,0.06)"
+                  stroke="#8A8480"
+                  stroke-width="1.5"
+                />
+                <text
+                  x="135"
+                  y="60"
+                  text-anchor="middle"
+                  fill="#2D2A25"
+                  font-size="12"
+                  font-weight="600"
+                  font-family="sans-serif"
+                >
+                  Phase 01 · ~2008
+                </text>
+                <text
+                  x="135"
+                  y="78"
+                  text-anchor="middle"
+                  fill="#2D2A25"
+                  font-size="16"
+                  font-weight="700"
+                  font-family="sans-serif"
+                >
+                  国家全包
+                </text>
+                <text x="135" y="96" text-anchor="middle" fill="#8A8480" font-size="9" font-family="sans-serif">
+                  再分配 ·体校→省队→国家队
+                </text>
+                <text x="135" y="120" text-anchor="middle" fill="#8A8480" font-size="8" font-family="sans-serif">
+                  2004 李婷/孙甜甜 雅典
+                </text>
+                <line x1="255" y1="86" x2="290" y2="86" stroke="#C4A65A" stroke-width="1.5" />
+                <polygon points="290,86 282,80 282,92" fill="#C4A65A" />
+                <rect
+                  x="290"
+                  y="36"
+                  width="230"
+                  height="100"
+                  rx="8"
+                  fill="rgba(196,166,90,0.05)"
+                  stroke="#C4A65A"
+                  stroke-width="1.5"
+                />
+                <text
+                  x="405"
+                  y="60"
+                  text-anchor="middle"
+                  fill="#C4A65A"
+                  font-size="9"
+                  font-weight="700"
+                  font-family="sans-serif"
+                  letter-spacing="0.1em"
+                >
+                  Phase 02 · 2008-2014
+                </text>
+                <text
+                  x="405"
+                  y="78"
+                  text-anchor="middle"
+                  fill="#2D2A25"
+                  font-size="16"
+                  font-weight="700"
+                  font-family="sans-serif"
+                >
+                  单飞分账
+                </text>
+                <text x="405" y="96" text-anchor="middle" fill="#8A8480" font-size="9" font-family="sans-serif">
+                  市场化 · 自负盈亏
+                </text>
+                <text x="405" y="120" text-anchor="middle" fill="#8A8480" font-size="8" font-family="sans-serif">
+                  2011 李娜法网 13家赞助
+                </text>
+                <line x1="525" y1="86" x2="560" y2="86" stroke="#C4A65A" stroke-width="1.5" />
+                <polygon points="560,86 552,80 552,92" fill="#C4A65A" />
+                <rect
+                  x="560"
+                  y="36"
+                  width="230"
+                  height="100"
+                  rx="8"
+                  fill="rgba(196,166,90,0.08)"
+                  stroke="#C4A65A"
+                  stroke-width="1.5"
+                />
+                <text
+                  x="675"
+                  y="60"
+                  text-anchor="middle"
+                  fill="#C4A65A"
+                  font-size="9"
+                  font-weight="700"
+                  font-family="sans-serif"
+                  letter-spacing="0.1em"
+                >
+                  Phase 03 · 2020s~
+                </text>
+                <text
+                  x="675"
+                  y="78"
+                  text-anchor="middle"
+                  fill="#2D2A25"
+                  font-size="16"
+                  font-weight="700"
+                  font-family="sans-serif"
+                >
+                  家庭投资
+                </text>
+                <text x="675" y="96" text-anchor="middle" fill="#8A8480" font-size="9" font-family="sans-serif">
+                  资本化 · 家庭主体
+                </text>
+                <text x="675" y="120" text-anchor="middle" fill="#8A8480" font-size="8" font-family="sans-serif">
+                  2024 郑钦文金牌
+                </text>
+              </svg>
+              <div class="viz-caption">图1: 中国网球培养模式三阶段演化</div>
+            </div>
+            <h4>2.3 三个阶段的详细案例</h4>
+            <p><strong>第一阶段：国家全包（~2008年）</strong></p>
+            <p>
+              2004年李婷/孙甜甜的雅典女双金牌是举国体制的典型产物。运动员从体校进入省队再进入国家队，所有费用由国家承担。这是中国网球的第一枚奥运金牌，但法新社在报道郑钦文2024年夺冠时提到，"这是中国的第二枚奥运会网球金牌，之前还是20年前的雅典奥运会上李婷和孙甜甜获得的女双金牌"<span
+                class="ref"
+                data-i="a-1"
+                >[1]</span
+              >——二十年间只有两枚金牌，这本身说明了举国体制在网球这种高度个人化的职业运动中的局限性。
+            </p>
+            <p><strong>第二阶段：单飞分账（2008-2014年）</strong></p>
+            <p>
+              2008年底，网球运动管理中心同意李娜、郑洁、彭帅等人"单飞"<span class="ref" data-i="a-9">[9]</span
+              >。李娜在自传《独自上场》中详细描述了单飞前后的经济差异<span class="ref" data-i="a-10">[10]</span>：
+            </p>
+            <div class="pq">
+              <p>
+                单飞前在国家队，不管成绩好坏都可以拿到参赛奖金，不会亏。国家队帮你付教练的钱，出球员的住宿费、机票，你还可以拿奖金的35%。
+              </p>
+            </div>
+            <p>
+              单飞后，一切自负盈亏。李娜签约了IMG（全球最大的体育经纪公司），经纪人麦克斯·埃森巴德同时管理着莎拉波娃<span
+                class="ref"
+                data-i="a-10"
+                >[10]</span
+              >。李娜的赞助合同最少签三年，每年起价不低于800万元<span class="ref" data-i="a-4">[4]</span
+              >。2014年退役前，她的赞助商达到13家，包括泰康人寿、耐克、昆仑山矿泉水等<span class="ref" data-i="a-4"
+                >[4]</span
+              >。
+            </p>
+            <p>
+              BBC、美国之音等外媒集中讨论了李娜"单飞"对举国体制的挑战<span class="ref" data-i="a-9">[9]</span
+              >。李娜夺冠后的发布会上感谢赞助商而非体制，成为中国体育史上最具传播力的"出格"时刻之一。她后来在自传中回应："我不知道孙主任用什么方法说服体育总局让网球可以改革，我们可以单飞。"<span
+                class="ref"
+                data-i="a-10"
+                >[10]</span
+              >
+            </p>
+            <p><strong>第三阶段：家庭投资（2020年代~）</strong></p>
+            <p>郑钦文的路径完全不同于李娜。关键细节如下<span class="ref" data-i="a-11">[11]</span>：</p>
+            <ul>
+              <li>父亲郑建坪是田径运动员，有体育圈资源和判断力</li>
+              <li>6岁带女儿看北京奥运会，女儿对网球一见如故</li>
+              <li>9岁时，"在饭桌上，她爸爸带着一家三口给我跪下了，要让郑钦文认我做干妈"（余丽桥回忆）</li>
+              <li>14岁师从李娜教练卡洛斯</li>
+              <li>疫情期间和妈妈开车横跨整个欧洲参赛，参加20多项比赛，排名跃升600名</li>
+              <li>父亲评价："这是弯道超车的机会。"</li>
+            </ul>
+            <p>
+              同样走"家庭投资"路径的还有<span class="ref" data-i="a-11">[11]</span
+              >：田亮的女儿、林丹的孩子、足球名将张卫华的儿子张之臻（第一个进入男单世界前100的中国球员）、商毅的儿子商竣程（打进澳网32强）。一篇微信公众号文章直言："这么多运动员、名人的孩子转战网球，除了孩子的兴趣，大概也因为国内乒乓球、篮球和足球太卷了。网球反倒能另辟蹊径。"
+            </p>
+            <h4>2.4 一个值得深思的数字对比</h4>
+            <p>
+              中国网球协会的数据显示<span class="ref" data-i="a-12">[12]</span
+              >，2024年中国网球产业规模达<strong>369亿元</strong>，网球人口达<strong>2381万人</strong>，占全球网球人口的<strong>25.3%</strong>。湖北京山一个县级市就有标准化网球场<strong>380片</strong>，城区任何地方步行15分钟内可达<span
+                class="ref"
+                data-i="a-12"
+                >[12]</span
+              >。
+            </p>
+            <p>
+              这些数字看起来是"民主化"的胜利。但如果你追问"这2381万人中，有多少人的孩子有可能走上职业道路？"答案会非常不同。<strong
+                >消费层面的民主化和竞技层面的精英化，是同一枚硬币的两面。</strong
+              >
+            </p>
+            <h4>2.5 收束</h4>
+            <div class="pq">
+              <p>
+                "我们总说网球'民主化'了。确实，更多人在打球、在看球、在买球裙。但培养一个能站上大满贯赛场的运动员，门槛不是低了，而是从'你得进体制'变成了'你得有一个愿意押上全部的家庭'。自由的代价，是风险的私有化。"
+              </p>
+            </div>
+            <h4>2.6 那到底哪种模式更好？</h4>
+            <p>这个问题没有标准答案，但可以提供一个分析框架：</p>
+            <ul>
+              <li>
+                <strong>举国体制</strong
+                >的优势是"不浪费天赋"——一个贫困家庭的孩子如果有天赋，也有机会被选拔出来。劣势是"浪费自由"——运动员没有选择权，且退役后的转型困难。
+              </li>
+              <li>
+                <strong>家庭投资模式</strong
+                >的优势是"尊重个人选择"——运动员和家庭共同决定职业路径。劣势是"放大不平等"——只有有资源的家庭才能走这条路，大量有天赋但没有资源的孩子被排除在外。
+              </li>
+              <li>
+                <strong>真正的问题不是"选哪个"，而是"能不能建立一种混合机制"</strong
+                >——国家提供基础设施和早期筛选，家庭和市场提供后期的个性化培养，社会保障体系为失败的投资提供安全网。
+              </li>
+            </ul>
+            <h3 class="center" id="t1-v3">观点三：你的网球裙，和网球有什么关系？</h3>
+            <h4>3.1 这个问题的锋芒在哪里</h4>
+            <p>
+              这个话题表面上是最轻松的——聊穿搭、聊消费、聊小红书。但它背后藏着一个严肃的分析问题：<strong
+                >当我们说"中国有2381万网球人口"的时候，这个数字到底在衡量什么？</strong
+              >
+              是衡量"打球的人"，还是"买裙子的人"，还是"在球场拍过照的人"？如果这三类人被混在同一个数字里，那这个数字的含义就变得非常模糊。
+            </p>
+            <p>可以用一个"三层同心圆"模型来拆解这个问题：</p>
+            <ul>
+              <li>
+                <strong>最外圈：符号消费层</strong
+                >——买网球裙、收藏穿搭帖、球场拍照打卡。人数最多、增长最快，与"打网球"的关系最弱。
+              </li>
+              <li>
+                <strong>中间圈：体验参与层</strong>——真的去球场打了几次球、报了初级班。2381万"网球人口"的主体在这里。
+              </li>
+              <li>
+                <strong>最内圈：持续运动层</strong>——每周打球、有固定球友、关注技术提升。增长最慢，最不易被数据捕捉。
+              </li>
+            </ul>
+            <p>
+              这个模型的价值在于：<strong>它揭示了算法平台在"网球热"中扮演的角色。</strong>
+              算法天然偏爱最外圈的内容——穿搭帖视觉冲击力强、消费转化率高、互动数据好。算法不断放大"网球作为生活方式符号"的内容，同时让"网球作为一项运动"的内容变得不那么可见。这不是阴谋，这只是算法优化点击率的自然结果。
+            </p>
+            <h4>3.2 理论锚点：布尔迪厄的"区隔"与鲍德里亚的"符号消费"</h4>
+            <p>这个话题可以对接两个经典理论：</p>
+            <p>
+              <strong>布尔迪厄的"区隔"（Distinction）</strong
+              ><span class="ref" data-i="a-7">[7]</span
+              >：前面已经提到，布尔迪厄认为体育选择是阶层身份的表达。在中国语境下，网球的"Tenniscore"（网球风穿搭）现象是一个完美的当代案例——你不需要真的会打网球，你只需要穿得像一个会打网球的人，就完成了一次阶层身份的表演。小红书上一篇8614赞的帖子标题是"老钱顶奢超爱！Tenniscore网球流行"<span
+                class="ref"
+                data-i="a-13"
+                >[13]</span
+              >，直接将网球穿搭定位为"老钱美学"的入口。另一篇2270赞的帖子发问："为什么网球穿搭，看起来就有钱？"<span
+                class="ref"
+                data-i="a-13"
+                >[13]</span
+              >
+              这些帖子的存在本身就证明了：<strong>网球的阶层符号价值已经独立于运动本身而存在。</strong>
+            </p>
+            <p>
+              <strong>鲍德里亚的"符号消费"（Sign Consumption）</strong
+              >：让·鲍德里亚在《消费社会》（1970）中提出，在消费社会中，人们消费的不是物品的使用价值，而是物品的<strong>符号价值</strong>——即物品所代表的社会意义和身份标签。一条网球裙的使用价值是"在球场上穿着打球"，但它的符号价值是"我是一个拥有健康、优雅、中产生活方式的人"。当符号价值超过使用价值时，<strong
+                >物品就脱离了它原本的功能语境，成为纯粹的身份道具。</strong
+              >
+            </p>
+            <h4>3.3 小红书上的真实内容生态：详细案例</h4>
+            <p>以下是从小红书搜集到的典型内容，它们共同构成了"网球作为生活方式符号"的完整图景：</p>
+            <div class="case-card">
+              <span class="case-num">案例一</span>
+              <p class="case-title">春天就要动起来！让裙摆和春天的花一起绽放～</p>
+            </div>
+            <p>
+              博主穿着"郑钦文2025澳网浅色同款"Nike Court Slam
+              DRI-FIT系列球裙，配文写的是春天的柳絮、球场边的毛毛虫、阳光下的训练。这是一篇关于<strong>生活方式的散文诗</strong>，恰好发生在网球场上。注意它的互动数据结构：10442赞、982收藏、71评论——高赞低评论，说明用户主要在"欣赏"而非"讨论"，这是典型的审美消费模式。
+            </p>
+            <div class="case-card">
+              <span class="case-num">案例二</span>
+              <p class="case-title">老钱顶奢超爱！Tenniscore网球流行</p>
+            </div>
+            <p>
+              从维多利亚时代讲起，将网球定位为"承载着百年优雅的运动"，说Tenniscore时尚风潮"将老钱美学从私人球场带入大众视野"。2275的高收藏量说明用户在<strong>储存这个内容作为未来的穿搭参考</strong>——他们消费的不是网球知识，而是阶层想象的素材库。
+            </p>
+            <div class="case-card">
+              <span class="case-num">案例三</span>
+              <p class="case-title">郑钦文的手臂！这才是ACE女王的标配啊！</p>
+            </div>
+            <p>
+              内容写道："她的手臂，肌肉线条流畅，在阳光下显得更加健硕，仿佛米开朗基罗精心雕琢而成，将东方美感和中国力量有机融合。"929的高转发量说明这个内容具有强烈的<strong>社交传播属性</strong>——用户转发它不是为了学习网球，而是为了表达一种审美态度。
+            </p>
+            <div class="case-card">
+              <span class="case-num">案例四</span>
+              <p class="case-title">网球省钱攻略：6个技巧帮你省下每一分</p>
+            </div>
+            <p>
+              开篇第一句："网球常被视为'贵族运动'，但通过合理规划，普通人也能以极低成本享受这项运动的乐趣。"教你400元买二手专业拍、200元球鞋就够用。注意它的数据结构：<strong>收藏量（3576）高于点赞量（2966）</strong>——这在小红书上是"实用型内容"的典型特征，说明用户在认真储存这些信息以备实际使用。
+            </p>
+            <div class="case-card">
+              <span class="case-num">案例五</span>
+              <p class="case-title">网球哪些钱没必要花？</p>
+            </div>
+            <p>
+              作者是一位网龄10年以上的业余选手，开篇说"也是对网球贵族化祛魅"。423条评论说明这个话题触发了<strong>真实的讨论和争论</strong>——用户在评论区分享自己的经验、争论不同观点。这是小红书上少有的"运动实践型"内容。
+            </p>
+            <p>
+              <strong>这五个案例放在一起，揭示了一个完整的图景</strong
+              >：网球在小红书上同时被编码为<strong>"老钱顶奢"</strong>（案例一二三）和<strong>"平民也能玩"</strong>（案例四五）。它既是阶层向上的想象通道，又是被祛魅的对象。这两种叙事不是矛盾的——它们共同构成了网球作为"可望又可及"的消费符号的完整魅力。
+            </p>
+            <h4>3.4 关键数据：消费转化的完整图景</h4>
+            <p>
+              以下数据帮助量化"符号消费层"的规模<span class="ref" data-i="a-4">[4]</span
+              ><span class="ref" data-i="a-12">[12]</span>：
+            </p>
+            <ul>
+              <li>2024年夏季，国内网球裙成交额同比增长<strong>160%</strong></li>
+              <li>郑钦文夺冠时穿的同款T恤，搜索量一周内环比上升<strong>111%</strong></li>
+              <li>千元级"郑钦文同款"网球拍成交量暴涨</li>
+              <li>2024中国网球公开赛观赛人流量达<strong>30万人次</strong>，较上年增长<strong>50%</strong></li>
+              <li>中网门票总收入突破<strong>8000万元</strong>，较上年上涨<strong>60%</strong></li>
+              <li>上海大师赛每天超过2万人次入场，官方纪念品商店每日销售额超过<strong>100万元</strong></li>
+              <li>
+                但36氪的报道标题很诚实："网球越来越热了，但普通人上手还有点难"<span class="ref" data-i="a-4">[4]</span>
+              </li>
+            </ul>
+            <h4>3.5 类比</h4>
+            <div class="pq">
+              <p>
+                "网球裙和网球的关系，就像咖啡杯和咖啡的关系——你完全可以只拥有一个漂亮的杯子而从不喝咖啡，但杯子的存在本身，已经让你完成了一次关于'我是谁'的身份表演。这不是虚伪，这就是消费社会的基本运作方式。问题是：当我们说'中国有2381万网球人口'的时候，我们在数的是打球的人，还是买裙子的人？"
+              </p>
+            </div>
+            <h4>3.6 符号消费有什么不好？</h4>
+            <p>可以这样回应：</p>
+            <p>
+              符号消费本身没有"好坏"之分。<strong>最外圈的符号消费是中间圈体验参与的入口</strong>——很多人确实是先买了网球裙、先在球场拍了照，然后才真的开始打球。消费可以是参与的起点，而不仅仅是参与的替代品。
+            </p>
+            <p>
+              但问题在于：<strong
+                >当算法系统性地放大最外圈的内容、压缩最内圈的内容时，"网球热"的数据表象和运动参与的真实深度之间就会产生越来越大的裂缝。</strong
+              >
+              这个裂缝对产业决策有实际影响——如果一个城市基于"网球热"的数据投资建设了大量球场，但实际的持续打球人群远小于数据暗示的规模，这些球场就可能面临空置。
+            </p>
+            <h3 class="center" id="t1-v4">观点四：从"感谢国家"到"Come on, it's Queen"——一句话里的二十年</h3>
+            <h4>4.1 这个话题的切入角度</h4>
+            <p>
+              这个话题的核心不是"两个运动员谁说得更好"，而是<strong>为什么同一个国家的运动员，在十三年的时间差里，发展出了完全不同的"公共表达语法"</strong>。这个语法差异的背后，是媒介环境、体制关系和身份认同的三重变迁。
+            </p>
+            <p>可以这样理解"语法"这个隐喻：</p>
+            <ul>
+              <li>
+                <strong>李娜的语法是"对抗性"的</strong
+                >——她所有的公共表达都在与一个隐形的"集体主义话语体制"进行角力。她的"刺"之所以有力量，恰恰因为有一个强大的话语体制作为参照物。
+              </li>
+              <li>
+                <strong>郑钦文的语法是"兼容性"的</strong
+                >——个人感受、个人意志、国家荣誉、代际传承在同一段话里无缝切换。她不需要在"为自己打球"和"为国家打球"之间做选择，因为算法媒体允许多重身份并行流通。
+              </li>
+            </ul>
+            <h4>4.2 两代人的公共表达：完整文本对比</h4>
+            <p><strong>李娜的关键表达</strong>：</p>
+            <ol>
+              <li>
+                法网夺冠发布会：感谢赞助商、感谢丈夫姜山，未按惯例"感谢国家培养"——引发BBC、美国之音、RFA等境外媒体集中讨论"举国体制"<span
+                  class="ref"
+                  data-i="a-9"
+                  >[9]</span
+                >
+              </li>
+              <li>夺冠微博：只有两个字——"哈哈。"</li>
+              <li>自传书名：《独自上场》</li>
+              <li>
+                自传金句："网球是一项孤独的运动。当你独自上场，你就开始了一个人的战斗，你需要独自面对所有的问题，独自化解所有的困难，你的团队只能坐在运动员包厢为你加油。"<span
+                  class="ref"
+                  data-i="a-10"
+                  >[10]</span
+                >
+              </li>
+              <li>
+                谈"单飞"："我不知道孙主任用什么方法说服体育总局让网球可以改革，我们可以单飞。"<span
+                  class="ref"
+                  data-i="a-10"
+                  >[10]</span
+                >
+              </li>
+            </ol>
+            <p><strong>郑钦文的关键表达</strong>：</p>
+            <ol>
+              <li>奥运夺冠采访（被网友封为"截至目前最会说话的运动员"）<span class="ref" data-i="a-14">[14]</span>：</li>
+            </ol>
+            <ul>
+              <li>"最后一分时我真的很紧张，手都在抖。"——<strong>个人感受</strong></li>
+              <li>"我从未对赢下一场比赛有如此强烈的饥渴感，我可以为此付出一切。"——<strong>个人意志</strong></li>
+              <li>"我为自己这次能战胜压力而感到超级骄傲，我超越了极限。"——<strong>个人成就</strong></li>
+              <li>
+                "这意味着很多，可以说意味着一切。因为我从小就想为我的国家赢得一面奖牌，不一定要是金牌。"——<strong
+                  >国家荣誉</strong
+                >
+              </li>
+              <li>
+                "我一直都相信薪火相传……如果我今天的胜利可以为更多的孩子带来网球梦，觉得这一切都是值得的。"——<strong
+                  >代际传承</strong
+                >
+              </li>
+            </ul>
+            <ol>
+              <li>
+                关于昵称：外国人念不对"Qin"，总念成"Queen"。她说："Come on, it's Queen."<span class="ref" data-i="a-11"
+                  >[11]</span
+                >
+              </li>
+              <li>
+                2024年1月澳网，与李娜世纪同框。郑钦文"一改镜头前的沉着冷静，转而化身小迷妹，甜甜地喊着'李娜姐姐'，并伸出双手，紧紧地环抱住李娜"<span
+                  class="ref"
+                  data-i="a-11"
+                  >[11]</span
+                >
+              </li>
+            </ol>
+            <h4>4.3 "感谢国家"话语的螺旋：深层分析</h4>
+            <p>如果把"感谢国家"这个话语在二十年里的命运画一条线，会看到一个螺旋结构：</p>
+            <p>
+              <strong>2004年——被要求说。</strong>
+              标准模板，没有偏离空间。运动员是国家荣誉的传声筒。这个阶段的话语权完全在体制手中。
+            </p>
+            <p>
+              <strong>2011年——拒绝说。</strong>
+              李娜的沉默和"出格"成为事件本身。注意：她并没有说"我不感谢国家"——她只是没有按照惯例说。但在一个"沉默即反叛"的话语环境中，<strong>不说</strong>比<strong>说什么</strong>更有传播力。BBC、美国之音的报道标题都聚焦于"李娜夺冠引发体坛改革呼声"<span
+                class="ref"
+                data-i="a-9"
+                >[9]</span
+              >——一个运动员的发布会发言被解读为制度批判，这本身就说明了当时的话语张力有多大。
+            </p>
+            <p>
+              <strong>2024年——自愿说，但换了说法。</strong>
+              郑钦文说的是"为<strong>我的</strong>国家"，不是"感谢<strong>国家培养</strong>"。主语从"国家"变成了"我"。这是一种<strong>后体制时代的自愿民族主义</strong>：没有人要求她这么说，但她选择了一种同时兼容个人主义与集体荣誉的表达方式。
+            </p>
+            <p><strong>为什么郑钦文能做到"兼容"而李娜做不到？</strong> 不是因为郑钦文更"圆滑"。核心原因有两个：</p>
+            <p>
+              <strong>原因一：媒介环境变了。</strong>
+              李娜的时代，发布会是运动员最重要的公共表达场景。你在一个场合说的话，会被所有媒体以同一种方式报道，被所有观众以同一种框架解读。所以"感谢赞助商"会被自动解读为"不感谢国家"——因为在那个语境里，你只有一次说话的机会，你说了什么和你没说什么同样重要。
+            </p>
+            <p>
+              郑钦文的时代，表达是分布式的。她可以在不同平台上展示不同的自己：微博上是"为国争光的中国姑娘"，Instagram上是"Queen
+              Wen"，小红书上是时尚icon，巴黎时装周上是被街拍的潮人<span class="ref" data-i="a-13">[13]</span>。<strong
+                >算法媒体允许多重身份并行流通，而不要求你回答"你到底是谁"这个终极问题。</strong
+              >
+            </p>
+            <p>
+              <strong>原因二：体制关系变了。</strong>
+              李娜是从体制内"出走"的人——她的个人主义是以体制为参照物的反叛。郑钦文从一开始就在体制之外——她是家庭投资的产物，不是体制培养的产物。她与国家的关系不是"被培养者vs培养者"，而是"个人vs国家"的一种更松散的认同关系。她可以自然地说"为我的国家"，因为这里的"国家"不是一个具体的体制机构，而是一个抽象的情感归属。
+            </p>
+            <h4>4.4 赞助商品类的符号学：一个被忽视的维度</h4>
+            <p>
+              如果想增加一个出人意料的角度，可以聊聊<strong>赞助商品类的变化</strong>——这是一个极少被人注意到的维度，但它精确地映射了中国消费社会的阶层想象变迁。
+            </p>
+            <p>
+              <strong>李娜的赞助商（2014年退役前，共13家）</strong
+              ><span class="ref" data-i="a-4">[4]</span
+              >：泰康人寿、耐克、昆仑山矿泉水等。这些品牌的共同特征是<strong>功能性+大众市场</strong>，它们需要的是李娜的国民知名度来覆盖最广泛的消费人群。
+            </p>
+            <p>
+              <strong>郑钦文的赞助商（2024年，至少10家，奥运后持续增加）</strong
+              ><span class="ref" data-i="a-15">[15]</span
+              >：NIKE、劳力士、兰蔻、威尔胜、蚂蚁集团（支付宝）、霸王茶姬、伊利、佳得乐、麦当劳、斯维诗，后又签约奥迪AUDI和vivo<span
+                class="ref"
+                data-i="a-15"
+                >[15]</span
+              >。2023年福布斯女运动员收入榜第15位，赞助收入550万美元（近4000万人民币）<span class="ref" data-i="a-4"
+                >[4]</span
+              >。
+            </p>
+            <p><strong>品类变化的符号学解读</strong>：</p>
+            <table class="dtbl">
+              <thead>
+                <tr>
+                  <th>品类</th>
+                  <th>李娜时代</th>
+                  <th>郑钦文时代</th>
+                  <th>变化的意义</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>金融</td>
+                  <td>泰康人寿（传统保险）</td>
+                  <td>蚂蚁集团/支付宝（数字金融）</td>
+                  <td>从"安全感"到"科技感"</td>
+                </tr>
+                <tr>
+                  <td>饮品</td>
+                  <td>昆仑山矿泉水（功能性）</td>
+                  <td>霸王茶姬（新消费/生活方式）</td>
+                  <td>从"解渴"到"身份标签"</td>
+                </tr>
+                <tr>
+                  <td>奢侈品</td>
+                  <td>较少</td>
+                  <td>劳力士、兰蔻（顶奢+美妆）</td>
+                  <td>从"大众偶像"到"中产符号"</td>
+                </tr>
+                <tr>
+                  <td>汽车</td>
+                  <td>无</td>
+                  <td>奥迪AUDI</td>
+                  <td>网球与高端出行的绑定</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              <strong>霸王茶姬赞助郑钦文</strong
+              >这件事本身就值得单独分析。一个中国新茶饮品牌赞助一个网球运动员，在李娜时代是不可想象的。它意味着网球已经从"国际精英运动"的符号系统被重新编码进了"中国新中产日常消费"的符号系统。霸王茶姬奥运期间的活动登上微博热搜，阅读量2.7亿<span
+                class="ref"
+                data-i="a-3"
+                >[3]</span
+              >——你可以在喝一杯奶茶的同时完成对"网球生活方式"的消费想象。
+            </p>
+            <h4>4.5 收束</h4>
+            <div class="pq">
+              <p>
+                "从'感谢国家培养'到'Come on, it's
+                Queen'，变化的不只是一句话，而是谁有权定义'我为什么打球'这个问题。李娜用沉默和反叛争取到的表达自由，到了郑钦文这一代已经成为空气一样自然的东西。但这不意味着问题消失了——当每个平台都需要你扮演一个'角色'的时候，'真实的自己'到底在哪里？"
+              </p>
+            </div>
+            <h3 class="center" id="t1-end">收束：四个故事拼在一起</h3>
+            <h4>这四个话题的内在关联</h4>
+            <table class="dtbl">
+              <thead>
+                <tr>
+                  <th>话题</th>
+                  <th>切入角度</th>
+                  <th>照见的变迁</th>
+                  <th>理论锚点</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>同一球场，三种"被看见"</td>
+                  <td>媒介技术</td>
+                  <td>我们如何"看"体育</td>
+                  <td>Dayan & Katz 媒介事件理论</td>
+                </tr>
+                <tr>
+                  <td>谁在为冠军买单</td>
+                  <td>制度经济</td>
+                  <td>谁承担体育的成本</td>
+                  <td>布尔迪厄 资本理论</td>
+                </tr>
+                <tr>
+                  <td>网球裙和网球的关系</td>
+                  <td>消费文化</td>
+                  <td>"参与"的含义变了</td>
+                  <td>布尔迪厄 区隔 / 鲍德里亚 符号消费</td>
+                </tr>
+                <tr>
+                  <td>一句话的语法</td>
+                  <td>身份政治</td>
+                  <td>运动员是谁的"代言人"</td>
+                  <td>算法时代的分布式身份</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              这四个话题不需要刻意串联——它们自然拼出同一幅图景：<strong
+                >一项运动的二十年，就是一个国家的媒介、制度、消费和身份认同同时发生剧变的二十年。</strong
+              >
+            </p>
+            <h4>最后的画面</h4>
+            <div class="pq">
+              <p>
+                "2024年1月，在墨尔本，李娜趁郑钦文接受赛后采访，出其不意地来到她面前。郑钦文一改镜头前的沉着冷静，转而化身小迷妹，甜甜地喊着'李娜姐姐'，伸出双手紧紧环抱住李娜。两代中国网球人的世纪同框，就这样出现了。那一刻，所有人都相信：新的李娜出现了。但她有自己的名字，自己的时代，自己的语法。"
+              </p>
+            </div>
+            <div class="refs-section">
+              <h3>附录：参考文献与数据源</h3>
+              <h4>媒介理论</h4>
+              <ul>
+                <li>
+                  Dayan, D. & Katz, E. (1992). Media Events: The Live Broadcasting of History. Harvard University
+                  Press.<span class="ref" data-i="a-5">[5]</span>
+                </li>
+                <li>魏伟 (2019). 解构当代媒介体育赛事的权力迷思：基于约翰·费斯克的视角. 上海体育学院学报.</li>
+                <li>符号学论坛 (2025). 奥运冠军郑钦文的跨媒介话语符号学分析. 体育学研究.</li>
+              </ul>
+              <h4>体育社会学</h4>
+              <ul>
+                <li>
+                  Bourdieu, P. (1984). Distinction: A Social Critique of the Judgement of Taste. Harvard University
+                  Press.<span class="ref" data-i="a-7">[7]</span>
+                </li>
+                <li>
+                  Giulianotti, R. (ed.). Pierre Bourdieu and the Sociological Study of Sport: Habitus, Capital and
+                  Field. Palgrave.<span class="ref" data-i="a-8">[8]</span>
+                </li>
+                <li>李娜 (2012). 《独自上场》. 企鹅出版社/中国出版.<span class="ref" data-i="a-10">[10]</span></li>
+              </ul>
+              <h4>产业数据</h4>
+              <ul>
+                <li>
+                  新华社 (2024.12.20). 从奥运金牌到全民热潮——2024，中国网球"火"了.<span class="ref" data-i="a-3"
+                    >[3]</span
+                  >
+                </li>
+                <li>艾媒咨询 (2024). 中国网球运动市场规模与人口数据.</li>
+                <li>中国网球协会 (2025.1.2). 2024中国网球十大要事.<span class="ref" data-i="a-12">[12]</span></li>
+                <li>
+                  36氪 (2024.10.14). 网球越来越热了，但普通人上手还有点难.<span class="ref" data-i="a-4">[4]</span>
+                </li>
+                <li>36氪 (2024.8.5). 郑钦文，中国商业价值最高的运动员.</li>
+              </ul>
+              <h4>社交媒体数据</h4>
+              <ul>
+                <li>
+                  钛媒体 (2024.9.30). 奥运营销的"冠军"叙事，正在被社媒改写.<span class="ref" data-i="a-3">[3]</span>
+                </li>
+                <li>21世纪经济报道 (2024.10.23). 郑钦文巴黎奥运会夺冠"热效应".</li>
+                <li>封面新闻 (2024.8.5). 哪些品牌"押中"了郑钦文？<span class="ref" data-i="a-15">[15]</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dvd"></div>
+      <div id="t2" class="ts">
+        <div class="th center">
+          <p class="tn2">课题B · 中观</p>
+          <h2>网球训练可视化报告设计</h2>
+          <p class="lead">数据会说谎也会讲故事——当可视化遇见人的成长</p>
+        </div>
+        <div class="subject-info">
+          <div class="subject-info-header">
+            <span class="subject-info-label">课题要求</span>
+            
+          </div>
+          <div class="subject-info-title">网球训练可视化报告设计 —— 基于行为改变理论的自我效能可视化<br/><span style="font-size:0.9rem;color:var(--tx3);font-weight:400">（自我效能感与动机）</span></div>
+          <div class="subject-info-section">
+            <div class="subject-info-section-title">课题背景</div>
+            <p>在可穿戴设备与AI摄像头的普及下，当代运动者正面临"数据丰富但洞察贫乏"的困境。现有的运动APP往往将原始数据（速度、距离、卡路里）简单罗列，导致两种极端：要么陷入"数字焦虑"（过度关注短期波动），要么产生"进步无感"（长期趋势被噪声淹没）。对于网球2.5-3.0水平的业余训练者（处于"进阶瓶颈期"的典型阶段），这种反馈设计的缺失直接影响训练坚持率——研究表明，70%的业余网球爱好者在接触运动6个月内放弃，主因是"看不到自己的变化"。</p>
+            <p style="margin-top:12px">行为心理学中的自我效能理论（Self-efficacy Theory）指出：人们坚持某项运动的关键不在于绝对水平，而在于对"自己正在进步"的主观信念。然而，现有的数据产品设计普遍缺乏情感化叙事能力与行为改变干预意识，未能将冷冰冰的数据转化为心理赋能的工具。</p>
+          </div>
+          <div class="subject-info-section">
+            <div class="subject-info-section-title">立意与目标</div>
+            <p>将说服性可视化（Persuasive Visualization）与个人信息化（Personal Informatics）理论应用于体育场景。基于一名真实训练者12次课的模拟数据（涵盖技术、生理、心理多维度），设计一套"成长叙事"可视化方案：</p>
+            <ul>
+              <li><strong>从数据到故事</strong>：不仅展示"你打了什么"，更讲述"你如何突破"——识别平台期、标注突破时刻、预测未来轨迹；</li>
+              <li><strong>从客观到主观</strong>：运用增益性框架（Gain-framing）设计视觉语言，让训练者感受到能力增长而非缺陷暴露；</li>
+              <li><strong>从回顾到前瞻</strong>：将历史数据转化为未来行动指南，建立"目标-路径-信心"的清晰认知。</li>
+            </ul>
+          </div>
+          <div class="subject-info-meta">
+            <div class="subject-info-meta-item">
+              <span class="subject-info-meta-label">交付形式</span>
+              <span class="subject-info-meta-value">可互动的UI界面（4-5屏）</span>
+            </div>
+            <div class="subject-info-meta-item">
+              <span class="subject-info-meta-label">数据来源</span>
+              <span class="subject-info-meta-value">企业提供基于真实用户运动的模拟数据（半年内8次训练）</span>
+            </div>
+            <div class="subject-info-meta-item" style="margin-top: 12px;">
+              <a href="res/tennis_training_data.zip" download class="download-btn">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Download Data
+              </a>
+            </div>
+          </div>
+          <div class="subject-info-tags">
+            <span class="subject-info-tag">个人数据可视化</span>
+            <span class="subject-info-tag">说服性可视化</span>
+            <span class="subject-info-tag">行为心理学</span>
+            <span class="subject-info-tag">UX设计</span>
+          </div>
+        </div>
+        <div class="aw">
+          <div class="art">
+            <h3 class="center" id="t2-v1">观点一：数据 ≠ 信息 ≠ 意义</h3>
+            <h4>1.1 这个分层从哪里来</h4>
+            <p>
+              这个三层结构源自信息科学中经典的 <strong>DIKW金字塔</strong>（Data → Information → Knowledge →
+              Wisdom），最早由Russell Ackoff在1989年的论文"From Data to
+              Wisdom"中系统化提出。在你的演讲语境中，我们做了一个面向设计的简化：Data → Information →
+              Meaning（意义），因为对于业余运动者来说，他们不需要"知识"或"智慧"这种抽象层次，他们需要的是<strong>对自身处境的意义感知</strong>——"我现在在哪里，我是否在变好，我接下来该做什么"。
+            </p>
+            <p>可以这样理解这三层的区别：</p>
+            <ul>
+              <li>
+                <strong>数据（Data）</strong>
+                是脱离语境的原始事实。"62%"这个数字本身什么都不说明——它可能是一个很好的成绩（如果上个月是41%），也可能是一个糟糕的成绩（如果上个月是78%）。数据是沉默的。
+              </li>
+              <li>
+                <strong>信息（Information）</strong>
+                是被赋予了语境的数据。"比上月提升了7个百分点"——这就有了比较基准、时间维度和变化方向。信息回答的是"发生了什么"。
+              </li>
+              <li>
+                <strong>意义（Meaning）</strong>
+                是被赋予了解释和情感的信息。"你正在突破瓶颈期，身体正在将新动作写入肌肉记忆"——这不仅告诉你发生了什么，还告诉你<strong>这意味着什么</strong>，以及<strong>你应该如何感受它</strong>。意义回答的是"这对我来说重要吗"。
+              </li>
+            </ul>
+            <p>
+              现有运动APP的根本问题在于：技术让数据采集变得极其容易（传感器、AI摄像头、可穿戴设备），但<strong>从数据到意义的"翻译"工作几乎没有人在做</strong>。这个翻译工作，恰恰是设计师的核心价值所在。
+            </p>
+            <h4>1.2 个人信息化的五阶段模型：理论锚点</h4>
+            <p>
+              Ian Li、Anind Dey和Jodi Forlizzi在CHI 2010发表了一篇极具影响力的论文"A Stage-Based Model of Personal
+              Informatics Systems"<span class="ref" data-i="b-1">[1]</span
+              >，通过分析大量自我追踪工具和用户行为，提出了个人信息化系统的五个阶段：
+            </p>
+            <p>
+              <strong>① 准备阶段（Preparation）</strong
+              >：用户决定追踪什么、如何追踪。在网球场景中，这是"我要买一个SwingVision开始记录我的训练"。这个阶段的障碍是：用户不知道哪些指标对自己有意义。
+            </p>
+            <p>
+              <strong>② 收集阶段（Collection）</strong
+              >：实际的数据采集过程。障碍是完整性和准确性——你不可能每次训练都带着摄像头，有些训练可能忘记记录。
+            </p>
+            <p>
+              <strong>③ 整合阶段（Integration）</strong
+              >：将收集到的数据组织、清洗、准备用于分析。大多数APP在这一步做得不错——它们会自动把你的挥拍数据整理成图表。
+            </p>
+            <p>
+              <strong>④ 反思阶段（Reflection）</strong>：用户从整合后的数据中获取洞察和自我理解。<strong
+                >这是最关键也最薄弱的环节。</strong
+              >
+              Li等人发现，大多数用户在这个阶段遇到严重障碍——他们不知道如何解读自己的数据，不知道哪些变化是有意义的，哪些只是正常波动。
+            </p>
+            <p>
+              <strong>⑤ 行动阶段（Action）</strong
+              >：基于反思结果做出行为改变。"我决定这周多练反手切削"。这个阶段的障碍是：即使用户有了洞察，也不知道具体该做什么。
+            </p>
+            <p>
+              Li的模型揭示了一个关键洞察：<strong
+                >现有技术在前三个阶段（准备、收集、整合）投入了大量资源，但在后两个阶段（反思、行动）几乎是空白。</strong
+              >
+              这正是你们这个课题的设计空间。
+            </p>
+            <p>
+              值得注意的是，Rooksby等人在2014年提出了"Lived Informatics"模型<span class="ref" data-i="b-2">[2]</span
+              >，对Li的线性模型进行了修正。他们发现，在真实生活中，自我追踪并不是一个整齐的线性过程，而是充满了<strong>中断（Lapsing）、遗忘和重启</strong>。一个业余网球手可能热情高涨地记录了两个月，然后因为出差或受伤中断了三周，回来后面对空白的数据记录感到沮丧，于是彻底放弃。这意味着设计方案不仅要考虑"持续使用"的场景，还必须考虑<strong>"断续使用"甚至"重新开始"的场景</strong>。
+            </p>
+            <h4>1.3 真实用户痛点：小红书上的声音</h4>
+            <p>以下是从小红书搜集到的典型用户声音：</p>
+            <div class="case-card">
+              <span class="case-num">案例一</span>
+              <p class="case-title">听劝，准备放弃网球了</p>
+            </div>
+            <p>
+              这位用户学了大半年网球，上了快20节课，还额外加了发球机多球练习。他的描述非常典型："正反手可以和教练对拉，但是和一起上课的朋友拉不起来。正手转体不充分，击球不稳定。"注意他的表述方式——全部是<strong>缺陷清单</strong>。他对自己半年来的进步只字未提，大脑自动过滤了所有正面信号，只放大了负面信号。这恰恰说明：在缺乏"成长叙事"的情况下，人的认知系统会默认采用"缺陷扫描"模式。
+            </p>
+            <div class="case-card">
+              <span class="case-num">案例二</span>
+              <p class="case-title">36岁才开始学网球晚了吗？</p>
+            </div>
+            <p>
+              这位用户的态度截然不同。他写道："打中甜区的'啵啵'声实在是太治愈了！这种每天都在进步的感觉有多上瘾谁懂啊！"他能感受到进步，不是因为他有更好的数据工具，而是因为他找到了一个<strong>感官层面的进步锚点</strong>——击球的声音。这提示我们：进步的感知不一定要通过数字来传达，<strong>感官记忆、身体感觉、情绪体验</strong>都可以成为进步的载体。
+            </p>
+            <div class="case-card">
+              <span class="case-num">案例三</span>
+              <p class="case-title">学网球三个月能打成什么水平</p>
+            </div>
+            <p>
+              这位用户写道："前两周拉球还一塌糊涂，现在虽然动作也有很多问题，但是能拉起来了！好开心！"——"第一次拉起来"就是一个典型的<strong
+                >突破时刻（Breakthrough Moment）</strong
+              >。如果一个APP能自动检测并纪念这些时刻，它的心理赋能效果将远超任何数据仪表盘。
+            </p>
+            <h4>1.4 反问自己或许能打开其他思路</h4>
+            <ul>
+              <li>"如果你是这个学了半年想放弃的人，你希望你的APP在你打开它的时候，第一眼看到什么？"</li>
+              <li>
+                "数据仪表盘和医生的体检报告有什么相似之处？你拿到体检报告时的感受，和你打开运动APP时的感受，有什么共同点？"
+              </li>
+            </ul>
+            <h3 class="center" id="t2-v2">观点二：可视化是一种修辞行为</h3>
+            <h4>2.1 可视化修辞学的学术根基</h4>
+            <p>
+              这个观点的核心学术来源是Hullman和Diakopoulos在2011年发表的论文"Visualization Rhetoric: Framing Effects in
+              Narrative Visualization"<span class="ref" data-i="b-6">[6]</span>。这篇论文的核心论点是：<strong
+                >每一张数据可视化都不是对现实的"镜像反映"，而是一种经过选择和建构的修辞行为。</strong
+              >
+              设计者在以下每一个环节都做出了影响受众认知的决策：
+            </p>
+            <ul>
+              <li><strong>数据选择</strong>：展示哪些数据、隐藏哪些数据</li>
+              <li><strong>视觉编码</strong>：用什么颜色、什么图表类型、什么比例尺</li>
+              <li><strong>注释和标签</strong>：在哪里加文字说明、用什么措辞</li>
+              <li><strong>叙事顺序</strong>：先展示什么、后展示什么</li>
+              <li><strong>基线设定</strong>：把比较基准设在哪里</li>
+            </ul>
+            <p>
+              这些决策共同构成了可视化的"修辞框架"。Hullman和Diakopoulos借用了Kahneman和Tversky的<strong
+                >框架效应（Framing Effect）</strong
+              >理论来解释这一现象。
+            </p>
+            <h4>2.2 框架效应：同一事实的两种面孔</h4>
+            <p>
+              框架效应是行为经济学中最经典的发现之一。Tversky和Kahneman在1981年的论文"The Framing of Decisions and the
+              Psychology of Choice"<span class="ref" data-i="b-7">[7]</span>中提出了著名的"亚洲疾病问题"实验：
+            </p>
+            <div class="pq">
+              <p>
+                假设美国正在为一种预计会导致600人死亡的异常疾病做准备。现有两种方案：
+                <strong>正面框架（Gain Frame）</strong
+                >：方案A将拯救200人。方案B有1/3的概率拯救600人，2/3的概率无人获救。
+                <strong>负面框架（Loss Frame）</strong
+                >：方案C将导致400人死亡。方案D有1/3的概率无人死亡，2/3的概率600人死亡。
+              </p>
+            </div>
+            <p>
+              A和C、B和D在数学上完全等价，但实验结果显示：在正面框架下72%的人选择A（确定性收益），在负面框架下78%的人选择D（冒险避免损失）。<strong
+                >仅仅是措辞的改变，就导致了偏好的逆转。</strong
+              >
+            </p>
+            <p>这个实验对课题有直接启示。在运动数据呈现中：</p>
+            <table class="dtbl">
+              <thead>
+                <tr>
+                  <th>损失框架（Loss Frame）</th>
+                  <th>增益框架（Gain Frame）</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>"你的正手失误率是35%"</td>
+                  <td>"你的正手上线率是65%"</td>
+                </tr>
+                <tr>
+                  <td>"你比同水平选手慢15%"</td>
+                  <td>"你的速度已达到同水平段的85%分位"</td>
+                </tr>
+                <tr>
+                  <td>"本月训练天数不足目标"</td>
+                  <td>"本月你已在球场度过12天"</td>
+                </tr>
+                <tr>
+                  <td>"你的反手是你最弱的环节"</td>
+                  <td>"你的正手已经是你的可靠武器"</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              两种框架传递的是完全相同的数据事实，但用户的情绪反应和后续行为会截然不同。研究表明，在<strong>促进健康行为</strong>（如坚持运动）的场景中，<strong
+                >增益框架通常比损失框架更有效</strong
+              ><span class="ref" data-i="b-8">[8]</span>，因为运动坚持属于"预防性行为"（prevention
+              behavior），而增益框架更能促进人们对预防性行为的接受。
+            </p>
+            <div class="visualization">
+              <svg viewBox="0 0 700 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text
+                  x="175"
+                  y="18"
+                  text-anchor="middle"
+                  fill="#C47070"
+                  font-size="9"
+                  font-weight="700"
+                  font-family="sans-serif"
+                  letter-spacing="0.15em"
+                >
+                  LOSS 框架
+                </text>
+                <rect
+                  x="50"
+                  y="32"
+                  width="250"
+                  height="170"
+                  rx="8"
+                  fill="rgba(196,112,112,0.04)"
+                  stroke="rgba(196,112,112,0.15)"
+                  stroke-width="1"
+                />
+                <text
+                  x="175"
+                  y="56"
+                  text-anchor="middle"
+                  fill="#C47070"
+                  font-size="16"
+                  font-weight="700"
+                  font-family="sans-serif"
+                >
+                  35%
+                </text>
+                <text x="175" y="72" text-anchor="middle" fill="#C47070" font-size="8" font-family="sans-serif">
+                  正手失误率
+                </text>
+                <text x="175" y="155" text-anchor="middle" fill="#C47070" font-size="8" font-family="sans-serif">
+                  你比同水平选手慢15%
+                </text>
+                <text
+                  x="525"
+                  y="18"
+                  text-anchor="middle"
+                  fill="#6B8F5E"
+                  font-size="9"
+                  font-weight="700"
+                  font-family="sans-serif"
+                  letter-spacing="0.15em"
+                >
+                  GAIN 框架
+                </text>
+                <rect
+                  x="400"
+                  y="32"
+                  width="250"
+                  height="170"
+                  rx="8"
+                  fill="rgba(107,143,94,0.04)"
+                  stroke="rgba(107,143,94,0.15)"
+                  stroke-width="1"
+                />
+                <text
+                  x="525"
+                  y="56"
+                  text-anchor="middle"
+                  fill="#6B8F5E"
+                  font-size="16"
+                  font-weight="700"
+                  font-family="sans-serif"
+                >
+                  65%
+                </text>
+                <text x="525" y="72" text-anchor="middle" fill="#6B8F5E" font-size="8" font-family="sans-serif">
+                  正手上线率
+                </text>
+                <text x="525" y="155" text-anchor="middle" fill="#6B8F5E" font-size="8" font-family="sans-serif">
+                  你的速度达85%分位
+                </text>
+              </svg>
+              <div class="viz-caption">图3: 同一数据的两种框架</div>
+            </div>
+            <h4>2.3 叙事可视化的七种体裁</h4>
+            <p>
+              Segel和Heer在2010年发表了另一篇奠基性论文"Narrative Visualization: Telling Stories with Data"<span
+                class="ref"
+                data-i="b-9"
+                >[9]</span
+              >。他们分析了58个真实的叙事可视化案例，提出了<strong>七种叙事可视化体裁</strong>：
+            </p>
+            <div class="numbered-grid">
+              <div class="numbered-item">
+                <span class="num-label">杂志风格（Magazine Style）</span
+                ><span class="num-text">静态图文结合，类似杂志的信息图表</span>
+              </div>
+              <div class="numbered-item">
+                <span class="num-label">注释图表（Annotated Chart）</span
+                ><span class="num-text">在标准图表上添加叙事性注释</span>
+              </div>
+              <div class="numbered-item">
+                <span class="num-label">分区海报（Partitioned Poster）</span
+                ><span class="num-text">将故事分解为多个视觉区域</span>
+              </div>
+              <div class="numbered-item">
+                <span class="num-label">流程图（Flow Chart）</span><span class="num-text">用流程结构引导叙事</span>
+              </div>
+              <div class="numbered-item">
+                <span class="num-label">漫画条（Comic Strip）</span
+                ><span class="num-text">用连续的画面讲述时间序列故事</span>
+              </div>
+              <div class="numbered-item">
+                <span class="num-label">幻灯片放映（Slide Show）</span
+                ><span class="num-text">逐帧展示，每帧讲述故事的一个环节</span>
+              </div>
+              <div class="numbered-item">
+                <span class="num-label">影片/动画（Film/Video/Animation）</span><span class="num-text">动态叙事</span>
+              </div>
+            </div>
+            <p><strong>幻灯片放映（Slide Show）</strong>体裁最值得关注——这正是Spotify Wrapped所采用的形式。</p>
+            <p>
+              Segel和Heer还提出了一个重要的设计维度：<strong
+                >作者驱动（Author-driven）vs 读者驱动（Reader-driven）</strong
+              >
+              的叙事光谱。完全作者驱动的叙事像一部电影，观众只能被动接受；完全读者驱动的叙事像一个数据仪表盘，用户自己探索。最好的叙事可视化往往处于两者之间——<strong
+                >"引导式探索"（Martini Glass Structure）</strong
+              >：先用一段作者驱动的叙事"引入"故事，然后开放给用户自行探索细节。
+            </p>
+            <h4>2.4 深度案例：Spotify Wrapped的设计解剖</h4>
+            <div
+              class="video-container"
+              style="
+                margin: 24px 0;
+                background: #000;
+                border-radius: 12px;
+                overflow: hidden;
+                border: 1px solid var(--br);
+              "
+            >
+              <div
+                style="position: relative; height: 480px; display: flex; align-items: center; justify-content: center"
+              >
+                <video controls style="max-height: 100%; max-width: 100%" preload="metadata">
+                  <source src="res/2.4.a.mp4" type="video/mp4" />
+                  您的浏览器不支持视频播放
+                </video>
+              </div>
+              <p style="padding: 12px 16px; margin: 0; font-size: 13px; color: var(--tx3); background: var(--bg-alt)">
+                视频：Spotify Wrapped 设计策略解析
+              </p>
+            </div>
+            <p>
+              Spotify Wrapped是过去十年最成功的个人数据叙事产品。2025年的Wrapped为3.5亿用户生成了14亿份个性化报告<span
+                class="ref"
+                data-i="b-10"
+                >[10]</span
+              >，产生了23亿次展示<span class="ref" data-i="b-11">[11]</span>。以下是其设计策略的深度拆解：
+            </p>
+            <p><strong>策略一：时间胶囊叙事（Temporal Capsule Narrative）</strong></p>
+            <p>
+              Wrapped不是简单的年度统计。UX Playbook的分析指出<span class="ref" data-i="b-11">[11]</span
+              >，它被设计成一个"个人时间胶囊"——"它提醒你一月时你是谁，四月什么软化了你，七月什么击碎了你，十一月什么将你重新缝合。"这种时间叙事结构之所以有效，是因为它激活了<strong
+                >自传体记忆（Autobiographical Memory）</strong
+              >——人们通过音乐回忆起特定时期的生活状态和情感，产生强烈的情感共鸣。
+            </p>
+            <p><strong>策略二：身份建构（Identity Construction）</strong></p>
+            <p>
+              Wrapped本质上是在帮用户回答"我是谁"的问题。它给你贴标签——"你是前0.5%的Taylor
+              Swift听众""你的音乐品味是'怀旧浪漫型'"。这些标签不是客观的音乐分类，而是<strong>社交身份的建构工具</strong>。Marketing
+              Made Clear的分析指出<span class="ref" data-i="b-12">[12]</span
+              >，Wrapped成功地将个人数据转化为"身份心理学"产品——人们分享Wrapped不是在分享数据，而是在展示"我是这样的人"。
+            </p>
+            <p><strong>策略三：社交货币（Social Currency）</strong></p>
+            <p>
+              Wrapped被设计成适合分享到社交媒体的卡片格式。每一帧都是一个独立的、视觉上完整的"故事"，可以直接截图发布。这种设计将个人数据转化为了社交货币——分享Wrapped成为了一种年度仪式。
+            </p>
+            <p><strong>策略四：增益性框架的极致运用</strong></p>
+            <p>
+              Wrapped几乎从不使用负面框架。它不会说"你今年听歌时间减少了"，而会说"你今年发现了47位新艺术家"。即使是可能让人尴尬的数据（比如你重复听了同一首歌300次），也被包装成一种"独特个性"而非"强迫症"。
+            </p>
+            <p><strong>Wrapped的局限与争议</strong></p>
+            <p>
+              但Wrapped也有值得批判的地方。Strava的Year in Sport在2025年将完整版放入了80美元的付费墙<span
+                class="ref"
+                data-i="b-13"
+                >[13]</span
+              >，引发了用户强烈反弹。Reddit上有用户评价Strava的Year in Sport"提供的有价值信息太少了"<span
+                class="ref"
+                data-i="b-14"
+                >[14]</span
+              >——这说明<strong>纯粹的叙事化如果缺乏信息深度，也会让用户不满</strong>。这是叙事化设计需要警惕的陷阱：不能为了"讲故事"而牺牲"说真话"。
+            </p>
+            <h4>2.5 另一个重要参考：Giorgia Lupi的"数据人文主义"</h4>
+            <p>
+              信息设计师Giorgia Lupi在2017年提出了<strong>"数据人文主义"（Data Humanism）</strong>宣言<span
+                class="ref"
+                data-i="b-15"
+                >[15]</span
+              >，主张"我们不应该只关注数字、技术和算法，而应该关注生成数据的人、他们的行为和习惯"。她与Stefanie
+              Posavec合作的项目"Dear Data"<span class="ref" data-i="b-16">[16]</span
+              >是一个极具启发性的案例：两人用一年时间，每周用手绘明信片记录自己生活中的一个数据维度（比如"本周我说了多少次谢谢""本周我看了多少次手机"），然后寄给对方。
+            </p>
+            <p>
+              这个项目的核心洞察是：<strong>当数据被手工绘制、带有个人痕迹和不完美时，它变得更加亲密和有意义。</strong>
+              数据不必总是精确的、机器生成的、冰冷的——它可以是温暖的、个人的、不完美的。Lupi的新书"Speak
+              Data"（2025年出版）<span class="ref" data-i="b-17">[17]</span
+              >进一步阐述了这一理念，而她的首个个人展览"Data Humanism"于2026年4月30日在纽约开幕<span
+                class="ref"
+                data-i="b-18"
+                >[18]</span
+              >。
+            </p>
+            <p>
+              这对课题的启示是：<strong>也许最好的运动数据可视化，不是最精确的那个，而是最"像人"的那个。</strong>
+              一个带有手写批注、个人情绪标记、甚至不完美涂鸦的训练日志，可能比一个精确到小数点后两位的数据仪表盘更能让人感到被理解。
+            </p>
+            <h4>2.6 反问</h4>
+            <ul>
+              <li>
+                "如果Spotify Wrapped告诉你'你今年32%的听歌时间都在重复同一首歌'，你还会截图分享吗？它为什么不这样说？"
+              </li>
+              <li>
+                "你们觉得可视化设计师和新闻记者有什么相似之处？他们都在做什么？"（引导学生认识到两者都在"构建叙事"）
+              </li>
+            </ul>
+            <h3 class="center" id="t2-v3">观点三：人需要"看见自己在变好"</h3>
+            <h4>3.1 Bandura自我效能理论的完整图景</h4>
+            <p>
+              Albert Bandura在1977年提出自我效能理论（Self-Efficacy Theory），后在1997年的专著"Self-Efficacy: The
+              Exercise of Control"中系统化。APA（美国心理学会）将其描述为"人类能动性的核心理论"<span
+                class="ref"
+                data-i="b-19"
+                >[19]</span
+              >。
+            </p>
+            <p>
+              <strong>自我效能的定义</strong>：个体对自己能够成功执行特定行为以产生预期结果的信念<span
+                class="ref"
+                data-i="b-20"
+                >[20]</span
+              >。注意——它不是"你实际上能不能做到"，而是"你相不相信自己能做到"。这个区别至关重要。一个2.5水平的网球手，如果相信自己"正在进步、有能力达到3.0"，他的训练投入度、面对失败的韧性和最终的表现，都会显著优于一个同水平但"觉得自己可能永远打不好"的选手<span
+                class="ref"
+                data-i="b-21"
+                >[21]</span
+              >。
+            </p>
+            <p>
+              <strong>自我效能的四个来源</strong>（按影响力从强到弱排列）<span class="ref" data-i="b-20">[20]</span>：
+            </p>
+            <div class="visualization">
+              <svg viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text
+                  x="300"
+                  y="18"
+                  text-anchor="middle"
+                  fill="#C4A65A"
+                  font-size="10"
+                  font-weight="700"
+                  font-family="sans-serif"
+                  letter-spacing="0.15em"
+                >
+                  自我效能的四个来源
+                </text>
+                <rect
+                  x="50"
+                  y="36"
+                  width="500"
+                  height="36"
+                  rx="6"
+                  fill="rgba(196,166,90,0.18)"
+                  stroke="#C4A65A"
+                  stroke-width="1.5"
+                />
+                <text
+                  x="300"
+                  y="60"
+                  text-anchor="middle"
+                  fill="#2D2A25"
+                  font-size="11"
+                  font-weight="700"
+                  font-family="sans-serif"
+                >
+                  ① 掌握经验 Mastery Experiences
+                </text>
+                <text x="530" y="58" text-anchor="end" fill="#C4A65A" font-size="8" font-family="sans-serif">
+                  影响力最强
+                </text>
+                <rect
+                  x="100"
+                  y="80"
+                  width="400"
+                  height="32"
+                  rx="6"
+                  fill="rgba(196,166,90,0.12)"
+                  stroke="rgba(196,166,90,0.5)"
+                  stroke-width="1"
+                />
+                <text
+                  x="300"
+                  y="102"
+                  text-anchor="middle"
+                  fill="#2D2A25"
+                  font-size="10"
+                  font-weight="600"
+                  font-family="sans-serif"
+                >
+                  ② 替代经验 Vicarious Experiences
+                </text>
+                <rect
+                  x="140"
+                  y="120"
+                  width="320"
+                  height="28"
+                  rx="6"
+                  fill="rgba(196,166,90,0.08)"
+                  stroke="rgba(196,166,90,0.35)"
+                  stroke-width="1"
+                />
+                <text
+                  x="300"
+                  y="140"
+                  text-anchor="middle"
+                  fill="#2D2A25"
+                  font-size="9"
+                  font-weight="500"
+                  font-family="sans-serif"
+                >
+                  ③ 言语说服 Verbal Persuasion
+                </text>
+                <rect
+                  x="180"
+                  y="156"
+                  width="240"
+                  height="24"
+                  rx="6"
+                  fill="rgba(196,166,90,0.05)"
+                  stroke="rgba(196,166,90,0.2)"
+                  stroke-width="1"
+                />
+                <text x="300" y="173" text-anchor="middle" fill="#8A8480" font-size="8" font-family="sans-serif">
+                  ④ 生理情绪状态 Physiological States
+                </text>
+                <text x="300" y="196" text-anchor="middle" fill="#8A8480" font-size="7" font-family="sans-serif">
+                  Bandura (1977/1997)
+                </text>
+              </svg>
+              <div class="viz-caption">图2: 自我效能的四个来源——金字塔结构</div>
+            </div>
+            <p><strong>① 掌握经验（Mastery Experiences）</strong>——影响力最强</p>
+            <p>
+              直接的成功体验是自我效能最强大的来源。Bandura（2008）认为"没有比掌握经验更好的方式来建立自我效能"<span
+                class="ref"
+                data-i="b-22"
+                >[22]</span
+              >。关键细节是：这里的"成功"不必是绝对意义上的成功，而是<strong>相对于自己过去表现的进步</strong>。一个2.5水平的选手赢了一个3.5的对手，这是掌握经验；但他的反手切削落点比上周深了20厘米，这<strong>同样是</strong>掌握经验——前提是他能"看见"这个进步。
+            </p>
+            <p>
+              这就是你们课题的核心设计任务：<strong>让微小的掌握经验变得可见。</strong>
+              现有APP的问题是，它们只记录了数据，但没有帮用户"看见"数据中的掌握经验。
+            </p>
+            <p><strong>② 替代经验（Vicarious Experiences）</strong>——"如果他能做到，我也能"</p>
+            <p>
+              观察与自己相似的人成功完成某项任务，可以增强自我效能。关键词是<strong>"相似"</strong>——如果你看到费德勒打出完美的反手，你不会觉得"我也能"；但如果你看到一个和你同期学球、同样水平的球友突破了3.0，你的信心会大增。这意味着在数据可视化设计中，<strong>匿名的同水平段对比</strong>（"和你同阶段的球友，平均在第4个月突破了反手瓶颈"）可能比与职业选手的对比更有效。
+            </p>
+            <p><strong>③ 言语说服（Verbal/Social Persuasion）</strong>——"我相信你能做到"</p>
+            <p>
+              来自他人的鼓励和肯定。虽然影响力弱于前两者，但在缺乏掌握经验的时期（比如平台期），言语说服可以起到"桥梁"作用，帮助用户度过信心低谷。在APP设计中，这对应的是<strong>AI生成的鼓励性文案</strong>——但需要注意，空洞的鼓励（"加油！你很棒！"）反而会降低可信度。有效的言语说服必须是<strong>具体的、基于证据的</strong>（"你的正手上旋球速度已经连续三周保持在85km/h以上，这说明新动作正在固化"）。
+            </p>
+            <p><strong>④ 生理和情绪状态（Physiological and Emotional States）</strong></p>
+            <p>
+              人们会从自己的身体感受和情绪状态中推断自我效能。如果你在训练后感到精力充沛而非精疲力竭，你更可能相信自己"做得不错"。这意味着数据系统可以引导用户关注积极的身体信号——比如"你的训练后心率恢复速度比上月快了15%，说明你的体能正在提升"。
+            </p>
+            <h4>3.2 高自我效能 vs 低自我效能的行为差异</h4>
+            <p>
+              NIH发表的一篇关于体育活动中自我效能的综述文章<span class="ref" data-i="b-23">[23]</span
+              >提供了一个非常清晰的对比表：
+            </p>
+            <table class="dtbl">
+              <thead>
+                <tr>
+                  <th>高自我效能的人倾向于</th>
+                  <th>低自我效能的人倾向于</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>将困难任务视为<strong>需要掌握的挑战</strong></td>
+                  <td>将困难任务视为<strong>需要回避的威胁</strong></td>
+                </tr>
+                <tr>
+                  <td>设定有挑战性的目标并坚持</td>
+                  <td>设定保守目标或回避目标设定</td>
+                </tr>
+                <tr>
+                  <td>遇到困难时坚持不懈</td>
+                  <td>遇到困难时迅速放弃</td>
+                </tr>
+                <tr>
+                  <td>失败后快速恢复</td>
+                  <td>失败后长期沮丧</td>
+                </tr>
+                <tr>
+                  <td>将失败归因于<strong>努力不足</strong>或<strong>策略不当</strong></td>
+                  <td>将失败归因于<strong>能力不足</strong></td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              这个对比表直接说明了为什么数据呈现方式如此重要：<strong
+                >缺陷暴露式的数据呈现（"你的失误率很高"）会强化低自我效能的归因模式（"我能力不行"），而增益发现式的数据呈现（"你的上线率在持续提升"）会强化高自我效能的归因模式（"我的努力正在起作用"）。</strong
+              >
+            </p>
+            <h4>3.3 学习平台期的神经科学解释</h4>
+            <p>当学生问"平台期到底是怎么回事"时，可以用以下知识来回答：</p>
+            <p>
+              运动神经科学研究表明，技能学习中的平台期并不意味着"没有进步"，而是大脑正在进行<strong
+                >运动记忆的巩固（Motor Memory Consolidation）</strong
+              ><span class="ref" data-i="b-24">[24]</span
+              >。在初始学习阶段，表现改善很快（因为你在学习基本的动作模式），但随后进入一个表面上"停滞"的阶段。在这个阶段，大脑实际上在做以下工作：
+            </p>
+            <ul>
+              <li><strong>突触强化</strong>：重复练习的动作模式所涉及的神经通路被反复激活，突触连接变得更强、更高效</li>
+              <li>
+                <strong>自动化转移</strong>：动作控制从需要有意识参与的前额叶皮层，逐渐转移到更自动化的基底神经节和小脑
+              </li>
+              <li>
+                <strong>干扰消除</strong>：大脑在区分新学的正确动作和旧的错误习惯，这个过程需要时间<span
+                  class="ref"
+                  data-i="b-25"
+                  >[25]</span
+                >
+              </li>
+            </ul>
+            <p>
+              PMC上2024年发表的一项研究进一步指出，<strong>平台期之后往往伴随着突然的表现跃升</strong
+              ><span class="ref" data-i="b-26">[26]</span
+              >——这就是很多网球手说的"突然有一天就通了"的体验。但如果在"通"之前用户已经因为"看不到进步"而放弃了，这个突破就永远不会到来。
+            </p>
+            <div class="visualization">
+              <svg viewBox="0 0 700 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text
+                  x="350"
+                  y="18"
+                  text-anchor="middle"
+                  fill="#C4A65A"
+                  font-size="10"
+                  font-weight="700"
+                  font-family="sans-serif"
+                  letter-spacing="0.15em"
+                >
+                  学习曲线与平台期
+                </text>
+                <line x1="50" y1="180" x2="650" y2="180" stroke="rgba(45,42,37,0.08)" stroke-width="1" />
+                <polyline
+                  points="55,180 90,170 130,160 170,150 210,138 248,128 276,120 305,114 334,110 363,108 393,106 422,105 452,103 481,98 511,82 541,58 571,35 601,22 631,16 650,12"
+                  fill="none"
+                  stroke="#C4A65A"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="250"
+                  y="88"
+                  width="220"
+                  height="30"
+                  rx="6"
+                  fill="rgba(196,166,90,0.1)"
+                  stroke="#C4A65A"
+                  stroke-width="1"
+                  stroke-dasharray="4,3"
+                />
+                <text
+                  x="360"
+                  y="108"
+                  text-anchor="middle"
+                  fill="#C4A65A"
+                  font-size="9"
+                  font-weight="600"
+                  font-family="sans-serif"
+                >
+                  平台期 = 记忆巩固
+                </text>
+                <text x="80" y="198" text-anchor="middle" fill="#8A8480" font-size="7" font-family="sans-serif">
+                  W1
+                </text>
+                <text x="305" y="198" text-anchor="middle" fill="#C4A65A" font-size="7" font-family="sans-serif">
+                  W3-W5
+                </text>
+                <text x="560" y="198" text-anchor="middle" fill="#6B8F5E" font-size="7" font-family="sans-serif">
+                  W6+
+                </text>
+              </svg>
+              <div class="viz-caption">图4: 学习平台期——不是停滞，是大脑在巩固</div>
+            </div>
+            <p>
+              <strong>这对设计的启示是</strong
+              >：当系统检测到用户数据进入平台期时，不应该沉默或显示"停滞"，而应该主动介入，用科学解释来<strong>重新定义</strong>这个阶段——"你正处于巩固期，你的大脑正在将新技能从'需要思考才能做'升级为'不用想就能做'"。这是一种<strong
+                >认知重构（Cognitive Reframing）</strong
+              >策略，将负面体验转化为积极期待。
+            </p>
+            <h4>3.4 Duolingo Streak的双面性：深度案例</h4>
+            <p>Duolingo的连续打卡（Streak）机制是游戏化设计中最被广泛研究的案例之一。以下是你需要了解的关键细节：</p>
+            <p><strong>正面：Streak如何改变了用户留存</strong></p>
+            <p>
+              Duolingo的游戏化策略将用户留存率从12%提升到了55%<span class="ref" data-i="b-27">[27]</span
+              >。Streak不仅仅是一个计数器——它被设计成了一个<strong>情感锚点（Emotional Anchor）</strong>、<strong
+                >身份标记（Identity Marker）</strong
+              ><strong>和</strong><strong>社交货币（Social Currency）</strong
+              ><span class="ref" data-i="b-28">[28]</span
+              >。当一个用户说"我的Duolingo连续打卡已经500天了"，这不只是一个数字，它代表了一种身份认同："我是一个坚持学习的人。"
+            </p>
+            <p>
+              Duolingo官方博客的解释是<span class="ref" data-i="b-29">[29]</span
+              >："你的Streak是一个有形的、可衡量的数字，它让你对每天的练习负责——哪怕只是5分钟。"这种设计利用了<strong
+                >损失厌恶（Loss Aversion）</strong
+              >心理——人们不想"失去"已经积累的连续天数，因此会更努力地维持习惯。
+            </p>
+            <p><strong>反面：Streak Creep现象</strong></p>
+            <p>
+              The Decision Lab在2026年3月发表了一篇深度分析文章"Streak Creep: The Perils of Too Much Gamification"<span
+                class="ref"
+                data-i="b-30"
+                >[30]</span
+              >，揭示了Streak机制的阴暗面。文章作者本人是一个566天Streak的Duolingo用户，但他坦承：
+            </p>
+            <ul>
+              <li>
+                他发现自己<strong>倾向于选择简单的练习来维持Streak</strong>，而回避更有挑战性但更有效的学习方式（比如与真人对话练习）——这被称为<strong>"Streak维护行为"</strong>，即用户的行为目标从"学好法语"偷偷转变为"不要断Streak"
+              </li>
+              <li>
+                Reddit上大量用户报告了<strong>"Duolingo倦怠"（Duolingo Burnout）</strong
+                >——一旦Streak断了，他们不是重新开始，而是彻底放弃。因为Streak的断裂带来的不是"少了一天"的感觉，而是"一切归零"的毁灭感
+              </li>
+              <li>
+                Streak机制本质上是一种<strong>外在动机（Extrinsic Motivation）</strong>，长期依赖外在动机会<strong
+                  >侵蚀内在动机（Intrinsic Motivation）</strong
+                >——用户开始为了数字而学习，而不是为了学习本身
+              </li>
+            </ul>
+            <p>
+              <strong>这对课题的启示极为重要</strong
+              >：设计需要在"让用户看见进步"和"不让'看见'本身成为新的压力源"之间找到平衡。
+            </p>
+            <h4>3.5 反问</h4>
+            <ul>
+              <li>
+                "Duolingo让你害怕断Streak，Spotify
+                Wrapped让你期待年底的总结——这两种情绪设计，哪一种更适合运动训练场景？还是说你们能想到第三种？"
+              </li>
+              <li>
+                "如果一个网球手三周没有进步（数据平台期），你的APP应该'说实话'（告诉他没进步）还是'说好话'（告诉他在巩固）？这两种选择的伦理边界在哪里？"
+              </li>
+            </ul>
+            <div class="refs-section">
+              <h3>附录：参考文献</h3>
+              <h4>个人信息化与自我追踪</h4>
+              <ul>
+                <li>
+                  Li, I., Dey, A., & Forlizzi, J. (2010). A Stage-Based Model of Personal Informatics Systems. CHI
+                  2010.<span class="ref" data-i="b-1">[1]</span>
+                </li>
+                <li>
+                  Rooksby, J. et al. (2014). Personal Tracking as Lived Informatics. CHI 2014.<span
+                    class="ref"
+                    data-i="b-2"
+                    >[2]</span
+                  >
+                </li>
+                <li>Epstein, D. et al. (2021). Challenges in Everyday Use of Mobile Visualizations.</li>
+              </ul>
+              <h4>说服性可视化与叙事</h4>
+              <ul>
+                <li>
+                  Hullman, J. & Diakopoulos, N. (2011). Visualization Rhetoric: Framing Effects in Narrative
+                  Visualization. IEEE TVCG.<span class="ref" data-i="b-6">[6]</span>
+                </li>
+                <li>
+                  Segel, E. & Heer, J. (2010). Narrative Visualization: Telling Stories with Data. IEEE TVCG.<span
+                    class="ref"
+                    data-i="b-9"
+                    >[9]</span
+                  >
+                </li>
+                <li>Pandey, A. et al. (2014). The Persuasive Power of Data Visualization. IEEE TVCG.</li>
+                <li>
+                  Markant, D. (2022). Can Data Visualizations Change Minds? Identifying Mechanisms of Persuasive
+                  Visualization.
+                </li>
+              </ul>
+              <h4>自我效能与行为心理学</h4>
+              <ul>
+                <li>Bandura, A. (1997). Self-Efficacy: The Exercise of Control. Freeman.</li>
+                <li>
+                  Bandura, A. (1977). Self-efficacy: Toward a Unifying Theory of Behavioral Change. Psychological
+                  Review.<span class="ref" data-i="b-20">[20]</span>
+                </li>
+                <li>
+                  Tversky, A. & Kahneman, D. (1981). The Framing of Decisions and the Psychology of Choice.
+                  Science.<span class="ref" data-i="b-7">[7]</span>
+                </li>
+              </ul>
+              <h4>数据人文主义与情感化设计</h4>
+              <ul>
+                <li>
+                  Lupi, G. (2017). Data Humanism: The Revolution Will Be Visualized. PrintMag.<span
+                    class="ref"
+                    data-i="b-15"
+                    >[15]</span
+                  >
+                </li>
+                <li>
+                  Lupi, G. & Posavec, S. (2016). Dear Data. Princeton Architectural Press.<span
+                    class="ref"
+                    data-i="b-16"
+                    >[16]</span
+                  >
+                </li>
+                <li>Knaflic, C.N. (2015). Storytelling with Data. Wiley.</li>
+              </ul>
+              <h4>游戏化与行为设计</h4>
+              <ul>
+                <li>Fogg, B.J. (2009). A Behavior Model for Persuasive Design. Persuasive Technology.</li>
+                <li>
+                  The Decision Lab. (2026). Streak Creep: The Perils of Too Much Gamification.<span
+                    class="ref"
+                    data-i="b-30"
+                    >[30]</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dvd"></div>
+      <div id="t3" class="ts">
+        <div class="th center">
+          <p class="tn2">课题C · 微观</p>
+          <h2>运动影像的创意可视化</h2>
+          <p class="lead">当身体成为叙事的一部分</p>
+        </div>
+        <div class="subject-info">
+          <div class="subject-info-header">
+            <span class="subject-info-label">课题要求</span>
+            
+          </div>
+          <div class="subject-info-title">运动影像的创意可视化 —— 体育媒介化视角下的普通人英雄之旅<br/><span style="font-size:0.9rem;color:var(--tx3);font-weight:400">（社交货币与成就感）</span></div>
+          <div class="subject-info-section">
+            <div class="subject-info-section-title">课题背景</div>
+            <p>短视频时代，"被看见"已成为运动体验的核心组成部分。然而普通人面临双重困境：一方面，专业体育转播的视听语言（多机位、慢动作、数据叠加）技术门槛过高，无法应用于日常训练；另一方面，随手拍摄的训练视频往往缺乏"高光感"——画面抖动、数据缺失、节奏拖沓，难以激发分享欲。与此同时，AI摄像设备与传感器技术的普及，让"数据+视频"的融合生成成为可能，但市场上缺乏针对业余场景的设计模板与叙事范式。</p>
+            <p style="margin-top:12px">这不仅是技术问题，更是体育民主化（Democratization of Sports）的文化命题：当网球从"观看职业明星"转向"每个人都是参与者"，如何通过设计让普通人获得与职业选手同等的媒介待遇与仪式感？现有的研究多关注专业体育转播的视听语法，对"业余体育的媒介化表达"缺乏设计探索。</p>
+          </div>
+          <div class="subject-info-section">
+            <div class="subject-info-section-title">立意与目标</div>
+            <p>学生将亲自体验AI网球设备，并设计一套"轻量级运动叙事"的动态数据可视化模板并应用自己真实训练视频与运动数据：</p>
+            <ul>
+              <li><strong>信息与影像的融合</strong>：如何相辅相成述说一段有意义的故事；</li>
+              <li><strong>数据的情绪化转译</strong>：将抽象的球速、旋转、移动距离转化为视觉特效（光轨、粒子特效、动态typography），探索"硬核数据"与"情感共鸣"的平衡点；</li>
+              <li><strong>社交货币的铸造</strong>：针对抖音/小红书/Instagram的平台特性，设计信息架构与节奏卡点，最大化传播潜力与互动率。</li>
+            </ul>
+          </div>
+          <div class="subject-info-meta">
+            <div class="subject-info-meta-item">
+              <span class="subject-info-meta-label">交付形式</span>
+              <span class="subject-info-meta-value">30秒竖屏MP4视频</span>
+            </div>
+            <div class="subject-info-meta-item">
+              <span class="subject-info-meta-label">数据来源</span>
+              <span class="subject-info-meta-value">学生自行前往指定场馆体验并获得视频及大量统计型运动数据</span>
+            </div>
+          </div>
+          <div class="subject-info-tags">
+            <span class="subject-info-tag">动态数据可视化</span>
+            <span class="subject-info-tag">影视包装</span>
+            <span class="subject-info-tag">动效设计</span>
+            <span class="subject-info-tag">叙事可视化</span>
+          </div>
+        </div>
+        <div class="aw">
+          <div class="art">
+            <h3 class="center" id="t3-v1">观点一：数据不是身体的真相，数据是身体的一幅肖像</h3>
+            <h4>1.1 这个观点的哲学根基：梅洛-庞蒂与"身体图式"</h4>
+            <p>
+              这个观点的核心张力来自法国现象学家梅洛-庞蒂（Maurice
+              Merleau-Ponty）在1945年出版的《知觉现象学》（_Phenomenology of Perception_）中提出的核心概念——<strong
+                >"身体图式"（body schema / schéma corporel）</strong
+              ><span class="ref" data-i="c-1">[1]</span>。
+            </p>
+            <p>梅洛-庞蒂区分了两种理解身体的方式：</p>
+            <div class="visualization">
+              <svg viewBox="0 0 700 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text
+                  x="350"
+                  y="15"
+                  text-anchor="middle"
+                  fill="#C4A65A"
+                  font-size="10"
+                  font-weight="700"
+                  font-family="sans-serif"
+                  letter-spacing="0.15em"
+                >
+                  身体的两种存在方式
+                </text>
+                <rect
+                  x="40"
+                  y="32"
+                  width="280"
+                  height="95"
+                  rx="8"
+                  fill="rgba(138,132,128,0.06)"
+                  stroke="#8A8480"
+                  stroke-width="1.5"
+                />
+                <text
+                  x="180"
+                  y="55"
+                  text-anchor="middle"
+                  fill="#8A8480"
+                  font-size="9"
+                  font-weight="700"
+                  font-family="sans-serif"
+                  letter-spacing="0.1em"
+                >
+                  作为主体的身体
+                </text>
+                <text x="180" y="55" text-anchor="middle" fill="#8A8480" font-size="7" font-family="sans-serif" dy="12">
+                  Lived Body / corps vécu
+                </text>
+                <text x="180" y="95" text-anchor="middle" fill="#2D2A25" font-size="8" font-family="sans-serif">
+                  "从内部"体验到的身体
+                </text>
+                <text x="180" y="108" text-anchor="middle" fill="#8A8480" font-size="7" font-family="sans-serif">
+                  你就是那个挥拍动作本身
+                </text>
+                <circle
+                  cx="350"
+                  cy="80"
+                  r="16"
+                  fill="none"
+                  stroke="#C4A65A"
+                  stroke-width="1.5"
+                  stroke-dasharray="4,2"
+                />
+                <text
+                  x="350"
+                  y="84"
+                  text-anchor="middle"
+                  fill="#C4A65A"
+                  font-size="7"
+                  font-weight="600"
+                  font-family="sans-serif"
+                >
+                  翻译
+                </text>
+                <polygon points="320,80 330,75 330,85" fill="#C4A65A" />
+                <polygon points="380,80 370,75 370,85" fill="#8A8480" />
+                <rect
+                  x="380"
+                  y="32"
+                  width="280"
+                  height="95"
+                  rx="8"
+                  fill="rgba(196,166,90,0.08)"
+                  stroke="#C4A65A"
+                  stroke-width="1.5"
+                />
+                <text
+                  x="520"
+                  y="55"
+                  text-anchor="middle"
+                  fill="#C4A65A"
+                  font-size="9"
+                  font-weight="700"
+                  font-family="sans-serif"
+                  letter-spacing="0.1em"
+                >
+                  作为客体的身体
+                </text>
+                <text x="520" y="55" text-anchor="middle" fill="#C4A65A" font-size="7" font-family="sans-serif" dy="12">
+                  Objective Body / corps objectif
+                </text>
+                <text x="520" y="95" text-anchor="middle" fill="#2D2A25" font-size="8" font-family="sans-serif">
+                  "从外部"被观察到的身体
+                </text>
+                <text x="520" y="108" text-anchor="middle" fill="#8A8480" font-size="7" font-family="sans-serif">
+                  球速120km/h · 挥拍角度17°
+                </text>
+              </svg>
+              <div class="viz-caption">图6: 梅洛-庞蒂的身体图式——主体与客体的翻译</div>
+            </div>
+            <ul>
+              <li>
+                <strong>作为主体的身体（lived body / corps vécu）</strong
+                >：这是你"从内部"体验到的身体。当你挥拍击球时，你不会"看到"自己的手臂轨迹，你<strong>就是</strong>那个挥拍动作本身。你的身体不是你操控的一个工具，它就是你。梅洛-庞蒂写道："身体是我们拥有一个世界的一般媒介"<span
+                  class="ref"
+                  data-i="c-4"
+                  >[4]</span
+                >。身体图式是一种<strong>前反思的（pre-reflective）</strong>、感觉-运动层面的身体表征<span
+                  class="ref"
+                  data-i="c-5"
+                  >[5]</span
+                >，它让你不需要"思考"就能做出复杂的身体动作——就像你不需要思考每一步就能走路。
+              </li>
+              <li>
+                <strong>作为客体的身体（objective body / corps objectif）</strong
+                >：这是你"从外部"被观察到的身体——在镜子里、在视频里、在数据表格里。它是可测量、可分析、可比较的。球速120km/h、挥拍角度17度、移动距离3.2公里——这些都是客体化的身体。
+              </li>
+            </ul>
+            <p>
+              一篇专门讨论梅洛-庞蒂与运动关系的巴西学术论文指出<span class="ref" data-i="c-10">[10]</span
+              >：身体图式的概念揭示了身体在世界中存在的方式——不是作为一个被观察的对象，而是作为一种与世界互动的<strong>活的能力</strong>。在运动技能习得中，身体图式的作用尤为明显：一篇发表在Athens
+              Journal of Sports上的论文专门论证了梅洛-庞蒂的身体图式如何作为"运动习惯"（motor
+              habit）在技能习得中发挥核心作用<span class="ref" data-i="c-2">[2]</span
+              >——当一个动作被充分练习后，它被"写入"身体图式，成为一种不需要意识参与的自动化能力。
+            </p>
+            <p>
+              <strong>这对课题意味着什么？</strong>
+              当AI摄像系统捕获了一段训练视频并叠加了数据，它做的事情本质上是：<strong
+                >把作为主体的身体（运动者的第一人称体验）翻译成了作为客体的身体（可被观看和量化的对象）。</strong
+              >
+              这个翻译必然有损——就像把一首诗翻译成另一种语言，意义会溢出、会变形、会丢失。问题不在于"翻译是否忠实"，而在于<strong>"这个翻译想要传达什么"</strong>。
+            </p>
+            <p>可以用一个更日常的比喻来解释这个概念：想象你在弹一首很熟悉的钢琴曲。</p>
+            <h4>1.2 数据人文主义：Giorgia Lupi 的完整理论</h4>
+            <p>Giorgia Lupi的"数据人文主义"的更完整理论脉络：</p>
+            <p>Lupi在2017年发表了"Data Humanism"宣言，其核心主张可以归纳为三点：</p>
+            <p>
+              <strong>① 数据不是客观的，数据是人造的。</strong>
+              Lupi写道："让我们停止假装数据是完美的。它不是。数据本质上是人造的。'数据驱动'从来不等于'毋庸置疑的真实'，而且从来都不是。"<span
+                class="ref"
+                data-i="c-11"
+                >[11]</span
+              >
+              这直接挑战了信息可视化领域长期以来的"客观性神话"——认为只要数据是准确的、图表是规范的，可视化就是"中立"的。
+            </p>
+            <p>
+              <strong>② 数据应该服务于"在数据中找到自己"。</strong>
+              在TED演讲中，Lupi展示了她如何用数据讲述人的故事，为数字增添细微差别和语境。她的核心信念是：数据可视化的目的不是让复杂变简单，而是<strong
+                >让我们在数据中认出自己</strong
+              ><span class="ref" data-i="c-12">[12]</span>。
+            </p>
+            <p>
+              <strong>③ 不完美是一种价值。</strong> "Dear
+              Data"项目是这一理念的极致实践。Lupi和Posavec用一年时间，每周手绘一张数据明信片寄给对方<span
+                class="ref"
+                data-i="c-13"
+                >[13]</span
+              >。这些明信片充满了手绘的不完美——线条不直、颜色不均、比例不精确。但正是这种不完美，让数据变得<strong>亲密和有温度</strong>。Lupi在2025年出版的新书_Speak
+              Data_中进一步阐述了这一理念，而她的首个个人展览"Data
+              Humanism"于2026年4月30日在纽约开幕——如果你想给学生推荐一个当下最前沿的参考，这是一个绝佳的时间节点。
+            </p>
+            <p>
+              <strong>这对运动数据可视化的启示：</strong>
+              也许最好的训练数据可视化不是最精确的那个，而是最"像人"的那个。一个带有个人情绪标记、感官记忆、甚至手写批注的训练日志，可能比一个精确到小数点后两位的仪表盘更能让运动者感到"这是我的故事"。
+            </p>
+            <h4>1.3 "数据肖像"：一个关键的学术概念</h4>
+            <p>演讲稿中提到的"数据肖像"（Data Portrait）是一个有严肃学术根基的概念，值得深入了解。</p>
+            <p>
+              MIT Media Lab的Donath等人最早系统化地定义了数据肖像<span class="ref" data-i="c-14">[14]</span
+              >："创建数据肖像有两个大问题：选择展示什么数据，以及设计什么样的视觉表征。"
+            </p>
+            <p>
+              xCoAx 2019的一篇论文进一步澄清了定义<span class="ref" data-i="c-15">[15]</span
+              >："数据肖像指的是一种肖像形式，它基于积累的个人数据，以唤起性的方式表征个体的身份。"注意这里的关键词——<strong>"唤起性的"（evocatively）</strong>。数据肖像不是在"描述"一个人（像身份证照片那样），而是在"唤起"一个人的存在感（像一幅印象派画作那样）。
+            </p>
+            <p>
+              2022年xCoAx的后续论文提出了数据肖像的一个重要功能：<strong>"数据镜"（data mirror）</strong
+              ><span class="ref" data-i="c-16">[16]</span
+              >——数据肖像被设计为一面反映个人行为模式的镜子。"就像我们每天早上照镜子来确认自己的外貌一样，数据肖像让我们'照见'自己的行为、习惯和身份。"
+            </p>
+            <p>
+              ResearchGate上的一篇综述论文则明确指出<span class="ref" data-i="c-17">[17]</span
+              >："数据肖像不是描述一个人的外貌，而是唤起一个人的经验。"
+            </p>
+            <p><strong>将"数据肖像"迁移到运动场景的可能性：</strong></p>
+            <p>
+              想象一下：一个网球手打了一个赛季的球。系统积累了她所有的击球数据——正手球速分布、反手落点热力图、发球旋转偏好、移动轨迹密度。赛季结束时，系统不是生成一张"成绩单"，而是生成一幅<strong>独一无二的抽象画</strong>——击球角度决定线条的方向，球速决定笔触的力度，旋转决定色彩的饱和度，移动轨迹决定构图的疏密。这幅画不"说明"任何东西，但它是<strong>只属于她的</strong>——是她的身体在这个赛季里留下的"签名"。
+            </p>
+            <p>
+              这就是"成绩单"和"肖像"的根本区别：成绩单是可比较的（你的分数高还是低），肖像是不可比较的（你的脸和别人的脸没有高低之分）。
+            </p>
+            <h4>1.4 Spotify Wrapped：数据肖像的商业化范例</h4>
+            <p>Spotify Wrapped是"数据肖像"理念在商业产品中最成功的实践。以下是你需要了解的深层设计逻辑：</p>
+            <p><strong>为什么Wrapped让人忍不住分享？</strong></p>
+            <p>
+              行为科学研究机构The Decision Lab分析指出<span class="ref" data-i="c-18">[18]</span
+              >："Wrapped本质上是在重新确认我们生活作为叙事的心理建构——它把你年初的自己和年末的自己串联起来，让你觉得'这一年是有形状的'。"这激活了心理学中的<strong
+                >自传体记忆（Autobiographical Memory）</strong
+              >——人们通过音乐回忆起特定时期的生活状态和情感。
+            </p>
+            <p>
+              另一项分析指出<span class="ref" data-i="c-19">[19]</span
+              >："Spotify用用户特定的数据创造了一种让用户感到'被看见和被重视'的体验。"注意这个措辞——<strong>"被看见"</strong>。这正是你的运动叙事课题的核心诉求。
+            </p>
+            <p><strong>Wrapped的关键设计策略：</strong></p>
+            <ul>
+              <li>
+                <strong>它几乎从不使用负面框架。</strong>
+                它不会说"你今年听歌时间减少了"，而会说"你今年发现了47位新艺术家"。即使是可能让人尴尬的数据（比如你重复听了同一首歌300次），也被包装成一种"独特个性"而非"强迫症"。
+              </li>
+              <li>
+                <strong>它给你贴标签。</strong> "你是前0.5%的Taylor
+                Swift听众""你的音乐品味是'怀旧浪漫型'"——这些标签不是客观的音乐分类，而是<strong>社交身份的建构工具</strong>。人们分享Wrapped不是在分享数据，而是在展示"我是这样的人"。
+              </li>
+              <li>
+                <strong>它是一个"时间胶囊"。</strong>
+                它不只是年度统计，它提醒你一月时你在听什么、四月什么歌让你流泪、七月什么歌陪你度过深夜——它用音乐重建了你的一年。
+              </li>
+            </ul>
+            <p>
+              <strong>Wrapped对运动叙事的启示：</strong>
+              如果你能为网球手设计一个"年度运动Wrapped"——不是"你今年打了多少小时"的统计，而是"你的第一次Ace是在三月一个下雨的周末""你在七月的那场比赛里连救了四个赛点""你的正手球速在十月突然突破了100km/h"——这种叙事化的数据呈现，会比任何仪表盘都更有情感力量。
+            </p>
+            <h4>1.5 反问</h4>
+            <ul>
+              <li>
+                "如果你要为自己的一项技能（打球、弹琴、画画、编程）画一幅'数据肖像'，你会选择哪些数据？你会故意忽略哪些数据？为什么？"
+              </li>
+              <li>
+                "Spotify
+                Wrapped之所以成功，是因为它让你觉得'这就是我'。但它展示的真的是'你'吗？还是它展示的是一个'你愿意让别人看到的你'？这两者有什么区别？"
+              </li>
+              <li>"一张成绩单和一幅自画像，哪个更'真实'？"</li>
+            </ul>
+            <h3 class="center" id="t3-v2">观点二：你不是在记录运动，你是在设计一种"看"的方式</h3>
+            <h4>2.1 三种凝视的理论来源</h4>
+            <p>演讲稿中的"三种凝视"不是随意编造的分类，每一种都有深厚的学术根基。以下是完整的理论脉络：</p>
+            <div class="visualization">
+              <svg viewBox="0 0 700 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text
+                  x="350"
+                  y="15"
+                  text-anchor="middle"
+                  fill="#C4A65A"
+                  font-size="10"
+                  font-weight="700"
+                  font-family="sans-serif"
+                  letter-spacing="0.15em"
+                >
+                  三种凝视
+                </text>
+                <rect
+                  x="30"
+                  y="32"
+                  width="200"
+                  height="105"
+                  rx="8"
+                  fill="rgba(196,112,112,0.06)"
+                  stroke="rgba(196,112,112,0.5)"
+                  stroke-width="1.5"
+                />
+                <text
+                  x="130"
+                  y="55"
+                  text-anchor="middle"
+                  fill="#C47070"
+                  font-size="9"
+                  font-weight="700"
+                  font-family="sans-serif"
+                >
+                  教练的凝视
+                </text>
+                <text x="130" y="72" text-anchor="middle" fill="#8A8480" font-size="7" font-family="sans-serif">
+                  Foucault · 规训凝视
+                </text>
+                <text x="130" y="95" text-anchor="middle" fill="#2D2A25" font-size="8" font-family="sans-serif">
+                  "纠错与规范化"
+                </text>
+                <text x="130" y="110" text-anchor="middle" fill="#8A8480" font-size="7" font-family="sans-serif">
+                  你的身体是待修正的对象
+                </text>
+                <circle cx="130" cy="128" r="8" fill="none" stroke="#C47070" stroke-width="1" />
+                <line x1="130" y1="120" x2="130" y2="112" stroke="#C47070" stroke-width="1" />
+                <rect
+                  x="250"
+                  y="32"
+                  width="200"
+                  height="105"
+                  rx="8"
+                  fill="rgba(107,143,94,0.06)"
+                  stroke="rgba(107,143,94,0.5)"
+                  stroke-width="1.5"
+                />
+                <text
+                  x="350"
+                  y="55"
+                  text-anchor="middle"
+                  fill="#6B8F5E"
+                  font-size="9"
+                  font-weight="700"
+                  font-family="sans-serif"
+                >
+                  社交的凝视
+                </text>
+                <text x="350" y="72" text-anchor="middle" fill="#8A8480" font-size="7" font-family="sans-serif">
+                  Goffman · 拟剧论
+                </text>
+                <text x="350" y="95" text-anchor="middle" fill="#2D2A25" font-size="8" font-family="sans-serif">
+                  "表演与印象管理"
+                </text>
+                <text x="350" y="110" text-anchor="middle" fill="#8A8480" font-size="7" font-family="sans-serif">
+                  前台展示 · 后台隐藏
+                </text>
+                <circle cx="340" cy="128" r="8" fill="none" stroke="#6B8F5E" stroke-width="1" />
+                <circle cx="360" cy="128" r="8" fill="none" stroke="#6B8F5E" stroke-width="1" />
+                <rect
+                  x="470"
+                  y="32"
+                  width="200"
+                  height="105"
+                  rx="8"
+                  fill="rgba(196,166,90,0.08)"
+                  stroke="#C4A65A"
+                  stroke-width="1.5"
+                />
+                <text
+                  x="570"
+                  y="55"
+                  text-anchor="middle"
+                  fill="#C4A65A"
+                  font-size="9"
+                  font-weight="700"
+                  font-family="sans-serif"
+                >
+                  自我的凝视
+                </text>
+                <text x="570" y="72" text-anchor="middle" fill="#8A8480" font-size="7" font-family="sans-serif">
+                  Self-Gaze · 叙事认同
+                </text>
+                <text x="570" y="95" text-anchor="middle" fill="#2D2A25" font-size="8" font-family="sans-serif">
+                  "看见自己在变好"
+                </text>
+                <text x="570" y="110" text-anchor="middle" fill="#8A8480" font-size="7" font-family="sans-serif">
+                  成绩单 → 肖像画
+                </text>
+                <path d="M560 120 Q570 135 580 120" fill="none" stroke="#C4A65A" stroke-width="1.5" />
+              </svg>
+              <div class="viz-caption">图7: 三种凝视——你如何"看"自己的运动数据</div>
+            </div>
+            <div class="case-card">
+              <span class="case-num">凝视一</span>
+              <p class="case-body">教练的凝视——福柯的"规训凝视"**</p>
+            </div>
+            <p>
+              Michel Foucault在《规训与惩罚》（_Discipline and Punish_,
+              1975）中提出了"全景敞视主义"（Panopticism）的概念。核心思想是：当人知道自己<strong>可能</strong>被观察时，他们会自觉地调整行为以符合规范——即使实际上没有人在看。Foucault称之为"规训的凝视"（disciplinary
+              gaze）。
+            </p>
+            <p>
+              在运动语境中，这种凝视体现为"教练的眼睛"——它的功能是纠错和规范化。一篇关于体育中身体监控的研究指出<span
+                class="ref"
+                data-i="c-20"
+                >[20]</span
+              >："监控的权力邀请人们在感到被观看时，调整自己的行为以趋向特定的规范。"当一个APP用红色标记你的"错误动作"、用图表展示你与"标准姿势"的偏差时，它就在行使这种规训凝视。
+            </p>
+            <p>
+              这种凝视不是"坏的"——教练的纠错对技术进步至关重要。但它有一个副作用：<strong
+                >它把运动者的身体变成一个永远不够好的、待修正的对象。</strong
+              >
+              如果这是唯一的凝视方式，运动者可能会逐渐失去打球的乐趣。
+            </p>
+            <div class="case-card">
+              <span class="case-num">凝视二</span>
+              <p class="case-body">社交的凝视——戈夫曼的"拟剧论"**</p>
+            </div>
+            <p>
+              Erving Goffman在1956年出版的《日常生活中的自我呈现》（_The Presentation of Self in Everyday
+              Life_）中提出了著名的"拟剧论"（Dramaturgical Approach）<span class="ref" data-i="c-21">[21]</span
+              >。他把社会互动比作戏剧表演，每个人都在不同的"舞台"上扮演不同的角色：
+            </p>
+            <ul>
+              <li>
+                <strong>前台（Front Stage）</strong
+                >：你在他人面前展示的、经过精心管理的自我形象。在社交媒体上发布的训练视频就是"前台"——你会选择最好看的角度、最精彩的瞬间、最有利的数据。
+              </li>
+              <li>
+                <strong>后台（Back Stage）</strong
+                >：你在没有观众时的真实状态。训练中的气喘吁吁、失误后的沮丧、动作的笨拙——这些是"后台"。
+              </li>
+            </ul>
+            <p>
+              Goffman的理论在社交媒体时代获得了新的生命力。一篇ResearchGate上的研究专门分析了社交媒体如何重塑了前台/后台的边界<span
+                class="ref"
+                data-i="c-22"
+                >[22]</span
+              >："社交媒体作为互动情境，探索了拟剧论中前台和后台概念的适应与变化。"一篇Medium上的分析进一步指出<span
+                class="ref"
+                data-i="c-23"
+                >[23]</span
+              >："Goffman的拟剧论（1959）将社会互动框定为表演……在社交媒体时代，前台和后台的边界变得前所未有地模糊。"
+            </p>
+            <p>
+              <strong>这对课题的启示：</strong>
+              当一个业余球员知道自己的训练会被自动录制和可视化时，训练本身是否也在悄悄变成一种"表演"？他是否会下意识地选择更"好看"的击球方式，而非最有效的练习方式？设计系统是在帮助用户管理"前台形象"，还是在鼓励他们展示"后台真实"？
+            </p>
+            <div class="case-card">
+              <span class="case-num">凝视三</span>
+              <p class="case-body">自我的凝视——存在主义的"自我确认"**</p>
+            </div>
+            <p>
+              这种凝视在学术文献中较少被直接讨论，但它的哲学根基可以追溯到保罗·利科（Paul
+              Ricœur）的<strong>叙事身份理论</strong>（Narrative
+              Identity）。利科认为，人通过讲述关于自己的故事来建构自我身份——"我是谁"这个问题的答案不是一个固定的属性，而是一个不断被讲述和修正的故事。
+            </p>
+            <p>
+              当一个运动者独自回看自己的训练视频时，她做的正是这件事：通过"看自己"来确认"我是一个打网球的人"。这不是社交表演（没有观众），也不是技术分析（不是在找错误），而是一种存在主义意义上的<strong>自我确认</strong>——"我存在过，我做了这件事，我的身体曾经以这种方式运动过。"
+            </p>
+            <h4>2.2 专业转播的视觉语法：一套为"完美身体"设计的系统</h4>
+            <p>要理解为什么专业转播的视觉语言不能直接套用到业余场景，需要先理解这套语言的设计前提。</p>
+            <p>
+              专业体育转播的视觉语法——多机位切换、慢动作回放、Hawk-Eye球轨迹追踪、数据面板叠加——是在以下前提下发展起来的：
+            </p>
+            <ul>
+              <li>
+                <strong>被拍摄的身体是高度训练过的</strong
+                >：职业运动员的动作流畅、优美、高效。慢动作放大的是这种美——费德勒的单反像一首诗，小威的发球像一次爆炸。
+              </li>
+              <li><strong>观众是旁观者</strong>：转播服务的是坐在电视前的观众，他们想要"看懂比赛"和"感受激动"。</li>
+              <li>
+                <strong>数据服务于专家解说</strong
+                >：球速、旋转、落点分布——这些数据是给解说员用的，帮助他们向观众解释"刚才发生了什么"。
+              </li>
+            </ul>
+            <p>但当这套语言被应用到业余场景时，每一个前提都失效了：</p>
+            <ul>
+              <li>
+                <strong>被拍摄的身体是"不完美"的</strong
+                >：业余选手的动作可能笨拙、不协调、充满多余动作。慢动作不会放大美，而是放大笨拙。
+              </li>
+              <li>
+                <strong>观众往往就是运动者本人</strong>：他不是旁观者，他是主角。他不需要"看懂比赛"，他需要"感受自己"。
+              </li>
+              <li>
+                <strong>数据不是给专家看的</strong>：一个业余球员不知道"上旋RPM
+                1200"意味着什么，也不需要知道。他需要的是"这球旋转很强，比你上周好多了"。
+              </li>
+            </ul>
+            <p>
+              <strong>这就是为什么我们需要发明一套新的视觉语言，而不是简化旧的。</strong>
+              这套新语言的设计前提应该是：被拍摄的身体是"正在成长的"，观众是运动者本人，数据服务于自我认知和情感共鸣。
+            </p>
+            <h4>2.3 一个关键的设计伦理问题：慢动作对业余身体的暴力</h4>
+            <p>这个问题值得在课堂上展开讨论。</p>
+            <p>
+              当你对一个初学者的击球动作施加慢动作时，你实际上在做什么？你在用一种"放大镜"审视一个还没有被充分训练的身体。这个身体的动作可能是不协调的——肘部外翻、重心后仰、随挥中断。在正常速度下，这些"缺陷"一闪而过，观众甚至不会注意到。但在慢动作中，它们被无情地暴露出来。
+            </p>
+            <p>
+              这不是初学者的问题，这是<strong>视觉语言的问题</strong>。慢动作是一种为"完美身体"设计的工具——它假设被放大的东西是值得被仔细欣赏的。当这个假设不成立时，慢动作就从"赞美"变成了"审判"。
+            </p>
+            <p>
+              <strong>设计启示：</strong>
+              也许业余运动视频中的慢动作需要不同的视觉处理——比如更浅的景深（模糊背景，聚焦球而非身体）、更多的光影氛围（用光线和色调创造美感，而非依赖动作本身的美感）、或者将慢动作与数据特效结合（让观众的注意力从"动作是否标准"转移到"这球有多快/多旋"）。
+            </p>
+            <h4>2.4 深度案例：F1赛事转播的"数据叙事"革命</h4>
+            <p>有没有一个成功的案例，展示了数据和影像融合的新方式？F1（一级方程式赛车）是一个极佳的参考。</p>
+            <p>F1在过去五年中彻底革新了其转播的数据可视化：</p>
+            <ul>
+              <li>
+                <strong>轮胎策略可视化</strong>：用彩色条带直观展示每辆车的进站策略，让观众一眼看出谁在冒险、谁在保守
+              </li>
+              <li>
+                <strong>实时速度对比光轨</strong
+                >：两辆车在同一弯道的速度差异用叠加的光轨来展示，让"快0.3秒"这个抽象数字变成了可视的差距
+              </li>
+              <li><strong>车手无线电字幕</strong>：在关键时刻叠加车手与车队的通话内容，让观众"听到"车手的情绪和决策</li>
+            </ul>
+            <p>
+              F1的成功在于：它没有把数据当作"附加信息"贴在画面上，而是把数据<strong>编织进了叙事本身</strong>。轮胎策略不是一张枯燥的表格，它是一个关于"谁在赌博、谁在稳健"的故事。速度光轨不是一个数字对比，它是一个关于"谁更快、快多少"的视觉戏剧。
+            </p>
+            <p>
+              <strong>这对网球叙事的启示：</strong>
+              球速不应该是贴在画面角落的一个数字，而应该是画面本身的一部分——球速越快，球的拖尾光轨越长、越亮、越有冲击感。落点精度不应该是一个百分比，而应该是落点处绽开的涟漪——越接近边线，涟漪越剧烈。数据不是影像的"注释"，数据应该<strong>成为</strong>影像。
+            </p>
+            <h4>2.5 反问</h4>
+            <ul>
+              <li>
+                "如果你要为同一段训练素材设计三个版本的视频——一个给教练看、一个发朋友圈、一个留给自己——它们会有什么不同？不同在哪里？"
+              </li>
+              <li>
+                "当你在社交媒体上看到一个'普通人'的运动视频时，你会下意识地评判他的动作吗？这种评判从何而来？如果视频的视觉处理方式不同，你的评判会改变吗？"
+              </li>
+              <li>"F1转播用数据讲故事——轮胎策略变成了'谁在赌博'的叙事。网球训练中的什么数据可以变成什么样的故事？"</li>
+            </ul>
+            <h3 class="center" id="t3-v3">观点三：慢动作不是一种技术，是一种时间哲学</h3>
+            <h4>3.1 Csikszentmihalyi的心流理论：完整图景</h4>
+            <p>
+              Mihaly Csikszentmihalyi在1975年首次提出"心流"（Flow）概念，后在1990年的畅销书_Flow: The Psychology of
+              Optimal
+              Experience_中系统化。心流被定义为"一种完全沉浸在活动中的状态，注意力高度集中，自我意识消失，时间感知扭曲"<span
+                class="ref"
+                data-i="c-24"
+                >[24]</span
+              >。
+            </p>
+            <p>心流的<strong>九个特征</strong>（你不需要在演讲中全部提到，但了解完整框架有助于应对追问）：</p>
+            <div class="numbered-grid">
+              <div class="numbered-item">
+                <span class="num-label">挑战与技能的平衡</span
+                ><span class="num-text">任务难度略高于当前能力，但不至于焦虑</span>
+              </div>
+              <div class="numbered-item">
+                <span class="num-label">行动与意识的融合</span
+                ><span class="num-text">不再"想着"做什么，而是"自然地"在做</span>
+              </div>
+              <div class="numbered-item">
+                <span class="num-label">清晰的目标</span><span class="num-text">知道每一步该做什么</span>
+              </div>
+              <div class="numbered-item">
+                <span class="num-label">即时的反馈</span><span class="num-text">能立刻知道自己做得好不好</span>
+              </div>
+              <div class="numbered-item">
+                <span class="num-label">对任务的全神贯注</span><span class="num-text">外界干扰被屏蔽</span>
+              </div>
+              <div class="numbered-item">
+                <span class="num-label">控制感</span><span class="num-text">感觉自己能掌控局面</span>
+              </div>
+              <div class="numbered-item">
+                <span class="num-label">自我意识的消失</span><span class="num-text">不再关心"别人怎么看我"</span>
+              </div>
+              <div class="numbered-item">
+                <span class="num-label">时间感知的扭曲</span><span class="num-text">时间可能变快或变慢</span>
+              </div>
+              <div class="numbered-item">
+                <span class="num-label">自成目的的体验</span><span class="num-text">活动本身就是奖励</span>
+              </div>
+            </div>
+            <p>其中<strong>第7条和第8条</strong>对课题最为关键。</p>
+            <h4>3.2 运动中的时间扭曲：科学证据</h4>
+            <p>这不是诗意的比喻，而是有实验证据支持的心理现象。</p>
+            <div class="case-card">
+              <span class="case-num">证据一</span>
+              <p class="case-title">心流状态下的时间感知变化**</p>
+            </div>
+            <p>
+              Frontiers in Psychology上2020年发表的一项研究<span class="ref" data-i="c-25">[25]</span
+              >专门探讨了"心流状态与空间和时间感知变化的关联"。研究发现，处于心流状态的个体确实报告了时间感知的显著变化——具体而言，如果个体在心流中体验到时间变慢，这与他们的时间判断精确度的提升相关联。
+            </p>
+            <div class="case-card">
+              <span class="case-num">证据二</span>
+              <p class="case-title">运动中的"慢区"现象**</p>
+            </div>
+            <p>
+              Psychology Today上2025年的一篇文章专门讨论了运动员的"慢区"（Slow Zone）现象<span class="ref" data-i="c-26"
+                >[26]</span
+              >："时间膨胀与意识的改变状态有关，运动员通过强烈的专注来达到这种状态。减慢时间的能力可能来源于……"许多运动员报告说，在关键时刻——比如一个决定性的击球——球似乎变大了、飞得更慢了，他们有更多的时间来做出反应。
+            </p>
+            <div class="case-card">
+              <span class="case-num">证据三</span>
+              <p class="case-title">运动本身改变时间感知**</p>
+            </div>
+            <p>
+              ResearchGate上2024年的一项研究首次证明<span class="ref" data-i="c-27">[27]</span
+              >："运动（无论是否有对手的影响）确实会影响时间感知。"这意味着即使不在心流状态中，运动本身就会改变人对时间的主观体验。
+            </p>
+            <div class="case-card">
+              <span class="case-num">证据四</span>
+              <p class="case-title">心流的神经化学机制**</p>
+            </div>
+            <p>
+              Steven Kotler（心流研究领域的知名作者）在2026年3月的一篇文章中解释了心流的神经化学基础<span
+                class="ref"
+                data-i="c-28"
+                >[28]</span
+              >："心流跟随专注而来。这就是机制。这些触发器之所以有效，是因为它们改变了你的神经化学——将去甲肾上腺素和多巴胺推入你的系统。"这些神经递质的变化直接影响了时间感知——多巴胺水平的升高与时间感知的变慢有关。
+            </p>
+            <div class="case-card">
+              <span class="case-num">证据五</span>
+              <p class="case-title">ScienceDirect上的综合性研究**</p>
+            </div>
+            <p>
+              一篇发表在ScienceDirect上的综合性论文指出<span class="ref" data-i="c-29">[29]</span
+              >："从现象学角度来看，心流伴随着自我意识的丧失、行动与意识的无缝融合，以及时间感知的剧烈变化。"
+            </p>
+            <h4>3.3 三种时间：一个供课堂讨论的框架</h4>
+            <p>演讲稿中提到的"三种时间"可以在课堂上展开为一个更丰富的讨论框架：</p>
+            <p><strong>客观时间（Chronos）——钟表的时间</strong></p>
+            <p>
+              一场训练90分钟。一个回合23秒。发球到落地0.8秒。这是可测量的、线性的、民主的时间——每一秒都等值。AI摄像系统记录的就是这种时间。
+            </p>
+            <p><strong>主观时间（Kairos）——体验的时间</strong></p>
+            <p>
+              同样的90分钟训练，在运动者的主观体验中可能是这样的：前20分钟感觉很慢（还在热身，身体没有进入状态），中间40分钟"嗖"地一下就过去了（进入了心流，完全忘记了时间），最后30分钟又变得漫长（体力下降，开始看表）。在那40分钟的心流中，某些特定的击球瞬间可能被体验为"慢动作"——球似乎悬停在空中，她有充足的时间调整拍面角度。
+            </p>
+            <p><strong>叙事时间（Mythos）——被讲述的时间</strong></p>
+            <p>
+              视频剪辑创造了第三种时间。通过慢动作、快进、跳切、蒙太奇，90分钟被压缩成30秒。而其中某个0.8秒的击球可能被拉伸成5秒。这种时间变形不是"技术处理"，它是一种<strong>意义赋予</strong>——你选择放慢什么，就是在说"这个瞬间比其他瞬间更重要"。
+            </p>
+            <p><strong>核心设计问题：叙事时间应该映射客观时间，还是映射主观时间？</strong></p>
+            <p>
+              传统的运动视频剪辑基于<strong>客观时间中的"事件"</strong>来选择高光——得分了、打出了Ace、赢得了关键分。但如果我们基于<strong>主观时间中的"状态"</strong>来驱动时间设计呢？
+            </p>
+            <p>具体而言：能否通过数据推断运动者可能的心流状态？比如：</p>
+            <ul>
+              <li>连续多拍回合中，击球节奏趋于稳定（说明动作进入了自动化）</li>
+              <li>移动效率提高（步伐更经济，不再有多余的碎步）</li>
+              <li>球速变异系数降低（击球力量更一致，不再忽大忽小）</li>
+              <li>击球间隔时间缩短（反应更快，犹豫更少）</li>
+            </ul>
+            <p>
+              如果这些数据指标同时出现，运动者很可能处于心流状态。那么视频的时间处理就可以<strong>映射</strong>这种主观时间性——心流时刻的画面自然放慢（因为运动者体验到的就是"慢"的），非心流时刻快速跳过（因为那些时刻在主观体验中是"空"的）。
+            </p>
+            <div class="visualization">
+              <svg viewBox="0 0 700 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text
+                  x="350"
+                  y="15"
+                  text-anchor="middle"
+                  fill="#C4A65A"
+                  font-size="10"
+                  font-weight="700"
+                  font-family="sans-serif"
+                  letter-spacing="0.15em"
+                >
+                  三种时间
+                </text>
+                <line x1="50" y1="40" x2="650" y2="40" stroke="#8A8480" stroke-width="1.5" />
+                <circle cx="70" cy="40" r="8" fill="rgba(138,132,128,0.04)" stroke="#8A8480" stroke-width="1" />
+                <circle cx="170" cy="40" r="8" fill="rgba(138,132,128,0.04)" stroke="#8A8480" stroke-width="1" />
+                <circle cx="220" cy="40" r="8" fill="rgba(138,132,128,0.04)" stroke="#8A8480" stroke-width="1" />
+                <text x="140" y="60" text-anchor="middle" fill="#8A8480" font-size="7" font-family="sans-serif">
+                  Chronos · 客观时间
+                </text>
+                <line x1="50" y1="95" x2="650" y2="95" stroke="#C4A65A" stroke-width="1.5" />
+                <circle cx="180" cy="95" r="10" fill="rgba(196,166,90,0.15)" stroke="#C4A65A" stroke-width="1" />
+                <circle cx="350" cy="95" r="15" fill="rgba(196,166,90,0.15)" stroke="#C4A65A" stroke-width="1" />
+                <text x="275" y="115" text-anchor="middle" fill="#C4A65A" font-size="7" font-family="sans-serif">
+                  Kairos · 体验时间
+                </text>
+                <line x1="50" y1="152" x2="650" y2="152" stroke="#7A6B9A" stroke-width="1.5" />
+                <rect
+                  x="50"
+                  y="146"
+                  width="80"
+                  height="12"
+                  rx="2"
+                  fill="rgba(122,107,154,0.1)"
+                  stroke="#7A6B9A"
+                  stroke-width="0.8"
+                />
+                <rect
+                  x="330"
+                  y="146"
+                  width="120"
+                  height="12"
+                  rx="2"
+                  fill="rgba(122,107,154,0.12)"
+                  stroke="#7A6B9A"
+                  stroke-width="0.8"
+                />
+                <text x="365" y="172" text-anchor="middle" fill="#7A6B9A" font-size="7" font-family="sans-serif">
+                  Mythos · 叙事时间
+                </text>
+              </svg>
+              <div class="viz-caption">图5: 三种时间</div>
+            </div>
+            <p>这种"数据驱动的时间变形"是一个全新的设计范式——它不是基于外部事件，而是基于内部状态来设计时间。</p>
+            <h4>3.4 电影理论中的时间：德勒兹的"时间-影像"</h4>
+            <p>
+              我们不需要深入讲解德勒兹（这对本科生来说太重了！），但可以用一句话了解："电影理论家德勒兹区分了'展示事件的影像'和'展示时间本身的影像'——我们的设计可以想想，要做哪一种？"
+            </p>
+            <h4>3.5 反问</h4>
+            <ul>
+              <li>
+                "你们有没有过打球或做某件事时'忘记了时间'的经历？那个时刻，时间是'快'的还是'慢'的？如果你要用视频来表达那种时间感，你会怎么做？"
+              </li>
+              <li>
+                "现在的运动视频剪辑软件（如剪映）都是基于'事件'来选高光——得分了就放慢。但如果我们基于'状态'来设计时间呢？你觉得可以用什么数据来推断一个人是否处于'忘我'的状态？"
+              </li>
+              <li>
+                "一段30秒的视频里，你有15秒可以分配给慢动作。你会把这15秒给'最精彩的一球'，还是给'最专注的一段时间'？为什么？"
+              </li>
+            </ul>
+            <h3 class="center" id="t3-v4">观点四："光环"的民主化：独一无二，而非千篇一律</h3>
+            <h4>4.1 本雅明的"光环"理论：完整脉络</h4>
+            <p>
+              Walter Benjamin在1935年发表的《机械复制时代的艺术作品》（_Das Kunstwerk im Zeitalter seiner technischen
+              Reproduzierbarkeit_）是20世纪最有影响力的文化批评文章之一<span class="ref" data-i="c-30">[30]</span
+              >。以下是你需要了解的完整理论框架：
+            </p>
+            <p><strong>"光环"（Aura）的定义</strong></p>
+            <p>
+              Benjamin将光环定义为艺术品因其独一无二性（uniqueness）和此时此地性（here and
+              now）而拥有的那种不可接近的、神圣的存在感<span class="ref" data-i="c-30">[30]</span
+              >。一幅原作有光环——你站在卢浮宫的《蒙娜丽莎》前感受到的那种敬畏，就是光环。但当《蒙娜丽莎》被印成一百万张海报、印在一百万个马克杯上时，这种敬畏就消失了。
+            </p>
+            <p><strong>"膜拜价值"与"展示价值"</strong></p>
+            <p>Benjamin提出了一对关键概念<span class="ref" data-i="c-31">[31]</span>：</p>
+            <ul>
+              <li>
+                <strong>膜拜价值（Cult Value）</strong
+                >：艺术品作为宗教仪式的一部分而存在的价值。一尊中世纪教堂里的圣母像，它的价值不在于"被看到"，而在于"存在于那里"——它是神圣的，即使没有人看它。
+              </li>
+              <li>
+                <strong>展示价值（Exhibition Value）</strong
+                >：艺术品作为被观看的对象而存在的价值。当艺术从宗教中解放出来，它的价值就从"存在"转向了"被展示"。
+              </li>
+            </ul>
+            <p>
+              Benjamin认为，机械复制技术（摄影、电影）加速了从膜拜价值到展示价值的转变。但他也注意到，<strong>膜拜价值并没有完全消失——它退守到了最后一个堡垒：人的面孔</strong>。Benjamin写道<span
+                class="ref"
+                data-i="c-30"
+                >[30]</span
+              >："在摄影中，展示价值开始全面取代膜拜价值。但膜拜价值并非毫无抵抗地退场。它退守到最后一道防线——人的面孔。"
+            </p>
+            <p>
+              <strong>这个洞察对运动叙事极为重要：</strong>
+              运动视频中最有"光环"的元素，不是华丽的特效，不是精确的数据，而是<strong>人的面孔和身体</strong>——那个挥拍后露出微笑的瞬间、那个救球失败后沮丧地低头的瞬间、那个赢得关键分后握拳怒吼的瞬间。这些是不可复制的，因为它们属于一个独特的人在一个独特的时刻。
+            </p>
+            <h4>4.2 光环的悖论：普及 vs. 消解</h4>
+            <p>课题面临一个Benjamin没有预见到的悖论：</p>
+            <p><strong>悖论的第一面：光环的制造</strong></p>
+            <p>
+              职业体育转播的视觉系统——慢动作、多角度、数据叠加、史诗配乐——本质上是一台"光环制造机器"。它把一个人打球的行为从日常性中抽离出来，赋予它仪式感和不可重复感。纳达尔的一记正手，经过转播系统的处理，就获得了"光环"——你觉得那一刻是壮观的、不可复制的、值得反复观看的。
+            </p>
+            <p>过去，这台机器只为极少数人服务。你必须是世界排名前100的职业选手，才"配"拥有这种视觉待遇。</p>
+            <p><strong>悖论的第二面：光环的民主化</strong></p>
+            <p>现在，AI摄像技术让每个人都能获得"类转播级"的视觉处理。这听起来是好事——"体育民主化"嘛。但问题来了：</p>
+            <p>
+              如果你给每个人都套上同一套华丽模板——同样的粒子特效、同样的史诗配乐、同样的数据面板——那会发生什么？当所有人的视频看起来都一样"酷"的时候，"酷"本身就贬值了。这正是Benjamin预言的：<strong
+                >光环通过复制而消解。</strong
+              >
+            </p>
+            <p>
+              想想看：如果每个人的朋友圈里都充斥着带粒子特效的网球视频，你还会觉得它们"酷"吗？还是会觉得它们"又是一个模板"？
+            </p>
+            <p><strong>悖论的解决：从"稀缺性"到"独特性"</strong></p>
+            <p>
+              但这里有一条出路。Benjamin定义光环的关键词是<strong>"独一无二性"</strong>。过去，光环来自稀缺——只有少数人能获得专业级的视觉待遇，所以它是"特别的"。但如果我们重新定义光环的来源——不是"稀缺性"，而是<strong>"独特性"</strong>——那么光环就不会因为普及而消解。
+            </p>
+            <p>
+              具体来说：如果每个人的数据可视化不是来自同一个模板，而是由<strong>他们自己的数据生成的、独一无二的</strong>视觉表达，那么每段视频都是不可复制的——不是因为它"稀有"，而是因为它<strong>只可能属于这个人</strong>。
+            </p>
+            <p>
+              两个球员用同一套系统，但一个是底线型选手（正手强势、移动范围大、回合长），另一个是发球上网型（发球凶猛、截击果断、回合短）。如果系统根据他们各自的数据特征生成了两段视觉气质完全不同的视频——前者绵延、温暖、有韧性；后者爆发、冷峻、锐利——那么每段视频都是独一无二的。<strong
+                >光环没有消失，它只是换了一个来源。</strong
+              >
+            </p>
+            <h4>4.3 Strava Art：数据作为创作媒介的启发</h4>
+            <p>
+              Strava Art是一个极好的案例来说明"数据如何成为独一无二的自我表达"<span class="ref" data-i="c-32">[32]</span
+              >。
+            </p>
+            <p>
+              跑步和骑行爱好者用GPS轨迹在地图上"画画"——有人跑出一只猫的形状，有人骑出一个巨大的爱心，法国骑行者甚至创造了"最大GPS画作"的世界纪录<span
+                class="ref"
+                data-i="c-33"
+                >[33]</span
+              >。Strava甚至推出了专门的应用"Prints"，让用户将自己的GPS数据转化为可打印的艺术品<span
+                class="ref"
+                data-i="c-34"
+                >[34]</span
+              >。
+            </p>
+            <p>
+              这些GPS数据本来是用来记录运动距离和配速的"客观数据"。但用户自发地把它变成了一种<strong>自我表达的媒介</strong>。数据在这里不再是"关于运动的测量"，而是"用运动创作的艺术"。
+            </p>
+            <p>
+              <strong>关键洞察：</strong> Strava
+              Art之所以有"光环"，不是因为它用了什么华丽的特效，而是因为每一幅GPS画作都是<strong>不可复制的</strong>——它是一个特定的人，在一个特定的城市，用自己的身体，花了几个小时跑出来的。这种"不可复制性"不来自技术门槛，而来自<strong>身体的独特性</strong>。
+            </p>
+            <p>
+              <strong>这对网球叙事的启示：</strong>
+              如果一个网球手的移动轨迹被叠加在球场俯视图上，形成的不是一张"技术分析图"，而是一幅<strong>独属于她的抽象画</strong>——她的移动方式、她的站位偏好、她的跑动节奏，共同"画"出了一幅只有她能画出的图案——这就是"数据作为创作媒介"的运动版本。
+            </p>
+            <h4>4.4 "不完美的美学"：日本侘寂与业余运动的视觉语言</h4>
+            <p>
+              如果有人问"业余运动的视觉语言应该是什么样的"，可以引入日本美学中的<strong>"侘寂"（Wabi-sabi）</strong>概念作为启发。
+            </p>
+            <p>
+              侘寂是日本美学的核心概念之一，它赞美的是：不完美（imperfection）、无常（impermanence）、不完整（incompleteness）。一只有裂纹的茶碗、一块长了青苔的石头、一朵即将凋谢的花——这些在西方美学中可能被视为"缺陷"的东西，在侘寂美学中恰恰是美的来源。
+            </p>
+            <p>将这个概念迁移到运动视频：</p>
+            <ul>
+              <li>
+                专业转播的美学基础是<strong>"完美"</strong>——完美的动作、完美的身体、完美的执行。它追求的是流畅、对称、精确。
+              </li>
+              <li>
+                业余运动的美学基础可以是<strong>"真实"</strong>——真实的努力、真实的挣扎、真实的不完美。一个初学者笨拙但全力以赴的救球，可能比一个职业选手轻描淡写的回球更"动人"——前提是视觉语言能捕捉到这种"动人"。
+              </li>
+            </ul>
+            <p>
+              <strong>设计启示：</strong>
+              也许业余运动视频不应该追求"看起来像职业转播"，而应该发展出一种<strong>拥抱不完美的原生美学</strong>。比如：
+            </p>
+            <ul>
+              <li>不隐藏失误，而是让失误成为叙事的一部分——三次双误之后的一记Ace，比单独的Ace更有故事</li>
+              <li>
+                不追求动作的"标准"，而是捕捉动作的"努力"——一个全力伸展但没够到球的瞬间，可能比一个轻松回球的瞬间更有情感力量
+              </li>
+              <li>不用"完美"的视觉特效，而是保留一些"粗糙感"——像手机拍摄的质感、像手写的标注、像即兴的配乐</li>
+            </ul>
+            <h4>4.5 伦理讨论："被看见"的渴望与"忘记自己"的心流</h4>
+            <p>这是演讲稿结尾留下的那个矛盾，值得在课堂上展开讨论。</p>
+            <p>
+              心流研究的第七个特征是<strong>"自我意识的消失"</strong
+              ><span class="ref" data-i="c-24">[24]</span
+              >——在心流中，你不再关心"别人怎么看我"，你完全沉浸在活动本身中。这是运动最纯粹、最珍贵的部分。
+            </p>
+            <p>但你们要设计的系统，恰恰是关于"被看见"的——被摄像头看见、被数据看见、被社交媒体上的观众看见。</p>
+            <p><strong>问题一：摄像头的存在是否会阻碍心流？</strong></p>
+            <p>
+              如果一个运动者知道自己正在被录制，他是否会下意识地关注"我看起来怎么样"，从而无法进入忘我的心流状态？这不是理论推测——很多运动员报告说，在有摄像机的情况下，他们的表现会受到影响。
+            </p>
+            <p><strong>问题二：社交分享的压力是否会扭曲运动的内在动机？</strong></p>
+            <p>
+              如果一个人开始为了"生成好看的视频"而训练，而不是为了"享受打球"而训练，那么外在动机就在侵蚀内在动机——这与Duolingo
+              Streak的问题如出一辙。
+            </p>
+            <p><strong>问题三：设计如何调和这个矛盾？</strong></p>
+            <p>
+              也许最好的设计是：<strong>让摄像机的存在轻到可以被遗忘，让生成的作品深到值得被凝视。</strong> 具体来说：
+            </p>
+            <ul>
+              <li>
+                摄像系统应该是完全自动的、不需要任何操作的——运动者不需要"按下录制键"，不需要调整角度，不需要想着"我在被拍"
+              </li>
+              <li>
+                视频生成应该是<strong>事后的</strong>——训练结束后才看到结果，而不是实时在屏幕上看到自己。这样训练过程中就不会有"被观看"的意识
+              </li>
+              <li>分享应该是可选的——系统生成的视频首先是给运动者自己看的"回忆"，是否分享到社交媒体完全由用户决定</li>
+            </ul>
+            <h4>4.6 反问</h4>
+            <ul>
+              <li>
+                "如果每个人的训练视频都有同样酷炫的粒子特效，你还会觉得它'酷'吗？'酷'的感觉从何而来——是特效本身，还是'只有少数人有'这个事实？"
+              </li>
+              <li>
+                "一个初学者笨拙地救球失败的慢动作，和一个职业选手轻松回球的慢动作，哪个更'动人'？为什么？你的答案说明了什么？"
+              </li>
+              <li>
+                "你打球时如果知道有摄像头在拍你，你的行为会改变吗？如果会，改变的是什么？这种改变是好事还是坏事？"
+              </li>
+              <li>"本雅明说光环来自'独一无二性'。在一个万物皆可复制的时代，什么东西是真正不可复制的？"</li>
+            </ul>
+            <div class="refs-section">
+              <h3>附录：参考文献</h3>
+              <h4>身体现象学与运动</h4>
+              <ul>
+                <li>
+                  Merleau-Ponty, M. (1945/2012). Phenomenology of Perception. Routledge.<span class="ref" data-i="c-1"
+                    >[1]</span
+                  >
+                </li>
+                <li>
+                  Kosma, M. (2023). Phenomenological Body Schema as Motor Habit in Skill Acquisition. Athens Journal of
+                  Sports.<span class="ref" data-i="c-2">[2]</span>
+                </li>
+                <li>
+                  Scielo (2024). What is the relationship between the body and sports? From Merleau-Ponty...<span
+                    class="ref"
+                    data-i="c-10"
+                    >[10]</span
+                  >
+                </li>
+                <li>
+                  Hockey, J. & Allen-Collinson, J. (2007). Grasping the Phenomenology of Sporting Bodies. International
+                  Review for the Sociology of Sport.
+                </li>
+              </ul>
+              <h4>数据人文主义与数据肖像</h4>
+              <ul>
+                <li>
+                  Lupi, G. (2017). Data Humanism: The Revolution Will Be Visualized. PrintMag.<span
+                    class="ref"
+                    data-i="c-11"
+                    >[11]</span
+                  >
+                </li>
+                <li>
+                  Lupi, G. How We Can Find Ourselves in Data. TED Talk, 2017.<span class="ref" data-i="c-12">[12]</span>
+                </li>
+                <li>
+                  Lupi, G. & Posavec, S. (2016). Dear Data. Princeton Architectural Press.<span
+                    class="ref"
+                    data-i="c-13"
+                    >[13]</span
+                  >
+                </li>
+                <li>Donath, J. et al. Data Portraits. MIT Press.<span class="ref" data-i="c-14">[14]</span></li>
+                <li>
+                  Sampaio, J. (2019). Data (self) Portraits: an Approach to the Visualization... xCoAx 2019.<span
+                    class="ref"
+                    data-i="c-15"
+                    >[15]</span
+                  >
+                </li>
+                <li>
+                  Sampaio, J. (2022). Data Visualization as Portraiture. xCoAx 2022.<span class="ref" data-i="c-16"
+                    >[16]</span
+                  ><span class="ref" data-i="c-17">[17]</span>
+                </li>
+              </ul>
+              <h4>心流与时间感知</h4>
+              <ul>
+                <li>
+                  Csikszentmihalyi, M. (1990). Flow: The Psychology of Optimal Experience. Harper & Row.<span
+                    class="ref"
+                    data-i="c-24"
+                    >[24]</span
+                  >
+                </li>
+                <li>
+                  Frontiers in Psychology (2020). Flow States and Associated Changes in Spatial and Temporal
+                  Processing.<span class="ref" data-i="c-25">[25]</span>
+                </li>
+                <li>
+                  Psychology Today (2025). In the Slow Zone: When Time Expands for Athletes.<span
+                    class="ref"
+                    data-i="c-26"
+                    >[26]</span
+                  >
+                </li>
+                <li>
+                  ScienceDirect. First few seconds for flow: A comprehensive proposal...<span class="ref" data-i="c-29"
+                    >[29]</span
+                  >
+                </li>
+                <li>
+                  ResearchGate (2024). The perception of time is slowed in response to exercise...<span
+                    class="ref"
+                    data-i="c-27"
+                    >[27]</span
+                  >
+                </li>
+              </ul>
+              <h4>凝视理论与自我呈现</h4>
+              <ul>
+                <li>
+                  Goffman, E. (1956). The Presentation of Self in Everyday Life. Doubleday.<span
+                    class="ref"
+                    data-i="c-21"
+                    >[21]</span
+                  >
+                </li>
+                <li>
+                  ResearchGate (2023). The Presentation of Self in Social Media: Re-analysis of Front and Backstage
+                  Concepts.<span class="ref" data-i="c-22">[22]</span>
+                </li>
+                <li>Sage Publications. Self-Presentation and the Dramaturgical Perspective.[18 in Goffman section]</li>
+              </ul>
+              <h4>本雅明与光环理论</h4>
+              <ul>
+                <li>
+                  Benjamin, W. (1935/2008). The Work of Art in the Age of Mechanical Reproduction. MIT.<span
+                    class="ref"
+                    data-i="c-30"
+                    >[30]</span
+                  >
+                </li>
+                <li>
+                  Wikipedia. The Work of Art in the Age of Mechanical Reproduction.<span class="ref" data-i="c-31"
+                    >[31]</span
+                  >
+                </li>
+              </ul>
+              <h4>Spotify Wrapped 与数据叙事</h4>
+              <ul>
+                <li>
+                  The Decision Lab (2021). The Behavioral Science Behind Spotify Wrapped's Viral Success.<span
+                    class="ref"
+                    data-i="c-18"
+                    >[18]</span
+                  >
+                </li>
+                <li>
+                  Jobaaj Learnings (2025). Spotify Wrapped Case Study: How User Data Became a Viral Marketing
+                  Phenomenon.<span class="ref" data-i="c-19">[19]</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var h = document.documentElement;
+      var p = document.getElementById("rpF");
+      document.addEventListener("scroll", function () {
+        var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+        p.style.width = Math.min(pct, 100) + "%";
+      });
+      document.querySelectorAll('a[href^="#"]').forEach(function (l) {
+        l.addEventListener("click", function (e) {
+          e.preventDefault();
+          var t = document.querySelector(this.getAttribute("href"));
+          if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+      var REFS_A = [
+        "AFP / 法新社 (2024). 郑钦文巴黎奥运夺金报道. [https://www.olympics.com/en/paris-2024/tennis]",
+        "Tong, X. (2014). Li Na brings Chinese tennis to the next level. CNN.",
+        '新华社 (2024.12.20). 从奥运金牌到全民热潮——2024，中国网球"火"了. 中国新闻网.',
+        "36氪 (2024.10.14). 网球越来越热了，但普通人上手还有点难. 36Kr.",
+        "Dayan, D. & Katz, E. (1992). Media Events: The Live Broadcasting of History. Harvard UP.",
+        "ResearchGate (2022). Media events in an age of the Web and television: Dayan and Katz revisited.",
+        "Bourdieu, P. (1979/1984). Distinction: A Social Critique of the Judgement of Taste. Harvard UP.",
+        "Giulianotti, R. Pierre Bourdieu and the Sociological Study of Sport: Habitus, Capital and Field. Palgrave.",
+        "BBC / 美国之音 (2011). 李娜夺冠引发体坛改革呼声. BBC中文.",
+        "李娜 (2012). 《独自上场》. 企鹅出版社/中国出版.",
+        "微信公众号文章 (2024). 郑钦文家庭投资之路. [Various sources].",
+        "中国网球协会 (2025.1.2). 2024中国网球十大要事.",
+        "小红书 (2024). Tenniscore网球穿搭帖合集. [Multiple posts].",
+        "钛媒体 (2024.8.5). 郑钦文奥运夺冠采访全解读. TMTpost.",
+        '封面新闻 (2024.8.5). 哪些品牌"押中"了郑钦文？',
+      ];
+      var REFS_B = [
+        "Li, I., Dey, A., & Forlizzi, J. (2010). A Stage-Based Model of Personal Informatics Systems. CHI 2010.",
+        "Rooksby, J. et al. (2014). Personal Tracking as Lived Informatics. CHI 2014.",
+        "Epstein, D. et al. (2021). Challenges in Everyday Use of Mobile Visualizations.",
+        "<i>小红书</i>. 学网球后才知道，原来握拍也分这么多种！",
+        "Reddit r/10s (2023). Best way to break 3.0?",
+        "Hullman, J. & Diakopoulos, N. (2011). Visualization Rhetoric: Framing Effects in Narrative Visualization. IEEE TVCG.",
+        "Tversky, A. & Kahneman, D. (1981). The Framing of Decisions and the Psychology of Choice. Science.",
+        "Rothman, A. & Salovey, P. (1997). Shaping perceptions to motivate healthy behavior. Psychological Bulletin.",
+        "Segel, E. & Heer, J. (2010). Narrative Visualization: Telling Stories with Data. IEEE TVCG.",
+        "The Decision Lab (2025). The Behavioral Science Behind Spotify Wrapped's Viral Success.",
+        "UX Playbook / Marketing Made Clear. Spotify Wrapped 设计策略分析.",
+        "Marketing Made Clear (2025). How Spotify Wrapped uses identity psychology.",
+        "Strava / Reddit (2025). Year in Sport 付费墙争议.",
+        "Reddit 用户反馈. Strava Year in Sport 信息不足.",
+        "Lupi, G. (2017). Data Humanism: The Revolution Will Be Visualized. PrintMag.",
+        "Lupi, G. & Posavec, S. (2016). Dear Data. Princeton Architectural Press.",
+        "Lupi, G. (2025). Speak Data. [New book].",
+        '<i>纽约时报</i> (2026). Giorgia Lupi首个个人展览"Data Humanism" 4月30日开幕.',
+        "APA. Self-Efficacy: Core Theory of Human Agency.",
+        "Bandura, A. (1977). Self-efficacy: Toward a Unifying Theory of Behavioral Change. Psychological Review.",
+        "Bandura 自我效能量表. 中文版信效度检验.",
+        'Bandura, A. (2008). "没有比掌握经验更好的方式来建立自我效能."',
+        "NIH综述. 体育活动中自我效能的作用.",
+        "PMC / 运动神经科学 (2024). 运动记忆巩固研究.",
+        "Neuroscience研究. 突触强化与自动化转移机制.",
+        "PMC (2024). 平台期后表现跃升研究.",
+        "Duolingo官方博客. Streak用户留存机制.",
+        "Duolingo官方博客. 游戏化策略分析.",
+        "Duolingo官方博客 (内部). Streak设计解释.",
+        "The Decision Lab (2026.3). Streak Creep: The Perils of Too Much Gamification.",
+      ];
+      var REFS_C = [
+        "Merleau-Ponty, M. (1945/2012). Phenomenology of Perception. Routledge.",
+        "Kosma, M. (2023). Phenomenological Body Schema as Motor Habit. Athens Journal of Sports.",
+        "Hockey, J. & Allen-Collinson, J. (2007). Grasping the Phenomenology of Sporting Bodies.",
+        "Merleau-Ponty, M. (1945). 《知觉现象学》核心概念.",
+        "Gallagher, S. (2005). How the Body Shapes the Mind.",
+        "Gallagher, S. 身体图式的前反思表征.",
+        "Gibbs, R. W. (2006). Embodiment and Cognitive Science.",
+        "Sheets-Johnstone, M. (1980). The Phenomenology of Dance.",
+        "Husserl 意向性弧概念.",
+        "Scielo (2024). What is the relationship between the body and sports? From Merleau-Ponty...",
+        "Lupi, G. (2017). Data Humanism: The Revolution Will Be Visualized. PrintMag.",
+        "Lupi, G. TED (2017). How We Can Find Ourselves in Data.",
+        "Lupi, G. & Posavec, S. (2016). Dear Data. Princeton Architectural Press.",
+        "Donath, J. et al. (MIT Media Lab). Data Portraits.",
+        "Sampaio, J. (2019). Data (self) Portraits. xCoAx 2019.",
+        "Sampaio, J. (2022). Data Visualization as Portraiture. xCoAx 2022.",
+        "ResearchGate 综述. 数据肖像唤起经验.",
+        "The Decision Lab (2025). Behavioral Science Behind Spotify Wrapped.",
+        "Jobaaj Learnings (2025). Spotify Wrapped Case Study.",
+        "Sport监控研究. 规训凝视在体育中的应用.",
+        "Goffman, E. (1956). The Presentation of Self in Everyday Life. Doubleday.",
+        "ResearchGate (2023). Front and Backstage in Social Media.",
+        "Medium分析. Goffman's Dramaturgical Theory in the Digital Age.",
+        "Csikszentmihalyi, M. (1990). Flow: The Psychology of Optimal Experience. Harper & Row.",
+        "Frontiers in Psychology (2020). Flow States and Spatial/Temporal Processing.",
+        "Psychology Today (2025). In the Slow Zone: When Time Expands for Athletes.",
+        "ResearchGate (2024). Time perception slowed by exercise.",
+        "Steven Kotler (2026.3). The Neuroscience of Flow.",
+        "ScienceDirect. First few seconds for flow: A comprehensive proposal.",
+        "Benjamin, W. (1935/2008). The Work of Art in the Age of Mechanical Reproduction. MIT.",
+        "Wikipedia. The Work of Art in the Age of Mechanical Reproduction – 膜拜价值与展示价值.",
+        "Strava Blog. Strava Art: How Running Became an Art Form.",
+        "Guinness世界纪录. Maximum GPS Art.",
+        "Strava Prints应用. GPS数据转化为可打印艺术品.",
+      ];
+      var RF = { A: REFS_A, B: REFS_B, C: REFS_C };
+      function getRefText(n, topic) {
+        var idx =
+          topic === "A" && n <= 15 ? n - 1 : topic === "B" && n <= 30 ? n - 1 : topic === "C" && n <= 34 ? n - 1 : -1;
+        var data = RF[topic] || [];
+        return idx >= 0 && idx < data.length ? data[idx] : "参考文献未找到";
+      }
+      document.querySelectorAll(".ref").forEach(function (el) {
+        var dataI = el.getAttribute("data-i");
+        var n = parseInt(dataI.split("-")[1]);
+        var t = dataI.charAt(0).toUpperCase();
+        var tooltip = document.createElement("div");
+        tooltip.className = "ref-tooltip";
+        tooltip.textContent = getRefText(n, t);
+        el.appendChild(tooltip);
+      });
+      console.log("引用 tooltip 已初始化，共", document.querySelectorAll(".ref").length, "个引用");
+    </script>
+    <script>
+      var h = document.documentElement;
+      var p = document.getElementById("rpF");
+      var toc = document.getElementById("toc");
+      var tocItems = document.getElementById("tocItems");
+      var sections = [
+        "overview",
+        "t1",
+        "t1-v1",
+        "t1-v2",
+        "t1-v3",
+        "t1-v4",
+        "t1-end",
+        "t2",
+        "t2-v1",
+        "t2-v2",
+        "t2-v3",
+        "t3",
+        "t3-v1",
+        "t3-v2",
+        "t3-v3",
+        "t3-v4",
+        "refs",
+      ];
+      var sectionLabels = {
+        overview: "课程课题概览",
+        t1: "课题 A · 宏观",
+        "t1-v1": "观点一：媒介事件解构",
+        "t1-v2": "观点二：培养模式变迁",
+        "t1-v3": "观点三：网球裙消费",
+        "t1-v4": "观点四：话语体系演变",
+        "t1-end": "收束与附录",
+        t2: "课题 B · 中观",
+        "t2-v1": "观点一：数据≠信息≠意义",
+        "t2-v2": "观点二：可视化修辞",
+        "t2-v3": "观点三：看见自己在变好",
+        t3: "课题 C · 微观",
+        "t3-v1": "观点一：数据是身体肖像",
+        "t3-v2": '观点二：设计"看"的方式',
+        "t3-v3": "观点三：慢动作时间哲学",
+        "t3-v4": "观点四：光环民主化",
+        refs: "参考文献",
+      };
+      var sectionTypes = {
+        overview: "h2",
+        t1: "h2",
+        "t1-v1": "h3",
+        "t1-v2": "h3",
+        "t1-v3": "h3",
+        "t1-v4": "h3",
+        "t1-end": "h3",
+        t2: "h2",
+        "t2-v1": "h3",
+        "t2-v2": "h3",
+        "t2-v3": "h3",
+        t3: "h2",
+        "t3-v1": "h3",
+        "t3-v2": "h3",
+        "t3-v3": "h3",
+        "t3-v4": "h3",
+        refs: "h2",
+      };
+
+      // 创建目录项
+      function createTocItems() {
+        sections.forEach(function (id) {
+          var item = document.createElement("div");
+          item.className = "toc-item" + (sectionTypes[id] === "h3" ? " h3" : "");
+          item.setAttribute("data-section", id);
+          item.innerHTML =
+            '<div class="toc-item-line"></div><span class="toc-item-text">' + sectionLabels[id] + "</span>";
+          item.addEventListener("click", function (e) {
+            e.stopPropagation();
+            var target = document.getElementById(id);
+            if (target) {
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          });
+          tocItems.appendChild(item);
+        });
+      }
+      createTocItems();
+
+      // 获取当前激活的 section
+      function getActiveSection() {
+        var scrollPos = h.scrollTop;
+        var activeId = "overview";
+        sections.forEach(function (id) {
+          var sec = document.getElementById(id);
+          if (sec) {
+            var offset = sec.offsetTop;
+            if (scrollPos >= offset - 150) {
+              activeId = id;
+            }
+          }
+        });
+        return activeId;
+      }
+
+      // 滚动监听
+      document.addEventListener("scroll", function () {
+        var pct = (h.scrollTop / (document.body.scrollHeight - h.clientHeight)) * 100;
+        p.style.width = Math.min(pct, 100) + "%";
+        updateTocActive();
+      });
+
+      // 更新目录高亮
+      function updateTocActive() {
+        var activeId = getActiveSection();
+        document.querySelectorAll(".toc-item").forEach(function (item) {
+          item.classList.remove("active");
+          if (item.getAttribute("data-section") === activeId) {
+            item.classList.add("active");
+          }
+        });
+      }
+
+      // 平滑滚动（页内链接）
+      document.querySelectorAll('a[href^="#"]').forEach(function (l) {
+        l.addEventListener("click", function (e) {
+          e.preventDefault();
+          var t = document.querySelector(this.getAttribute("href"));
+          if (t) {
+            t.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      // 移动端切换按钮
+      var tocToggle = document.getElementById("tocToggle");
+      if (tocToggle && toc) {
+        tocToggle.addEventListener("click", function () {
+          toc.classList.toggle("toc-open");
+        });
+      }
+
+      // 初始化
+      updateTocActive();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5F0E8"/>
+      <stop offset="100%" style="stop-color:#EDE6D8"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#bg)" width="600" height="400" rx="8"/>
+  <text x="300" y="140" text-anchor="middle" font-family="serif" font-size="160" fill="#C4A65A" fill-opacity="0.8">62%</text>
+  <text x="300" y="180" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#9E8E7C">脱离语境的原始事实</text>
+  <text x="300" y="200" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#9E8E7C">好消息还是坏消息？不知道。数据是沉默的。</text>
+  <path d="M300 210 L300 240" stroke="#C4A65A" stroke-width="1.5"/>
+  <polygon points="295,235 305,235 300,245" fill="#C4A65A"/>
+  <text x="300" y="270" text-anchor="middle" font-family="serif" font-size="16" fill="#6B5D4F">比上月提升了7个百分点</text>
+  <text x="300" y="295" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#9E8E7C">有了比较基准和时间维度</text>
+  <path d="M300 300 L300 330" stroke="#C4A65A" stroke-width="1.5"/>
+  <polygon points="295,325 305,325 300,335" fill="#C4A65A"/>
+  <text x="300" y="355" text-anchor="middle" font-family="serif" font-size="13" fill="#4A3E30">你正在突破瓶颈期</text>
+  <text x="300" y="375" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#A0947C">IMG-DIKW · 推荐尺寸: 600×400 · P4 使用</text>
+</svg>

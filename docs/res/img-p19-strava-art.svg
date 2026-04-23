@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect fill="#F5F0E8" width="400" height="400" rx="6"/>
+  <path d="M80 200 Q120 80 200 150 Q280 220 320 120 Q360 60 380 180 Q400 300 300 280 Q200 260 150 320 Q100 380 60 300 Q40 240 80 200Z" fill="none" stroke="#C4A65A" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="200" cy="150" r="6" fill="#C4A65A"/>
+  <circle cx="320" cy="120" r="6" fill="#C4A65A"/>
+  <circle cx="150" cy="320" r="6" fill="#C4A65A"/>
+  <path d="M80 200 Q120 80 200 150 Q280 220 320 120 Q360 60 380 180 Q400 300 300 280 Q200 260 150 320 Q100 380 60 300 Q40 240 80 200Z" fill="#C4A65A" fill-opacity="0.05"/>
+  <text x="200" y="360" text-anchor="middle" font-family="serif" font-size="12" fill="#6B5D4F">Strava Art · GPS 轨迹画</text>
+  <text x="200" y="385" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#A0947C">IMG-05 · 推荐尺寸: 400×400</text>
+</svg>
