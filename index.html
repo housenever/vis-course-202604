@@ -300,6 +300,26 @@
         padding: 4px 10px;
         border-radius: 4px;
       }
+      .download-btn {
+        display: inline-flex;
+        align-items: center;
+        background: #222;
+        color: #fff;
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: all 0.2s var(--ease-out);
+        cursor: pointer;
+      }
+      .download-btn:hover {
+        background: #444;
+        transform: translateY(-1px);
+      }
+      .download-btn:active {
+        transform: translateY(0);
+      }
       @media (min-width: 768px) {
         .subject-info {
           padding: 32px 48px;
@@ -2288,7 +2308,17 @@
             </div>
             <div class="subject-info-meta-item">
               <span class="subject-info-meta-label">数据来源</span>
-              <span class="subject-info-meta-value">企业提供基于真实用户运动的模拟数据（半年内连续12次训练）</span>
+              <span class="subject-info-meta-value">企业提供基于真实用户运动的模拟数据（半年内8次训练）</span>
+            </div>
+            <div class="subject-info-meta-item" style="margin-top: 12px;">
+              <a href="res/tennis_training_data.zip" download class="download-btn">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Download Data
+              </a>
             </div>
           </div>
           <div class="subject-info-tags">
