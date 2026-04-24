@@ -12,6 +12,7 @@
     />
     <style>
       :root {
+        color-scheme: light only;
         --bg: #fff;
         --bg-alt: #fafafa;
         --bg-card: #fff;
@@ -51,12 +52,14 @@
         line-height: 1.9;
         overflow-y: auto;
         overflow-x: hidden;
+        color-scheme: light only;
       }
       body {
         font-family: var(--ff-n);
         background: var(--bg);
         color: var(--tx);
         -webkit-font-smoothing: antialiased;
+        color-scheme: light only;
       }
       nav {
         position: fixed;
@@ -1251,13 +1254,14 @@
           width: 300px;
         }
       }
+      /* 移动端目录切换按钮 */
       .toc-toggle {
         display: none;
         position: fixed;
-        bottom: 32px;
-        right: 32px;
-        width: 52px;
-        height: 52px;
+        bottom: 24px;
+        right: 24px;
+        width: 48px;
+        height: 48px;
         border-radius: 50%;
         background: var(--accent);
         color: #fff;
@@ -1266,16 +1270,95 @@
         z-index: 200;
         align-items: center;
         justify-content: center;
-        box-shadow: var(--sh-lg);
-        transition: all 0.25s var(--ease-out);
+        box-shadow: 0 4px 16px rgba(255, 96, 34, 0.35);
+        transition: all 0.2s var(--ease-out);
       }
-      .toc-toggle:hover {
-        transform: scale(1.08);
-        box-shadow: 0 8px 28px rgba(255, 96, 34, 0.4);
+      .toc-toggle:active {
+        transform: scale(0.95);
       }
+      /* 移动端目录遮罩层 */
+      .toc-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 150;
+        opacity: 0;
+        transition: opacity 0.3s var(--ease-out);
+      }
+      .toc-overlay.active {
+        opacity: 1;
+      }
+      /* 窄屏适配 */
       @media (max-width: 1200px) {
+        .toc {
+          display: none;
+          position: fixed;
+          top: 0;
+          right: 0;
+          width: 85%;
+          max-width: 320px;
+          height: 100vh;
+          background: var(--bg);
+          border-left: none;
+          box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+          z-index: 180;
+          transform: translateX(100%);
+          transition: transform 0.35s var(--ease-out);
+        }
+        .toc.active {
+          display: block;
+          transform: translateX(0);
+        }
+        .toc:hover {
+          width: 85%;
+          max-width: 320px;
+          border-left-color: transparent;
+        }
+        .toc-header {
+          opacity: 1;
+          border-bottom: 1px solid var(--br-m);
+        }
+        .toc-items {
+          padding: 12px 0;
+        }
+        .toc-item {
+          height: 44px;
+          padding: 0 16px;
+        }
+        .toc-item-text {
+          max-width: 200px;
+          opacity: 1;
+        }
         .toc-toggle {
           display: flex;
+        }
+        .toc-overlay {
+          display: block;
+        }
+        /* 确保正文不被遮挡 */
+        .aw,
+        .ts,
+        .main-wrap,
+        .page-wrap,
+        section {
+          padding-right: 0 !important;
+        }
+      }
+      /* 更小屏幕适配 */
+      @media (max-width: 480px) {
+        .toc {
+          width: 90%;
+          max-width: none;
+        }
+        .toc-toggle {
+          bottom: 16px;
+          right: 16px;
+          width: 44px;
+          height: 44px;
         }
       }
       .main-wrap {
@@ -1305,9 +1388,23 @@
         <line x1="3" y1="18" x2="21" y2="18" />
       </svg>
     </button>
+    <div class="toc-overlay" id="tocOverlay"></div>
     <aside class="toc" id="toc">
       <div class="toc-header">
         <span class="toc-title">目录</span>
+        <button class="toc-close-btn" id="tocCloseBtn" aria-label="关闭目录">
+          <svg
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
       </div>
       <div class="toc-items" id="tocItems"></div>
     </aside>
@@ -1374,16 +1471,13 @@
               年郑钦文女单金牌让"网球"再度成为顶流。这二十年恰好是中国体育从"举国体制"向"职业化
               + 大众化"转型的完整周期。李娜与郑钦文，同一个球场，两种媒介时代。
             </p>
-            <p>
-              <strong>关键产出</strong><br />4:3
-              竖版信息海报，包含培养模式三阶段演化图、媒介事件对比数据可视化、网球人口增长曲线。
-            </p>
+            <p><strong>关键产出</strong><br />可交互的信息展示界面</p>
             <div class="tcd-m">
               <span>叙事可视化</span><span>信息设计</span><span>体育社会学</span
               ><span>数据新闻</span><span>媒介研究</span>
             </div>
             <div class="tcd-footer">
-              <p>4:3 竖版海报 · 互联网公开数据 · 理论框架：媒介事件</p>
+              <p>交互数据 · 互联网公开数据 · 媒介事件</p>
             </div>
           </div>
           <div class="tcd">
@@ -1410,16 +1504,13 @@
               个月内放弃，因"看不到自己的变化"。智能手表、运动 APP
               记录了大量数据，但用户无法从中获得"我在进步"的感知。
             </p>
-            <p>
-              <strong>关键产出</strong><br />个人网球成长报告 UI
-              界面，包含数据仪表盘、进步曲线可视化、个性化建议卡片、成就徽章系统。
-            </p>
+            <p><strong>关键产出</strong><br />基于UI界面的设计</p>
             <div class="tcd-m">
               <span>个人数据可视化</span><span>行为心理学</span
               ><span>UX 设计</span><span>说服性设计</span><span>数据叙事</span>
             </div>
             <div class="tcd-footer">
-              <p>UI 界面设计 · 企业模拟数据 · 理论框架：目标设定理论</p>
+              <p>UI 界面设计 · 模拟数据 · 目标设定理论</p>
             </div>
           </div>
           <div class="tcd">
@@ -1447,16 +1538,13 @@
               <strong>背景</strong
               ><br />"被看见"成核心体验。专业转播门槛高，随手拍摄缺"高光感"。社交媒体时代，运动分享从"记录"升级为"表演"，但普通人缺乏专业包装能力。
             </p>
-            <p>
-              <strong>关键产出</strong><br />30
-              秒竖屏动态视频模板，包含数据入场动画、高光时刻标注、情绪曲线可视化、社交分享卡片自动生成。
-            </p>
+            <p><strong>关键产出</strong><br />基于视频的动态影像</p>
             <div class="tcd-m">
               <span>动态数据可视化</span><span>影视包装</span
               ><span>动效设计</span><span>情绪化设计</span><span>社交传播</span>
             </div>
             <div class="tcd-footer">
-              <p>30 秒竖屏 MP4 · 场馆传感器数据 · 理论框架：动态图形设计</p>
+              <p>动态影像 · 场馆传感器数据 · 动态图形设计</p>
             </div>
           </div>
         </div>
@@ -1511,9 +1599,7 @@
           <div class="subject-info-meta">
             <div class="subject-info-meta-item">
               <span class="subject-info-meta-label">交付形式</span>
-              <span class="subject-info-meta-value"
-                >4:3 竖版静态信息图海报</span
-              >
+              <span class="subject-info-meta-value">可交互的信息图</span>
             </div>
             <div class="subject-info-meta-item">
               <span class="subject-info-meta-label">数据来源</span>
@@ -2657,9 +2743,7 @@
           <div class="subject-info-meta">
             <div class="subject-info-meta-item">
               <span class="subject-info-meta-label">交付形式</span>
-              <span class="subject-info-meta-value"
-                >可互动的UI界面（4-5屏）</span
-              >
+              <span class="subject-info-meta-value">可交互的UI界面</span>
             </div>
             <div class="subject-info-meta-item">
               <span class="subject-info-meta-label">数据来源</span>
@@ -3760,12 +3844,12 @@
           <div class="subject-info-meta">
             <div class="subject-info-meta-item">
               <span class="subject-info-meta-label">交付形式</span>
-              <span class="subject-info-meta-value">30秒竖屏MP4视频</span>
+              <span class="subject-info-meta-value">动态影像视频（30s内）</span>
             </div>
             <div class="subject-info-meta-item">
               <span class="subject-info-meta-label">数据来源</span>
               <span class="subject-info-meta-value"
-                >学生自行前往指定场馆体验并获得视频及大量统计型运动数据</span
+                >学生前往「乐动力杨浦体育活动中心」进行网球训练获得视频及统计型运动数据</span
               >
             </div>
           </div>
@@ -4779,7 +4863,25 @@
             </p>
             <h4>3.4 电影理论中的时间：德勒兹的"时间-影像"</h4>
             <p>
-              我们不需要深入讲解德勒兹（这对本科生来说太重了！），但可以用一句话了解："电影理论家德勒兹区分了'展示事件的影像'和'展示时间本身的影像'——我们的设计可以想想，要做哪一种？"
+              如果有人对电影理论感兴趣：法国哲学家吉尔·德勒兹（Gilles
+              Deleuze）在《电影2：时间-影像》（<em>Cinema 2: The Time-Image</em
+              >, 1985）中区分了两种电影影像：
+            </p>
+            <ul>
+              <li>
+                <strong>运动-影像（Movement-Image）</strong
+                >：时间从属于运动。剪辑的目的是推动情节前进。好莱坞动作片就是典型的运动-影像——每个镜头都在"发生什么事"。
+              </li>
+              <li>
+                <strong>时间-影像（Time-Image）</strong
+                >：运动从属于时间。影像不再服务于"发生了什么"，而是呈现时间本身的质感——停滞、膨胀、循环、断裂。塔可夫斯基和侯孝贤的电影是典型的时间-影像。
+              </li>
+            </ul>
+            <p>
+              传统的运动视频剪辑是典型的"运动-影像"——每个镜头都在展示一个动作、一个事件。但如果你们的设计能进入"时间-影像"的领域——不是展示"发生了什么"，而是传达"那个时刻的时间感觉是什么样的"——那就是一个真正的创新。
+            </p>
+            <p>
+              我们不需要深入讲解德勒兹，但可以用一句话了解："电影理论家德勒兹区分了'展示事件的影像'和'展示时间本身的影像'——我们的设计可以想想，要做哪一种？"
             </p>
             <h4>3.5 反问</h4>
             <ul>
@@ -5402,11 +5504,49 @@
 
       // 移动端切换按钮
       var tocToggle = document.getElementById("tocToggle");
-      if (tocToggle && toc) {
-        tocToggle.addEventListener("click", function () {
-          toc.classList.toggle("toc-open");
-        });
+      var tocOverlay = document.getElementById("tocOverlay");
+      var tocCloseBtn = document.getElementById("tocCloseBtn");
+
+      function openToc() {
+        toc.classList.add("active");
+        tocOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
       }
+
+      function closeToc() {
+        toc.classList.remove("active");
+        tocOverlay.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      if (tocToggle && toc) {
+        tocToggle.addEventListener("click", openToc);
+      }
+
+      if (tocOverlay) {
+        tocOverlay.addEventListener("click", closeToc);
+      }
+
+      if (tocCloseBtn) {
+        tocCloseBtn.addEventListener("click", closeToc);
+      }
+
+      // 点击目录项后关闭（移动端）
+      tocItems.addEventListener("click", function (e) {
+        if (window.innerWidth <= 1200) {
+          var link = e.target.closest(".toc-item");
+          if (link) {
+            setTimeout(closeToc, 150);
+          }
+        }
+      });
+
+      // ESC 键关闭
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && toc.classList.contains("active")) {
+          closeToc();
+        }
+      });
 
       // 初始化
       updateTocActive();
